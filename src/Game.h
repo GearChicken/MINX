@@ -18,12 +18,17 @@
 	*/
 #ifndef GAME_H_
 #define GAME_H_
-class Game {
-	public:
-		virtual void Initialize();
-		virtual void LoadContent();
-		virtual void Update();
-		virtual void UnloadContent();
-		virtual void Draw();
-#endif
+
+namespace MINX
+{
+	class Game 
+	{
+		public:
+			virtual void Initialize();
+			virtual void LoadContent();
+			virtual void Update();
+			virtual void UnloadContent();
+			virtual void Draw();
+	}
 }
+#endif
