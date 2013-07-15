@@ -16,10 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef IGAMECOMPONENT_H_
-#define IGAMECOMPONENT_H_
-class IGameComponent {
+#ifndef GAME_H_
+#define GAME_H_
+class Game {
 	public:
 		virtual void Initialize();
+		virtual void LoadContent();
+		virtual void Update();
+		virtual void UnloadContent();
+		virtual void Draw();
 #endif
 }
