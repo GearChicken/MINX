@@ -7,8 +7,8 @@ CC = g++
 
 ##### Files
 
-SOURCES = $(wildcard src/*.cpp)
-OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp))
+SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp)
+OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp))
 TARGET = libMINX.so
 
 ##### Build rules

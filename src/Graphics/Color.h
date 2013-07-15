@@ -18,22 +18,22 @@
 	*/
 #ifndef COLOR_H_
 #define COLOR_H_
+typedef unsigned char byte;
 namespace MINX
 {
 	namespace Graphics
 	{
 		struct Color
 		{
-			unsigned char R;
-			unsigned char G;
-			unsigned char B;
-			unsigned char A;
-			Color(unsigned char r, unsigned char g, unsigned char b, unsigned char a);
-			Color(unsigned char r, unsigned char g, unsigned char b);
-			Color(float r, float b, float g);
-			Color(float r, float b, float g, float a);
+			byte R;
+			byte G;
+			byte B;
+			byte A;
+			Color(byte r, byte g, byte b, byte a);
+			Color(byte r, byte g, byte b);
 			bool operator==(const Color& compareTo);
 			bool operator!=(const Color& compareTo);
+			Color * operator*(const float& scale);
 		};
 	}
 }

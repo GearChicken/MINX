@@ -18,10 +18,27 @@
 	*/
 #include "Color.h"
 using namespace MINX::Graphics;
-Color::Color(unsigned char r, unsigned char b, unsigned char g, unsigned char a)
+Color::Color(byte r, byte b, byte g, byte a)
 {
 	R=r;
 	B=b;
 	G=g;
 	A=a;
+}
+
+Color::Color(byte r, byte b, byte g)
+{
+	Color(r,g,b,255);
+}
+bool Color::operator==(const Color& compareTo)
+{
+	return R == compareTo.R && G == compareTo.G && B == compareTo.B && A == compareTo.A;
+}
+bool Color::operator!=(const Color& compareTo)
+{
+	return !operator==(compareTo);
+}
+Color * Color::operator*(const float& scale)
+{
+	return new Color(R*scale,G*scale,B*scale,A*scale);
 }
