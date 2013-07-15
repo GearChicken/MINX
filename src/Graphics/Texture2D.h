@@ -21,16 +21,16 @@
 
 namespace MINX
 {
-	class Game 
+	namespace Graphics
 	{
-		public:
-			virtual void Initialize();
-			virtual void LoadContent(string contentDir);
-			virtual void Update(GameTime gameTime);
-			virtual void UnloadContent();
-			virtual void Draw(GameTime gameTime);
-			void Run();
-			
+		class Texture2D
+		{
+			public:
+				Texture2D(string filename);
+				int width, height;
+				
+			private:
+				
+		}
 	}
 }
-#endif
