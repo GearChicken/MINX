@@ -18,8 +18,11 @@
 	*/
 #ifndef IGAMECOMPONENT_H_
 #define IGAMECOMPONENT_H_
-class IGameComponent {
-	public:
-		virtual void Initialize();
-#endif
+
+namespace MINX{
+	class IGameComponent {
+		public:
+			virtual void Initialize();
+	}
 }
+#endif
