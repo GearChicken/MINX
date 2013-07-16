@@ -16,21 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "GameTime.h"
+#include "Matrix4x4.h"
 using namespace MINX;
 
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
+Matrix4x4::Matrix4x4(float ma11,float ma12,float ma13,float ma14,float ma21,float ma22,float ma23,float ma24,float ma31,float ma32,float ma33,float ma34,float ma41, float ma42,float ma43,float ma44)
 {
-	time=millisecondsSinceStart;
-	deltaTime=timeSinceLastUpdate;
-	isRunningSlowly=runningSlowly;
-}
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
-{
-	GameTime(millisecondsSinceStart, timeSinceLastUpdate, false);
-}
-GameTime::GameTime()
-{
-	GameTime(0,0,false);
+	m11=ma11;
+	m12=ma12;
+	m13=ma13;
+	m14=ma14;
+	m21=ma21;
+	m22=ma22;
+	m23=ma23;
+	m24=ma24;
+	m31=ma31;
+	m32=ma32;
+	m33=ma33;
+	m34=ma34;
+	m41=ma41;
+	m42=ma42;
+	m43=ma43;
+	m44=ma44;
 }

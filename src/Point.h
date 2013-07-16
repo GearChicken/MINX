@@ -16,21 +16,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "GameTime.h"
-using namespace MINX;
-
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
+	
+#ifndef POINT_H_
+#define POINT_H_
+namespace MINX
 {
-	time=millisecondsSinceStart;
-	deltaTime=timeSinceLastUpdate;
-	isRunningSlowly=runningSlowly;
+	struct Point
+	{
+		Point(int x, int y);
+		int X;
+		int Y;
+		bool operator==(const Point& compareTo);
+		bool operator!=(const Point& compareTo);
+	};
 }
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
-{
-	GameTime(millisecondsSinceStart, timeSinceLastUpdate, false);
-}
-GameTime::GameTime()
-{
-	GameTime(0,0,false);
-}
+#endif

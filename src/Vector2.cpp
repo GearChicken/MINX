@@ -16,21 +16,3 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "GameTime.h"
-using namespace MINX;
-
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
-{
-	time=millisecondsSinceStart;
-	deltaTime=timeSinceLastUpdate;
-	isRunningSlowly=runningSlowly;
-}
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
-{
-	GameTime(millisecondsSinceStart, timeSinceLastUpdate, false);
-}
-GameTime::GameTime()
-{
-	GameTime(0,0,false);
-}

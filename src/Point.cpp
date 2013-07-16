@@ -16,21 +16,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+#include "Point.h"
 
-#include "GameTime.h"
 using namespace MINX;
 
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
+Point::Point(int x, int y)
 {
-	time=millisecondsSinceStart;
-	deltaTime=timeSinceLastUpdate;
-	isRunningSlowly=runningSlowly;
+	X=x;
+	Y=y;
 }
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
+bool Point::operator==(const Point& compareTo)
 {
-	GameTime(millisecondsSinceStart, timeSinceLastUpdate, false);
+	return X == compareTo.X && Y == compareTo.Y;
 }
-GameTime::GameTime()
+bool Point::operator!=(const Point& compareTo)
 {
-	GameTime(0,0,false);
+	return !operator==(compareTo);
 }

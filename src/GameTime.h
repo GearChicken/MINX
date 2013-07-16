@@ -27,6 +27,10 @@ namespace MINX
 			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly);
 			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate);
 			GameTime();
+		private:
+			long time;
+			long deltaTime;
+			bool isRunningSlowly;
 	};
 }
 #endif
