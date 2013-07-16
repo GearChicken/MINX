@@ -16,28 +16,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
-
-#include <string>
-#include "SDL/SDL.h"
-#include "GameTime.h"
-
-using namespace std;
-
+#ifndef KEYBOARD_H_
+#define KEYBOARD_H_
 namespace MINX
 {
-	class Game 
+	namespace Input
 	{
-		public:
-			virtual void Initialize();
-			virtual void LoadContent(string contentDir);
-			virtual void Update(GameTime gameTime);
-			virtual void UnloadContent();
-			virtual void Draw(GameTime gameTime);
-			void Run();
-		private:
-			extern SDL_Event event;
-	};
+		class Keyboard
+		{
+			public: 
+				bool[] keysDown;
+		};
+	}
 }
-#endif
