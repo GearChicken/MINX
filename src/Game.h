@@ -37,7 +37,7 @@ namespace MINX
 			virtual void Draw(GameTime gameTime);
 			void Run();
 		private:
-			extern SDL_Event event;
+			SDL_Event event;
 	};
 }
 #endif
