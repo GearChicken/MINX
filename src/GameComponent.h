@@ -28,7 +28,7 @@ namespace MINX
 		public:
 			GameComponent(Game attachTo);
 			virtual void Initialize();
-			//virtual void Update(GameTime gametime);
+			virtual void Update(GameTime gametime);
 			bool enabled;
 			Game game;
 			int updateOrder;

@@ -23,13 +23,19 @@ namespace MINX
 	struct Vector2
 	{
 		Vector2(float x, float y);
-		Vector2 * operator+(const Vector2& addTo);
-		Vector2 * operator-(const Vector2& subtractFrom);
-		Vector2 * operator*(const Vector2& multiplyBy);
-		float * operator*(const Vector2& multiplyBy);
-		Vector2 * operator*(const float& multiplyBy);
-		Vector2 * operator/(const Vector2& divideBy);
-		Vector2 * operator/(const float& divideBy);
+		Vector2 operator+(const Vector2& addTo);
+		Vector2 operator-(const Vector2& subtractFrom);
+		Vector2 crossMultiply(const Vector2& multiplyBy);
+		float operator*(const Vector2& multiplyBy);
+		Vector2 operator*(const float& multiplyBy);
+		Vector2 operator-()const;
+		bool operator==(const Vector2& compareTo);
+		bool operator!=(const Vector2& compareTo);
+		float length();
+		float lengthSquared();
+		Vector2 normalize();
+		float X;
+		float Y;
 	};
 }
 #endif
