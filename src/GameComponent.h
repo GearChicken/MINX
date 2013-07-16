@@ -16,21 +16,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
+#ifndef IGAMECOMPONENT_H_
+#define IGAMECOMPONENT_H_
+
+#include "Game.h"
 
 namespace MINX
 {
-	namespace Graphics
+	class GameComponent
 	{
-		class Texture2D
-		{
-			public:
-				Texture2D(string filename);
-				int width, height;
-				
-			private:
-				
-		};
-	}
+		public:
+			GameComponent(Game attachTo);
+			virtual void Initialize();
+			//virtual void Update(GameTime gametime);
+			bool enabled;
+			Game game;
+			int updateOrder;
+	};
 }
+#endif

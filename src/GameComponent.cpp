@@ -16,15 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef IGAMECOMPONENT_H_
-#define IGAMECOMPONENT_H_
+	
+#include "GameComponent.h"
 
-namespace MINX
+using namespace MINX;
+
+GameComponent::GameComponent(Game attachTo)
 {
-	class IGameComponent
-	{
-		public:
-			virtual void Initialize();
-	}
+	game=attachTo;
+	enabled=true;
+	updateOrder=1;
 }
-#endif

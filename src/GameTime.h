@@ -16,21 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
 
+#ifndef GAMETIME_H_
+#define GAMETIME_H_
 namespace MINX
 {
-	namespace Graphics
+	class GameTime
 	{
-		class Texture2D
-		{
-			public:
-				Texture2D(string filename);
-				int width, height;
-				
-			private:
-				
-		};
-	}
+		public:
+			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly);
+			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate);
+			GameTime();
+	};
 }
+#endif
