@@ -18,7 +18,8 @@
 	*/
 #include "IGenericHID.h"
 using namespace MINX::Input;
-void IGenericHID::Update(GameTime gametime){
+void IGenericHID::Update(GameTime gametime)
+{
 	GameComponent::Update(gametime);
 	if(!SDL_PollEvent(&inputEvent))
 	{

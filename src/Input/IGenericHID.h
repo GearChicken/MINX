@@ -36,8 +36,8 @@ namespace MINX
 				vector<Button> buttons;
 				vector<Axis> axes;
 				virtual void Update(GameTime gameTime);
-				virtual void getButton(int id);
-				virtual void getAxis(int id);
+				virtual Button getButton(int id);
+				virtual Axis getAxis(int id);
 			private:
 				SDL_Event inputEvent;
 		};
