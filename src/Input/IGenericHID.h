@@ -24,6 +24,7 @@
 #include "SDL/SDL.h"
 #include "Button.h"
 #include "Axis.h"
+#include "../Game.h"
 #include <vector>
 
 namespace MINX
@@ -33,8 +34,9 @@ namespace MINX
 		class IGenericHID : public GameComponent
 		{
 			public: 
-				vector<Button> buttons;
-				vector<Axis> axes;
+				IGenericHID(Game game);
+				vector<Button> * buttons;
+				vector<Axis> * axes;
 				virtual void Update(GameTime gameTime);
 				virtual Button getButton(int id);
 				virtual Axis getAxis(int id);

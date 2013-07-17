@@ -18,6 +18,12 @@
 	*/
 #include "IGenericHID.h"
 using namespace MINX::Input;
+IGenericHID::IGenericHID(Game game) : GameComponent(game)
+{
+	buttons = new vector<Button>();
+	axes = new vector<Axis>();
+}
+
 void IGenericHID::Update(GameTime gametime)
 {
 	GameComponent::Update(gametime);
