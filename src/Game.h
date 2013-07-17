@@ -18,11 +18,11 @@
 	*/
 #ifndef GAME_H_
 #define GAME_H_
-
 #include <string>
+#include <vector>
 #include "SDL/SDL.h"
+#include "GameComponent.h"
 #include "GameTime.h"
-
 using namespace std;
 
 namespace MINX
@@ -32,10 +32,12 @@ namespace MINX
 		public:
 			virtual void Initialize();
 			virtual void LoadContent();
-			virtual void Update(GameTime gameTime);
+			virtual void Update(GameTime * gameTime);
 			virtual void UnloadContent();
-			virtual void Draw(GameTime gameTime);
+			virtual void Draw(GameTime * gameTime);
 			void Run();
+			GameComponent component;
+			vector<GameComponent*> * Components;
 		private:
 			SDL_Event event;
 	};

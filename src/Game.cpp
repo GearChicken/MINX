@@ -17,7 +17,6 @@
 
 	*/
 #include "Game.h"
-#include "SDL/SDL.h"
 
 using namespace MINX;
 

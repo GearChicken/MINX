@@ -16,14 +16,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-	
+
 #include "GameComponent.h"
 
 using namespace MINX;
 
-GameComponent::GameComponent(Game attachTo)
+GameComponent::GameComponent(Game * attachTo)
 {
 	game=attachTo;
 	enabled=true;
 	updateOrder=1;
+	game->Components->push_back(this);
 }

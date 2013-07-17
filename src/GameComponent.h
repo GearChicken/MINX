@@ -16,22 +16,26 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef IGAMECOMPONENT_H_
-#define IGAMECOMPONENT_H_
+#ifndef GAMECOMPONENT_H_
+#define GAMECOMPONENT_H_
 
-#include "Game.h"
+#include "GameTime.h"
 
 namespace MINX
 {
+	class Game; //forward declaration to avoid circular dependency problems
 	class GameComponent
 	{
 		public:
-			GameComponent(Game attachTo);
+			GameComponent(Game * attachTo);
 			virtual void Initialize();
-			virtual void Update(GameTime gametime);
+			virtual void Update(GameTime * gametime);
 			bool enabled;
-			Game game;
+			Game * game;
 			int updateOrder;
 	};
 }
+
+#include "Game.h" //and now actually include Game.h, for use by GameComponent.cpp
+
 #endif
