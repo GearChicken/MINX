@@ -31,4 +31,5 @@ void IGenericHID::Update(GameTime gametime)
 	{
 		return;
 	}
+	//subclasses actually handle stuff, this just grabs the event
 }
