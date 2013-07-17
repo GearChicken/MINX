@@ -26,10 +26,7 @@ namespace MINX
 		{
 			public: 
 				bool[] keysDown;
-				bool[] prevKeysDown;
 				virtual void Update(GameTime gameTime);
-			private:
-				//nothing yet . . .
 		};
 	}
 }
