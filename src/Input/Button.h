@@ -16,21 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef BUTTON_H_
+#define BUTTON_H_
 namespace MINX
 {
-	namespace Input
+	struct Button
 	{
-		class Keyboard : public MINX::GameComponent
-		{
-			public: 
-				bool[] keysDown;
-				bool[] prevKeysDown;
-				virtual void Update(GameTime gameTime);
-			private:
-				//nothing yet . . .
-		};
-	}
+		bool state;
+		bool prevState;
+	};
 }
 #endif

@@ -17,5 +17,11 @@
 
 	*/
 #include "Game.h"
+#include "SDL/SDL.h"
 
 using namespace MINX;
+
+void Game::Initialize()
+{
+	SDL_Init(SDL_INIT_EVERYTHING);
+}

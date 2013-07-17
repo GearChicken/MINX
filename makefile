@@ -9,7 +9,7 @@ CC = g++
 
 SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp)
 OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp))
-TARGET = libMINX.so
+TARGET = bin/libMINX.so
 
 ##### Build rules
 
@@ -18,6 +18,6 @@ all: $(OBJECTS)
 
 clean:
 	@for dir in src; do find $$dir -name \*.o -exec rm -f {} \; ; done
-	rm -f libMINX.so
+	rm -f bin/libMINX.so
 
 ##### End of Makefile

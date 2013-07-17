@@ -16,21 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
-namespace MINX
-{
-	namespace Input
+#include "IGenericHID.h"
+using namespace MINX::Input;
+void IGenericHID::Update(GameTime gametime){
+	GameComponent::Update(gametime);
+	if(!SDL_PollEvent(&inputEvent))
 	{
-		class Keyboard : public MINX::GameComponent
-		{
-			public: 
-				bool[] keysDown;
-				bool[] prevKeysDown;
-				virtual void Update(GameTime gameTime);
-			private:
-				//nothing yet . . .
-		};
+		return;
 	}
 }
-#endif

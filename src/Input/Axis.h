@@ -16,20 +16,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef AXIS_H_
+#define AXIS_H_
 namespace MINX
 {
-	namespace Input
-	{
-		class Keyboard : public MINX::GameComponent
+	namespace Input{
+		struct Axis
 		{
-			public: 
-				bool[] keysDown;
-				bool[] prevKeysDown;
-				virtual void Update(GameTime gameTime);
-			private:
-				//nothing yet . . .
+			float val;
+			float prevVal;
 		};
 	}
 }
