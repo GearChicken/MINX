@@ -23,6 +23,7 @@
 #include "SDL/SDL.h"
 #include "GameComponent.h"
 #include "GameTime.h"
+#include "Graphics/GameWindow.h"
 using namespace std;
 
 namespace MINX
@@ -36,7 +37,9 @@ namespace MINX
 			virtual void UnloadContent();
 			virtual void Draw(GameTime * gameTime);
 			void Run();
+			SDL_Surface* screen;
 			GameComponent component;
+			GameWindow* window;
 			vector<GameComponent*> * Components;
 		private:
 			SDL_Event event;

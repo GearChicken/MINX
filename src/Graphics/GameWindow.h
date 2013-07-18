@@ -16,23 +16,24 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Game.h"
+#ifndef GAME_WINDOW_H_
+#define GAME_WINDOW_H_
 
-using namespace MINX;
+#include "../Game.h"
 
-void Game::Initialize()
+namespace MINX
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
-
-	window = new GameWindow(640, 480, 32, SDL_SWSURFACE);
+	namespace Graphics
+	{
+		class Game 
+		{
+			public:
+				GameWindow(int width, int height, int bpp, Uint32 flags)
+				SDL_Surface* screen;
+				int width, height, bpp;
+				Uint32 flags;
+			private:
+		};
+	}
 }
-
-void Game::Draw(GameTime * gameTime)
-{
-	SDL_Flip(window->screen);
-}
-
-void Game::UnloadContent()
-{
-	SDL_Quit();
-}
+#endif
