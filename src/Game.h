@@ -36,7 +36,6 @@ namespace MINX
 			virtual void UnloadContent();
 			virtual void Draw(GameTime * gameTime);
 			void Run();
-			GameComponent component;
 			vector<GameComponent*> * Components;
 		private:
 			SDL_Event event;

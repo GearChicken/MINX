@@ -20,6 +20,11 @@
 
 using namespace MINX;
 
+void Game::Run()
+{
+
+}
+
 void Game::Initialize()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
