@@ -20,9 +20,16 @@
 
 using namespace MINX;
 
+
+int doRun(void * data)
+{
+	return 0;
+}
+
 void Game::Run()
 {
-
+	Initialize();
+	thread = SDL_CreateThread(doRun, NULL);
 }
 
 void Game::Initialize()

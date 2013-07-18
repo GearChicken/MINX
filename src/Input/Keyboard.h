@@ -20,11 +20,12 @@
 #define KEYBOARD_H_
 
 #include "IGenericHID.h"
+#include "Button.h"
 namespace MINX
 {
 	namespace Input
 	{
-		class Keyboard : public MINX::IGenericHID
+		class Keyboard : public IGenericHID
 		{
 			public: 
 				Keyboard(Game * game);

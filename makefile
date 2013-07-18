@@ -1,7 +1,7 @@
 ##### Variables
 
 INCDIR = -I/usr/include
-CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC
+CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC -std=c++11
 LFLAGS = -shared -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer
 CC = g++
 

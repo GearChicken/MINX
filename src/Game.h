@@ -38,7 +38,8 @@ namespace MINX
 			void Run();
 			vector<GameComponent*> * Components;
 		private:
-			SDL_Event event;
+			SDL_Event * event;
+			SDL_Thread * thread = NULL;
 	};
 }
 #endif
