@@ -126,7 +126,7 @@ void $fileName::Draw(GameTime * gametime)
 {
 	//Put stuff here to draw your game each frame.
 	Game::Draw(GameTime gametime);
-}" > "$projectDir/$fileName.h"
+}" > "$projectDir/$fileName.cpp"
 
 echo "/*
     MINX - A C++ Graphics and Input Wrapper Library
