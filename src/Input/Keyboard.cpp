@@ -26,7 +26,7 @@ Keyboard::Keyboard (Game * game)
 	//allan please add content
 }
 
-Button Keyboard::getButton(int id)
+Button* Keyboard::getButton(int id)
 {
 	return (* buttons)[id];
 }
