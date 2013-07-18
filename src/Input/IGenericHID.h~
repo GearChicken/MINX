@@ -16,21 +16,32 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+#ifndef I_GENERIC_HID_H_
+#define I_GENERIC_HID_H_
 
-#include "IGenericHID.h"
+#include "../GameTime.h"
+#include "../GameComponent.h"
+#include "SDL/SDL.h"
+#include "Button.h"
+#include "Axis.h"
+#include "../Game.h"
+#include <vector>
+
 namespace MINX
 {
 	namespace Input
 	{
-		class Keyboard : public MINX::IGenericHID
+		class IGenericHID : public GameComponent
 		{
 			public: 
-				Button getButton(int id);
-				void Update(GameTime * gameTime);
+				IGenericHID(Game * game);
+				vector<Button> * buttons;
+				vector<Axis> * axes;
+				virtual void Update(GameTime * gameTime);
+				virtual Button getButton(int id);
+				virtual Axis getAxis(int id);
 			private:
-				//nothing yet . . .
+				SDL_Event inputEvent;
 		};
 	}
 }

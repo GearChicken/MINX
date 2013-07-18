@@ -18,16 +18,18 @@
 	*/
 #ifndef KEYBOARD_H_
 #define KEYBOARD_H_
+
+#include "IGenericHID.h"
 namespace MINX
 {
 	namespace Input
 	{
-		class Keyboard : public MINX::GameComponent
+		class Keyboard : public MINX::IGenericHID
 		{
 			public: 
-				bool[] keysDown;
-				bool[] prevKeysDown;
-				virtual void Update(GameTime gameTime);
+				Keyboard(Game * game);
+				Button getButton(int id);
+				void Update(GameTime * gameTime);
 			private:
 				//nothing yet . . .
 		};

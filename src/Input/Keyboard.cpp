@@ -16,22 +16,18 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+	
+#include "Keyboard.h"
 
-#include "IGenericHID.h"
-namespace MINX
+using namespace MINX::Input;
+
+Keyboard::Keyboard (Game * game)
 {
-	namespace Input
-	{
-		class Keyboard : public MINX::IGenericHID
-		{
-			public: 
-				Button getButton(int id);
-				void Update(GameTime * gameTime);
-			private:
-				//nothing yet . . .
-		};
-	}
+	//allan please add content
 }
-#endif
+
+Button Keyboard::getButton(int id)
+{
+	return (* buttons)[id];
+}
+
