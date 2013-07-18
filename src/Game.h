@@ -20,6 +20,7 @@
 #define GAME_H_
 #include <string>
 #include <vector>
+#include <stdio>
 #include "SDL/SDL.h"
 #include "GameComponent.h"
 #include "GameTime.h"
@@ -38,7 +39,7 @@ namespace MINX
 			void Run();
 			vector<GameComponent*> * Components;
 		private:
-			SDL_Event * event;
+			SDL_Event * event = NULL;
 			SDL_Thread * thread = NULL;
 	};
 }

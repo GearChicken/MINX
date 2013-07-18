@@ -29,7 +29,14 @@ int doRun(void * data)
 void Game::Run()
 {
 	Initialize();
-	thread = SDL_CreateThread(doRun, NULL);
+	if(!thread)
+	{
+		thread = SDL_CreateThread(doRun, NULL);
+	} else
+	{
+		cerr << "Error: game already running" << endl;
+		exit(1);
+	}
 }
 
 void Game::Initialize()
