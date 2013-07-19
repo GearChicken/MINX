@@ -16,35 +16,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
-#include <string>
-#include <vector>
-#include <iostream>
-#include "SDL/SDL.h"
-#include "GameComponent.h"
-#include "GameTime.h"
-#include "Event.h"
-using namespace std;
-
+#ifndef EVENT_H_
+#define EVENT_H_
 namespace MINX
 {
-	typedef void function(SDL_Event event);
-	class Game 
+	enum Event
 	{
-		public:
-			virtual void Initialize();
-			virtual void LoadContent();
-			virtual void Update(GameTime * gameTime);
-			virtual void UnloadContent();
-			virtual void Draw(GameTime * gameTime);
-			void Run();
-			void addEventHandler(Event evt_type, function callback);
-			vector<GameComponent*> * Components;
-		private:
-			SDL_Event * event = NULL;
-			SDL_Thread * thread = NULL;
-			
+		FOCUS_STATE_CHANGE,
+		KEY_STATE_CHANGE,
+		MOUSE_MOVEMENT,
+		MOUSE_BUTTON_STATE_CHANGE,
+		JOY_AXIS_MOVEMENT,
+		JOY_BALL_MOVEMENT,
+		JOY_BUTTON_STATE_CHANGE,
+		APP_QUIT_REQUEST,
+		APP_SYSTEM_WM_EVENT,
+		APP_VIDEO_REDRAW,
+		USER_CUSTOM_EVENT,
+		USER_CUSTOM_EVENT2,
+		USER_CUSTOM_EVENT3,
+		USER_CUSTOM_EVENT4,
+		USER_CUSTOM_EVENT5,
+		USER_CUSTOM_EVENT6,
+		USER_CUSTOM_EVENT7,
+		USER_CUSTOM_EVENT8
 	};
 }
 #endif
