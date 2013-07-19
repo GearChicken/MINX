@@ -29,7 +29,7 @@ using namespace std;
 
 namespace MINX
 {
-	typedef void function(SDL_Event event);
+	typedef void function(SDL_Event * event);
 	class Game 
 	{
 		public:
