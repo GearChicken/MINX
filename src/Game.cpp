@@ -20,11 +20,24 @@
 
 using namespace MINX;
 
+GameTime* gameTime = NULL;
+Graphics::GameWindow* window = NULL;
+void Game::Run()
+{	
+	this->Initialize();
+	this->LoadContent();
+	while(isRunning)
+	{
+		this->Update(gameTime);
+		this->Draw(gameTime);
+	}
+	this->UnloadContent();
+}
 void Game::Initialize()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 
-	window = new GameWindow(640, 480, 32, SDL_SWSURFACE);
+	 window = new Graphics::GameWindow(640, 480, 32, SDL_SWSURFACE);
 }
 
 void Game::Draw(GameTime * gameTime)

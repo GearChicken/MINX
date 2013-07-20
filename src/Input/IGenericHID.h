@@ -35,10 +35,10 @@ namespace MINX
 		{
 			public: 
 				IGenericHID(Game * game);
-				vector<Button*> * buttons;
-				vector<Axis*> * axes;
+				vector<Button> * buttons;
+				vector<Axis> * axes;
 				virtual void Update(GameTime * gameTime);
-				virtual Button* getButton(int id);
+				virtual Button getButton(int id);
 				virtual Axis* getAxis(int id);
 			private:
 				SDL_Event* inputEvent;

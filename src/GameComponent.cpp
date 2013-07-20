@@ -26,5 +26,5 @@ GameComponent::GameComponent(Game * attachTo)
 	game=attachTo;
 	enabled=true;
 	updateOrder=1;
-	game->Components->push_back(this);
+	//game->Components->push_back(this);
 }

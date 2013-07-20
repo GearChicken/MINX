@@ -31,6 +31,7 @@ namespace MINX
 	class Game 
 	{
 		public:
+			Game();
 			virtual void Initialize();
 			virtual void LoadContent();
 			virtual void Update(GameTime * gameTime);
@@ -39,10 +40,10 @@ namespace MINX
 			void Run();
 			SDL_Surface* screen;
 			GameComponent component;
-			GameWindow* window;
-			vector<GameComponent*> * Components;
 		private:
 			SDL_Event event;
+			bool isRunning;
+			GameTime* gameTime;
 	};
 }
 #endif

@@ -17,17 +17,15 @@
 
 	*/
 	
-#include "Keyboard.h"
+#include "GameWindow.h"
 
-using namespace MINX::Input;
+using namespace MINX::Graphics;
 
-Keyboard::Keyboard (Game * game)
+GameWindow::GameWindow(int width, int height, int bpp, Uint32 flags)
 {
-	//allan please add content
+	width = width;
+	height = height;
+	bpp = bpp;
+	flags = flags;
 }
-
-Button Keyboard::getButton(int id)
-{
-	return (* buttons)[id];
-}
-
+				

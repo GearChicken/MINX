@@ -19,16 +19,16 @@
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
 
-#include "../Game.h"
+#include "SDL/SDL.h"
 
 namespace MINX
 {
 	namespace Graphics
 	{
-		class Game 
+		class GameWindow
 		{
 			public:
-				GameWindow(int width, int height, int bpp, Uint32 flags)
+				GameWindow(int width, int height, int bpp, Uint32 flags);
 				SDL_Surface* screen;
 				int width, height, bpp;
 				Uint32 flags;
