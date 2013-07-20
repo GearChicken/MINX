@@ -39,11 +39,12 @@ namespace MINX
 			virtual void Draw(GameTime * gameTime);
 			void Run();
 			SDL_Surface* screen;
-			GameComponent component;
+			GameComponent* component;
 		private:
 			SDL_Event event;
-			bool isRunning;
 			GameTime* gameTime;
+		protected:
+			bool isRunning;
 	};
 }
 #endif

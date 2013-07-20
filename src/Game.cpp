@@ -17,11 +17,18 @@
 
 	*/
 #include "Game.h"
-
+#include <iostream>
 using namespace MINX;
 
 GameTime* gameTime = NULL;
 Graphics::GameWindow* window = NULL;
+GameComponent* component = NULL;
+Game::Game()
+{
+	gameTime = NULL;
+	window = NULL;
+	component = NULL;
+}
 void Game::Run()
 {	
 	this->Initialize();
@@ -39,10 +46,19 @@ void Game::Initialize()
 
 	 window = new Graphics::GameWindow(640, 480, 32, SDL_SWSURFACE);
 }
+void Game::LoadContent()
+{
 
+}
+void Game::Update(GameTime * gameTime)
+{
+
+}
 void Game::Draw(GameTime * gameTime)
 {
 	SDL_Flip(window->screen);
+	//std::cout << "Screen Flipped!\n";
+	SDL_Delay(50);
 }
 
 void Game::UnloadContent()

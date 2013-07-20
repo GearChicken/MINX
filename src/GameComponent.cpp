@@ -28,3 +28,11 @@ GameComponent::GameComponent(Game * attachTo)
 	updateOrder=1;
 	//game->Components->push_back(this);
 }
+void GameComponent::Initialize()
+{
+
+}
+void GameComponent::Update(GameTime * gametime)
+{
+
+}
