@@ -21,12 +21,11 @@
 using namespace MINX;
 
 GameTime* gameTime = NULL;
-Graphics::GameWindow* window = NULL;
 vector<GameComponent*>* Components;
+SDL_Surface* screen = NULL;
 Game::Game()
 {
 	gameTime = NULL;
-	window = NULL;
 }
 void Game::Run()
 {	
@@ -41,14 +40,17 @@ void Game::Run()
 }
 void Game::Initialize()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	if( SDL_Init(SDL_INIT_EVERYTHING) == -1 )
+	{
+		std::cout << "SDL NOT INITED!\n";
+	}
 
-	 window = new Graphics::GameWindow(640, 480, 32, SDL_SWSURFACE);
+	 screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE);
 
-	for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
-	}
+	}//*/
 }
 void Game::LoadContent()
 {
@@ -56,14 +58,14 @@ void Game::LoadContent()
 }
 void Game::Update(GameTime * gameTime)
 {
-	for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
 	{
 		(*Components)[i]->Update(gameTime);
-	}
+	}//*/
 }
 void Game::Draw(GameTime * gameTime)
 {
-	SDL_Flip(window->screen);
+	SDL_Flip(screen);
 	//std::cout << "Screen Flipped!\n";
 	SDL_Delay(50);
 }
