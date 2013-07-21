@@ -24,7 +24,7 @@ namespace MINX
 {
 	namespace Input
 	{
-		class Keyboard : public GenericHID
+		class Keyboard : public IGenericHID
 		{
 			public: 
 				Keyboard(Game * game);

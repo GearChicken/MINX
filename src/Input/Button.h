@@ -20,10 +20,13 @@
 #define BUTTON_H_
 namespace MINX
 {
-	struct Button
+	namespace Input
 	{
-		bool state;
-		bool prevState;
-	};
+		struct Button
+		{
+			bool state;
+			bool prevState;
+		};
+	}
 }
 #endif

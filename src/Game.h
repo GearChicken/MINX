@@ -39,7 +39,7 @@ namespace MINX
 			virtual void Draw(GameTime * gameTime);
 			void Run();
 			SDL_Surface* screen;
-			GameComponent* component;
+			vector<GameComponent*>* Components;
 		private:
 			SDL_Event event;
 			GameTime* gameTime;

@@ -21,7 +21,7 @@
 
 using namespace MINX::Input;
 
-Keyboard::Keyboard (Game * game)
+Keyboard::Keyboard (Game * game):IGenericHID(game)
 {
 	//allan please add content
 }
