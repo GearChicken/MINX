@@ -26,6 +26,4 @@ install:
 	rm -f /usr/lib/$(uname -m)-${OS,,}-gnu/libMINX.so
 	cp bin/libMINX.so /usr/lib/$(uname -m)-${OS,,}-gnu/
 
-install:
-	cp bin/libMINX.so /usr/lib/libMINX.so
 ##### End of Makefile
