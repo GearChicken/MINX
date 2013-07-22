@@ -25,6 +25,8 @@
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Event.h"
+#include "Graphics/GameWindow.h"
+
 using namespace std;
 
 namespace MINX
@@ -33,6 +35,7 @@ namespace MINX
 	class Game 
 	{
 		public:
+			Game();
 			virtual void Initialize();
 			virtual void LoadContent();
 			virtual void Update(GameTime * gameTime);
@@ -40,11 +43,14 @@ namespace MINX
 			virtual void Draw(GameTime * gameTime);
 			void Run();
 			void addEventHandler(Event evt_type, function callback);
-			vector<GameComponent*> * Components;
-		private:
-			SDL_Event * event = NULL;
-			SDL_Thread * thread = NULL;
+			SDL_Surface* screen;
+			vector<GameComponent*>* Components;
 			
+		private:
+			SDL_Event event;
+			GameTime* gameTime;
+		protected:
+			bool isRunning;
 	};
 }
 #endif

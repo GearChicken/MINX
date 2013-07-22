@@ -39,9 +39,9 @@ namespace MINX
 				vector<Axis> * axes;
 				virtual void Update(GameTime * gameTime);
 				virtual Button getButton(int id);
-				virtual Axis getAxis(int id);
+				virtual Axis* getAxis(int id);
 			private:
-				SDL_Event inputEvent;
+				SDL_Event* inputEvent;
 		};
 	}
 }

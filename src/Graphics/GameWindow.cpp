@@ -16,23 +16,17 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+	
+#include "GameWindow.h"
 
-#include "GameComponent.h"
+using namespace MINX::Graphics;
 
-using namespace MINX;
-
-GameComponent::GameComponent(Game * attachTo)
+GameWindow::GameWindow(int width, int height, int bpp, Uint32 flags)
 {
-	game=attachTo;
-	enabled=true;
-	updateOrder=1;
-	game->Components->push_back(this);
+	width = width;
+	height = height;
+	bpp = bpp;
+	flags = flags;
+	SDL_SetVideoMode( width, height, bpp, flags);
 }
-void GameComponent::Initialize()
-{
-
-}
-void GameComponent::Update(GameTime * gameTime)
-{
-
-}
+				

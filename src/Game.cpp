@@ -17,31 +17,63 @@
 
 	*/
 #include "Game.h"
-
+#include <iostream>
 using namespace MINX;
 
-
-int doRun(void * data)
+GameTime* gameTime = NULL;
+vector<GameComponent*>* Components;
+SDL_Surface* screen = NULL;
+Game::Game()
 {
-	return 0;
+	gameTime = NULL;
 }
-
 void Game::Run()
-{
-	Initialize();
-	if(!thread)
+{	
+	this->Initialize();
+	this->LoadContent();
+	while(isRunning)
 	{
-		thread = SDL_CreateThread(doRun, NULL);
-	} else
-	{
-		cerr << "Error: game already running" << endl;
-		exit(1);
+		this->Update(gameTime);
+		this->Draw(gameTime);
 	}
+	this->UnloadContent();
 }
 
 void Game::Initialize()
 {
-	SDL_Init(SDL_INIT_EVERYTHING);
+	if( SDL_Init(SDL_INIT_EVERYTHING) == -1 )
+	{
+		std::cout << "SDL NOT INITED!\n";
+	}
+
+	 screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE);
+
+	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+	{
+		(*Components)[i]->Initialize();
+	}//*/
+}
+void Game::LoadContent()
+{
+
+}
+void Game::Update(GameTime * gameTime)
+{
+	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+	{
+		(*Components)[i]->Update(gameTime);
+	}//*/
+}
+void Game::Draw(GameTime * gameTime)
+{
+	SDL_Flip(screen);
+	//std::cout << "Screen Flipped!\n";
+	SDL_Delay(50);
+}
+
+void Game::UnloadContent()
+{
+	SDL_Quit();
 }
 
 void Game::addEventHandler(Event evt_type, function callback)

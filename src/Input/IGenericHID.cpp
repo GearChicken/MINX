@@ -27,7 +27,7 @@ IGenericHID::IGenericHID(Game * game) : GameComponent(game)
 void IGenericHID::Update(GameTime * gametime)
 {
 	GameComponent::Update(gametime);
-	if(!SDL_PollEvent(&inputEvent))
+	if(!SDL_PollEvent(inputEvent))
 	{
 		return;
 	}

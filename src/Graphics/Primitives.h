@@ -16,23 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+#ifndef PRIMITIVES_H_
+#define PRIMITIVES_H_
 
-#include "GameComponent.h"
+#include "SDL/SDL.h"
+#include "Color.h"
+typedef unsigned char byte;
 
-using namespace MINX;
 
-GameComponent::GameComponent(Game * attachTo)
+namespace MINX
 {
-	game=attachTo;
-	enabled=true;
-	updateOrder=1;
-	game->Components->push_back(this);
+	namespace Graphics
+	{
+		namespace Primitives
+		{
+				Color* pixelToColor(Uint32 pixel);
+				Color* pixelToColor(int x, int y, SDL_Surface* surface);
+				void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
+				void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
+		}
+	}
 }
-void GameComponent::Initialize()
-{
-
-}
-void GameComponent::Update(GameTime * gameTime)
-{
-
-}
+#endif
