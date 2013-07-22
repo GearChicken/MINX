@@ -22,9 +22,6 @@
 using namespace MINX;
 using namespace MINX::Graphics;
 
-GameTime* gameTime = NULL;
-GameWindow* gameWindow;
-vector<GameComponent*>* Components;
 Game::Game()
 {
 	gameTime = NULL;
