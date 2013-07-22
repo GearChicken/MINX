@@ -24,7 +24,6 @@ using namespace MINX::Graphics;
 GameTime* gameTime = NULL;
 GameWindow* gameWindow;
 vector<GameComponent*>* Components;
-SDL_Surface* screen = NULL;
 Game::Game()
 {
 	gameTime = NULL;
@@ -68,7 +67,7 @@ void Game::Update(GameTime * gameTime)
 }
 void Game::Draw(GameTime * gameTime)
 {
-	SDL_Flip(screen);
+	SDL_Flip(gameWindow->screen);
 	//std::cout << "Screen Flipped!\n";
 	SDL_Delay(50);
 }

@@ -44,7 +44,6 @@ namespace MINX
 			void Run();
 			void addEventHandler(Event evt_type, function callback);
 			Graphics::GameWindow* gameWindow;
-			SDL_Surface* screen;
 			vector<GameComponent*>* Components;
 			
 		private:
