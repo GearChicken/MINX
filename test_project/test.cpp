@@ -64,7 +64,7 @@ void test::Draw(GameTime * gameTime)
 	cout << "test" << endl;
 	SDL_FillRect(gameWindow->screen, NULL, 0x00FFFF);
 	// A G R B
-	Graphics::Primitives::drawRectangle(new Graphics::Color(100,149,237,255), 50, 50, 100, 100, gameWindow->screen);
+	Graphics::Primitives::drawRectangle(new Graphics::Color(0,0,0,255), 50, 50, 100, 100, gameWindow->screen);
 	//Put stuff here to draw your game each frame.
 	Game::Draw(gameTime);
 	cout << "test2" << endl;

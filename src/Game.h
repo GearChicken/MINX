@@ -45,7 +45,7 @@ namespace MINX
 			void addEventHandler(Event evt_type, function callback);
 			Graphics::GameWindow* gameWindow;
 			vector<GameComponent*>* Components;
-			
+			GameTime * getGameTime();
 		private:
 			SDL_Event event;
 			GameTime* gameTime;

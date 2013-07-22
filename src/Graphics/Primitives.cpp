@@ -31,16 +31,16 @@ Color* MINX::Graphics::Primitives::pixelToColor(int x, int y, SDL_Surface* surfa
 {
 	Uint32 *pixels = (Uint32*)surface->pixels;
 	Uint8 *colors = (Uint8*)&pixels[(y * surface->w +x)];
-	return new Color(colors[0], colors[1], colors[2]);
+	return new Color(colors[3], colors[2], colors[1]);
 }
 void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Surface* surface)
 {
 	Uint32 *pixels = (Uint32 *) surface->pixels;
 	Uint8 colors[4];
-	colors[0] = color->A;
+	colors[0] = color->R;
 	colors[1] = color->G;
-	colors[2] = color->R;
-	colors[3] = color->B;
+	colors[2] = color->B;
+	colors[3] = color->A;
 	Uint32 pixel = ((colors[0]<<24)|(colors[1]<<16)|(colors[2]<<8)|(colors[3]));
 	pixels[(y * surface->w)+x] = pixel;
 }

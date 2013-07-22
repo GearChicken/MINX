@@ -18,6 +18,7 @@
 	*/
 #include "Game.h"
 #include <iostream>
+#include <thread>
 using namespace MINX;
 using namespace MINX::Graphics;
 
@@ -28,16 +29,30 @@ Game::Game()
 {
 	gameTime = NULL;
 }
+
+int doDraw(Game * game){
+	while(1)
+	{
+		game->Draw(game->getGameTime());
+	}
+	return 0;
+}
+
 void Game::Run()
 {	
 	this->Initialize();
 	this->LoadContent();
+	std::thread drawingThread(&doDraw, this);
 	while(isRunning)
 	{
 		this->Update(gameTime);
-		this->Draw(gameTime);
 	}
 	this->UnloadContent();
+}
+
+GameTime * Game::getGameTime()
+{
+	return gameTime;
 }
 
 void Game::Initialize()
@@ -47,7 +62,7 @@ void Game::Initialize()
 		std::cout << "SDL NOT INITED!\n";
 	}
 
-	 gameWindow = new GameWindow( 640, 480, 28, SDL_SWSURFACE);
+	 gameWindow = new GameWindow( 640, 480, 32, SDL_SWSURFACE);
 
 	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
 	{
