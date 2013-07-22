@@ -19,6 +19,7 @@
 #include "test.h"
 #include <iostream>
 using namespace MINX_TEST;
+using namespace std;
 
 
 test::test()
@@ -60,10 +61,12 @@ void test::Update(GameTime * gameTime)
 
 void test::Draw(GameTime * gameTime)
 {
-	SDL_FillRect(gameWindow->screen, NULL, 0x00FFFF);
+	cout << "test" << endl;
+	//SDL_FillRect(gameWindow->screen, NULL, 0x00FFFF);
 	// A G R B
-	Graphics::Primitives::drawRectangle(new Graphics::Color(100,149,237,0), 50, 50, 100, 100, gameWindow->screen);
+	//Graphics::Primitives::drawRectangle(new Graphics::Color(100,149,237,0), 50, 50, 100, 100, gameWindow->screen);
 	//Put stuff here to draw your game each frame.
 	Game::Draw(gameTime);
+	cout << "test2" << endl;
 	SDL_Delay(1000);
 }

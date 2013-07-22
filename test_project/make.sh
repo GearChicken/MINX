@@ -1,1 +1,1 @@
-g++ -Wall *.cpp -I./ -I~/c++/MINX/src -lMINX -o test.pgrm
+g++ -Wall *.cpp -I/home/benjamin/MINX/src -lMINX -lSDL -o test.pgrm

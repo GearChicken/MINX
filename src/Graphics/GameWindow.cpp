@@ -27,6 +27,6 @@ GameWindow::GameWindow(int width, int height, int bpp, Uint32 flags)
 	height = height;
 	bpp = bpp;
 	flags = flags;
-	SDL_SetVideoMode( width, height, bpp, flags);
+	screen = SDL_SetVideoMode( width, height, bpp, flags);
 }
 				
