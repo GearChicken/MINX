@@ -43,3 +43,8 @@ void Game::Initialize()
 {
 	SDL_Init(SDL_INIT_EVERYTHING);
 }
+
+void Game::addEventHandler(Event evt_type, function callback)
+{
+	//allan please add content
+}
