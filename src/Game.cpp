@@ -19,8 +19,10 @@
 #include "Game.h"
 #include <iostream>
 using namespace MINX;
+using namespace MINX::Graphics;
 
 GameTime* gameTime = NULL;
+GameWindow* gameWindow;
 vector<GameComponent*>* Components;
 SDL_Surface* screen = NULL;
 Game::Game()
@@ -46,7 +48,7 @@ void Game::Initialize()
 		std::cout << "SDL NOT INITED!\n";
 	}
 
-	 screen = SDL_SetVideoMode( 640, 480, 32, SDL_SWSURFACE);
+	 gameWindow = new GameWindow( 640, 480, 28, SDL_SWSURFACE);
 
 	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
 	{
