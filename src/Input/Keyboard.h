@@ -20,6 +20,7 @@
 #define KEYBOARD_H_
 
 #include "IGenericHID.h"
+#include "Button.h"
 namespace MINX
 {
 	namespace Input

@@ -1,7 +1,7 @@
 ##### Variables
 
 INCDIR = -I/usr/include
-CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC
+CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC -std=c++11
 LFLAGS = -shared -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer
 CC = g++
 
@@ -19,6 +19,12 @@ all: $(OBJECTS)
 clean:
 	@for dir in src; do find $$dir -name \*.o -exec rm -f {} \; ; done
 	rm -f bin/libMINX.so
+	
+install:
+	OS=$(uname -s)
+	#I don't know if uname -m for 32 bit will output i386 or x86 (i386 is needed for it to work correctly)
+	rm -f /usr/lib/$(uname -m)-${OS,,}-gnu/libMINX.so
+	cp bin/libMINX.so /usr/lib/$(uname -m)-${OS,,}-gnu/
 
 install:
 	cp bin/libMINX.so /usr/lib/libMINX.so

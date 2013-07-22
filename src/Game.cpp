@@ -38,6 +38,7 @@ void Game::Run()
 	}
 	this->UnloadContent();
 }
+
 void Game::Initialize()
 {
 	if( SDL_Init(SDL_INIT_EVERYTHING) == -1 )
@@ -73,4 +74,9 @@ void Game::Draw(GameTime * gameTime)
 void Game::UnloadContent()
 {
 	SDL_Quit();
+}
+
+void Game::addEventHandler(Event evt_type, function callback)
+{
+	//allan please add content
 }
