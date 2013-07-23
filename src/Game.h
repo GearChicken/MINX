@@ -20,6 +20,7 @@
 #define GAME_H_
 #include <string>
 #include <vector>
+#include <queue>
 #include <iostream>
 #include "SDL/SDL.h"
 #include "GameComponent.h"
@@ -31,7 +32,6 @@ using namespace std;
 
 namespace MINX
 {
-	typedef void function(SDL_Event * event);
 	class Game 
 	{
 		public:
@@ -42,9 +42,9 @@ namespace MINX
 			virtual void UnloadContent();
 			virtual void Draw(GameTime * gameTime);
 			void Run();
-			void addEventHandler(Event evt_type, function callback);
 			Graphics::GameWindow* gameWindow;
-			vector<GameComponent*>* Components;
+			vector<GameComponent*> * Components;
+			queue<SDL_Event*> * keyboardEvents;
 			GameTime * getGameTime();
 		private:
 			SDL_Event event;

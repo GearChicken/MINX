@@ -31,3 +31,12 @@ Button Keyboard::getButton(int id)
 	return (* buttons)[id];
 }
 
+void Keyboard::Update(GameTime * gameTime)
+{
+	SDL_Event * evt = game->keyboardEvents->front();
+	game->keyboardEvents->pop();
+	Button b;
+	int id = evt->key.keysym.sym;
+	b.prevState = (*buttons)[id].state;
+	b.state= evt->type == SDL_KEYDOWN;
+}

@@ -40,8 +40,50 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 	std::thread drawingThread(&doDraw, this);
+	SDL_Event * evt;
 	while(isRunning)
 	{
+		SDL_PollEvent(evt);
+		switch(evt->type)
+		{
+			case SDL_ACTIVEEVENT:
+				break;
+			case SDL_KEYDOWN:
+				keyboardEvents->push(evt);
+				break;
+			case SDL_KEYUP:
+				keyboardEvents->push(evt);
+				break;
+			case SDL_MOUSEMOTION:
+				break;
+			case SDL_MOUSEBUTTONDOWN:
+				break;
+			case SDL_MOUSEBUTTONUP:
+				break;
+			case SDL_JOYAXISMOTION:
+				break;
+			case SDL_JOYBALLMOTION:
+				break;
+			case SDL_JOYHATMOTION:
+				break;
+			case SDL_JOYBUTTONDOWN:
+				break;
+			case SDL_JOYBUTTONUP:
+				break;
+			case SDL_VIDEORESIZE:
+				break;
+			case SDL_VIDEOEXPOSE:
+				break;
+			case SDL_QUIT:
+				this->UnloadContent();
+				exit(0);
+				break;
+			case SDL_USEREVENT:
+				break;
+			case SDL_SYSWMEVENT:
+				break;
+				
+		}
 		this->Update(gameTime);
 	}
 	this->UnloadContent();
@@ -87,9 +129,4 @@ void Game::Draw(GameTime * gameTime)
 void Game::UnloadContent()
 {
 	SDL_Quit();
-}
-
-void Game::addEventHandler(Event evt_type, function callback)
-{
-	//allan please add content
 }

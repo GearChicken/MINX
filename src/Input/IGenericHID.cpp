@@ -23,13 +23,3 @@ IGenericHID::IGenericHID(Game * game) : GameComponent(game)
 	buttons = new vector<Button>();
 	axes = new vector<Axis>();
 }
-
-void IGenericHID::Update(GameTime * gametime)
-{
-	GameComponent::Update(gametime);
-	if(!SDL_PollEvent(inputEvent))
-	{
-		return;
-	}
-	//subclasses actually handle stuff, this just grabs the event
-}

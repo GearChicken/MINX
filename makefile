@@ -1,7 +1,7 @@
 ##### Variables
 
 INCDIR = -I/usr/include
-CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC -std=c++11 -O3
+CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC -std=c++11 -O3 -fpermissive
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer
 CC = g++
 ifeq ($(OS),Windows_NT)
@@ -42,8 +42,8 @@ else
 endif
 ##### Files
 
-SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) #$(wildcard src/Input/*.cpp)
-OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) #$(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp))
+SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) $(wildcard src/Input/*.cpp)
+OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp))
 
 
 
