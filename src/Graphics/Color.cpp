@@ -18,11 +18,11 @@
 	*/
 #include "Color.h"
 using namespace MINX::Graphics;
-Color::Color(byte r, byte b, byte g, byte a)
+Color::Color(byte r, byte g, byte b, byte a)
 {
 	R=r;
-	B=b;
 	G=g;
+	B=b;
 	A=a;
 }
 
