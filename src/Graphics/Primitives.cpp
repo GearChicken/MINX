@@ -22,26 +22,24 @@
 using namespace MINX::Graphics;
 using namespace MINX::Graphics::Primitives;
 
-Color* MINX::Graphics::Primitives::pixelToColor(Uint32 pixel)
+Color* MINX::Graphics::Primitives::pixelToColor(Uint32 pixel, SDL_Surface * surface)
 {
-	Uint8 *colors = (Uint8*)&pixel;
-	return new Color(colors[0], colors[1], colors[2]);
+	Uint8 * r;
+	Uint8 * g;
+	Uint8 * b;
+	Uint8 * a;
+	SDL_GetRGBA(pixel,surface->format,r,g,b,a);
+	return new Color(*r,*g,*b,*a);
 }
 Color* MINX::Graphics::Primitives::pixelToColor(int x, int y, SDL_Surface* surface)
 {
 	Uint32 *pixels = (Uint32*)surface->pixels;
-	Uint8 *colors = (Uint8*)&pixels[(y * surface->w +x)];
-	return new Color(colors[3], colors[2], colors[1]);
+	return pixelToColor(*(pixels + y * 4 * surface->w + x * 4), surface);
 }
 void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Surface* surface)
 {
 	Uint32 *pixels = (Uint32 *) surface->pixels;
-	Uint8 colors[4];
-	colors[0] = color->R;
-	colors[1] = color->G;
-	colors[2] = color->B;
-	colors[3] = color->A;
-	Uint32 pixel = ((colors[0]<<24)|(colors[1]<<16)|(colors[2]<<8)|(colors[3]));
+	Uint32 pixel = SDL_MapRGBA(surface->format,color->R,color->G,color->B,color->A);
 	pixels[(y * surface->w)+x] = pixel;
 }
 void MINX::Graphics::Primitives::drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface)
