@@ -28,7 +28,7 @@ Color::Color(byte r, byte b, byte g, byte a)
 
 Color::Color(byte r, byte b, byte g)
 {
-	Color(r,g,b,255);
+	Color(r,g,b,0);
 }
 bool Color::operator==(const Color& compareTo)
 {
