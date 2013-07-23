@@ -39,7 +39,7 @@ Color* MINX::Graphics::Primitives::pixelToColor(int x, int y, SDL_Surface* surfa
 void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Surface* surface)
 {
 	Uint32 *pixels = (Uint32 *) surface->pixels;
-	Uint32 pixel = SDL_MapRGBA(surface->format,color->R,color->G,color->B,color->A);
+	Uint32 pixel = SDL_MapRGBA(surface->format,color->R,color->B,color->G,color->A);
 	pixels[(y * surface->w)+x] = pixel;
 }
 void MINX::Graphics::Primitives::drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface)
