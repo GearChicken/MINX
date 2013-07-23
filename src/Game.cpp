@@ -49,22 +49,21 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 	std::thread drawingThread(&doDraw, this);
-	SDL_Event * evt = NULL;
+	SDL_Event evt;
 	while(isRunning)
 	{
-		SDL_PollEvent(evt);
-		if(evt != NULL)
+		if(SDL_PollEvent(&evt))
 		{
 			cout << "EVENT NOT NULL HERE" << endl;
-			switch(evt->type)
+			switch(evt.type)
 			{
 				case SDL_ACTIVEEVENT:
 					break;
 				case SDL_KEYDOWN:
-					keyboardEvents->push(evt);
+					keyboardEvents->push(&evt);
 					break;
 				case SDL_KEYUP:
-					keyboardEvents->push(evt);
+					keyboardEvents->push(&evt);
 					break;
 				case SDL_MOUSEMOTION:
 					break;
