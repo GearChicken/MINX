@@ -29,10 +29,7 @@ namespace MINX
 		{
 			public: 
 				Keyboard(Game * game);
-				Button getButton(int id);
 				void Update(GameTime * gameTime);
-			private:
-				//nothing yet . . .
 		};
 	}
 }

@@ -18,8 +18,26 @@
 	*/
 #include "IGenericHID.h"
 using namespace MINX::Input;
-IGenericHID::IGenericHID(Game * game) : GameComponent(game)
+IGenericHID::IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize) : GameComponent(game)
 {
-	buttons = new vector<Button>();
-	axes = new vector<Axis>();
+	Button b;
+	b.prevState = 0;
+	b.state = 0;
+	buttons = new vector<Button>(buttonVectorSize,b);
+	Axis a;
+	a.prevVal = 0;
+	a.val = 0;
+	axes = new vector<Axis>(axisVectorSize,a);
 }
+
+Button IGenericHID::getButton(int id)
+{
+	return (* buttons)[id];
+}
+
+Axis IGenericHID::getAxis(int id)
+{
+	return (* axes)[id];
+}
+
+void IGenericHID::Update(GameTime * gameTime){};

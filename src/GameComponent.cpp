@@ -30,7 +30,6 @@ GameComponent::GameComponent(Game * attachTo)
 }
 void GameComponent::Initialize()
 {
-
 }
 void GameComponent::Update(GameTime * gameTime)
 {

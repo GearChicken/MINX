@@ -20,10 +20,10 @@
 #include <iostream>
 using namespace MINX_TEST;
 using namespace std;
+using namespace MINX;
 
 test::test() 
 {
- 	keyboard= new Input::Keyboard(this);
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 isRunning = true;
 }
@@ -31,6 +31,8 @@ isRunning = true;
 void test::Initialize()
 {
 	//Put stuff here that should happen when the Game is initialized.
+	keyboard= new Input::Keyboard(this);
+	keyboard->Initialize();
 	std::cout << "Game INIT" << "\n";
 	Game::Initialize();
 	SDL_WM_SetCaption("simple window", "Window");

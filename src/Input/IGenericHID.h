@@ -34,12 +34,12 @@ namespace MINX
 		class IGenericHID : public GameComponent
 		{
 			public: 
-				IGenericHID(Game * game);
+				IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize);
 				vector<Button> * buttons;
 				vector<Axis> * axes;
 				virtual void Update(GameTime * gameTime);
-				virtual Button getButton(int id);
-				virtual Axis* getAxis(int id);
+				Button getButton(int id);
+				Axis getAxis(int id);
 			private:
 				SDL_Event* inputEvent;
 		};

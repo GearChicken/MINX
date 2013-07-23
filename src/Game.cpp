@@ -19,12 +19,20 @@
 #include "Game.h"
 #include <iostream>
 #include <thread>
+#if defined(LINUX) || defined(DARWIN)
+#include "X11/Xlib.h"
+#endif
 using namespace MINX;
 using namespace MINX::Graphics;
 
 Game::Game()
 {
+	Components = new vector<GameComponent*>();
+	keyboardEvents = new queue<SDL_Event*>();
 	gameTime = NULL;
+	#if defined(LINUX) || defined(DARWIN)
+	XInitThreads();
+	#endif
 }
 
 int doDraw(Game * game){
@@ -40,48 +48,51 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 	std::thread drawingThread(&doDraw, this);
-	SDL_Event * evt;
+	SDL_Event * evt = NULL;
 	while(isRunning)
 	{
 		SDL_PollEvent(evt);
-		switch(evt->type)
+		if(evt != NULL)
 		{
-			case SDL_ACTIVEEVENT:
-				break;
-			case SDL_KEYDOWN:
-				keyboardEvents->push(evt);
-				break;
-			case SDL_KEYUP:
-				keyboardEvents->push(evt);
-				break;
-			case SDL_MOUSEMOTION:
-				break;
-			case SDL_MOUSEBUTTONDOWN:
-				break;
-			case SDL_MOUSEBUTTONUP:
-				break;
-			case SDL_JOYAXISMOTION:
-				break;
-			case SDL_JOYBALLMOTION:
-				break;
-			case SDL_JOYHATMOTION:
-				break;
-			case SDL_JOYBUTTONDOWN:
-				break;
-			case SDL_JOYBUTTONUP:
-				break;
-			case SDL_VIDEORESIZE:
-				break;
-			case SDL_VIDEOEXPOSE:
-				break;
-			case SDL_QUIT:
-				this->UnloadContent();
-				exit(0);
-				break;
-			case SDL_USEREVENT:
-				break;
-			case SDL_SYSWMEVENT:
-				break;
+			switch(evt->type)
+			{
+				case SDL_ACTIVEEVENT:
+					break;
+				case SDL_KEYDOWN:
+					keyboardEvents->push(evt);
+					break;
+				case SDL_KEYUP:
+					keyboardEvents->push(evt);
+					break;
+				case SDL_MOUSEMOTION:
+					break;
+				case SDL_MOUSEBUTTONDOWN:
+					break;
+					case SDL_MOUSEBUTTONUP:
+					break;
+				case SDL_JOYAXISMOTION:
+					break;
+				case SDL_JOYBALLMOTION:
+					break;
+				case SDL_JOYHATMOTION:
+					break;
+				case SDL_JOYBUTTONDOWN:
+					break;
+				case SDL_JOYBUTTONUP:
+					break;
+				case SDL_VIDEORESIZE:
+					break;
+				case SDL_VIDEOEXPOSE:
+					break;
+				case SDL_QUIT:
+					this->UnloadContent();
+					exit(0);
+					break;
+				case SDL_USEREVENT:
+					break;
+				case SDL_SYSWMEVENT:
+					break;
+			}
 				
 		}
 		this->Update(gameTime);

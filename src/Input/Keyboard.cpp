@@ -21,14 +21,9 @@
 
 using namespace MINX::Input;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game)
+Keyboard::Keyboard (Game * game) : IGenericHID(game,200,0) //200 might be a little high
 {
 	//allan please add content
-}
-
-Button Keyboard::getButton(int id)
-{
-	return (* buttons)[id];
 }
 
 void Keyboard::Update(GameTime * gameTime)
@@ -39,4 +34,5 @@ void Keyboard::Update(GameTime * gameTime)
 	int id = evt->key.keysym.sym;
 	b.prevState = (*buttons)[id].state;
 	b.state= evt->type == SDL_KEYDOWN;
+	(*buttons)[id] = b;
 }
