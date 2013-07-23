@@ -24,6 +24,7 @@
 #endif
 using namespace MINX;
 using namespace MINX::Graphics;
+using namespace std;
 
 Game::Game()
 {
@@ -54,6 +55,7 @@ void Game::Run()
 		SDL_PollEvent(evt);
 		if(evt != NULL)
 		{
+			cout << "EVENT NOT NULL HERE" << endl;
 			switch(evt->type)
 			{
 				case SDL_ACTIVEEVENT:
@@ -68,7 +70,7 @@ void Game::Run()
 					break;
 				case SDL_MOUSEBUTTONDOWN:
 					break;
-					case SDL_MOUSEBUTTONUP:
+				case SDL_MOUSEBUTTONUP:
 					break;
 				case SDL_JOYAXISMOTION:
 					break;

@@ -57,8 +57,9 @@ void test::UnloadContent()
 void test::Update(GameTime * gameTime)
 {
 	keyboard->Update(gameTime);
-	std::cout << (keyboard->getButton(SDLK_1).state ? "1 pressed!" : "1 NOT pressed :(")<< "\n";
+	std::cout << (keyboard->getButton(SDLK_UP).state ? "1 pressed!" : "1 NOT pressed :(")<< "\n";
 	//Put stuff here to update the logic in your game each tick.
+	SDL_Delay(100);
 	Game::Update(gameTime);
 }
 

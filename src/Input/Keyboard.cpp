@@ -20,8 +20,9 @@
 #include "Keyboard.h"
 
 using namespace MINX::Input;
+using namespace std;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,200,0) //200 might be a little high
+Keyboard::Keyboard (Game * game) : IGenericHID(game,1000,0) //200 might be a little high
 {
 	//allan please add content
 }
@@ -29,10 +30,14 @@ Keyboard::Keyboard (Game * game) : IGenericHID(game,200,0) //200 might be a litt
 void Keyboard::Update(GameTime * gameTime)
 {
 	SDL_Event * evt = game->keyboardEvents->front();
-	game->keyboardEvents->pop();
-	Button b;
-	int id = evt->key.keysym.sym;
-	b.prevState = (*buttons)[id].state;
-	b.state= evt->type == SDL_KEYDOWN;
-	(*buttons)[id] = b;
+	if(evt != NULL)
+	{
+		cout << "HEY LOOK AN EVENT YAY" << endl;
+		game->keyboardEvents->pop();
+		Button b;
+		int id = evt->key.keysym.sym;
+		b.prevState = (*buttons)[id].state;
+		b.state= evt->type == SDL_KEYDOWN;
+		(*buttons)[id] = b;
+	}
 }
