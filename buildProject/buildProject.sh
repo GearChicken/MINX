@@ -118,13 +118,13 @@ void $fileName::UnloadContent()
 void $fileName::Update(GameTime * gametime)
 {
 	//Put stuff here to update the logic in your game each tick.
-	Game::Update(GameTime gametime);
+	Game::Update(gametime);
 }
 
 void $fileName::Draw(GameTime * gametime)
 {
 	//Put stuff here to draw your game each frame.
-	Game::Draw(GameTime gametime);
+	Game::Draw(gametime);
 }" > "$projectDir/$fileName.cpp"
 
 echo "/*
