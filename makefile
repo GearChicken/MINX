@@ -6,7 +6,7 @@ LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer
 CC = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D WIN32 -mdll -mwindows
-    TARGET = MINX.dll
+    TARGET = bin/MINX.dll
     INSTALLTARGET = C:\\windows\\system32
     RMCOMMAND = del
     ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
@@ -22,12 +22,12 @@ else
     ifeq ($(UNAME_S),Linux)
         CPPFLAGS += -D LINUX
         LFLAGS += -shared
-        TARGET = libMINX.so
+        TARGET = bin/libMINX.so
     endif
     ifeq ($(UNAME_S),Darwin)
         CPPFLAGS += -D OSX -fno_commons
         LFLAGS += -dynamiclib
-        TARGET = libMINX.dylib
+        TARGET = bin/libMINX.dylib
     endif
     UNAME_P := $(shell uname -p)
     ifeq ($(UNAME_P),x86_64)
