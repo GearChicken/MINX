@@ -21,9 +21,9 @@
 using namespace MINX_TEST;
 using namespace std;
 
-
-test::test()
+test::test() 
 {
+ 	keyboard= new Input::Keyboard(this);
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 isRunning = true;
 }
@@ -54,7 +54,8 @@ void test::UnloadContent()
 
 void test::Update(GameTime * gameTime)
 {
-	std::cout << gameWindow->screen->w << "\n";
+	keyboard->Update(gameTime);
+	std::cout << (keyboard->getButton(SDLK_1).state ? "1 pressed!" : "1 NOT pressed :(")<< "\n";
 	//Put stuff here to update the logic in your game each tick.
 	Game::Update(gameTime);
 }
