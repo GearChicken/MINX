@@ -22,7 +22,7 @@
 using namespace MINX::Input;
 using namespace std;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,1000,0) //200 might be a little high
+Keyboard::Keyboard (Game * game) : IGenericHID(game,1000,0) //1000 might be a little high
 {
 	//allan please add content
 }
@@ -32,7 +32,6 @@ void Keyboard::Update(GameTime * gameTime)
 	SDL_Event * evt = game->keyboardEvents->front();
 	if(evt != NULL)
 	{
-		cout << "HEY LOOK AN EVENT YAY" << endl;
 		game->keyboardEvents->pop();
 		Button b;
 		int id = evt->key.keysym.sym;

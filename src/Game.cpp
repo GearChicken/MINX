@@ -54,7 +54,6 @@ void Game::Run()
 	{
 		if(SDL_PollEvent(&evt))
 		{
-			cout << "EVENT NOT NULL HERE" << endl;
 			switch(evt.type)
 			{
 				case SDL_ACTIVEEVENT:
@@ -113,12 +112,14 @@ void Game::Initialize()
 		std::cout << "SDL NOT INITED!\n";
 	}
 
-	 gameWindow = new GameWindow( 640, 480, 32, SDL_SWSURFACE);
 
-	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+					//uses video memory      prevents tearing  alpha works  hardware accelerated 
+	 gameWindow = new GameWindow(640, 480, 32, SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL);
+
+	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
-	}//*/
+	}
 }
 void Game::LoadContent()
 {
@@ -126,10 +127,10 @@ void Game::LoadContent()
 }
 void Game::Update(GameTime * gameTime)
 {
-	/*for (vector<GameComponent*>::size_type i=0; i != Components->size(); i++)
+	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Update(gameTime);
-	}//*/
+	}
 }
 void Game::Draw(GameTime * gameTime)
 {
