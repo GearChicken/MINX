@@ -16,30 +16,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef EVENT_H_
-#define EVENT_H_
+#ifndef DRAWABLE_GAMECOMPONENT_H_
+#define DRAWABLE_GAMECOMPONENT_H_
+#include "GameComponent.h"
+#include "Game.h"
+
 namespace MINX
 {
-	enum Event
+	class DrawableGameComponent : public GameComponent
 	{
-		FOCUS_STATE_CHANGE,
-		KEY_STATE_CHANGE,
-		MOUSE_MOVEMENT,
-		MOUSE_BUTTON_STATE_CHANGE,
-		JOY_AXIS_MOVEMENT,
-		JOY_BALL_MOVEMENT,
-		JOY_BUTTON_STATE_CHANGE,
-		APP_QUIT_REQUEST,
-		APP_SYSTEM_WM_EVENT,
-		APP_VIDEO_REDRAW,
-		USER_CUSTOM_EVENT,
-		USER_CUSTOM_EVENT2,
-		USER_CUSTOM_EVENT3,
-		USER_CUSTOM_EVENT4,
-		USER_CUSTOM_EVENT5,
-		USER_CUSTOM_EVENT6,
-		USER_CUSTOM_EVENT7,
-		USER_CUSTOM_EVENT8
+		DrawableGameComponent(Game * game, SDL_Surface * targetSurface);
+		virtual void Draw(GameTime * gameTime);
+		bool visible;
+		SDL_Surface * drawingSurface;
 	};
 }
+
 #endif

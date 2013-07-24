@@ -16,40 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
-#include <string>
-#include <vector>
-#include <queue>
-#include <iostream>
-#include "SDL/SDL.h"
-#include "GameComponent.h"
-#include "GameTime.h"
-#include "Graphics/GameWindow.h"
+#include "DrawableGameComponent.h"
 
-using namespace std;
+using namespace MINX;
 
-namespace MINX
+DrawableGameComponent::DrawableGameComponent(Game * game, SDL_Surface * targetSurface) : GameComponent(game)
 {
-	class Game 
-	{
-		public:
-			Game();
-			virtual void Initialize();
-			virtual void LoadContent();
-			virtual void Update(GameTime * gameTime);
-			virtual void UnloadContent();
-			virtual void Draw(GameTime * gameTime);
-			void Run();
-			Graphics::GameWindow* gameWindow;
-			vector<GameComponent*> * Components;
-			queue<SDL_Event*> * keyboardEvents;
-			GameTime * getGameTime();
-		private:
-			SDL_Event event;
-			GameTime* gameTime;
-		protected:
-			bool isRunning;
-	};
+	drawingSurface=targetSurface;
 }
-#endif
