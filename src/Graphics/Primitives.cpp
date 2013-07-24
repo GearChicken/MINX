@@ -55,3 +55,16 @@ void MINX::Graphics::Primitives::drawRectangle(Color* color, int x, int y, int w
 		}
 	}
 }
+void MINX::Graphics::Primitives::drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface)
+{
+	for(int i = y; i < y+h; i++)
+	{
+		colorToPixel(color,x,i,surface);
+		colorToPixel(color,x+w,i,surface);
+	}
+	for(int j = x; j < x+w; j++)
+	{
+		colorToPixel(color,j,y,surface);
+		colorToPixel(color,j,y+h,surface);
+	}
+}
