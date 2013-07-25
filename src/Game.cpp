@@ -135,8 +135,6 @@ void Game::Update(GameTime * gameTime)
 void Game::Draw(GameTime * gameTime)
 {
 	SDL_Flip(gameWindow->screen);
-	//std::cout << "Screen Flipped!\n";
-	SDL_Delay(50);
 }
 
 void Game::UnloadContent()

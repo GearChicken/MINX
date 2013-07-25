@@ -22,25 +22,28 @@
 using namespace MINX::Input;
 using namespace std;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,1000,0) //1000 might be a little high
+Keyboard::Keyboard (Game * game) : IGenericHID(game,512,0) //1000 might be a little high
 {
 	//allan please add content
 }
 
 void Keyboard::Update(GameTime * gameTime)
 {
-	SDL_Event * evt = game->keyboardEvents->front();
-	if(evt != NULL)
+	if(!game->keyboardEvents->empty())
 	{
-		game->keyboardEvents->pop();
-		Button b;
-		int id = evt->key.keysym.sym;
-		cout << id << endl;
-		if(id >= 0 && id < 1000)
+		SDL_Event * evt = game->keyboardEvents->front();
+		if(evt != NULL)
 		{
-			b.prevState = (*buttons)[id].state;
-			b.state= evt->type == SDL_KEYDOWN;
-			(*buttons)[id] = b;
+			game->keyboardEvents->pop();
+			Button b;
+			int id = evt->key.keysym.sym;
+			cout << id << endl;
+			if(id > 0 && id < 512)
+			{
+				b.prevState = (*buttons)[id].state;
+				b.state= evt->type == SDL_KEYDOWN;
+				(*buttons)[id] = b;
+			}
 		}
 	}
 }
