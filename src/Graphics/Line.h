@@ -16,31 +16,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-	
-#include "Keyboard.h"
 
-using namespace MINX::Input;
-using namespace std;
+#ifndef LINE_H_
+#define LINE_H_
+#include "DrawableGameComponent.h"
+#include "Point.h"
+#include "Game.h"
+#include "GameTime.h"
+#include "SDL/SDL.h"
+#include "SDL_gfxPrimitives.h"
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,1000,0) //1000 might be a little high
+namespace MINX
 {
-	//allan please add content
-}
-
-void Keyboard::Update(GameTime * gameTime)
-{
-	SDL_Event * evt = game->keyboardEvents->front();
-	if(evt != NULL)
+	class Line : public DrawableGameComponent
 	{
-		game->keyboardEvents->pop();
-		Button b;
-		int id = evt->key.keysym.sym;
-		cout << id << endl;
-		if(id >= 0 && id < 1000)
-		{
-			b.prevState = (*buttons)[id].state;
-			b.state= evt->type == SDL_KEYDOWN;
-			(*buttons)[id] = b;
-		}
+		public:
+			Line(int x1, int y1, int x2, int y2, Game * game, SDL_Surface * target);
+			Line(Point pt1, Point pt2, Game * game, SDL_Surface * target);
+			Line(Point origin, Vector2 magnitude, Game * game, SDL_Surface * target);
+			void Draw(GameTime * gameTime);
+			void setCoords(int x1, int y1, int x2, int y2);
+			void setCoords(Point pt1, Point pt2);
+			void setCoords(Point pt, Vector2 magnitude);
+			
 	}
 }
+#endif

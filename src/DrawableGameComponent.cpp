@@ -23,4 +23,19 @@ using namespace MINX;
 DrawableGameComponent::DrawableGameComponent(Game * game, SDL_Surface * targetSurface) : GameComponent(game)
 {
 	drawingSurface=targetSurface;
+	visible=true;
+}
+
+void DrawableGameComponent::Draw(GameTime * gameTime)
+{
+}
+
+Uint32 * DrawableGameComponent::getPixelData()
+{
+}
+
+void DrawableGameComponent::Intersects(DrawableGameComponent other)
+{
+	//allan please add content
+	//lol liam you have more experience here I think 
 }

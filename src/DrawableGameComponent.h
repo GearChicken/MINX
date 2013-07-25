@@ -25,10 +25,13 @@ namespace MINX
 {
 	class DrawableGameComponent : public GameComponent
 	{
-		DrawableGameComponent(Game * game, SDL_Surface * targetSurface);
-		virtual void Draw(GameTime * gameTime);
-		bool visible;
-		SDL_Surface * drawingSurface;
+		public:
+			DrawableGameComponent(Game * game, SDL_Surface * targetSurface);
+			virtual void Draw(GameTime * gameTime);
+			void Intersects(DrawableGameComponent other);
+			virtual Uint32 * getPixelData();
+			bool visible;
+			SDL_Surface * drawingSurface;
 	};
 }
 
