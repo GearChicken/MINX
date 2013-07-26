@@ -21,16 +21,18 @@
 
 using namespace MINX;
 
-Vector2::Vector2(float x, float y)
+Rectangle::Rectangle(int x, int y, int width, int height)
 {
 	X=x;
 	Y=y;
+	Width = width;
+	Height = height;
 }
-bool Vector2::operator==(const Vector2& compareTo)
+bool Rectangle::operator==(const Rectangle& compareTo)
 {
-	return compareTo.X == X && compareTo.Y == Y;
+	return compareTo.X == X && compareTo.Y == Y && compareTo.Width == Width && compareTo.Height == Height;
 }
-bool Vector2::operator!=(const Vector2& compareTo)
+bool Rectangle::operator!=(const Rectangle& compareTo)
 {
 	return !operator==(compareTo);
 }
