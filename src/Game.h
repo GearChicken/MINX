@@ -82,7 +82,6 @@ namespace MINX
 			/** A pointer to the GameTime being used by the game.
 			 */
 			GameTime* gameTime;
-			friend class GameTime;
 		protected:
 			bool isRunning;
 			int desiredFPS;

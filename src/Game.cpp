@@ -95,7 +95,7 @@ void Game::Run()
 			}
 				
 		}
-		gameTime->deltaTime=SDL_GetTicks-gameTime->time;
+		gameTime->deltaTime=SDL_GetTicks()-gameTime->time;
 		gameTime->time=SDL_GetTicks();
 		this->Update(gameTime);
 	}

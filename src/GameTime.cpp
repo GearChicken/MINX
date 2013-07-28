@@ -35,17 +35,17 @@ GameTime::GameTime()
 	GameTime(0,0,false);
 }
 
-GameTime::getElapsedMillis()
+long GameTime::getElapsedMillis()
 {
 	return time;
 }
 
-GameTime::getDeltaTime()
+long GameTime::getDeltaTime()
 {
 	return deltaTime;
 }
 
-GameTime::getIsRunningSlowly()
+bool GameTime::getIsRunningSlowly()
 {
 	return isRunningSlowly;
 }

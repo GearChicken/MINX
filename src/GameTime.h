@@ -30,6 +30,7 @@ namespace MINX
 			long getElapsedMillis();
 			long getDeltaTime();
 			bool getIsRunningSlowly();
+			friend class Game;
 		private:
 			long startOffset;
 			long time;
