@@ -27,7 +27,8 @@ using namespace MINX::Graphics;
 using namespace std;
 
 Game::Game()
-{
+{	
+	desiredFPS = 60;
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
 	gameTime = NULL;
@@ -131,6 +132,12 @@ void Game::Update(GameTime * gameTime)
 	{
 		(*Components)[i]->Update(gameTime);
 	}
+	int NextTick = SDL_GetTicks() + (1000/desiredFPS);
+	if(NextTick > SDL_GetTicks())
+	{
+		SDL_Delay(NextTick - SDL_GetTicks());
+	}
+	NextTick = SDL_GetTicks() + (1000/desiredFPS);
 }
 void Game::Draw(GameTime * gameTime)
 {
