@@ -21,12 +21,28 @@
 #define POINT_H_
 namespace MINX
 {
+	/** A structure that represents a point.
+	 */
 	struct Point
 	{
+		/** Constructs a Point with the specified X and Y coordinates.
+		 * @param x the x coordinate of the Point.
+		 * @param y the y coordinate of the Point.
+		 */
 		Point(int x, int y);
+		/** The X coordinate of the Point.
+		 */
 		int X;
+		/** The Y coordinate of the Point.
+		 */
 		int Y;
+		/** Tests equality between 2 Points.
+		 * @param compareTo the Point to compare this one to.
+		 */
 		bool operator==(const Point& compareTo);
+		/** Tests equality between 2 Points.
+		 * @param compareTo the Point to compare this one to.
+		 */
 		bool operator!=(const Point& compareTo);
 	};
 }

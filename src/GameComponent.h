@@ -24,13 +24,27 @@
 namespace MINX
 {
 	class Game; //forward declaration to avoid circular dependency problems
+	/** Represents any component of the Game.
+	 */
 	class GameComponent
 	{
 		public:
+			/** Creates the GameComponent
+			 * @param attachTo A pointer to the Game to attach to.
+			 */
 			GameComponent(Game * attachTo);
+			/** Initializes the GameComponent.
+			 */
 			virtual void Initialize();
+			/** Update()s the GameComponent.
+			 * @param gameTime the GameTime to update the GameComponent with.
+			 */
 			virtual void Update(GameTime * gameTime);
+			/** Whether or not this GameComponent is enabled.
+			 */
 			bool enabled;
+			/** A pointer to the Game that this GameComponent is attached to.
+			 */
 			Game * game;
 			int updateOrder;
 	};

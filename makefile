@@ -55,8 +55,12 @@ all: $(OBJECTS)
 clean:
 	@for dir in src; do find $$dir -name \*.o -exec $(RMCOMMAND) {} \; ; done
 	$(RMCOMMAND) bin/libMINX.so
+	rm -rf doxygen
 	
 install:
 	cp bin/libMINX.so $(INSTALLTARGET)
+	
+doxygen:
+	@doxygen doxygen.conf
 
 ##### End of Makefile

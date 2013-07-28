@@ -113,7 +113,7 @@ void Game::Initialize()
 	}
 
 
-					//uses video memory      prevents tearing  alpha works  hardware accelerated 
+					//uses video memory,prevents tearing,alpha works,hardware accelerated 
 	 gameWindow = new GameWindow(640, 480, 32, SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL);
 
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
@@ -129,7 +129,10 @@ void Game::Update(GameTime * gameTime)
 {
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
-		(*Components)[i]->Update(gameTime);
+		if((*Components)[i]->enabled)
+		{
+			(*Components)[i]->Update(gameTime);
+		}
 	}
 }
 void Game::Draw(GameTime * gameTime)

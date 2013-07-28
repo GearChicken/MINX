@@ -48,6 +48,7 @@ namespace MINX
 			virtual void LoadContent();
 			/** Updates the game state.
 			 * Should be extended when you create a subclass of Game.
+			 * @param gameTime the GameTime to use when updating.
 			 */
 			virtual void Update(GameTime * gameTime);
 			/** Unloads content used by the game.
@@ -55,6 +56,7 @@ namespace MINX
 			virtual void UnloadContent();
 			/** Draws the state of the game every frame.
 			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
+			 * @param gameTime the GameTime to use when drawing.
 			 */
 			virtual void Draw(GameTime * gameTime);
 			/** Handles Update()ing, Draw()ing, and event handling.

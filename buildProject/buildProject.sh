@@ -92,7 +92,7 @@ echo "/*
 using namespace MINX_${fileName^^};
 
 
-$fileName::$fileName()
+$fileName::$fileName() : Game::Game()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 }
@@ -150,7 +150,7 @@ echo "/*
 using namespace MINX_${fileName^^};
 int main(int argc, char ** argv)
 {
-	${fileName^^} * game = new ${fileName^^}();
+	${fileName} * game = new ${fileName}();
 	game->Run();
 }" > "$projectDir/Program.cpp"
 #TODO add stuff for makefile
