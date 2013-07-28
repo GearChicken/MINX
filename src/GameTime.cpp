@@ -22,7 +22,7 @@ using namespace MINX;
 
 GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
 {
-	time=millisecondsSinceStart;
+	startOffset=millisecondsSinceStart;
 	deltaTime=timeSinceLastUpdate;
 	isRunningSlowly=runningSlowly;
 }
@@ -33,4 +33,19 @@ GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
 GameTime::GameTime()
 {
 	GameTime(0,0,false);
+}
+
+GameTime::getElapsedMillis()
+{
+	return time;
+}
+
+GameTime::getDeltaTime()
+{
+	return deltaTime;
+}
+
+GameTime::getIsRunningSlowly()
+{
+	return isRunningSlowly;
 }

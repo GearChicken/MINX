@@ -50,7 +50,6 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 	std::thread drawingThread(&doDraw, this);
-	SDL_Event evt;
 	while(isRunning)
 	{
 		if(SDL_PollEvent(&evt))
@@ -96,6 +95,8 @@ void Game::Run()
 			}
 				
 		}
+		gameTime->deltaTime=SDL_GetTicks-gameTime->time;
+		gameTime->time=SDL_GetTicks();
 		this->Update(gameTime);
 	}
 	this->UnloadContent();

@@ -33,5 +33,4 @@ void GameComponent::Initialize()
 }
 void GameComponent::Update(GameTime * gameTime)
 {
-
 }

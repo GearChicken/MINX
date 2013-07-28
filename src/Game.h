@@ -78,10 +78,11 @@ namespace MINX
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */
-			SDL_Event event;
+			SDL_Event evt;
 			/** A pointer to the GameTime being used by the game.
 			 */
 			GameTime* gameTime;
+			friend class GameTime;
 		protected:
 			bool isRunning;
 			int desiredFPS;

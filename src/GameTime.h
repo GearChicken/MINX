@@ -27,7 +27,11 @@ namespace MINX
 			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly);
 			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate);
 			GameTime();
+			long getElapsedMillis();
+			long getDeltaTime();
+			bool getIsRunningSlowly();
 		private:
+			long startOffset;
 			long time;
 			long deltaTime;
 			bool isRunningSlowly;
