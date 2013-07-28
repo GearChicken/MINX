@@ -63,4 +63,7 @@ install:
 doxygen:
 	@doxygen doxygen.conf
 
+doxygenupload:
+	ncftpput -R -v -u "MINX@gearchicken.com" gearchicken.com / ./doxygen/html/
+
 ##### End of Makefile
