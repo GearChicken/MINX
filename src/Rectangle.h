@@ -29,6 +29,10 @@ namespace MINX
 		int Y;
 		int Width;
 		int Height;
+		int Top();
+		int Bottom();
+		int Left();
+		int Right();
 		bool intersects(Rectangle* rect2);
 	};
 }

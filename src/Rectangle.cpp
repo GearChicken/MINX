@@ -32,8 +32,27 @@ int Rectangle::area()
 {
 	return Width * Height;
 }
+int Rectangle::Top()
+{
+	return Y;
+}
+int Rectangle::Bottom()
+{
+	return Y + Height;
+}
+int Rectangle::Left()
+{
+	return X;
+}
+int Rectangle::Right()
+{
+	return X + Width;
+}
 bool Rectangle::intersects(Rectangle* rect2)
 {
-	return (std::abs(X - rect2->Y) * 2 < (Width + rect2->Width)) &&
-		(std::abs(Y - rect2->Y) * 2 <(Height + rect2->Height));
+	return !(
+			(Bottom() < rect2->Top()) ||
+			(Top() > rect2->Bottom()) ||
+			(Left() > rect2->Right()) ||
+			(Right() < rect2->Left()) );
 }
