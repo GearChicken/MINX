@@ -84,6 +84,7 @@ namespace MINX
 			GameTime* gameTime;
 		protected:
 			bool isRunning;
+			int desiredFPS;
 	};
 }
 #endif

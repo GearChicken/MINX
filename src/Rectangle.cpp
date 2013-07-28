@@ -28,15 +28,31 @@ Rectangle::Rectangle(int x, int y, int width, int height)
 	Width = width;
 	Height = height;
 }
-bool Rectangle::operator==(const Rectangle& compareTo)
-{
-	return compareTo.X == X && compareTo.Y == Y && compareTo.Width == Width && compareTo.Height == Height;
-}
-bool Rectangle::operator!=(const Rectangle& compareTo)
-{
-	return !operator==(compareTo);
-}
 int Rectangle::area()
 {
 	return Width * Height;
+}
+int Rectangle::Top()
+{
+	return Y;
+}
+int Rectangle::Bottom()
+{
+	return Y + Height;
+}
+int Rectangle::Left()
+{
+	return X;
+}
+int Rectangle::Right()
+{
+	return X + Width;
+}
+bool Rectangle::intersects(Rectangle* rect2)
+{
+	return !(
+			(Bottom() < rect2->Top()) ||
+			(Top() > rect2->Bottom()) ||
+			(Left() > rect2->Right()) ||
+			(Right() < rect2->Left()) );
 }

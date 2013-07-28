@@ -18,18 +18,22 @@
 	*/
 #ifndef RECTANGLE_H_
 #define RECTANGLE_H_
+#include <cmath>
 namespace MINX
 {
 	struct Rectangle
 	{
 		Rectangle(int x, int y, int width, int height);
-		bool operator==(const Rectangle& compareTo);
-		bool operator!=(const Rectangle& compareTo);
 		int area();
 		int X;
 		int Y;
 		int Width;
 		int Height;
+		int Top();
+		int Bottom();
+		int Left();
+		int Right();
+		bool intersects(Rectangle* rect2);
 	};
 }
 #endif
