@@ -2,3 +2,4 @@ src/*.o
 src/Input/*.o
 src/Graphics/*.o
 bin/libMINX.so
+doxygen/
