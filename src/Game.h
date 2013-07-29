@@ -31,7 +31,7 @@ using namespace std;
 
 namespace MINX
 {
-	/** The class that handles everything else.
+	/** The class that handles everything.
 	 * When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
 	 */
 	class Game 

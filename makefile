@@ -59,9 +59,6 @@ clean:
 	
 install:
 	cp bin/libMINX.so $(INSTALLTARGET)
-	
-doxygen:
-	@doxygen doxygen.conf
 
 doxygenupload:
 	ncftpput -R -v -u "MINX@gearchicken.com" gearchicken.com / ./doxygen/html/

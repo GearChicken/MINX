@@ -19,6 +19,8 @@
 #ifndef GAME_H_
 #define GAME_H_
 
+#include <string>
+
 namespace MINX
 {
 	namespace Graphics
@@ -26,11 +28,11 @@ namespace MINX
 		class Texture2D
 		{
 			public:
-				Texture2D(string filename);
+				Texture2D(std::string filename);
+				Texture2D(SDL_Surface * surface);
 				int width, height;
-				
-			private:
 				
 		};
 	}
 }
+#endif

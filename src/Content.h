@@ -16,21 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
 #ifndef CONTENT_H_
 #define CONTENT_H_
+
 #include "SDL/SDL.h"
 #include "Graphics/Texture2D.h"
 #include <string>
+#include <vector>
+#include "SDL/SDL_ttf.h"
+#include "SDL/SDL_image.h"
+
+using namespace MINX::Graphics;
+using namespace std;
+
 namespace MINX
 {
 	class Content
 	{
 		public:
 			Content();
-			Texture2D* loadTexture(std::string);
+			Texture2D* loadTexture(std::string name);
 			vector<Texture2D*>* textures;
-			TTF_Font* loadTTFFont(std::string);
+			TTF_Font* loadTTFFont(std::string name, int size);
 			vector<TTF_Font*>* TTFFonts;
 	};
 }

@@ -17,18 +17,18 @@
 
 	*/
 
-#include "GameTime.h"
+#include "Content.h"
 using namespace MINX;
 
 Content::Content()
 {
 }
 
-Texture2D* Content::loadTexture(std::string)
+Texture2D* Content::loadTexture(std::string name)
 {
-	
+	return new Texture2D(IMG_Load(name.c_str()));
 }
-TTF_Font* Content::loadTTFFont(std::string, int size)
+TTF_Font* Content::loadTTFFont(std::string name, int size)
 {
-	TTF_OpenFont(string.c_str(), size);
+	return TTF_OpenFont(name.c_str(), size);
 }
