@@ -31,7 +31,7 @@ Game::Game()
 	desiredFPS = 60;
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
-	gameTime = NULL;
+	gameTime = new GameTime();
 	#if defined(LINUX) || defined(DARWIN)
 	XInitThreads();
 	#endif
