@@ -19,23 +19,22 @@
 
 #ifndef GAMETIME_H_
 #define GAMETIME_H_
+#include "SDL/SDL.h"
 namespace MINX
 {
 	class GameTime
 	{
 		public:
-			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly);
-			GameTime(long millisecondsSinceStart, long timeSinceLastUpdate);
 			GameTime();
 			long getElapsedMillis();
 			long getDeltaTime();
 			bool getIsRunningSlowly();
-			friend class Game;
+			void update();
+			void limitFPS(int desiredFPS);
 		private:
-			long startOffset;
-			long time;
-			long deltaTime;
-			bool isRunningSlowly;
+			long totalTimeMillis;
+			long deltaTimeMillis;
+			long lastUpdate;
 	};
 }
 #endif

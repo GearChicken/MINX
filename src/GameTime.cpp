@@ -20,32 +20,37 @@
 #include "GameTime.h"
 using namespace MINX;
 
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate, bool runningSlowly)
-{
-	startOffset=millisecondsSinceStart;
-	deltaTime=timeSinceLastUpdate;
-	isRunningSlowly=runningSlowly;
-}
-GameTime::GameTime(long millisecondsSinceStart, long timeSinceLastUpdate)
-{
-	GameTime(millisecondsSinceStart, timeSinceLastUpdate, false);
-}
 GameTime::GameTime()
 {
-	GameTime(0,0,false);
 }
 
+void GameTime::limitFPS(int desiredFPS)
+{
+	
+	int NextTick = totalTimeMillis + (1000/desiredFPS);
+	if(NextTick > totalTimeMillis)
+	{
+		SDL_Delay(NextTick - totalTimeMillis);
+	}
+	NextTick = totalTimeMillis + (1000/desiredFPS);
+}
+void GameTime::update()
+{
+	totalTimeMillis = SDL_GetTicks();
+	deltaTimeMillis = totalTimeMillis - lastUpdate;
+	lastUpdate = totalTimeMillis;
+}
 long GameTime::getElapsedMillis()
 {
-	return time;
+	return totalTimeMillis;
 }
 
 long GameTime::getDeltaTime()
 {
-	return deltaTime;
+	return deltaTimeMillis;
 }
 
 bool GameTime::getIsRunningSlowly()
 {
-	return isRunningSlowly;
+	return deltaTimeMillis > 500;
 }
