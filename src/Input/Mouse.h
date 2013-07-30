@@ -26,7 +26,7 @@ namespace MINX
 {
 	namespace Input
 	{
-		class Mouse : IGenericHID
+		class Mouse : public IGenericHID
 		{
 			public:
 				Mouse(Game * game);

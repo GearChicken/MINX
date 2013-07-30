@@ -31,8 +31,7 @@ isRunning = true;
 void test::Initialize()
 {
 	//Put stuff here that should happen when the Game is initialized.
-	keyboard= new Input::Keyboard(this);
-	keyboard->Initialize();
+	mouse= new Input::Mouse(this);
 	std::cout << "Game INIT" << "\n";
 	Game::Initialize();
 	SDL_WM_SetCaption("simple window", "Window");
@@ -57,21 +56,17 @@ void test::UnloadContent()
 void test::Update(GameTime * gameTime)
 {
 	//Put stuff here to update the logic in your game each tick.
-	SDL_Delay(100);
+
 	Game::Update(gameTime);
-	
-	keyboard->Update(gameTime);
-	std::cout << (keyboard->getButton(SDLK_UP).state ? "1 pressed!" : "1 NOT pressed :(")<< "\n";
+	std::cout << mouse->getButton(1).state<< "\n";
 }
 
 void test::Draw(GameTime * gameTime)
 {
-	cout << "test" << endl;
 	SDL_FillRect(gameWindow->screen, NULL, 0x00FFFF);
 	// A G R B
 	Graphics::Primitives::drawOutlineRectangle(new Graphics::Color(0,0,0,0), 50, 50, 100, 100, gameWindow->screen);
 	//Put stuff here to draw your game each frame.
 	Game::Draw(gameTime);
-	cout << "test2" << endl;
 	SDL_Delay(1000);
 }
