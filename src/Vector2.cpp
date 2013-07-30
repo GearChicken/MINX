@@ -75,9 +75,7 @@ Vector2 Vector2::normalize()
 {
 	if(lengthSquared() != 0)
 	{
-		float angle = atan2(Y,X);
-		std::cout << angle << std::endl;
-		return Vector2(cos(angle),sin(angle));
+		return Vector2(X/length(),Y/length());
 	}
 	return Vector2(0,0);
 }
