@@ -18,6 +18,7 @@
 	*/
 #include "Vector2.h"
 #include <math.h>
+#include <iostream>
 
 using namespace MINX;
 
@@ -72,6 +73,11 @@ float Vector2::length()
 }
 Vector2 Vector2::normalize()
 {
-	float angle = atan2(Y,X);
-	return Vector2(cos(angle),sin(angle));
+	if(lengthSquared() != 0)
+	{
+		float angle = atan2(Y,X);
+		std::cout << angle << std::endl;
+		return Vector2(cos(angle),sin(angle));
+	}
+	return Vector2(0,0);
 }
