@@ -152,5 +152,6 @@ int main(int argc, char ** argv)
 {
 	${fileName} * game = new ${fileName}();
 	game->Run();
+	exit(0);
 }" > "$projectDir/Program.cpp"
 #TODO add stuff for makefile

@@ -39,7 +39,7 @@ Game::Game()
 }
 
 int doDraw(Game * game){
-	while(1)
+	while(game->isRunning)
 	{
 		game->Draw(game->getGameTime());
 	}
@@ -89,8 +89,7 @@ void Game::Run()
 				case SDL_VIDEOEXPOSE:
 					break;
 				case SDL_QUIT:
-					this->UnloadContent();
-					exit(0);
+					isRunning=false;
 					break;
 				case SDL_USEREVENT:
 					break;
@@ -102,6 +101,7 @@ void Game::Run()
 		gameTime->update();
 		this->Update(gameTime);
 	}
+	drawingThread.join();
 	this->UnloadContent();
 }
 

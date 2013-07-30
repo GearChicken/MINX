@@ -78,6 +78,7 @@ namespace MINX
 			 * Currently GameTime is pretty much just stubbed.
 			 */
 			GameTime * getGameTime();
+			bool isRunning;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */
@@ -86,7 +87,6 @@ namespace MINX
 			 */
 			GameTime* gameTime;
 		protected:
-			bool isRunning;
 			int desiredFPS;
 	};
 }
