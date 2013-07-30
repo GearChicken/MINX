@@ -20,13 +20,14 @@
 #include "Content.h"
 using namespace MINX;
 
-Content::Content()
+Content::Content(Game * addTo)
 {
+	game=addTo;
 }
 
 Texture2D* Content::loadTexture(std::string name)
 {
-	return new Texture2D(IMG_Load(name.c_str()));
+	return new Texture2D(IMG_Load(("Content/"+name).c_str()), game->gameWindow);
 }
 TTF_Font* Content::loadTTFFont(std::string name, int size)
 {

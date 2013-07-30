@@ -21,6 +21,8 @@
 
 #include "SDL/SDL.h"
 #include <string>
+#include "GameWindow.h"
+#include "../Game.h"
 
 
 namespace MINX
@@ -30,9 +32,12 @@ namespace MINX
 		class Texture2D
 		{
 			public:
-				Texture2D(std::string filename);
-				Texture2D(SDL_Surface * surface);
+				Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
+				void Draw(int x, int y);
 				int width, height;
+			private:
+				SDL_Surface * tex;
+				SDL_Surface * screen;
 				
 		};
 	}

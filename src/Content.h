@@ -34,11 +34,12 @@ namespace MINX
 	class Content
 	{
 		public:
-			Content();
+			Content(Game * addTo);
 			Texture2D* loadTexture(std::string name);
 			vector<Texture2D*>* textures;
 			TTF_Font* loadTTFFont(std::string name, int size);
 			vector<TTF_Font*>* TTFFonts;
+			Game * game;
 	};
 }
 #endif

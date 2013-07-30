@@ -21,11 +21,16 @@
 #include <bitset>
 using namespace MINX::Graphics;
 
-Texture2D::Texture2D(std::string filename)
+Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow)
 {
-
+	tex=surface;
+	screen=gameWindow->screen;
 }
-Texture2D::Texture2D(SDL_Surface * surface)
-{
 
+void Texture2D::Draw(int x, int y)
+{
+	SDL_Rect loc;
+	loc.x=x;
+	loc.y=y;
+	SDL_BlitSurface(tex,NULL,screen,&loc);
 }
