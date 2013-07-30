@@ -68,9 +68,12 @@ namespace MINX
 			/** A pointer to a vector of pointers to the GameComponents used in the game.
 			 */
 			vector<GameComponent*> * Components;
-			/** A pointer to a queue of pointers to the SDL_Events that the Keyboard class should 
+			/** A pointer to a queue of pointers to the SDL_Events that the Keyboard class should use
 			 */
 			queue<SDL_Event*> * keyboardEvents;
+			/** A pointer to a queue of pointers to the SDL_Events that the Mouse class should use
+			 */
+			queue<SDL_Event*> * mouseEvents;
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */

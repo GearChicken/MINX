@@ -31,6 +31,7 @@ Game::Game()
 	desiredFPS = 60;
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
+	mouseEvents = new queue<SDL_Event*>();
 	gameTime = new GameTime();
 	#if defined(LINUX) || defined(DARWIN)
 	XInitThreads();
@@ -65,10 +66,13 @@ void Game::Run()
 					keyboardEvents->push(&evt);
 					break;
 				case SDL_MOUSEMOTION:
+					mouseEvents->push(&evt);
 					break;
 				case SDL_MOUSEBUTTONDOWN:
+					mouseEvents->push(&evt);
 					break;
 				case SDL_MOUSEBUTTONUP:
+					mouseEvents->push(&evt);
 					break;
 				case SDL_JOYAXISMOTION:
 					break;
