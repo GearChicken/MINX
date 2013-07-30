@@ -20,7 +20,6 @@
 #include <iostream>
 #include <bitset>
 using namespace MINX::Graphics;
-using namespace MINX::Graphics::Primitives;
 
 Texture2D::Texture2D(std::string filename)
 {

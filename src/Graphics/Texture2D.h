@@ -16,10 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAME_H_
-#define GAME_H_
+#ifndef TEXTURE2D_H_
+#define TEXTURE2D_H_
 
+#include "SDL/SDL.h"
 #include <string>
+
 
 namespace MINX
 {
