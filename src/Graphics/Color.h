@@ -23,16 +23,36 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		/** A struct representing a color.
+		 */
 		struct Color
 		{
+			/** The red component of the color.
+			 */
 			byte R;
+			/** The green component of the color.
+			 */
 			byte G;
+			/** The blue component of the color.
+			 */
 			byte B;
+			/** The alpha component of the color.
+			 */
 			byte A;
+			/** Constructs a color with the given red, green, blue, and alpha values.
+			 */
 			Color(byte r, byte g, byte b, byte a);
+			/** Constructs a color with the given red, green, and blue values.
+			 */
 			Color(byte r, byte g, byte b);
+			/** Tests equality between two Colors.
+			 */
 			bool operator==(const Color& compareTo);
+			/** Tests inequality between two Colors
+			 */
 			bool operator!=(const Color& compareTo);
+			/** Multiplies a color by a scale.
+			 */
 			Color * operator*(const float& scale);
 		};
 	}
