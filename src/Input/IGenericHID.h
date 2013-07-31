@@ -59,7 +59,7 @@ namespace MINX
 				/** Returns an Axis from the specified index in the axis vector.
 				 */
 				Axis getAxis(int id);
-			private:
+			protected:
 				SDL_Event* evt;
 		};
 	}
