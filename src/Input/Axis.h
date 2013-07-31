@@ -21,9 +21,16 @@
 namespace MINX
 {
 	namespace Input{
+		/** Represents an axis on an input device such as a mouse or joystick.
+		 * Some axes indicate a position (a stick on a game pad), and some indicate relative motion (a ball on a joypad).
+		 */
 		struct Axis
 		{
+			/** The current value of the axis.
+			 */
 			float val;
+			/** The previous value of the axis.
+			 */
 			float prevVal;
 		};
 	}

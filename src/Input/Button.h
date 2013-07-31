@@ -22,9 +22,15 @@ namespace MINX
 {
 	namespace Input
 	{
+		/** Represents a button on an input device, such as a keyboard, mouse, or a joystick.
+		 */
 		struct Button
 		{
+			/** The current state of the button.
+			 */
 			bool state;
+			/** The previous state of the button.
+			 */
 			bool prevState;
 		};
 	}

@@ -25,10 +25,16 @@ namespace MINX
 {
 	namespace Input
 	{
+		/** Represents a keyboard device.
+		 */
 		class Keyboard : public IGenericHID
 		{
-			public: 
+			public:
+				/** Calls the IGenericHID constructor with game,512,0
+				 */
 				Keyboard(Game * game);
+				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
+				 */
 				void Update(GameTime * gameTime);
 		};
 	}

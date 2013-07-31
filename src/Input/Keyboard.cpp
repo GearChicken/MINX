@@ -22,16 +22,15 @@
 using namespace MINX::Input;
 using namespace std;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,512,0) //1000 might be a little high
+Keyboard::Keyboard (Game * game) : IGenericHID(game,512,0) //512 might be a little high
 {
-	//allan please add content
 }
 
 void Keyboard::Update(GameTime * gameTime)
 {
 	if(!game->keyboardEvents->empty())
 	{
-		SDL_Event * evt = game->keyboardEvents->front();
+		evt = game->keyboardEvents->front();
 		if(evt != NULL)
 		{
 			game->keyboardEvents->pop();

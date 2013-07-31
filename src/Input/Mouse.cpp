@@ -30,7 +30,7 @@ void Mouse::Update(GameTime * gameTime)
 {
 	if(!game->mouseEvents->empty())
 	{
-		SDL_Event * evt = game->mouseEvents->front();
+		evt = game->mouseEvents->front();
 		if(evt != NULL)
 		{
 			game->mouseEvents->pop();

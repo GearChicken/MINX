@@ -26,10 +26,16 @@ namespace MINX
 {
 	namespace Input
 	{
+		/** Represents a mouse device
+		 */
 		class Mouse : public IGenericHID
 		{
 			public:
+				/** Calls the IGenericHID constructor with game,0xFFF,4
+				 */
 				Mouse(Game * game);
+				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
+				 */
 				void Update(GameTime * gameTime);
 		};
 	}
