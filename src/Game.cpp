@@ -29,6 +29,7 @@ using namespace std;
 Game::Game()
 {	
 	desiredFPS = 60;
+	content = new MINX::Content(this);
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
 	mouseEvents = new queue<SDL_Event*>();
@@ -117,6 +118,11 @@ void Game::Initialize()
 		std::cout << "SDL NOT INITED!\n";
 	}
 
+	if(TTF_Init() == -1 )
+	{
+		std::cout << "TTF NOT INITED!\n";
+	}
+
 
 					//uses video memory,prevents tearing,alpha works,hardware accelerated 
 	 gameWindow = new GameWindow(640, 480, 32, SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL);
@@ -148,5 +154,15 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
+	while(content->TTFFonts->size() > 0)
+	{
+		TTF_CloseFont((content->TTFFonts->at(0)));
+		content->TTFFonts->erase(content->TTFFonts->begin());
+	}
+	while(content->textures->size() > 0)
+	{
+		SDL_FreeSurface((content->textures->at(0)->tex));
+		content->textures->erase(content->textures->begin());
+	}
 	SDL_Quit();
 }
