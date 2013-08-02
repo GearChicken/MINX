@@ -91,6 +91,8 @@ namespace MINX
 			GameTime* gameTime;
 		protected:
 			int desiredFPS;
+			int windowWidth, windowHeight, windowBPP;
+			Uint32 windowFlags;
 			MINX::Content* content;
 	};
 }

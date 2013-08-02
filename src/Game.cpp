@@ -29,6 +29,10 @@ using namespace std;
 Game::Game()
 {	
 	desiredFPS = 60;
+	windowWidth = 640;
+	windowHeight = 480;
+	windowBPP = 32;
+	windowFlags = SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL;
 	content = new MINX::Content(this);
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
@@ -125,7 +129,7 @@ void Game::Initialize()
 
 
 					//uses video memory,prevents tearing,alpha works,hardware accelerated 
-	 gameWindow = new GameWindow(640, 480, 32, SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL);
+	 gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags);
 
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
