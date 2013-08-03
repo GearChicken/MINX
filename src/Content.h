@@ -20,6 +20,7 @@
 #define CONTENT_H_
 
 #include "SDL/SDL.h"
+#include "Game.h"
 #include "Graphics/Texture2D.h"
 #include <string>
 #include <vector>
@@ -27,6 +28,7 @@
 #include "SDL/SDL_image.h"
 
 using namespace MINX::Graphics;
+using namespace MINX;
 using namespace std;
 
 namespace MINX

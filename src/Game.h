@@ -34,6 +34,9 @@ namespace MINX
 	/** The class that handles everything.
 	 * When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
 	 */
+	class Content; //forward declaration to avoid circular dependency problems
+	/** Represents any component of the Game.
+	 */
 	class Game 
 	{
 		public:
@@ -88,6 +91,10 @@ namespace MINX
 			GameTime* gameTime;
 		protected:
 			int desiredFPS;
+			int windowWidth, windowHeight, windowBPP;
+			Uint32 windowFlags;
+			MINX::Content* content;
 	};
 }
+#include "Content.h"
 #endif

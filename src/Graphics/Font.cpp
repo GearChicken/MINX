@@ -16,29 +16,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef TEXTURE2D_H_
-#define TEXTURE2D_H_
+#include "Font.h"
+#include <iostream>
+#include <bitset>
+using namespace MINX::Graphics;
 
-#include "SDL/SDL.h"
-#include <string>
-#include "GameWindow.h"
-
-
-namespace MINX
+void MINX::Graphics::DrawString(int x, int y, string text, SDL_Surface* screen, TTF_Font * font)
 {
-	namespace Graphics
-	{
-		class Texture2D
-		{
-			public:
-				Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
-				void Draw(int x, int y);
-				int width, height;
-				SDL_Surface * tex;
-			private:
-				SDL_Surface * screen;
-				
-		};
-	}
+	SDL_Surface* messageTex = TTF_RenderText_Solid(font, text.c_str(), {255,255,255});
+	SDL_Rect loc;
+	loc.x=x;
+	loc.y=y;
+	SDL_BlitSurface(messageTex,NULL,screen,&loc);
 }
-#endif

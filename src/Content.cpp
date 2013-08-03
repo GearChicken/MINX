@@ -23,13 +23,19 @@ using namespace MINX;
 Content::Content(Game * addTo)
 {
 	game=addTo;
+	textures = new vector<Texture2D*>();
+	TTFFonts = new vector<TTF_Font*>();
 }
 
 Texture2D* Content::loadTexture(std::string name)
 {
-	return new Texture2D(IMG_Load(("Content/"+name).c_str()), game->gameWindow);
+	Texture2D* tex = new Texture2D(IMG_Load(("Content/"+name).c_str()), game->gameWindow);
+	textures->push_back(tex);
+	return tex;
 }
 TTF_Font* Content::loadTTFFont(std::string name, int size)
 {
-	return TTF_OpenFont(name.c_str(), size);
+	TTF_Font* font = TTF_OpenFont(name.c_str(), size);
+	TTFFonts->push_back(font);
+	return font;
 }
