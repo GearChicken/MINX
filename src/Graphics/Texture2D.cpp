@@ -20,6 +20,7 @@
 #include <iostream>
 #include <bitset>
 using namespace MINX::Graphics;
+using namespace MINX::Graphics::Primitives;
 
 Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow)
 {
@@ -29,6 +30,26 @@ Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow)
 
 void Texture2D::Draw(int x, int y)
 {
+	SDL_Rect loc;
+	loc.x=x;
+	loc.y=y;
+	SDL_BlitSurface(tex,NULL,screen,&loc);
+}
+
+void Texture2D::Draw(int x, int y, Color* tint)
+{
+	Color * pixel;
+	for(int i = 0; i < tex->h; i++)
+	{
+		for(int j = 0; j < tex->w; j++)
+		{
+			pixel = pixelToColor(j, i, tex);
+			//pixel->R = (byte)((pixel->R + 2*tint->R)/3);
+			//pixel->G = (byte)((pixel->G + 2*tint->G)/3);
+			//pixel->B = (byte)((pixel->B + 2*tint->B)/3);
+			//colorToPixel(pixel, j, i, tex);
+		}
+	}
 	SDL_Rect loc;
 	loc.x=x;
 	loc.y=y;

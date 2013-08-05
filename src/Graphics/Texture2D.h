@@ -22,6 +22,8 @@
 #include "SDL/SDL.h"
 #include <string>
 #include "GameWindow.h"
+#include "Primitives.h"
+#include "Color.h"
 
 
 namespace MINX
@@ -33,6 +35,7 @@ namespace MINX
 			public:
 				Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
 				void Draw(int x, int y);
+				void Draw(int x, int y, Color* tint);
 				int width, height;
 				SDL_Surface * tex;
 			private:
