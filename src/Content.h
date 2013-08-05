@@ -33,13 +33,32 @@ using namespace std;
 
 namespace MINX
 {
+	/** Handles external files that must be loaded by your program
+	 */
 	class Content
 	{
 		public:
+			/** Initializes the Content class and attaches it to the specified Game
+			 * @param addTo a pointer to the Game to attach to
+			 */
 			Content(Game * addTo);
+			/** Loads a texture
+			 * @param name The filename
+			 * @param assetName The name to store the texture as in the textures map
+			 * @return A pointer to the texture loaded, This is also stored in the textures map
+			 */
 			Texture2D* loadTexture(std::string name, std::string assetName);
+			/** Stores the textures loaded by loadTexture()
+			 */
 			map<string, Texture2D*>* textures;
+			/** Loads a font
+			 * @param name The filename
+			 * @param assetName  The name to store the texture as in the textures map
+			 * @return A pointer to the texture loaded, This is also stored in the the textures map
+			 */
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
+			/** Stores the fonts loaded by loadTTFFont()
+			 */
 			map<string, TTF_Font*>* TTFFonts;
 			Game * game;
 	};
