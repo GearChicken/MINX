@@ -158,14 +158,14 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
-	while(content->TTFFonts->size() > 0)
+	while (!content->TTFFonts->empty())
 	{
-		TTF_CloseFont((content->TTFFonts->at(0)));
+		TTF_CloseFont((content->TTFFonts->begin()->second));
 		content->TTFFonts->erase(content->TTFFonts->begin());
 	}
-	while(content->textures->size() > 0)
+	while (!content->textures->empty())
 	{
-		SDL_FreeSurface((content->textures->at(0)->tex));
+		SDL_FreeSurface((content->textures->begin()->second->tex));
 		content->textures->erase(content->textures->begin());
 	}
 	SDL_Quit();

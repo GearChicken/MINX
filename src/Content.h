@@ -18,7 +18,7 @@
 	*/
 #ifndef CONTENT_H_
 #define CONTENT_H_
-
+#include <map>
 #include "SDL/SDL.h"
 #include "Game.h"
 #include "Graphics/Texture2D.h"
@@ -37,10 +37,10 @@ namespace MINX
 	{
 		public:
 			Content(Game * addTo);
-			Texture2D* loadTexture(std::string name);
-			vector<Texture2D*>* textures;
-			TTF_Font* loadTTFFont(std::string name, int size);
-			vector<TTF_Font*>* TTFFonts;
+			Texture2D* loadTexture(std::string name, std::string assetName);
+			map<string, Texture2D*>* textures;
+			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
+			map<string, TTF_Font*>* TTFFonts;
 			Game * game;
 	};
 }
