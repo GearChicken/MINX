@@ -49,11 +49,11 @@ void Texture2D::Draw(int x, int y, Color* tint)
 		{
 			pixel = pixelToColor(j, i, tempTex);
 			// The next three lines set the color the average of it's original value with a 2/3's tint bias
-			pixel->R = float(tint->R);
-			pixel->G = float(tint->G);
-			pixel->B = float(tint->B);
+			pixel->R = sqrt(float(tint->R)*float(pixel->R));
+			pixel->G = sqrt(float(tint->G)*float(pixel->G));
+			pixel->B = sqrt(float(tint->B)*float(pixel->B));
 			colorToPixel(pixel, j, i, tempTex);
-			pixel = NULL;
+			delete pixel;
 		}
 	}
 	SDL_Rect loc;
