@@ -24,17 +24,41 @@ using namespace MINX::Graphics::Primitives;
 
 Color* MINX::Graphics::Primitives::pixelToColor(Uint32 pixel, SDL_Surface * surface)
 {
-	Uint8 * r;
-	Uint8 * g;
-	Uint8 * b;
-	Uint8 * a;
-	SDL_GetRGBA(pixel,surface->format,r,g,b,a);
-	return new Color(*r,*g,*b,*a);
+	SDL_PixelFormat *fmt;
+	fmt=surface->format;
+	Uint32 temp;
+	Uint8 red, green, blue, alpha;	
+	/* Get Red component */
+	temp=pixel&fmt->Rmask; /* Isolate red component */
+	temp=temp>>fmt->Rshift;/* Shift it down to 8-bit */
+	temp=temp<<fmt->Rloss; /* Expand to a full 8-bit number */
+	red=(Uint8)temp;
+
+	/* Get Green component */
+	temp=pixel&fmt->Gmask; /* Isolate green component */
+	temp=temp>>fmt->Gshift;/* Shift it down to 8-bit */
+	temp=temp<<fmt->Gloss; /* Expand to a full 8-bit number */
+	green=(Uint8)temp;
+
+	/* Get Blue component */
+	temp=pixel&fmt->Bmask; /* Isolate blue component */
+	temp=temp>>fmt->Bshift;/* Shift it down to 8-bit */
+	temp=temp<<fmt->Bloss; /* Expand to a full 8-bit number */
+	blue=(Uint8)temp;
+
+	/* Get Alpha component */
+	temp=pixel&fmt->Amask; /* Isolate alpha component */
+	temp=temp>>fmt->Ashift;/* Shift it down to 8-bit */
+	temp=temp<<fmt->Aloss; /* Expand to a full 8-bit number */
+	alpha=(Uint8)temp;
+	return new Color(red, green, blue, alpha);
 }
 Color* MINX::Graphics::Primitives::pixelToColor(int x, int y, SDL_Surface* surface)
 {
+	SDL_LockSurface(surface);
 	Uint32 *pixels = (Uint32*)surface->pixels;
-	return pixelToColor(*(pixels + y * 4 * surface->w + x * 4), surface);
+	SDL_UnlockSurface(surface);
+	return pixelToColor(*(pixels + y * surface->w + x), surface);
 }
 void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Surface* surface)
 {
