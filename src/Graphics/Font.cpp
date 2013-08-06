@@ -28,4 +28,5 @@ void MINX::Graphics::DrawString(int x, int y, string text, SDL_Surface* screen, 
 	loc.x=x;
 	loc.y=y;
 	SDL_BlitSurface(messageTex,NULL,screen,&loc);
+	SDL_FreeSurface(messageTex);
 }
