@@ -36,6 +36,7 @@ void Texture2D::Draw(int x, int y)
 	loc.x=x;
 	loc.y=y;
 	SDL_BlitSurface(tex,NULL,screen,&loc);
+	delete &loc;
 }
 
 void Texture2D::Draw(int x, int y, Color* tint)
