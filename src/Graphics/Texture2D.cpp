@@ -19,8 +19,10 @@
 #include "Texture2D.h"
 #include <iostream>
 #include <bitset>
+#include <math.h>
 using namespace MINX::Graphics;
 using namespace MINX::Graphics::Primitives;
+using namespace std;
 
 Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow)
 {
@@ -38,22 +40,24 @@ void Texture2D::Draw(int x, int y)
 
 void Texture2D::Draw(int x, int y, Color* tint)
 {
+	SDL_Surface * tempTex = SDL_ConvertSurface(tex, tex->format, tex->flags);
 	Color * pixel;
-	for(int i = 0; i < tex->h; i++)
+	for(int i = 0; i < tempTex->h; i++)
 	{
-		for(int j = 0; j < tex->w; j++)
+		for(int j = 0; j < tempTex->w; j++)
 		{
-			pixel = pixelToColor(j, i, tex);
+			pixel = pixelToColor(j, i, tempTex);
 			// The next three lines set the color the average of it's original value with a 2/3's tint bias
-			pixel->R = (byte)((pixel->R + tint->R/3 - tint->G/3 - tint->B/3));
-			pixel->G = (byte)((pixel->G - tint->R/3 + tint->G/3 - tint->B/3));
-			pixel->B = (byte)((pixel->B - tint->R/3 - tint->G/3 + tint->B/3));
-			colorToPixel(pixel, j, i, tex);
+			pixel->R = float(tint->R);
+			pixel->G = float(tint->G);
+			pixel->B = float(tint->B);
+			colorToPixel(pixel, j, i, tempTex);
 			pixel = NULL;
 		}
 	}
 	SDL_Rect loc;
 	loc.x=x;
 	loc.y=y;
-	SDL_BlitSurface(tex,NULL,screen,&loc);
+	SDL_BlitSurface(tempTex,NULL,screen,&loc);
+	SDL_FreeSurface(tempTex);
 }
