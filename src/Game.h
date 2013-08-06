@@ -25,6 +25,7 @@
 #include "SDL/SDL.h"
 #include "GameComponent.h"
 #include "GameTime.h"
+#include "Content.h"
 #include "Graphics/GameWindow.h"
 
 using namespace std;
@@ -33,9 +34,6 @@ namespace MINX
 {
 	/** The class that handles everything.
 	 * When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
-	 */
-	class Content; //forward declaration to avoid circular dependency problems
-	/** Represents any component of the Game.
 	 */
 	class Game 
 	{
@@ -96,5 +94,4 @@ namespace MINX
 			MINX::Content* content;
 	};
 }
-#include "Content.h"
 #endif

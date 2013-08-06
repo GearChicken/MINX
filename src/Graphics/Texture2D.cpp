@@ -45,9 +45,9 @@ void Texture2D::Draw(int x, int y, Color* tint)
 		{
 			pixel = pixelToColor(j, i, tex);
 			// The next three lines set the color the average of it's original value with a 2/3's tint bias
-			pixel->R = (byte)((pixel->R + 2*tint->R)/3);
-			pixel->G = (byte)((pixel->G + 2*tint->G)/3);
-			pixel->B = (byte)((pixel->B + 2*tint->B)/3);
+			pixel->R = (byte)((pixel->R + tint->R/3 - tint->G/3 - tint->B/3));
+			pixel->G = (byte)((pixel->G - tint->R/3 + tint->G/3 - tint->B/3));
+			pixel->B = (byte)((pixel->B - tint->R/3 - tint->G/3 + tint->B/3));
 			colorToPixel(pixel, j, i, tex);
 			pixel = NULL;
 		}

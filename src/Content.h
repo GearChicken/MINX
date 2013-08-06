@@ -20,7 +20,6 @@
 #define CONTENT_H_
 #include <map>
 #include "SDL/SDL.h"
-#include "Game.h"
 #include "Graphics/Texture2D.h"
 #include <string>
 #include <vector>
@@ -33,6 +32,7 @@ using namespace std;
 
 namespace MINX
 {
+	class Game; //forward declaration to handle circular dependency problems
 	/** Handles external files that must be loaded by your program
 	 */
 	class Content
@@ -63,4 +63,5 @@ namespace MINX
 			Game * game;
 	};
 }
+#include "Game.h"
 #endif
