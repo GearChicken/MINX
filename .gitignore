@@ -1,5 +1,6 @@
 src/*.o
 src/Input/*.o
 src/Graphics/*.o
+src/Audio/*.o
 bin/libMINX.so
 doxygen/

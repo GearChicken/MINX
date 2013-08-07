@@ -18,7 +18,9 @@
 	*/
 #ifndef AUDIO_H_
 #define AUDIO_H_
-#include "<string>"
+#include <string>
+#include <iostream>
+#include <SDL/SDL.h>
 using namespace std;
 namespace MINX
 {
@@ -34,7 +36,7 @@ namespace MINX
 				SDL_AudioSpec spec;
 				Uint32 length;
 				Uint8 * buffer;
-		}
+		};
 	}
 }
 #endif

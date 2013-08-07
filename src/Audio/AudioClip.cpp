@@ -18,7 +18,8 @@
 	*/
 #include "AudioClip.h"
 
-using namespace MINX;
+using namespace MINX::Audio;
+using namespace std;
 
 AudioClip::AudioClip(string filename, bool autoplay)
 {
