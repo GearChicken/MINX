@@ -21,21 +21,46 @@
 using namespace MINX::Audio;
 using namespace std;
 
-AudioClip::AudioClip(string filename, bool autoplay)
+AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 {
-	if(SDL_LoadWAV(filename.c_str(), &spec, &buffer, &length) == NULL)
+	if(!mix_initialized)
 	{
-		cerr << "Error loading file" << endl;
+		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024);
+		allocated_channels=MIX_DEFAULT_CHANNELS;
+		used_channels = 0;
+		mix_initialized=true;
 	}
-	SDL_PauseAudio(!autoplay);
+	mix_channel = used_channels++;
+	if(used_channels > allocated_channels)
+	{
+		Mix_AllocateChannels(allocated_channels++);
+	}
+	Mix_Volume(mix_channel,128);
+	audiodata = Mix_LoadWAV(filename.c_str());
+	if(autoplay)
+	{
+		Mix_PlayChannel(mix_channel, audiodata, loop ? -1 : 1);
+	}
 }
-//these should probably not be here, because they apply to all audio
+AudioClip::~AudioClip()
+{
+	used_channels--;
+	Mix_FreeChunk(audiodata);
+	delete &mix_channel;
+	delete this;
+}
 void AudioClip::play()
 {
-	SDL_PauseAudio(0);
+	if(Mix_Paused(mix_channel))
+	{
+		Mix_Resume(mix_channel);
+	} else
+	{
+		Mix_PlayChannel(mix_channel, audiodata, 1);
+	}
 }
 
 void AudioClip::pause()
 {
-	SDL_PauseAudio(1);
+	Mix_Pause(mix_channel);
 }

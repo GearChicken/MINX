@@ -20,7 +20,7 @@
 #define AUDIO_H_
 #include <string>
 #include <iostream>
-#include <SDL/SDL.h>
+#include <SDL/SDL_mixer.h>
 using namespace std;
 namespace MINX
 {
@@ -30,13 +30,20 @@ namespace MINX
 		{
 			public:
 				AudioClip(string filename);
-				AudioClip(string filename, bool autoplay);
+				AudioClip(string filename, bool autoplay, bool loop);
 				void play();
 				void pause();
-				SDL_AudioSpec spec;
-				Uint32 length;
-				Uint8 * buffer;
+				void stop();
+				~AudioClip();
+				int mix_channel;
+				static bool mix_initialized;
+				static int allocated_channels;
+				static int used_channels;
+				Mix_Chunk * audiodata;
 		};
+		bool AudioClip::mix_initialized=false;
+		int AudioClip::allocated_channels=0;
+		int AudioClip::used_channels=0;
 	}
 }
 #endif
