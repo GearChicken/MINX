@@ -44,6 +44,8 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 	}
 }
 
+AudioClip::AudioClip(string filename) : AudioClip(filename,0,0){}
+
 AudioClip::~AudioClip()
 {
 	used_channels--;
@@ -55,7 +57,7 @@ void AudioClip::play()
 	if(Mix_Paused(mix_channel))
 	{
 		Mix_Resume(mix_channel);
-	} else
+	} else if(!Mix_Playing(mix_channel))
 	{
 		Mix_PlayChannel(mix_channel, audiodata, 0);
 	}

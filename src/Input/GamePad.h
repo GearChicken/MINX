@@ -27,7 +27,11 @@ namespace MINX
 	{
 		class GamePad : IGenericHID
 		{
+			/** Constructs a GamePad, calls IGenericHID() with game,0xF1FF, 0xF1FF
+			 */
 			GamePad(Game * game);
+			/** Updates the state of the GamePad.
+			 */
 			void Update(GameTime * gameTime);
 		};
 	}
