@@ -49,6 +49,26 @@ void GamePad::Update(GameTime * gameTime)
 					(*axes)[id+1].val = evt->jball.yrel;
 				}
 			}
+			if(evt->type == SDL_JOYHATMOTION || evt->type == SDL_JOYBUTTONDOWN || evt->type == SDL_JOYBUTTONUP)
+			{
+				if(evt->type == SDL_JOYHATMOTION)
+				{
+					int id = 0x100 +  evt->jhat.which*0x1000 + evt->jhat.hat*0x10;
+					(*buttons)[id].prevState = (*buttons)[id].state;
+					(*buttons)[id+1].prevState = (*buttons)[id+1].state;
+					(*buttons)[id+2].prevState = (*buttons)[id+2].state;
+					(*buttons)[id+3].prevState = (*buttons)[id+3].state;
+					(*buttons)[id].state = evt->jhat.value == SDL_HAT_UP;
+					(*buttons)[id+1].state = evt->jhat.value == SDL_HAT_RIGHT;
+					(*buttons)[id+2].state = evt->jhat.value == SDL_HAT_DOWN;
+					(*buttons)[id+3].state = evt->jhat.value == SDL_HAT_LEFT;
+				} else
+				{
+					int id = evt->jbutton.which*0x1000 + evt->jbutton.button;
+					(*buttons)[id].prevState = (*buttons)[id].state;
+					(*buttons)[id].state = evt->type == SDL_JOYBUTTONDOWN;
+				}
+			}
 		}
 	}
 }
