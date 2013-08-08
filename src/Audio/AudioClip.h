@@ -34,6 +34,9 @@ namespace MINX
 				void play();
 				void pause();
 				void stop();
+				void setVolume(float volume);
+				void setPosition(Sint16 angle, Uint8 distance);
+				void disable3DAudio();
 				~AudioClip();
 				int mix_channel;
 				static bool mix_initialized;

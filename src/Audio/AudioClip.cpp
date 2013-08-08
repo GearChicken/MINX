@@ -35,13 +35,15 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 	{
 		Mix_AllocateChannels(allocated_channels++);
 	}
-	Mix_Volume(mix_channel,128);
+	Mix_Volume(mix_channel,MIX_MAX_VOLUME);
+	// I think that it means it's loading it into a WAV, because according to http://sdl.beuc.net/sdl.wiki/SDL_mixer, "many formats supported". Will test
 	audiodata = Mix_LoadWAV(filename.c_str());
 	if(autoplay)
 	{
 		Mix_PlayChannel(mix_channel, audiodata, loop ? -1 : 0);
 	}
 }
+
 AudioClip::~AudioClip()
 {
 	used_channels--;
@@ -49,6 +51,7 @@ AudioClip::~AudioClip()
 	delete &mix_channel;
 	delete this;
 }
+
 void AudioClip::play()
 {
 	if(Mix_Paused(mix_channel))
@@ -62,5 +65,31 @@ void AudioClip::play()
 
 void AudioClip::pause()
 {
-	Mix_Pause(mix_channel);
+	if(Mix_Playing(mix_channel))
+	{
+		Mix_Pause(mix_channel);
+	}
+}
+
+void AudioClip::stop()
+{
+	if(Mix_Playing(mix_channel) || Mix_Paused(mix_channel))
+	{
+		Mix_HaltChannel(mix_channel);
+	}
+}
+
+void AudioClip::setVolume(float volume)
+{
+	Mix_Volume(mix_channel,min(0,max(MIX_MAX_VOLUME,int(volume*MIX_MAX_VOLUME))));
+}
+
+void AudioClip::setPosition(Sint16 angle, Uint8 distance)
+{
+	Mix_SetPosition(mix_channel,angle,distance);
+}
+
+void AudioClip::disable3DAudio()
+{
+	setPosition(0,0);
 }
