@@ -75,6 +75,7 @@ namespace MINX
 			/** A pointer to a queue of pointers to the SDL_Events that the Mouse class should use
 			 */
 			queue<SDL_Event*> * mouseEvents;
+			queue<SDL_Event*> * gamepadEvents;
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */

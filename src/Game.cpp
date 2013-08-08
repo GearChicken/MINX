@@ -37,6 +37,7 @@ Game::Game()
 	Components = new vector<GameComponent*>();
 	keyboardEvents = new queue<SDL_Event*>();
 	mouseEvents = new queue<SDL_Event*>();
+	gamepadEvents = new queue<SDL_Event*>();
 	gameTime = new GameTime();
 	#if defined(LINUX) || defined(DARWIN)
 	XInitThreads();
@@ -80,14 +81,19 @@ void Game::Run()
 					mouseEvents->push(&evt);
 					break;
 				case SDL_JOYAXISMOTION:
+					gamepadEvents->push(&evt);
 					break;
 				case SDL_JOYBALLMOTION:
+					gamepadEvents->push(&evt);
 					break;
 				case SDL_JOYHATMOTION:
+					gamepadEvents->push(&evt);
 					break;
 				case SDL_JOYBUTTONDOWN:
+					gamepadEvents->push(&evt);
 					break;
 				case SDL_JOYBUTTONUP:
+					gamepadEvents->push(&evt);
 					break;
 				case SDL_VIDEORESIZE:
 					break;
