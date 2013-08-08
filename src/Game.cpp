@@ -174,5 +174,6 @@ void Game::UnloadContent()
 		SDL_FreeSurface((content->textures->begin()->second->tex));
 		content->textures->erase(content->textures->begin());
 	}
+	Mix_CloseAudio();
 	SDL_Quit();
 }

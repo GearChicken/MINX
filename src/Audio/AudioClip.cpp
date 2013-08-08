@@ -48,8 +48,6 @@ AudioClip::~AudioClip()
 {
 	used_channels--;
 	Mix_FreeChunk(audiodata);
-	delete &mix_channel;
-	delete this;
 }
 
 void AudioClip::play()
