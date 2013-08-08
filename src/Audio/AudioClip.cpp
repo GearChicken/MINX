@@ -39,7 +39,7 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 	audiodata = Mix_LoadWAV(filename.c_str());
 	if(autoplay)
 	{
-		Mix_PlayChannel(mix_channel, audiodata, loop ? -1 : 1);
+		Mix_PlayChannel(mix_channel, audiodata, loop ? -1 : 0);
 	}
 }
 AudioClip::~AudioClip()
@@ -56,7 +56,7 @@ void AudioClip::play()
 		Mix_Resume(mix_channel);
 	} else
 	{
-		Mix_PlayChannel(mix_channel, audiodata, 1);
+		Mix_PlayChannel(mix_channel, audiodata, 0);
 	}
 }
 
