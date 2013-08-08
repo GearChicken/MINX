@@ -36,7 +36,6 @@ void Keyboard::Update(GameTime * gameTime)
 			game->keyboardEvents->pop();
 			Button b;
 			int id = evt->key.keysym.sym;
-			cout << id << endl;
 			if(id > 0 && id < 512)
 			{
 				b.prevState = (*buttons)[id].state;
