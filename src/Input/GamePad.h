@@ -25,6 +25,8 @@ namespace MINX
 {
 	namespace Input
 	{
+		/** Represents a gamepad device
+		 */
 		class GamePad : IGenericHID
 		{
 			/** Constructs a GamePad, calls IGenericHID() with game,0xF1FF, 0xF1FF

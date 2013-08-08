@@ -26,6 +26,8 @@ namespace MINX
 {
 	namespace Audio
 	{
+		/** Represents a segment of audio to be played
+		 */
 		class AudioClip
 		{
 			public:
