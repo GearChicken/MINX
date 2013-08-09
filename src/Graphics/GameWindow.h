@@ -19,8 +19,11 @@
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
 
-#include "SDL/SDL.h"
-
+#ifdef _WIN32
+#include <SDL.h>
+#else
+#include <SDL/SDL.h>
+#endif
 namespace MINX
 {
 	namespace Graphics
