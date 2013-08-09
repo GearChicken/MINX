@@ -61,7 +61,7 @@ void AudioClip::play()
 	if(Mix_Paused(mix_channel))
 	{
 		Mix_Resume(mix_channel);
-	} else if(!Mix_Playing(mix_channel))
+	} else
 	{
 		Mix_PlayChannel(mix_channel, audiodata, 0);
 	}
