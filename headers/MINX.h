@@ -18,11 +18,23 @@
 	*/
 #ifndef MINX_H_
 #define MINX_H_
+#include <map>
+#include <queue>
 #include <string>
+#include <vector>
 #include <SDL/SDL_ttf.h>
 namespace MINX
 {
 	class Game;
+	namespace Graphics
+	{
+		class Texture2D;
+		class GameWindow;
+	}
+	namespace Audio
+	{
+		class AudioClip;
+	}
 	class GameTime
 	{
 		public:
@@ -50,12 +62,12 @@ namespace MINX
 	{
 		public:
 			Content(Game * addTo);
-			Texture2D* loadTexture(std::string name, std::string assetName);
-			map<string, Texture2D*>* textures;
+			Graphics::Texture2D* loadTexture(std::string name, std::string assetName);
+			std::map<std::string, Graphics::Texture2D*>* textures;
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
-			map<string, TTF_Font*>* TTFFonts;
-			AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
-			map<std::string, AudioClip*>* audioClips;
+			std::map<std::string, TTF_Font*>* TTFFonts;
+			Audio::AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
+			std::map<std::string, Audio::AudioClip*>* audioClips;
 			Game * game;
 	};
 	class Game 
@@ -69,10 +81,10 @@ namespace MINX
 			virtual void Draw(GameTime * gameTime);
 			void Run();
 			Graphics::GameWindow* gameWindow;
-			vector<GameComponent*> * Components;
-			queue<SDL_Event*> * keyboardEvents;
-			queue<SDL_Event*> * mouseEvents;
-			queue<SDL_Event*> * gamepadEvents;
+			std::vector<GameComponent*> * Components;
+			std::queue<SDL_Event*> * keyboardEvents;
+			std::queue<SDL_Event*> * mouseEvents;
+			std::queue<SDL_Event*> * gamepadEvents;
 			GameTime * getGameTime();
 			bool isRunning;
 		private:
@@ -135,4 +147,7 @@ namespace MINX
 		float Y;
 	};
 }
+#include <MINX/MINX_Audio.h>
+#include <MINX/MINX_Graphics.h>
+#include <MINX/MINX_Input.h>
 #endif

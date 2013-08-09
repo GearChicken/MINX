@@ -20,6 +20,7 @@
 #define MINX_AUDIO_H_
 #include <string>
 #include <SDL/SDL_mixer.h>
+#include <MINX/MINX.h> //not needed, but so that everything is included
 namespace MINX
 {
 	namespace Audio
@@ -42,9 +43,6 @@ namespace MINX
 				static int used_channels;
 				Mix_Chunk * audiodata;
 		};
-		bool AudioClip::mix_initialized=false;
-		int AudioClip::allocated_channels=0;
-		int AudioClip::used_channels=0;
 	}
 }
 #endif

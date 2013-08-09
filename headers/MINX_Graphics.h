@@ -18,13 +18,26 @@
 	*/
 #ifndef MINX_GRAPHICS_H_
 #define MINX_GRAPHICS_H_
+#include <string>
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
-#include <string>
 namespace MINX
 {
 	namespace Graphics
 	{
+		typedef unsigned char byte;
+		struct Color
+		{
+			byte R;
+			byte G;
+			byte B;
+			byte A;
+			Color(byte r, byte g, byte b, byte a);
+			Color(byte r, byte g, byte b);
+			bool operator==(const Color& compareTo);
+			bool operator!=(const Color& compareTo);
+			Color * operator*(const float& scale);
+		};
 		class GameWindow
 		{
 			public:
@@ -46,19 +59,6 @@ namespace MINX
 			private:
 				SDL_Surface * screen;
 				
-		};
-		typedef unsigned char byte;
-		struct Color
-		{
-			byte R;
-			byte G;
-			byte B;
-			byte A;
-			Color(byte r, byte g, byte b, byte a);
-			Color(byte r, byte g, byte b);
-			bool operator==(const Color& compareTo);
-			bool operator!=(const Color& compareTo);
-			Color * operator*(const float& scale);
 		};
 		namespace Primitives
 		{

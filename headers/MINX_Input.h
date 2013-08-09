@@ -18,4 +18,51 @@
 	*/
 #ifndef MINX_INPUT_H_
 #define MINX_INPUT_H_
+#include <vector>
+#include <SDL/SDL.h>
+#include <MINX/MINX.h>
+namespace MINX
+{
+	namespace Input{
+		struct Axis
+		{
+			float val;
+			float prevVal;
+		};
+		struct Button
+		{
+			bool state;
+			bool prevState;
+		};
+		class IGenericHID : public GameComponent
+		{
+			public:
+				IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize);
+				std::vector<Button> * buttons;
+				std::vector<Axis> * axes;
+				virtual void Update(GameTime * gameTime);
+				Button getButton(int id);
+				Axis getAxis(int id);
+			protected:
+				SDL_Event* evt;
+		};
+		class Keyboard : public IGenericHID
+		{
+			public:
+				Keyboard(Game * game);
+				void Update(GameTime * gameTime);
+		};
+		class Mouse : public IGenericHID
+		{
+			public:
+				Mouse(Game * game);
+				void Update(GameTime * gameTime);
+		};
+		class GamePad : IGenericHID
+		{
+			GamePad(Game * game);
+			void Update(GameTime * gameTime);
+		};
+	}
+}
 #endif
