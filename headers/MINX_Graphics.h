@@ -19,8 +19,15 @@
 #ifndef MINX_GRAPHICS_H_
 #define MINX_GRAPHICS_H_
 #include <string>
+#ifdef _WIN32
+#include <SDL.h>
+#include <SDL_ttf.h>
+#include <MINX.h>
+#else
 #include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
+#include <MINX/MINX.h>
+#endif
 namespace MINX
 {
 	namespace Graphics
