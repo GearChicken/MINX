@@ -19,8 +19,13 @@
 #ifndef MINX_AUDIO_H_
 #define MINX_AUDIO_H_
 #include <string>
+#ifdef _WIN32
+#include <SDL_mixer.h>
+#include <MINX.h>
+#else
 #include <SDL/SDL_mixer.h>
-#include <MINX/MINX.h> //not needed, but so that everything is included
+#include <MINX/MINX.h>
+#endif
 namespace MINX
 {
 	namespace Audio

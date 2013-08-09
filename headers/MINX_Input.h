@@ -19,8 +19,13 @@
 #ifndef MINX_INPUT_H_
 #define MINX_INPUT_H_
 #include <vector>
+#ifdef _WIN32
+#include <SDL.h>
+#include <MINX.h>
+#else
 #include <SDL/SDL.h>
 #include <MINX/MINX.h>
+#endif
 namespace MINX
 {
 	namespace Input{
