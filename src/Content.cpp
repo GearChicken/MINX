@@ -30,7 +30,7 @@ Content::Content(Game * addTo)
 
 AudioClip* Content::loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop)
 {
-	AudioClip* snd = new AudioClip(name.c_str(),autoplay,loop);
+	AudioClip* snd = new AudioClip(name,autoplay,loop);
 	audioClips->insert(std::pair<string, AudioClip*>(assetName, snd));
 	return snd;
 }

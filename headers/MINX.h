@@ -54,6 +54,8 @@ namespace MINX
 			map<string, Texture2D*>* textures;
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
 			map<string, TTF_Font*>* TTFFonts;
+			AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
+			map<std::string, AudioClip*>* audioClips;
 			Game * game;
 	};
 	class Game 

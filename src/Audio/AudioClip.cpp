@@ -21,6 +21,10 @@
 using namespace MINX::Audio;
 using namespace std;
 
+bool AudioClip::mix_initialized=false;
+int AudioClip::allocated_channels=0;
+int AudioClip::used_channels=0;
+
 AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 {
 	if(!mix_initialized)
