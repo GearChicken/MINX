@@ -62,3 +62,8 @@ void Texture2D::Draw(int x, int y, Color* tint)
 	SDL_BlitSurface(tempTex,NULL,screen,&loc);
 	SDL_FreeSurface(tempTex);
 }
+
+Texture2D::~Texture2D()
+{
+	SDL_FreeSurface(tex);
+}

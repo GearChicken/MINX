@@ -34,13 +34,11 @@ void Keyboard::Update(GameTime * gameTime)
 		if(evt != NULL)
 		{
 			game->keyboardEvents->pop();
-			Button b;
 			int id = evt->key.keysym.sym;
 			if(id > 0 && id < 512)
 			{
-				b.prevState = (*buttons)[id].state;
-				b.state= evt->type == SDL_KEYDOWN;
-				(*buttons)[id] = b;
+				(*buttons)[id].prevState = (*buttons)[id].state;
+				(*buttons)[id].state= evt->type == SDL_KEYDOWN;
 			}
 		}
 	}

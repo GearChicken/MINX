@@ -36,13 +36,11 @@ void Mouse::Update(GameTime * gameTime)
 			game->mouseEvents->pop();
 			if(evt->type == SDL_MOUSEBUTTONDOWN || evt->type == SDL_MOUSEBUTTONUP)
 			{
-				Button b;
 				int id = evt->button.which*0x100 + evt->button.button; //In case it's not clear, which is which input device. so button 1 device 1 would be 0x1 (DEC 1). A button on a specific device can be retrieved by getButton(deviceID*256 + buttonID)
 				if(id > 0 && id < 0xFFF)
 				{
-					b.prevState = (*buttons)[id].state;
-					b.state= evt->type == SDL_MOUSEBUTTONDOWN;
-					(*buttons)[id] = b;
+					(*buttons)[id].prevState = (*buttons)[id].state;
+					(*buttons)[id].state= evt->type == SDL_MOUSEBUTTONDOWN;
 				}
 			} else
 			{
