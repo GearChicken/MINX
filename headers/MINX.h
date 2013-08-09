@@ -22,7 +22,11 @@
 #include <queue>
 #include <string>
 #include <vector>
+#ifdef _WIN32
+#include <SDL_ttf.h>
+#else
 #include <SDL/SDL_ttf.h>
+#endif
 namespace MINX
 {
 	class Game;
@@ -147,7 +151,13 @@ namespace MINX
 		float Y;
 	};
 }
+#ifdef _WIN32
+#include <MINX_Audio.h>
+#include <MINX_Graphics.h>
+#include <MINX_Input.h>
+#else
 #include <MINX/MINX_Audio.h>
 #include <MINX/MINX_Graphics.h>
 #include <MINX/MINX_Input.h>
+#endif
 #endif
