@@ -85,9 +85,6 @@ namespace MINX
 				 */
 				Mix_Chunk * audiodata;
 		};
-		bool AudioClip::mix_initialized=false;
-		int AudioClip::allocated_channels=0;
-		int AudioClip::used_channels=0;
 	}
 }
 #endif

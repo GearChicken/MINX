@@ -22,14 +22,25 @@
 #include "SDL/SDL.h"
 namespace MINX
 {
+	/** Contains a bunch of time related functions for use in the Game
+	 */
 	class GameTime
 	{
 		public:
+			/** Constructs a GameTime
+			 */
 			GameTime();
+			/** @return the number of milliseconds since the start of the Game
+			 */
 			long getElapsedMillis();
+			/** @return the number of milliseconds since the last update()
+			 */
 			long getDeltaTime();
-			bool getIsRunningSlowly();
+			/** updates the gametime
+			 */
 			void update();
+			/** limits the updates per second of the current thread by delaying
+			 */
 			void limitFPS(int desiredFPS);
 		private:
 			long totalTimeMillis;

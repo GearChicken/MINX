@@ -16,25 +16,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Matrix4x4.h"
-using namespace MINX;
-
-Matrix4x4::Matrix4x4(float ma11,float ma12,float ma13,float ma14,float ma21,float ma22,float ma23,float ma24,float ma31,float ma32,float ma33,float ma34,float ma41, float ma42,float ma43,float ma44)
+#ifndef MINX_AUDIO_H_
+#define MINX_AUDIO_H_
+#include <string>
+#include <SDL/SDL_mixer.h>
+namespace MINX
 {
-	m11=ma11;
-	m12=ma12;
-	m13=ma13;
-	m14=ma14;
-	m21=ma21;
-	m22=ma22;
-	m23=ma23;
-	m24=ma24;
-	m31=ma31;
-	m32=ma32;
-	m33=ma33;
-	m34=ma34;
-	m41=ma41;
-	m42=ma42;
-	m43=ma43;
-	m44=ma44;
+	namespace Audio
+	{
+		class AudioClip
+		{
+			public:
+				AudioClip(std::string filename);
+				AudioClip(std::string filename, bool autoplay, bool loop);
+				void play();
+				void pause();
+				void stop();
+				void setVolume(float volume);
+				void setPosition(Sint16 angle, Uint8 distance);
+				void disable3DAudio();
+				~AudioClip();
+				int mix_channel;
+				static bool mix_initialized;
+				static int allocated_channels;
+				static int used_channels;
+				Mix_Chunk * audiodata;
+		};
+		bool AudioClip::mix_initialized=false;
+		int AudioClip::allocated_channels=0;
+		int AudioClip::used_channels=0;
+	}
 }
+#endif
