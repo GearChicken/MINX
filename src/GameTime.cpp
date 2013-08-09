@@ -49,8 +49,3 @@ long GameTime::getDeltaTime()
 {
 	return deltaTimeMillis;
 }
-
-bool GameTime::getIsRunningSlowly()
-{
-	return deltaTimeMillis > 500;
-}
