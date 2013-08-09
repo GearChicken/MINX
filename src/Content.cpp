@@ -25,6 +25,14 @@ Content::Content(Game * addTo)
 	game=addTo;
 	textures = new map<std::string, Texture2D*>();
 	TTFFonts = new map<std::string, TTF_Font*>();
+	audioClips = new map<std::string, AudioClip*>();
+}
+
+AudioClip* Content::loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop)
+{
+	AudioClip* snd = new AudioClip(name.c_str(),autoplay,loop);
+	audioClips->insert(std::pair<string, AudioClip*>(assetName, snd));
+	return snd;
 }
 
 Texture2D* Content::loadTexture(std::string name, std::string assetName)
