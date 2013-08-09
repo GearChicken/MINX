@@ -20,6 +20,7 @@
 #define CONTENT_H_
 #include <map>
 #include "SDL/SDL.h"
+#include "Audio/AudioClip.h"
 #include "Graphics/Texture2D.h"
 #include <string>
 #include <vector>
@@ -27,6 +28,7 @@
 #include "SDL/SDL_image.h"
 
 using namespace MINX::Graphics;
+using namespace MINX::Audio;
 using namespace MINX;
 using namespace std;
 
@@ -60,6 +62,18 @@ namespace MINX
 			/** Stores the fonts loaded by loadTTFFont()
 			 */
 			map<string, TTF_Font*>* TTFFonts;
+			/** Loads a sound
+			 * @param name The filename
+			 * @param assetName  The name to store the sound as in the sounds map
+			 * @param autoplay  Autoplay the sound file
+			 * @param loop  loop the sound file
+			 * @return A pointer to the sound loaded, This is also stored in the the sounds map
+			 */
+			AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
+			/** Stores the sounds loaded by loadAudioClips()
+			 */
+			map<std::string, AudioClip*>* audioClips;
+
 			Game * game;
 	};
 }
