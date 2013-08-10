@@ -18,6 +18,13 @@
 	*/
 #ifndef MINX_H_
 #define MINX_H_
+
+#if defined(_WIN32) && !defined(DLLImport)
+#define DLLImport __declspec(dllimport)
+#else
+#define DLLImport
+#endif
+
 #include <map>
 #include <queue>
 #include <string>
@@ -39,7 +46,7 @@ namespace MINX
 	{
 		class AudioClip;
 	}
-	class GameTime
+	class DLLImport GameTime
 	{
 		public:
 			GameTime();
@@ -52,7 +59,7 @@ namespace MINX
 			long deltaTimeMillis;
 			long lastUpdate;
 	};
-	class GameComponent
+	class DLLImport GameComponent
 	{
 		public:
 			GameComponent(Game * attachTo);
@@ -62,7 +69,7 @@ namespace MINX
 			Game * game;
 			int updateOrder;
 	};
-	class Content
+	class DLLImport Content
 	{
 		public:
 			Content(Game * addTo);
@@ -74,7 +81,7 @@ namespace MINX
 			std::map<std::string, Audio::AudioClip*>* audioClips;
 			Game * game;
 	};
-	class Game 
+	class DLLImport Game 
 	{
 		public:
 			Game();
@@ -100,7 +107,7 @@ namespace MINX
 			Uint32 windowFlags;
 			Content* content;
 	};
-	struct Point
+	struct DLLImport Point
 	{
 		Point(int x, int y);
 		int X;
@@ -108,7 +115,7 @@ namespace MINX
 		bool operator==(const Point& compareTo);
 		bool operator!=(const Point& compareTo);
 	};
-	struct Ray2
+	struct DLLImport Ray2
 	{
 		Ray2(float direction, float xPosition, float yPosition);
 		Ray2(float direction);
@@ -119,7 +126,7 @@ namespace MINX
 		bool operator==(const Ray2& compareTo);
 		bool operator!=(const Ray2& compareTo);
 	};
-	struct Rectangle
+	struct DLLImport Rectangle
 	{
 		Rectangle(int x, int y, int width, int height);
 		int area();
@@ -133,7 +140,7 @@ namespace MINX
 		int Right();
 		bool intersects(Rectangle* rect2);
 	};
-	struct Vector2
+	struct DLLImport Vector2
 	{
 		Vector2(float x, float y);
 		Vector2 operator+(const Vector2& addTo);
