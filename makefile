@@ -1,11 +1,11 @@
 ##### Variables
 
 INCDIR = -I/usr/include
-CPPFLAGS = -g -Wall -W $(INCDIR) -fPIC -std=c++11
+CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -std=c++11 -O3
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
-CC = g++
+CXX = g++
 ifeq ($(OS),Windows_NT)
-    CPPFLAGS += -D WIN32 -mdll -mwindows
+    CPPFLAGS += -D _WIN32 -mdll -mwindows
     TARGET = bin/MINX.dll
     INSTALLTARGET = C:\\windows\\system32
     RMCOMMAND = del
@@ -49,8 +49,19 @@ OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Gra
 
 ##### Build rules
 
+.PHONY: doxygen
+
 all: $(OBJECTS)
-	$(CC) $(CPPFLAGS) $(OBJECTS) $(LFLAGS) -o $(TARGET)
+	$(CXX) $(CPPFLAGS) $(OBJECTS) $(LFLAGS) -o $(TARGET)
+	
+raspi: CPPFLAGS += -mtune=arm1176jzf-s
+raspi : all;
+
+x86: CPPFLAGS += -m32 -march=i686 -mtune=i686
+x86 : all;
+
+windows: CXX = i686-w64-mingw32-g++
+windows: all;
 
 clean:
 	@for dir in src; do find $$dir -name \*.o -exec $(RMCOMMAND) {} \; ; done
@@ -60,7 +71,10 @@ clean:
 install:
 	cp bin/libMINX.so $(INSTALLTARGET)
 
+doxygen:
+	doxygen
+
 doxygenupload:
-	ncftpput -R -v -u "MINX@gearchicken.com" gearchicken.com / ./doxygen/html/
+	ncftpput -R -v -u MINX gearchicken.com / ./doxygen/html/
 
 ##### End of Makefile
