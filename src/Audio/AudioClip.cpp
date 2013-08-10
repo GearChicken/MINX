@@ -47,8 +47,14 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 		Mix_PlayChannel(mix_channel, audiodata, loop ? -1 : 0);
 	}
 }
-
+#ifndef _WIN32
 AudioClip::AudioClip(string filename) : AudioClip(filename,0,0){}
+#else
+AudioClip::AudioClip(string filename)
+{
+	AudioClip(filename,0,0);
+}
+#endif
 
 AudioClip::~AudioClip()
 {

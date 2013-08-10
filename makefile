@@ -61,6 +61,8 @@ x86: CPPFLAGS += -m32 -march=i686 -mtune=i686
 x86 : all;
 
 windows: CXX = i686-w64-mingw32-g++
+windows: CPPFLAGS = -m32 -mdll -I/usr/i686-w64-mingw32/include/ -I/usr/i686-w64-mingw32/include/SDL/ -D IA32 -std=c++0x
+windows: LFLAGS = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 windows: all;
 
 clean:
