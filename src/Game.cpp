@@ -44,10 +44,11 @@ Game::Game()
 	#endif
 }
 
-int doDraw(Game * game){
-	while(game->isRunning)
+int doDraw(void * game){
+	Game * thisGame = (Game*)game;
+	while(thisGame->isRunning)
 	{
-		game->Draw(game->getGameTime());
+		thisGame->Draw(thisGame->getGameTime());
 	}
 	return 0;
 }
@@ -56,7 +57,7 @@ void Game::Run()
 {	
 	this->Initialize();
 	this->LoadContent();
-	std::thread drawingThread(&doDraw, this);
+	SDL_Thread * drawingThread = SDL_CreateThread(&doDraw,(void*)this);
 	while(isRunning)
 	{
 		if(SDL_PollEvent(&evt))
@@ -112,7 +113,7 @@ void Game::Run()
 		gameTime->update();
 		this->Update(gameTime);
 	}
-	drawingThread.join();
+	SDL_WaitThread(drawingThread,NULL);
 	this->UnloadContent();
 }
 
