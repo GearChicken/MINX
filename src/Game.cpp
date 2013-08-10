@@ -18,7 +18,6 @@
 	*/
 #include "Game.h"
 #include <iostream>
-#include <thread>
 #if defined(LINUX) || defined(DARWIN)
 #include "X11/Xlib.h"
 #endif
