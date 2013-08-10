@@ -18,6 +18,13 @@
 	*/
 #ifndef MINX_INPUT_H_
 #define MINX_INPUT_H_
+
+#if defined(_WIN32) && !defined(DLLImport)
+#define DLLImport __declspec(dllimport)
+#else
+#define DLLImport
+#endif
+
 #include <vector>
 #ifdef _WIN32
 #include <SDL.h>
@@ -29,17 +36,17 @@
 namespace MINX
 {
 	namespace Input{
-		struct Axis
+		struct DLLImport Axis
 		{
 			float val;
 			float prevVal;
 		};
-		struct Button
+		struct DLLImport Button
 		{
 			bool state;
 			bool prevState;
 		};
-		class IGenericHID : public GameComponent
+		class DLLImport IGenericHID : public GameComponent
 		{
 			public:
 				IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize);
@@ -51,19 +58,19 @@ namespace MINX
 			protected:
 				SDL_Event* evt;
 		};
-		class Keyboard : public IGenericHID
+		class DLLImport Keyboard : public IGenericHID
 		{
 			public:
 				Keyboard(Game * game);
 				void Update(GameTime * gameTime);
 		};
-		class Mouse : public IGenericHID
+		class DLLImport Mouse : public IGenericHID
 		{
 			public:
 				Mouse(Game * game);
 				void Update(GameTime * gameTime);
 		};
-		class GamePad : IGenericHID
+		class DLLImport GamePad : IGenericHID
 		{
 			GamePad(Game * game);
 			void Update(GameTime * gameTime);
