@@ -1,16 +1,30 @@
-﻿Build started 8/8/2013 9:56:46 PM.
+﻿Build started 8/10/2013 2:35:46 PM.
      1>Project "C:\c++\MINX\MINX\MINX.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Touching "Debug\MINX.unsuccessfulbuild".
        ClCompile:
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Content.cpp ..\src\Game.cpp ..\src\GameComponent.cpp
-         GameComponent.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _WINDLL /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Content.cpp ..\src\Game.cpp ..\src\GameComponent.cpp
          Game.cpp
-     1>c:\c++\minx\src\game.cpp(21): fatal error C1083: Cannot open include file: 'thread': No such file or directory
+         Generating Code...
+         Compiling...
+         GameComponent.cpp
          Content.cpp
          Generating Code...
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\c++\MINX\Debug\MINX.dll" /NOLOGO SDL.lib SDLmain.lib SDL_mixer.lib SDL_image.lib SDL_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\MINX.dll.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\c++\MINX\Debug\MINX.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\c++\MINX\Debug\MINX.lib" /MACHINE:X86 /DLL Debug\Content.obj
+         Debug\Game.obj
+         Debug\GameComponent.obj
+         Debug\GameTime.obj
+         Debug\Point.obj
+         Debug\Ray2.obj
+         Debug\Rectangle.obj
+         Debug\Vector2.obj
+     1>Content.obj : error LNK2019: unresolved external symbol "public: __thiscall MINX::Audio::AudioClip::AudioClip(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool,bool)" (??0AudioClip@Audio@MINX@@QAE@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@_N1@Z) referenced in function "public: class MINX::Audio::AudioClip * __thiscall MINX::Content::loadAudioClip(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,bool,bool)" (?loadAudioClip@Content@MINX@@QAEPAVAudioClip@Audio@2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0_N1@Z)
+     1>Content.obj : error LNK2019: unresolved external symbol "public: __thiscall MINX::Graphics::Texture2D::Texture2D(struct SDL_Surface *,class MINX::Graphics::GameWindow *)" (??0Texture2D@Graphics@MINX@@QAE@PAUSDL_Surface@@PAVGameWindow@12@@Z) referenced in function "public: class MINX::Graphics::Texture2D * __thiscall MINX::Content::loadTexture(class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >,class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> >)" (?loadTexture@Content@MINX@@QAEPAVTexture2D@Graphics@2@V?$basic_string@DU?$char_traits@D@std@@V?$allocator@D@2@@std@@0@Z)
+     1>Game.obj : error LNK2019: unresolved external symbol "public: __thiscall MINX::Graphics::GameWindow::GameWindow(int,int,int,unsigned int)" (??0GameWindow@Graphics@MINX@@QAE@HHHI@Z) referenced in function "public: virtual void __thiscall MINX::Game::Initialize(void)" (?Initialize@Game@MINX@@UAEXXZ)
+     1>C:\c++\MINX\Debug\MINX.dll : fatal error LNK1120: 3 unresolved externals
      1>Done Building Project "C:\c++\MINX\MINX\MINX.vcxproj" (build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:01.94
+Time Elapsed 00:00:04.08
