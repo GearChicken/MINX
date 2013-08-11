@@ -21,6 +21,8 @@
 #if defined(LINUX) || defined(DARWIN)
 #include "X11/Xlib.h"
 #endif
+
+
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;

@@ -5,4 +5,5 @@ src/Audio/*.o
 bin/
 doxygen/
 ipch/
-MINX/Debug/
+MINX/Debug/*
+MINX/Release/*

@@ -47,6 +47,9 @@ namespace MINX
 				 * @param buttonVectorSize The total number of buttons that the device has.
 				 * @param axisVectorSize The total number of axes that the device has.
 				 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 				IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize);
 				/** Contains all of the buttons used by the device.
 				 */
@@ -56,12 +59,21 @@ namespace MINX
 				vector<Axis> * axes;
 				/** Implemented by a subclass. Should modify the button and axis vectors to hold the most current information
 				 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 				virtual void Update(GameTime * gameTime);
 				/** Returns a Button from the specified index in the button vector.
 				 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 				Button getButton(int id);
 				/** Returns an Axis from the specified index in the axis vector.
 				 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 				Axis getAxis(int id);
 			protected:
 				SDL_Event* evt;
