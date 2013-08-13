@@ -28,49 +28,85 @@ namespace MINX
 		 * @param x The x component of the Vector2.
 		 * @param y The y component of the Vector2.
 		 */
-		Vector2(float x, float y);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2(float x, float y);
 		/** Adds 2 Vector2s.
 		 * @param addTo the Vector2 to add.
 		 */
-		Vector2 operator+(const Vector2& addTo);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 operator+(const Vector2& addTo);
 		/** Subtracts a Vector2 from another.
 		 * @param subtractFrom the Vector2 to subtract.
 		 */
-		Vector2 operator-(const Vector2& subtractFrom);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 operator-(const Vector2& subtractFrom);
 		/** "cross multiplies" 2 Vector2s.
 		 * There are "'s there because you can't REALLY cross multiply a 2 dimensional vector.
 		 * @param multiplyBy the Vector2 to "cross multiply" by.
 		 */
-		Vector2 crossMultiply(const Vector2& multiplyBy);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 crossMultiply(const Vector2& multiplyBy);
 		/** Dot multiplies 2 Vector2s.
 		 * @param multiplyBy the Vector2 to dot multiply by.
 		 */
-		float operator*(const Vector2& multiplyBy);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			float operator*(const Vector2& multiplyBy);
 		/** Multiplies a Vector2 by a scalar.
 		 * @param multiplyBy the scalar to multiply the length of the Vector2 by.
 		 */
-		Vector2 operator*(const float& multiplyBy);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 operator*(const float& multiplyBy);
 		/** Negates a Vector2.
 		 */
-		Vector2 operator-()const;
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 operator-()const;
 		/** Tests equality between 2 Vector2s.
 		 * @param compareTo the Vector2 to test equality with.
 		 */
-		bool operator==(const Vector2& compareTo);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			bool operator==(const Vector2& compareTo);
 		/** Tests inequality between 2 Vector2s.
 		 * @param compareTo the Vector2 to test equality with.
 		 */
-		bool operator!=(const Vector2& compareTo);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			bool operator!=(const Vector2& compareTo);
 		/** Returns the length of the Vector2.
 		 */
-		float length();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			float length();
 		/** Returns the length of the Vector2 squared.
 		 * This is faster then squaring the result of length() because length() actually returns the square root of the mathematical result of the length squared.
 		 */
-		float lengthSquared();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			float lengthSquared();
 		/** Returns a Vector2 of length 1 but the same direction as the current Vector2.
 		 */
-		Vector2 normalize();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			Vector2 normalize();
 		/** The X component of the Vector2.
 		 */
 		float X;
