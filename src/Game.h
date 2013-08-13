@@ -33,7 +33,11 @@
 #include "GameTime.h"
 #include "Content.h"
 #include "Graphics/GameWindow.h"
+#include "EventHandler.h"
 
+#ifdef _WIN32
+
+#endif
 using namespace std;
 
 namespace MINX
@@ -46,48 +50,64 @@ namespace MINX
 		public:
 			/** The constructor, which handles some of the initialization code for the Game.
 			 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 			Game();
 			/** This handles the rest of the initialization code for the game.
 			 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 			virtual void Initialize();
 			/** Loads content used by the game.
 			 */
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
 			virtual void LoadContent();
 			/** Updates the game state.
 			 * Should be extended when you create a subclass of Game.
 			 * @param gameTime the GameTime to use when updating.
 			 */
-			virtual void Update(GameTime * gameTime);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			 virtual void Update(GameTime * gameTime);
 			/** Unloads content used by the game.
 			 */
-			virtual void UnloadContent();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			 virtual void UnloadContent();
 			/** Draws the state of the game every frame.
 			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
 			 * @param gameTime the GameTime to use when drawing.
 			 */
-			virtual void Draw(GameTime * gameTime);
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			 virtual void Draw(GameTime * gameTime);
 			/** Handles Update()ing, Draw()ing, and event handling.
 			 */
-			void Run();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			 void Run();
 			/** A pointer to the window used by the game.
 			 */
 			Graphics::GameWindow* gameWindow;
 			/** A pointer to a vector of pointers to the GameComponents used in the game.
 			 */
 			vector<GameComponent*> * Components;
-			/** A pointer to a queue of pointers to the SDL_Events that the Keyboard class should use
-			 */
-			queue<SDL_Event*> * keyboardEvents;
-			/** A pointer to a queue of pointers to the SDL_Events that the Mouse class should use
-			 */
-			queue<SDL_Event*> * mouseEvents;
-			/** A pointer to a queue of pointers to the SDL_Events that the GamePad class should use
-			 */
-			queue<SDL_Event*> * gamepadEvents;
+			vector<EventHandler*> * eventHandlers;
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */
-			GameTime * getGameTime();
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			 GameTime * getGameTime();
 			bool isRunning;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.

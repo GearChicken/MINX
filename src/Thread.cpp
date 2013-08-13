@@ -28,6 +28,8 @@ int doRun(void * thread)
 	return 0;
 }
 
+void Thread::run(){}
+
 void Thread::start()
 {
 	internalThread = SDL_CreateThread(&doRun,(void*)this);

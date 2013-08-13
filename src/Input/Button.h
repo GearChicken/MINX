@@ -32,6 +32,9 @@ namespace MINX
 			/** The previous state of the button.
 			 */
 			bool prevState;
+			Button operator&&(const Button& andWith);
+			Button operator||(const Button& orWith);
+			Button operator!()const;
 		};
 	}
 }
