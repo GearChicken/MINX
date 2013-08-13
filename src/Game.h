@@ -109,6 +109,7 @@ namespace MINX
 #endif
 			 GameTime * getGameTime();
 			bool isRunning;
+			bool preventAutoQuitting;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */

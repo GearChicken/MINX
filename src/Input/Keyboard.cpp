@@ -94,9 +94,9 @@ Button Keyboard::getKey(char key)
 		case '0':
 			return getButton(int('0')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
 		case '|':
-			return getButton(int('\')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
-		case '\':
-			return getButton(int('\')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('\\')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+		case '\\':
+			return getButton(int('\\')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
 		default:
 			return getButton(int(key));
 	}
