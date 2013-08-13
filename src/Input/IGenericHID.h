@@ -35,7 +35,7 @@ namespace MINX
 		 * Extended by Keyboard, Mouse, and (in the future) Joystick classes.
 		 * This class should almost NEVER be used directly, but rather a subclass should be used.
 		 */
-		class IGenericHID : public GameComponent
+		class IGenericHID : public EventHandler
 		{
 			public:
 				/** Constructs an IGenericHID. Fills the button and axis vectors with zeroed values.
@@ -50,17 +50,12 @@ namespace MINX
 				/** Contains all of the axes used by the device.
 				 */
 				vector<Axis> * axes;
-				/** Implemented by a subclass. Should modify the button and axis vectors to hold the most current information
-				 */
-				virtual void Update(GameTime * gameTime);
 				/** Returns a Button from the specified index in the button vector.
 				 */
 				Button getButton(int id);
 				/** Returns an Axis from the specified index in the axis vector.
 				 */
 				Axis getAxis(int id);
-			protected:
-				SDL_Event* evt;
 		};
 	}
 }

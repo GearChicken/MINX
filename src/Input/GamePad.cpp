@@ -25,56 +25,47 @@ GamePad::GamePad(Game * game) : IGenericHID(game,0xF1FF, 0xF1FF)
 
 }
 
-void GamePad::Update(GameTime * gameTime)
+void GamePad::handleEvent(SDL_Event * evt, GameTime * gameTime)
 {
-	if(!game->gamepadEvents->empty())
+	if(evt->type == SDL_JOYAXISMOTION || evt->type == SDL_JOYBALLMOTION)
 	{
-		evt = game->gamepadEvents->front();
-		if(evt != NULL)
+		//2 rightmost hex digits are the axis id on the device
+		if(evt->type == SDL_JOYAXISMOTION)
 		{
-			game->gamepadEvents->pop();
-			//leftmost hex digit is device id, second leftmost is 0 for an axis, 1 for a ball
-			if(evt->type == SDL_JOYAXISMOTION || evt->type == SDL_JOYBALLMOTION)
-			{
-				//2 rightmost hex digits are the axis id on the device
-				if(evt->type == SDL_JOYAXISMOTION)
-				{
-					int id = evt->jaxis.which*0x1000 + evt->jaxis.axis;
-					(*axes)[id].prevVal = (*axes)[id].val;
-					(*axes)[id].val = min(-1.0,float(evt->jaxis.value)/32767.0);
-				} else
-				//2 rightmost hex digits are the 2 axes per ball. even number is x axis on 1 ball, odd number immediately following is y
-				{
-					int id = 0x100 + evt->jball.which*0x1000 + evt->jball.ball*2;
-					(*axes)[id].prevVal = (*axes)[id].val;
-					(*axes)[id+1].prevVal = (*axes)[id+1].val;
-					(*axes)[id].val = evt->jball.xrel;
-					(*axes)[id+1].val = evt->jball.yrel;
-				}
-			}
-			//leftmost hex digit is device id, second leftmost is 1 for hat 0 for normal button
-			if(evt->type == SDL_JOYHATMOTION || evt->type == SDL_JOYBUTTONDOWN || evt->type == SDL_JOYBUTTONUP)
-			{
-				//second rightmost digit is hat id, rightmost is hat direction
-				if(evt->type == SDL_JOYHATMOTION)
-				{
-					int id = 0x100 +  evt->jhat.which*0x1000 + evt->jhat.hat*0x10;
-					(*buttons)[id].prevState = (*buttons)[id].state;
-					(*buttons)[id+1].prevState = (*buttons)[id+1].state;
-					(*buttons)[id+2].prevState = (*buttons)[id+2].state;
-					(*buttons)[id+3].prevState = (*buttons)[id+3].state;
-					(*buttons)[id].state = evt->jhat.value == SDL_HAT_UP;
-					(*buttons)[id+1].state = evt->jhat.value == SDL_HAT_RIGHT;
-					(*buttons)[id+2].state = evt->jhat.value == SDL_HAT_DOWN;
-					(*buttons)[id+3].state = evt->jhat.value == SDL_HAT_LEFT;
-				} else
-				//2 rightmost digits are button id
-				{
-					int id = evt->jbutton.which*0x1000 + evt->jbutton.button;
-					(*buttons)[id].prevState = (*buttons)[id].state;
-					(*buttons)[id].state = evt->type == SDL_JOYBUTTONDOWN;
-				}
-			}
+			int id = evt->jaxis.which*0x1000 + evt->jaxis.axis;
+			(*axes)[id].prevVal = (*axes)[id].val;
+			(*axes)[id].val = min(-1.0,float(evt->jaxis.value)/32767.0);
+		} else
+		//2 rightmost hex digits are the 2 axes per ball. even number is x axis on 1 ball, odd number immediately following is y
+		{
+			int id = 0x100 + evt->jball.which*0x1000 + evt->jball.ball*2;
+			(*axes)[id].prevVal = (*axes)[id].val;
+			(*axes)[id+1].prevVal = (*axes)[id+1].val;
+			(*axes)[id].val = evt->jball.xrel;
+			(*axes)[id+1].val = evt->jball.yrel;
+		}
+	}
+	//leftmost hex digit is device id, second leftmost is 1 for hat 0 for normal button
+	if(evt->type == SDL_JOYHATMOTION || evt->type == SDL_JOYBUTTONDOWN || evt->type == SDL_JOYBUTTONUP)
+	{
+		//second rightmost digit is hat id, rightmost is hat direction
+		if(evt->type == SDL_JOYHATMOTION)
+		{
+			int id = 0x100 +  evt->jhat.which*0x1000 + evt->jhat.hat*0x10;
+			(*buttons)[id].prevState = (*buttons)[id].state;
+			(*buttons)[id+1].prevState = (*buttons)[id+1].state;
+			(*buttons)[id+2].prevState = (*buttons)[id+2].state;
+			(*buttons)[id+3].prevState = (*buttons)[id+3].state;
+			(*buttons)[id].state = evt->jhat.value == SDL_HAT_UP;
+			(*buttons)[id+1].state = evt->jhat.value == SDL_HAT_RIGHT;
+			(*buttons)[id+2].state = evt->jhat.value == SDL_HAT_DOWN;
+			(*buttons)[id+3].state = evt->jhat.value == SDL_HAT_LEFT;
+		} else
+		//2 rightmost digits are button id
+		{
+			int id = evt->jbutton.which*0x1000 + evt->jbutton.button;
+			(*buttons)[id].prevState = (*buttons)[id].state;
+			(*buttons)[id].state = evt->type == SDL_JOYBUTTONDOWN;
 		}
 	}
 }

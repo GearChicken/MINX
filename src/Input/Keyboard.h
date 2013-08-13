@@ -21,6 +21,7 @@
 
 #include "IGenericHID.h"
 #include "Button.h"
+#include <map>
 namespace MINX
 {
 	namespace Input
@@ -35,7 +36,9 @@ namespace MINX
 				Keyboard(Game * game);
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
-				void Update(GameTime * gameTime);
+				void handleEvent(SDL_Event * evt, GameTime * gameTime);
+				Button getKey(char key);
+			private:
 		};
 	}
 }

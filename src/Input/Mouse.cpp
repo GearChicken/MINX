@@ -26,33 +26,26 @@ Mouse::Mouse(Game * game) : IGenericHID(game,0xFFF,4)
 
 }
 
-void Mouse::Update(GameTime * gameTime)
+void Mouse::handleEvent(SDL_Event * evt, GameTime * gameTime)
 {
-	if(!game->mouseEvents->empty())
+	if(evt->type == SDL_MOUSEBUTTONDOWN || evt->type == SDL_MOUSEBUTTONUP)
 	{
-		evt = game->mouseEvents->front();
-		if(evt != NULL)
+		int id = evt->button.which*0x100 + evt->button.button; //In case it's not clear, which is which input device. so button 1 device 1 would be 0x1 (DEC 1). A button on a specific device can be retrieved by getButton(deviceID*256 + buttonID)
+		if(id > 0 && id < 0xFFF)
 		{
-			game->mouseEvents->pop();
-			if(evt->type == SDL_MOUSEBUTTONDOWN || evt->type == SDL_MOUSEBUTTONUP)
-			{
-				int id = evt->button.which*0x100 + evt->button.button; //In case it's not clear, which is which input device. so button 1 device 1 would be 0x1 (DEC 1). A button on a specific device can be retrieved by getButton(deviceID*256 + buttonID)
-				if(id > 0 && id < 0xFFF)
-				{
-					(*buttons)[id].prevState = (*buttons)[id].state;
-					(*buttons)[id].state= evt->type == SDL_MOUSEBUTTONDOWN;
-				}
-			} else
-			{
-				(*axes)[0].prevVal = (*axes)[0].val;
-				(*axes)[1].prevVal = (*axes)[1].val;
-				(*axes)[2].prevVal = (*axes)[2].val;
-				(*axes)[3].prevVal = (*axes)[3].val;
-				(*axes)[0].val = evt->motion.x;
-				(*axes)[1].val = evt->motion.y;
-				(*axes)[2].val = evt->motion.xrel;
-				(*axes)[3].val = evt->motion.yrel;
-			}
+			(*buttons)[id].prevState = (*buttons)[id].state;
+			(*buttons)[id].state= evt->type == SDL_MOUSEBUTTONDOWN;
 		}
+	}
+	if(evt->type == SDL_MOUSEMOTION)
+	{
+		(*axes)[0].prevVal = (*axes)[0].val;
+		(*axes)[1].prevVal = (*axes)[1].val;
+		(*axes)[2].prevVal = (*axes)[2].val;
+		(*axes)[3].prevVal = (*axes)[3].val;
+		(*axes)[0].val = evt->motion.x;
+		(*axes)[1].val = evt->motion.y;
+		(*axes)[2].val = evt->motion.xrel;
+		(*axes)[3].val = evt->motion.yrel;
 	}
 }
