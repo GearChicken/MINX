@@ -36,10 +36,10 @@ Button Button::operator||(const Button& orWith)
 	return b;
 }
 
-Button::operator!()const
+Button Button::operator!()const
 {
 	Button b;
 	b.state = !this->state;
-	b.prevState = !this.prevState;
+	b.prevState = !this->prevState;
 	return b;
 }

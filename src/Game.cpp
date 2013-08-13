@@ -62,7 +62,8 @@ int doUpdate(void * game){
 }
 
 void Game::Run()
-{	
+{
+	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
 	SDL_Thread * drawingThread = SDL_CreateThread(&doDraw,(void*)this);
@@ -77,7 +78,7 @@ void Game::Run()
 			}
 			if(evt.type == SDL_QUIT)
 			{
-				isRunning = false;
+				isRunning = preventAutoQuitting;
 			}
 		}
 		gameTime->update();
