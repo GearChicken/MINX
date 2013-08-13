@@ -19,7 +19,7 @@
 #ifndef MINX_AUDIO_H_
 #define MINX_AUDIO_H_
 
-#if defined(_WIN32) && !defined(DLLImport)
+#ifdef _WIN32
 #define DLLImport __declspec(dllimport)
 #else
 #define DLLImport
