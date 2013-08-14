@@ -37,15 +37,19 @@ void Mouse::handleEvent(SDL_Event * evt, GameTime * gameTime)
 			(*buttons)[id].state= evt->type == SDL_MOUSEBUTTONDOWN;
 		}
 	}
+	(*axes)[2].prevVal = (*axes)[2].val;
+	(*axes)[3].prevVal = (*axes)[3].val;
 	if(evt->type == SDL_MOUSEMOTION)
 	{
 		(*axes)[0].prevVal = (*axes)[0].val;
 		(*axes)[1].prevVal = (*axes)[1].val;
-		(*axes)[2].prevVal = (*axes)[2].val;
-		(*axes)[3].prevVal = (*axes)[3].val;
 		(*axes)[0].val = evt->motion.x;
 		(*axes)[1].val = evt->motion.y;
 		(*axes)[2].val = evt->motion.xrel;
 		(*axes)[3].val = evt->motion.yrel;
+	} else
+	{
+		(*axes)[2].val = 0;
+		(*axes)[3].val = 0;
 	}
 }

@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef AUDIO_H_
-#define AUDIO_H_
+#ifndef AUDIOCLIP_H_
+#define AUDIOCLIP_H_
 #include <string>
 #include <iostream>
 #ifdef _WIN32
@@ -63,9 +63,14 @@ namespace MINX
 				 * @param distance the distance of the sound from the listener
 				 */
 				void setPosition(Sint16 angle, Uint8 distance);
-				/** Disables the use of 3D audio. Default is disabled, is enabled when setPosition is called with either value non-zero
+				/** Disables the use of 3D audio. Default is disabled, is enabled when setPosition is called with either value non-zero. Also disabled headphone mode.
 				 */
 				void disable3DAudio();
+				/** Enables headphone mode
+				 * Only enables it for this clip
+				 * Squishes the angle of the clip down to between -45 degrees and 45 degrees in order to blend the left and right outputs together a little bit.
+				 */
+				void headPhoneMode();
 				/** Destructs this AudioClip
 				 */
 				~AudioClip();
@@ -73,6 +78,9 @@ namespace MINX
 				 * You probably don't want to mess with this
 				 */
 				int mix_channel;
+				float chunkVolume;
+				float chunkDistance;
+				float chunkAngle;
 				/** Whether or not Mix has been initialized
 				 * You REALLY don't want to mess with this unless you absolutely know what you're doing and have called Mix_CloseAudio()
 				 */
