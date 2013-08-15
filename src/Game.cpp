@@ -63,6 +63,7 @@ int doUpdate(void * game){
 
 void Game::Run()
 {
+	std::cout << "Game Running!\n";
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
@@ -153,4 +154,13 @@ void Game::UnloadContent()
 	}
 	Mix_CloseAudio();
 	SDL_Quit();
+}
+
+void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, Uint32 DwindowFlags)
+{
+	desiredFPS = DdesiredFPS;
+	windowWidth = DwindowWidth;
+	windowHeight = DwindowHeight;
+	windowBPP = DwindowBPP;
+	windowFlags =DwindowFlags;
 }

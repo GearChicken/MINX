@@ -33,11 +33,11 @@ namespace MINX
 	{
 		namespace Primitives
 		{
-				Color* pixelToColor(Uint32 pixel, SDL_Surface* surface);
-				Color* pixelToColor(int x, int y, SDL_Surface* surface);
-				void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
-				void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
-				void drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
+			Color* pixelToColor(Uint32 pixel, SDL_Surface* surface);
+			Color* pixelToColor(int x, int y, SDL_Surface* surface);
+			void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
+			void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
+			void drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
 		}
 	}
 }

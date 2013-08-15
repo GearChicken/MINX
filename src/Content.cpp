@@ -43,7 +43,6 @@ Texture2D* Content::loadTexture(std::string name, std::string assetName)
 }
 TTF_Font* Content::loadTTFFont(std::string name, int size, std::string assetName)
 {
-	TTF_Font* font = TTF_OpenFont(name.c_str(), size);
-	TTFFonts->insert(std::pair<string, TTF_Font*>(assetName, font));
-	return font;
+	TTFFonts->insert(std::pair<string, TTF_Font*>(assetName, TTF_OpenFont(name.c_str(), size)));
+	return TTFFonts->find(assetName)->second;
 }

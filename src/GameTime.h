@@ -33,33 +33,23 @@ namespace MINX
 		public:
 			/** Constructs a GameTime
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			GameTime();
 			/** @return the number of milliseconds since the start of the Game
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			long getElapsedMillis();
 			/** @return the number of milliseconds since the last update()
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			long getDeltaTime();
 			/** updates the gametime
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			void update();
 			/** limits the updates per second of the current thread by delaying
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			void limitFPS(int desiredFPS);
 		private:
 			long totalTimeMillis;
