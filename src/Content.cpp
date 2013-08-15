@@ -20,9 +20,9 @@ matching
 #include "Content.h"
 using namespace MINX;
 
-Content::Content(Game * addTo)
+Content::Content(void * addTo)
 {
-	game=addTo;
+	game=(Game*)addTo;
 	textures = new map<std::string, Texture2D*>();
 	TTFFonts = new map<std::string, TTF_Font*>();
 	audioClips = new map<std::string, AudioClip*>();
@@ -37,7 +37,13 @@ AudioClip* Content::loadAudioClip(std::string name, std::string assetName, bool 
 
 Texture2D* Content::loadTexture(std::string name, std::string assetName)
 {
-	Texture2D* tex = new Texture2D(IMG_Load((name).c_str()), game->gameWindow);
+	SDL_Surface* surface = NULL;
+	surface = IMG_Load((name).c_str());
+	if( surface == NULL)
+	{
+		return NULL;
+	}
+	Texture2D* tex = new Texture2D(surface, game->gameWindow);
 	textures->insert(std::pair<string, Texture2D*>(assetName, tex));
 	return tex;
 }

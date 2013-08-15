@@ -66,7 +66,7 @@ namespace MINX
 	class Content
 	{
 		public:
-			Content(Game * addTo);
+			Content(void * addTo);
 			Graphics::Texture2D* loadTexture(std::string name, std::string assetName);
 			std::map<std::string, Graphics::Texture2D*>* textures;
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);

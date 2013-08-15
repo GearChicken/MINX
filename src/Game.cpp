@@ -34,7 +34,6 @@ Game::Game()
 	windowHeight = 480;
 	windowBPP = 32;
 	windowFlags = SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL;
-	content = new MINX::Content(this);
 	Components = new vector<GameComponent*>();
 	eventHandlers = new vector<EventHandler*>();
 	gameTime = new GameTime();
@@ -63,6 +62,7 @@ int doUpdate(void * game){
 
 void Game::Run()
 {
+	content = new MINX::Content((void*)this);
 	std::cout << "Game Running!\n";
 	preventAutoQuitting = false;
 	this->Initialize();
