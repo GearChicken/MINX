@@ -1,7 +1,12 @@
 ##### Variables
 
+<<<<<<< HEAD
 INCDIR = -I/usr/include -I/usr/include/SDL
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -O3
+=======
+INCDIR = -I/usr/include
+CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -std=c++11
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 CXX = g++
 ifeq ($(OS),Windows_NT)

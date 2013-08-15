@@ -39,10 +39,14 @@ namespace MINX
 				Mouse(Game * game);
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
 				void Update(GameTime * gameTime);
+=======
+				void handleEvent(SDL_Event * evt, GameTime * gameTime);
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 		};
 	}
 }

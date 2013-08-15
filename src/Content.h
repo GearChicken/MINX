@@ -52,9 +52,13 @@ namespace MINX
 			 * @param assetName The name to store the texture as in the textures map
 			 * @return A pointer to the texture loaded, This is also stored in the textures map
 			 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			Texture2D* loadTexture(std::string name, std::string assetName);
 			/** Stores the textures loaded by loadTexture()
 			 */
@@ -64,9 +68,13 @@ namespace MINX
 			 * @param assetName  The name to store the texture as in the textures map
 			 * @return A pointer to the texture loaded, This is also stored in the the textures map
 			 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
 			/** Stores the fonts loaded by loadTTFFont()
 			 */
@@ -78,9 +86,13 @@ namespace MINX
 			 * @param loop  loop the sound file
 			 * @return A pointer to the sound loaded, This is also stored in the the sounds map
 			 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
 			/** Stores the sounds loaded by loadAudioClips()
 			 */

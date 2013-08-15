@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\src\Audio\AudioClip.cpp" />
     <ClCompile Include="..\src\Content.cpp" />
+    <ClCompile Include="..\src\EventHandler.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameComponent.cpp" />
     <ClCompile Include="..\src\GameTime.cpp" />
@@ -21,6 +22,10 @@
     <ClCompile Include="..\src\Graphics\GameWindow.cpp" />
     <ClCompile Include="..\src\Graphics\Primitives.cpp" />
     <ClCompile Include="..\src\Graphics\Texture2D.cpp" />
+<<<<<<< HEAD
+=======
+    <ClCompile Include="..\src\Input\Button.cpp" />
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
     <ClCompile Include="..\src\Input\GamePad.cpp" />
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />
     <ClCompile Include="..\src\Input\Keyboard.cpp" />
@@ -28,11 +33,13 @@
     <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
+    <ClCompile Include="..\src\Thread.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Audio\AudioClip.h" />
     <ClInclude Include="..\src\Content.h" />
+    <ClInclude Include="..\src\EventHandler.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\GameComponent.h" />
     <ClInclude Include="..\src\GameTime.h" />
@@ -50,20 +57,25 @@
     <ClInclude Include="..\src\Point.h" />
     <ClInclude Include="..\src\Ray2.h" />
     <ClInclude Include="..\src\Rectangle.h" />
+    <ClInclude Include="..\src\Thread.h" />
     <ClInclude Include="..\src\Vector2.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{26B005FF-29B6-45A1-8949-E284F2330C22}</ProjectGuid>
+    <ProjectGuid>{5C37CA4E-6617-45DB-829C-705875C53E97}</ProjectGuid>
     <RootNamespace>MINX</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+<<<<<<< HEAD
     <ConfigurationType>DynamicLibrary</ConfigurationType>
+=======
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
@@ -79,10 +91,10 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>c:\SDL\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\SDL\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\SDL\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+    <IncludePath>c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>c:\SDL\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86;c:\SDL\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\SDL\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\SDL\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;$(LibraryPath)</LibraryPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>c:\SDL\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\SDL\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\SDL\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
@@ -96,11 +108,20 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+<<<<<<< HEAD
       <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_mixer.lib;SDL_image.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Windows</SubSystem>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
+=======
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
     </Link>
+    <Lib>
+      <AdditionalDependencies>SDL.lib; SDLmain.lib; SDL_ttf.lib; SDL_mixer.lib; SDL_image.lib</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -115,6 +136,10 @@
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>SDL.lib;SDLmain.lib;SDL_mixer.lib;SDL_image.lib;SDL_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
+    <Lib>
+      <AdditionalDependencies>SDL.lib; SDLmain.lib; SDL_ttf.lib; SDL_mixer.lib; SDL_image.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -16,36 +16,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAMEPAD_H_
-#define GAMEPAD_H_
-#include "../Game.h"
-#include "../GameTime.h"
-#include "IGenericHID.h"
-namespace MINX
+#include "Button.h"
+
+using namespace MINX::Input;
+
+Button Button::operator&&(const Button& andWith)
 {
-	namespace Input
-	{
-		/** Represents a gamepad device
-		 */
-		class GamePad : IGenericHID
-		{
-			/** Constructs a GamePad, calls IGenericHID() with game,0xF1FF, 0xF1FF
-			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
-			GamePad(Game * game);
-			/** Updates the state of the GamePad.
-			 */
-<<<<<<< HEAD
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
-			void Update(GameTime * gameTime);
-=======
-			void handleEvent(SDL_Event * evt, GameTime * gameTime);
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
-		};
-	}
+	Button b;
+	b.state = this->state && andWith.state;
+	b.prevState = this->prevState && andWith.prevState;
+	return b;
 }
-#endif
+
+Button Button::operator||(const Button& orWith)
+{
+	Button b;
+	b.state = this->state || orWith.state;
+	b.prevState = this->prevState || orWith.prevState;
+	return b;
+}
+
+Button Button::operator!()const
+{
+	Button b;
+	b.state = !this->state;
+	b.prevState = !this->prevState;
+	return b;
+}

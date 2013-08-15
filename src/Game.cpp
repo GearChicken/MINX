@@ -36,9 +36,7 @@ Game::Game()
 	windowFlags = SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL;
 	content = new MINX::Content(this);
 	Components = new vector<GameComponent*>();
-	keyboardEvents = new queue<SDL_Event*>();
-	mouseEvents = new queue<SDL_Event*>();
-	gamepadEvents = new queue<SDL_Event*>();
+	eventHandlers = new vector<EventHandler*>();
 	gameTime = new GameTime();
 	#if defined(LINUX) || defined(OSX)
 	XInitThreads();
@@ -54,67 +52,41 @@ int doDraw(void * game){
 	return 0;
 }
 
+int doUpdate(void * game){
+	Game * thisGame = (Game*)game;
+	while(thisGame->isRunning)
+	{
+		thisGame->Update(thisGame->getGameTime());
+	}
+	return 0;
+}
+
 void Game::Run()
-{	
+{
+	std::cout << "Game Running!\n";
+	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
 	SDL_Thread * drawingThread = SDL_CreateThread(&doDraw,(void*)this);
+	SDL_Thread * updatingThread = SDL_CreateThread(&doUpdate,(void*)this);
 	while(isRunning)
 	{
 		if(SDL_PollEvent(&evt))
 		{
-			switch(evt.type)
+			for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 			{
-				case SDL_ACTIVEEVENT:
-					break;
-				case SDL_KEYDOWN:
-					keyboardEvents->push(&evt);
-					break;
-				case SDL_KEYUP:
-					keyboardEvents->push(&evt);
-					break;
-				case SDL_MOUSEMOTION:
-					mouseEvents->push(&evt);
-					break;
-				case SDL_MOUSEBUTTONDOWN:
-					mouseEvents->push(&evt);
-					break;
-				case SDL_MOUSEBUTTONUP:
-					mouseEvents->push(&evt);
-					break;
-				case SDL_JOYAXISMOTION:
-					gamepadEvents->push(&evt);
-					break;
-				case SDL_JOYBALLMOTION:
-					gamepadEvents->push(&evt);
-					break;
-				case SDL_JOYHATMOTION:
-					gamepadEvents->push(&evt);
-					break;
-				case SDL_JOYBUTTONDOWN:
-					gamepadEvents->push(&evt);
-					break;
-				case SDL_JOYBUTTONUP:
-					gamepadEvents->push(&evt);
-					break;
-				case SDL_VIDEORESIZE:
-					break;
-				case SDL_VIDEOEXPOSE:
-					break;
-				case SDL_QUIT:
-					isRunning=false;
-					break;
-				case SDL_USEREVENT:
-					break;
-				case SDL_SYSWMEVENT:
-					break;
+				(*eventHandlers)[i]->handleEvent(&evt,gameTime);
 			}
-				
+			if(evt.type == SDL_QUIT)
+			{
+				isRunning = preventAutoQuitting;
+			}
 		}
 		gameTime->update();
-		this->Update(gameTime);
+		//this->Update(gameTime);
 	}
 	SDL_WaitThread(drawingThread,NULL);
+	SDL_WaitThread(updatingThread,NULL);
 	this->UnloadContent();
 }
 
@@ -182,4 +154,13 @@ void Game::UnloadContent()
 	}
 	Mix_CloseAudio();
 	SDL_Quit();
+}
+
+void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, Uint32 DwindowFlags)
+{
+	desiredFPS = DdesiredFPS;
+	windowWidth = DwindowWidth;
+	windowHeight = DwindowHeight;
+	windowBPP = DwindowBPP;
+	windowFlags =DwindowFlags;
 }
