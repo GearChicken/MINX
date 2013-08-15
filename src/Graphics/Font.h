@@ -30,9 +30,6 @@ namespace MINX
 {
 	namespace Graphics
 	{
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void DrawString(int x, int y, string text, SDL_Surface* screen, TTF_Font* font);
 	}
 }

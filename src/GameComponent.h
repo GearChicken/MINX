@@ -32,22 +32,13 @@ namespace MINX
 			/** Creates the GameComponent
 			 * @param attachTo A pointer to the Game to attach to.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			GameComponent(Game * attachTo);
 			/** Initializes the GameComponent.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			virtual void Initialize();
 			/** Update()s the GameComponent.
 			 * @param gameTime the GameTime to update the GameComponent with.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			virtual void Update(GameTime * gameTime);
 			/** Whether or not this GameComponent is enabled.
 			 */

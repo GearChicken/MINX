@@ -41,33 +41,18 @@ namespace MINX
 			byte A;
 			/** Constructs a color with the given red, green, blue, and alpha values.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Color(byte r, byte g, byte b, byte a);
 			/** Constructs a color with the given red, green, and blue values.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Color(byte r, byte g, byte b);
 			/** Tests equality between two Colors.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			bool operator==(const Color& compareTo);
 			/** Tests inequality between two Colors
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			bool operator!=(const Color& compareTo);
 			/** Multiplies a color by a scale.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Color * operator*(const float& scale);
 		};
 	}

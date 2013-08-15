@@ -34,71 +34,41 @@ namespace MINX
 				/** Constructs a non-autoplaying, non-looping AudioClip
 				 * @param filename the name of the file to load
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			AudioClip(string filename);
 				/** Contsructs an AudioClip
 				 * @param filename the name of the file to load
 				 * @param autoplay whether or not to automatically play the clip
 				 * @param loop whether or not to loop the clip
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			AudioClip(string filename, bool autoplay, bool loop);
 				/** If the clip is paused, unpause it, if it's stopped, start it, otherwise do nothing
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void play();
 				/** Pause the clip if it is playing
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void pause();
 				/** Stop the clip if it is playing or paused
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void stop();
 				/** Set the volume of the clip.
 				 * @param volume the volume to set the clip to. values less than 0 will be interpreted as 0, and values greater than 1 will be interpreted as 1
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void setVolume(float volume);
 				/** Set the origin of this sound in relation to the listener
 				 * @param angle the angle in degrees of the location of the sound
 				 * @param distance the distance of the sound from the listener
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void setPosition(Sint16 angle, Uint8 distance);
 				/** Disables the use of 3D audio. Default is disabled, is enabled when setPosition is called with either value non-zero
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void disable3DAudio();
 				/** Enables headphone mode
 				 * Only enables it for this clip
 				 * Squishes the angle of the clip down to between -45 degrees and 45 degrees in order to blend the left and right outputs together a little bit.
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void headPhoneMode();
 				/** Destructs this AudioClip
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			~AudioClip();
 				/** The channel to play this AudioClip on
 				 * You probably don't want to mess with this

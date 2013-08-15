@@ -33,15 +33,9 @@ namespace MINX
 			public:
 				/** Calls the IGenericHID constructor with game,512,0
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 				Keyboard(Game * game);
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 				void handleEvent(SDL_Event * evt, GameTime * gameTime);
 				Button getKey(char key);
 		};

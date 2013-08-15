@@ -33,15 +33,9 @@ namespace MINX
 			public:
 				/** Calls the IGenericHID constructor with game,0xFFF,4
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 				Mouse(Game * game);
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 				void handleEvent(SDL_Event * evt, GameTime * gameTime);
 		};
 	}

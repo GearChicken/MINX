@@ -31,15 +31,9 @@ namespace MINX
 		{
 			/** Constructs a GamePad, calls IGenericHID() with game,0xF1FF, 0xF1FF
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			GamePad(Game * game);
 			/** Updates the state of the GamePad.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void handleEvent(SDL_Event * evt, GameTime * gameTime);
 		};
 	}

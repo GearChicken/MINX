@@ -29,25 +29,10 @@ namespace MINX
 	{
 		namespace Primitives
 		{
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Color* pixelToColor(Uint32 pixel, SDL_Surface* surface);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Color* pixelToColor(int x, int y, SDL_Surface* surface);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
 		}
 	}
