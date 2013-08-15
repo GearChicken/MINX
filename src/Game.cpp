@@ -18,7 +18,7 @@
 	*/
 #include "Game.h"
 #include <iostream>
-#if defined(LINUX) || defined(DARWIN)
+#if defined(LINUX) || defined(OSX)
 #include "X11/Xlib.h"
 #endif
 
@@ -40,7 +40,7 @@ Game::Game()
 	mouseEvents = new queue<SDL_Event*>();
 	gamepadEvents = new queue<SDL_Event*>();
 	gameTime = new GameTime();
-	#if defined(LINUX) || defined(DARWIN)
+	#if defined(LINUX) || defined(OSX)
 	XInitThreads();
 	#endif
 }
