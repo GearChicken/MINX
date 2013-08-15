@@ -19,15 +19,6 @@
 #ifndef MINX_INPUT_H_
 #define MINX_INPUT_H_
 
-<<<<<<< HEAD
-#ifdef _WIN32
-#define DLLImport __declspec(dllimport)
-#else
-#define DLLImport
-#endif
-=======
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
-
 #include <vector>
 #ifdef _WIN32
 #include <SDL.h>
