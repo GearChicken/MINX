@@ -19,11 +19,7 @@
 
 #ifndef GAMETIME_H_
 #define GAMETIME_H_
-#ifdef _WIN32
-#include "SDL.h"
-#else
-#include "SDL/SDL.h"
-#endif
+#include <SDL.h>
 namespace MINX
 {
 	/** Contains a bunch of time related functions for use in the Game

@@ -18,11 +18,7 @@
 	*/
 #ifndef PRIMITIVES_H_
 #define PRIMITIVES_H_
-#ifdef _WIN32
 #include <SDL.h>
-#else
-#include <SDL/SDL.h>
-#endif
 #include "Color.h"
 typedef unsigned char byte;
 
