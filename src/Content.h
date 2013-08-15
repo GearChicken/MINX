@@ -43,7 +43,7 @@ namespace MINX
 			/** Initializes the Content class and attaches it to the specified Game
 			 * @param addTo a pointer to the Game to attach to
 			 */
-			Content(Game * addTo);
+			Content(void * addTo);
 			/** Loads a texture
 			 * @param name The filename
 			 * @param assetName The name to store the texture as in the textures map
