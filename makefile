@@ -1,6 +1,6 @@
 ##### Variables
 
-INCDIR = -I/usr/include
+INCDIR = -I/usr/include -I/usr/include/SDL
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -std=c++11 -O3
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 CXX = g++
@@ -25,7 +25,7 @@ else
         TARGET = bin/libMINX.so
     endif
     ifeq ($(UNAME_S),Darwin)
-        CPPFLAGS += -D OSX -fno_commons
+        CPPFLAGS += -D OSX -I/usr/include/SDL_mixer -I/usr/include/SDL_image -I/usr/include/SDL_ttf
         LFLAGS += -dynamiclib
         TARGET = bin/libMINX.dylib
     endif

@@ -19,11 +19,7 @@
 #ifndef TEXTURE2D_H_
 #define TEXTURE2D_H_
 
-#ifdef _WIN32
 #include <SDL.h>
-#else
-#include <SDL/SDL.h>
-#endif
 #include <string>
 #include "GameWindow.h"
 #include "Primitives.h"

@@ -20,11 +20,7 @@
 #define AUDIO_H_
 #include <string>
 #include <iostream>
-#ifdef _WIN32
 #include <SDL_mixer.h>
-#else
-#include <SDL/SDL_mixer.h>
-#endif
 using namespace std;
 namespace MINX
 {
