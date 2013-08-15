@@ -1,7 +1,7 @@
 ##### Variables
 
 INCDIR = -I/usr/include -I/usr/include/SDL
-CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -std=c++11 -O3
+CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -O3
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
 CXX = g++
 ifeq ($(OS),Windows_NT)
@@ -20,7 +20,7 @@ else
     RMCOMMAND = rm -f
     UNAME_S := $(shell uname -s)
     ifeq ($(UNAME_S),Linux)
-        CPPFLAGS += -D LINUX
+        CPPFLAGS += -D LINUX -std=c++11
         LFLAGS += -shared
         TARGET = bin/libMINX.so
     endif
