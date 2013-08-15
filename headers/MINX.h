@@ -19,12 +19,15 @@
 #ifndef MINX_H_
 #define MINX_H_
 
+<<<<<<< HEAD
 #ifdef _WIN32
 #define DLLImport __declspec(dllimport)
 #else
 #define DLLImport
 #endif
 
+=======
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 #include <map>
 #include <queue>
 #include <string>
@@ -46,7 +49,7 @@ namespace MINX
 	{
 		class AudioClip;
 	}
-	class DLLImport GameTime
+	class GameTime
 	{
 		public:
 			GameTime();
@@ -59,7 +62,7 @@ namespace MINX
 			long deltaTimeMillis;
 			long lastUpdate;
 	};
-	class DLLImport GameComponent
+	class GameComponent
 	{
 		public:
 			GameComponent(Game * attachTo);
@@ -69,7 +72,7 @@ namespace MINX
 			Game * game;
 			int updateOrder;
 	};
-	class DLLImport Content
+	class Content
 	{
 		public:
 			Content(Game * addTo);
@@ -81,7 +84,7 @@ namespace MINX
 			std::map<std::string, Audio::AudioClip*>* audioClips;
 			Game * game;
 	};
-	class DLLImport Game 
+	class Game 
 	{
 		public:
 			Game();
@@ -97,17 +100,21 @@ namespace MINX
 			std::queue<SDL_Event*> * mouseEvents;
 			std::queue<SDL_Event*> * gamepadEvents;
 			GameTime * getGameTime();
+			void setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, Uint32 DwindowFlags);
+
 			bool isRunning;
+			bool preventAutoQuitting;
+			int desiredFPS;
+			int windowWidth;
+			int windowHeight;
+			int windowBPP;
+			Uint32 windowFlags;
 		private:
 			SDL_Event evt;
 			GameTime* gameTime;
 		protected:
-			int desiredFPS;
-			int windowWidth, windowHeight, windowBPP;
-			Uint32 windowFlags;
-			Content* content;
-	};
-	struct DLLImport Point
+			Content* content;	};
+	struct Point
 	{
 		Point(int x, int y);
 		int X;
@@ -115,7 +122,7 @@ namespace MINX
 		bool operator==(const Point& compareTo);
 		bool operator!=(const Point& compareTo);
 	};
-	struct DLLImport Ray2
+	struct Ray2
 	{
 		Ray2(float direction, float xPosition, float yPosition);
 		Ray2(float direction);
@@ -126,7 +133,7 @@ namespace MINX
 		bool operator==(const Ray2& compareTo);
 		bool operator!=(const Ray2& compareTo);
 	};
-	struct DLLImport Rectangle
+	struct Rectangle
 	{
 		Rectangle(int x, int y, int width, int height);
 		int area();
@@ -140,7 +147,7 @@ namespace MINX
 		int Right();
 		bool intersects(Rectangle* rect2);
 	};
-	struct DLLImport Vector2
+	struct Vector2
 	{
 		Vector2(float x, float y);
 		Vector2 operator+(const Vector2& addTo);

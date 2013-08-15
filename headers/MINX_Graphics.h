@@ -19,12 +19,15 @@
 #ifndef MINX_GRAPHICS_H_
 #define MINX_GRAPHICS_H_
 
+<<<<<<< HEAD
 #ifdef _WIN32
 #define DLLImport __declspec(dllimport)
 #else
 #define DLLImport
 #endif
 
+=======
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 #include <string>
 #ifdef _WIN32
 #include <SDL.h>
@@ -40,7 +43,7 @@ namespace MINX
 	namespace Graphics
 	{
 		typedef unsigned char byte;
-		struct DLLImport Color
+		struct Color
 		{
 			byte R;
 			byte G;
@@ -52,7 +55,7 @@ namespace MINX
 			bool operator!=(const Color& compareTo);
 			Color * operator*(const float& scale);
 		};
-		class DLLImport GameWindow
+		class GameWindow
 		{
 			public:
 				GameWindow(int width, int height, int bpp, Uint32 flags);
@@ -61,7 +64,7 @@ namespace MINX
 				Uint32 flags;
 			private:
 		};
-		class DLLImport Texture2D
+		class Texture2D
 		{
 			public:
 				Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
@@ -74,15 +77,15 @@ namespace MINX
 				SDL_Surface * screen;
 				
 		};
-		namespace DLLImport Primitives
+		namespace Primitives
 		{
-				Color* pixelToColor(Uint32 pixel, SDL_Surface* surface);
-				Color* pixelToColor(int x, int y, SDL_Surface* surface);
-				void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
-				void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
-				void drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
+			 Color* pixelToColor(Uint32 pixel, SDL_Surface* surface);
+			 Color* pixelToColor(int x, int y, SDL_Surface* surface);
+			 void colorToPixel(Color* color, int x, int y, SDL_Surface* surface);
+			 void drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
+			 void drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface);
 		}
-		void DLLImport DrawString(int x, int y, std::string text, SDL_Surface* screen, TTF_Font* font);
+		 void DrawString(int x, int y, std::string text, SDL_Surface* screen, TTF_Font* font);
 	}
 }
 #endif

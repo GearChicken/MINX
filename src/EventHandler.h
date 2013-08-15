@@ -16,48 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef MINX_AUDIO_H_
-#define MINX_AUDIO_H_
-
-<<<<<<< HEAD
 #ifdef _WIN32
-#define DLLImport __declspec(dllimport)
+#include <SDL.h>
 #else
-#define DLLImport
+#include <SDL/SDL.h>
 #endif
-=======
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
-
-#include <string>
-#ifdef _WIN32
-#include <SDL_mixer.h>
-#include <MINX.h>
-#else
-#include <SDL/SDL_mixer.h>
-#include <MINX/MINX.h>
-#endif
+#include "GameTime.h"
+#ifndef EVENT_HANDLER_H_
+#define EVENT_HANDLER_H_
 namespace MINX
 {
-	namespace Audio
+	class Game; //forward declaration to avoid dependency problems
+	class EventHandler
 	{
-		class AudioClip
-		{
-			public:
-				AudioClip(std::string filename);
-				AudioClip(std::string filename, bool autoplay, bool loop);
-				void play();
-				void pause();
-				void stop();
-				void setVolume(float volume);
-				void setPosition(Sint16 angle, Uint8 distance);
-				void disable3DAudio();
-				~AudioClip();
-				int mix_channel;
-				static bool mix_initialized;
-				static int allocated_channels;
-				static int used_channels;
-				Mix_Chunk * audiodata;
-		};
-	}
+		public:
+			EventHandler(Game * attachTo);
+			virtual void handleEvent(SDL_Event * evt, GameTime * gameTime);
+		private:
+			Game * game;
+	};
 }
+#include "Game.h"
 #endif

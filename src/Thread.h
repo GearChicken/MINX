@@ -16,48 +16,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef MINX_AUDIO_H_
-#define MINX_AUDIO_H_
-
-<<<<<<< HEAD
 #ifdef _WIN32
-#define DLLImport __declspec(dllimport)
+#include <SDL.h>
 #else
-#define DLLImport
+#include <SDL/SDL.h>
 #endif
-=======
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
-
-#include <string>
-#ifdef _WIN32
-#include <SDL_mixer.h>
-#include <MINX.h>
-#else
-#include <SDL/SDL_mixer.h>
-#include <MINX/MINX.h>
-#endif
+#ifndef THREAD_H_
+#define THREAD_H_
 namespace MINX
 {
-	namespace Audio
+	class Thread
 	{
-		class AudioClip
-		{
-			public:
-				AudioClip(std::string filename);
-				AudioClip(std::string filename, bool autoplay, bool loop);
-				void play();
-				void pause();
-				void stop();
-				void setVolume(float volume);
-				void setPosition(Sint16 angle, Uint8 distance);
-				void disable3DAudio();
-				~AudioClip();
-				int mix_channel;
-				static bool mix_initialized;
-				static int allocated_channels;
-				static int used_channels;
-				Mix_Chunk * audiodata;
-		};
-	}
+		public:
+			Thread();
+			void start();
+			void kill();
+			void join();
+			virtual void run();
+		private:
+			SDL_Thread * internalThread;
+	};
 }
 #endif

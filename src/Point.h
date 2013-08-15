@@ -29,9 +29,13 @@ namespace MINX
 		 * @param x the x coordinate of the Point.
 		 * @param y the y coordinate of the Point.
 		 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			Point(int x, int y);
 		/** The X coordinate of the Point.
 		 */
@@ -42,16 +46,24 @@ namespace MINX
 		/** Tests equality between 2 Points.
 		 * @param compareTo the Point to compare this one to.
 		 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			bool operator==(const Point& compareTo);
 		/** Tests equality between 2 Points.
 		 * @param compareTo the Point to compare this one to.
 		 */
+<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
+=======
+
+>>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			bool operator!=(const Point& compareTo);
 	};
 }

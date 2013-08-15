@@ -16,36 +16,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef GAMEPAD_H_
-#define GAMEPAD_H_
-#include "../Game.h"
-#include "../GameTime.h"
-#include "IGenericHID.h"
-namespace MINX
+#include "EventHandler.h"
+using namespace MINX;
+
+EventHandler::EventHandler(Game * attachTo)
 {
-	namespace Input
-	{
-		/** Represents a gamepad device
-		 */
-		class GamePad : IGenericHID
-		{
-			/** Constructs a GamePad, calls IGenericHID() with game,0xF1FF, 0xF1FF
-			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
-			GamePad(Game * game);
-			/** Updates the state of the GamePad.
-			 */
-<<<<<<< HEAD
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
-			void Update(GameTime * gameTime);
-=======
-			void handleEvent(SDL_Event * evt, GameTime * gameTime);
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
-		};
-	}
+	game = attachTo;
+	game->eventHandlers->push_back(this);
 }
-#endif
+
+void EventHandler::handleEvent(SDL_Event * evt, GameTime * gameTime){}
