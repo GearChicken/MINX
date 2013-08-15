@@ -23,37 +23,16 @@ namespace MINX
 {
 	struct Rectangle
 	{
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Rectangle(int x, int y, int width, int height);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			int area();
 		int X;
 		int Y;
 		int Width;
 		int Height;
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			int Top();
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			int Bottom();
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			int Left();
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			int Right();
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			bool intersects(Rectangle* rect2);
 	};
 }

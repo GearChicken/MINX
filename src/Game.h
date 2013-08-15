@@ -45,49 +45,28 @@ namespace MINX
 		public:
 			/** The constructor, which handles some of the initialization code for the Game.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Game();
 			/** This handles the rest of the initialization code for the game.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			virtual void Initialize();
 			/** Loads content used by the game.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			virtual void LoadContent();
 			/** Updates the game state.
 			 * Should be extended when you create a subclass of Game.
 			 * @param gameTime the GameTime to use when updating.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			 virtual void Update(GameTime * gameTime);
 			/** Unloads content used by the game.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			 virtual void UnloadContent();
 			/** Draws the state of the game every frame.
 			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
 			 * @param gameTime the GameTime to use when drawing.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			 virtual void Draw(GameTime * gameTime);
 			/** Handles Update()ing, Draw()ing, and event handling.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			 void Run();
 			/** A pointer to the window used by the game.
 			 */
@@ -99,9 +78,6 @@ namespace MINX
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			 GameTime * getGameTime();
 			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, Uint32 windowFlags);
 			bool isRunning;

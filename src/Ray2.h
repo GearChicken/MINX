@@ -28,15 +28,9 @@ namespace MINX
 	{
 		/** Creates a Ray2 with the specified direction and position.
 		 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Ray2(float direction, float xPosition, float yPosition);
 		/** Creates a Ray2 with the specified direction.
 		 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Ray2(float direction);
 		/** The direction of the Ray2.
 		 */
@@ -49,21 +43,12 @@ namespace MINX
 		float yPos;
 		/** Negates a Ray2.
 		 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Ray2 operator-()const;
 		/** Tests equality between 2 Ray2s.
 		 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			bool operator==(const Ray2& compareTo);
 		/** Tests inequality between 2 Ray2s.
 		 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			bool operator!=(const Ray2& compareTo);
 	};
 }

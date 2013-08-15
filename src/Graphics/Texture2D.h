@@ -33,21 +33,9 @@ namespace MINX
 		class Texture2D
 		{
 			public:
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			~Texture2D();
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void Draw(int x, int y);
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			void Draw(int x, int y, Color* tint);
 				int width, height;
 				SDL_Surface * tex;

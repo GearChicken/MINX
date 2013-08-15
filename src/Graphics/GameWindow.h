@@ -27,9 +27,6 @@ namespace MINX
 		class GameWindow
 		{
 			public:
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 				GameWindow(int width, int height, int bpp, Uint32 flags);
 				SDL_Surface* screen;
 				int width, height, bpp;
