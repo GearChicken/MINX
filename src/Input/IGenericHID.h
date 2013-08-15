@@ -21,15 +21,7 @@
 
 #include "../GameTime.h"
 #include "../GameComponent.h"
-<<<<<<< HEAD
 #include <SDL.h>
-=======
-#ifdef _WIN32
-#include <SDL.h>
-#else
-#include "SDL/SDL.h"
-#endif
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 #include "Button.h"
 #include "Axis.h"
 #include "../Game.h"
@@ -61,15 +53,6 @@ namespace MINX
 				/** Contains all of the axes used by the device.
 				 */
 				vector<Axis> * axes;
-<<<<<<< HEAD
-				/** Implemented by a subclass. Should modify the button and axis vectors to hold the most current information
-				 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
-				virtual void Update(GameTime * gameTime);
-=======
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 				/** Returns a Button from the specified index in the button vector.
 				 */
 #ifdef _WIN32

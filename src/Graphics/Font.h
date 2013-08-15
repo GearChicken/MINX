@@ -18,19 +18,8 @@
 	*/
 #ifndef FONT_H_
 #define FONT_H_
-<<<<<<< HEAD
-
 #include <SDL.h>
 #include <SDL_ttf.h>
-=======
-#ifdef _WIN32
-#include <SDL.h>
-#include <SDL_ttf.h>
-#else
-#include "SDL/SDL.h"
-#include "SDL/SDL_ttf.h"
-#endif
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 #include <string>
 #include "GameWindow.h"
 #include "Color.h"
