@@ -76,7 +76,6 @@ namespace MINX
 				 * @param angle the angle in degrees of the location of the sound
 				 * @param distance the distance of the sound from the listener
 				 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
@@ -87,17 +86,14 @@ namespace MINX
 			__declspec(dllexport)
 #endif
 			void disable3DAudio();
-=======
-				void setPosition(Sint16 angle, Uint8 distance);
-				/** Disables the use of 3D audio. Default is disabled, is enabled when setPosition is called with either value non-zero. Also disabled headphone mode.
-				 */
-				void disable3DAudio();
 				/** Enables headphone mode
 				 * Only enables it for this clip
 				 * Squishes the angle of the clip down to between -45 degrees and 45 degrees in order to blend the left and right outputs together a little bit.
 				 */
-				void headPhoneMode();
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
+#ifdef _WIN32
+			__declspec(dllexport)
+#endif
+			void headPhoneMode();
 				/** Destructs this AudioClip
 				 */
 #ifdef _WIN32

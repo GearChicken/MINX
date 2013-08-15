@@ -45,7 +45,6 @@ namespace MINX
 		public:
 			/** The constructor, which handles some of the initialization code for the Game.
 			 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
@@ -61,23 +60,11 @@ namespace MINX
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
-=======
-
-			Game();
-			/** This handles the rest of the initialization code for the game.
-			 */
-
-			virtual void Initialize();
-			/** Loads content used by the game.
-			 */
-
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			virtual void LoadContent();
 			/** Updates the game state.
 			 * Should be extended when you create a subclass of Game.
 			 * @param gameTime the GameTime to use when updating.
 			 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
@@ -87,19 +74,11 @@ namespace MINX
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
-=======
-
-			 virtual void Update(GameTime * gameTime);
-			/** Unloads content used by the game.
-			 */
-
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			 virtual void UnloadContent();
 			/** Draws the state of the game every frame.
 			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
 			 * @param gameTime the GameTime to use when drawing.
 			 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
@@ -109,13 +88,6 @@ namespace MINX
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
-=======
-
-			 virtual void Draw(GameTime * gameTime);
-			/** Handles Update()ing, Draw()ing, and event handling.
-			 */
-
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			 void Run();
 			/** A pointer to the window used by the game.
 			 */
@@ -127,17 +99,11 @@ namespace MINX
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
 			 GameTime * getGameTime();
-=======
-
-			 GameTime * getGameTime();
 			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, Uint32 windowFlags);
-
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 			bool isRunning;
 			bool preventAutoQuitting;
 			int desiredFPS;

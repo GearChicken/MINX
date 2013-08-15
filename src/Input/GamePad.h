@@ -37,14 +37,10 @@ namespace MINX
 			GamePad(Game * game);
 			/** Updates the state of the GamePad.
 			 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
-			void Update(GameTime * gameTime);
-=======
 			void handleEvent(SDL_Event * evt, GameTime * gameTime);
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 		};
 	}
 }

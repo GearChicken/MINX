@@ -39,16 +39,11 @@ namespace MINX
 				Keyboard(Game * game);
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
-<<<<<<< HEAD
 #ifdef _WIN32
 			__declspec(dllexport)
 #endif
-				void Update(GameTime * gameTime);
-=======
 				void handleEvent(SDL_Event * evt, GameTime * gameTime);
 				Button getKey(char key);
-			private:
->>>>>>> 706fcfe2adabcbfb242a025e1b1b896fa9f64854
 		};
 	}
 }

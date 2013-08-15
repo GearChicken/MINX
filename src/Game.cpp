@@ -71,7 +71,7 @@ void Game::Run()
 	SDL_Thread * updatingThread = SDL_CreateThread(&doUpdate,(void*)this);
 	while(isRunning)
 	{
-		if(SDL_PollEvent(&evt))
+		if(SDL_WaitEvent(&evt))
 		{
 			for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 			{
@@ -82,8 +82,6 @@ void Game::Run()
 				isRunning = preventAutoQuitting;
 			}
 		}
-		gameTime->update();
-		//this->Update(gameTime);
 	}
 	SDL_WaitThread(drawingThread,NULL);
 	SDL_WaitThread(updatingThread,NULL);
@@ -122,6 +120,7 @@ void Game::LoadContent()
 }
 void Game::Update(GameTime * gameTime)
 {
+	gameTime->update();
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		if((*Components)[i]->enabled)
