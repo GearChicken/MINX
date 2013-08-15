@@ -23,7 +23,12 @@ using namespace MINX::Graphics;
 
 void MINX::Graphics::DrawString(int x, int y, string text, SDL_Surface* screen, TTF_Font * font)
 {
+#ifdef _WIN32
+	SDL_Color white = {255,255,255};
+	SDL_Surface* messageTex = TTF_RenderText_Solid(font, text.c_str(), white);
+#else
 	SDL_Surface* messageTex = TTF_RenderText_Solid(font, text.c_str(), {255,255,255});
+#endif
 	SDL_Rect loc;
 	loc.x=x;
 	loc.y=y;

@@ -19,11 +19,6 @@
 #ifndef MINX_AUDIO_H_
 #define MINX_AUDIO_H_
 
-#if defined(_WIN32) && !defined(DLLImport)
-#define DLLImport __declspec(dllimport)
-#else
-#define DLLImport
-#endif
 
 #include <string>
 #ifdef _WIN32
@@ -37,7 +32,7 @@ namespace MINX
 {
 	namespace Audio
 	{
-		class DLLImport AudioClip
+		class AudioClip
 		{
 			public:
 				AudioClip(std::string filename);

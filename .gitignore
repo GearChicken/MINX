@@ -4,3 +4,8 @@ src/Graphics/*.o
 src/Audio/*.o
 bin/
 doxygen/
+ipch/
+Debug/
+Release/
+MINX/Debug/
+MINX/Release/

@@ -16,7 +16,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+#ifdef _WIN32
+#include <SDL.h>
+#else
 #include <SDL/SDL.h>
+#endif
 #ifndef THREAD_H_
 #define THREAD_H_
 namespace MINX

@@ -49,18 +49,13 @@ namespace MINX
 			/** Initializes the Content class and attaches it to the specified Game
 			 * @param addTo a pointer to the Game to attach to
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
 			Content(Game * addTo);
 			/** Loads a texture
 			 * @param name The filename
 			 * @param assetName The name to store the texture as in the textures map
 			 * @return A pointer to the texture loaded, This is also stored in the textures map
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			Texture2D* loadTexture(std::string name, std::string assetName);
 			/** Stores the textures loaded by loadTexture()
 			 */
@@ -70,9 +65,7 @@ namespace MINX
 			 * @param assetName  The name to store the texture as in the textures map
 			 * @return A pointer to the texture loaded, This is also stored in the the textures map
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			TTF_Font* loadTTFFont(std::string name, int size, std::string assetName);
 			/** Stores the fonts loaded by loadTTFFont()
 			 */
@@ -84,9 +77,7 @@ namespace MINX
 			 * @param loop  loop the sound file
 			 * @return A pointer to the sound loaded, This is also stored in the the sounds map
 			 */
-#ifdef _WIN32
-			__declspec(dllexport)
-#endif
+
 			AudioClip* loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop);
 			/** Stores the sounds loaded by loadAudioClips()
 			 */

@@ -30,6 +30,7 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 	if(!mix_initialized)
 	{
 		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024);
+		std::cout << "MIX NOT INITED!\n";
 		allocated_channels=MIX_DEFAULT_CHANNELS;
 		used_channels = 0;
 		mix_initialized=true;
@@ -108,12 +109,12 @@ void AudioClip::setPosition(Sint16 angle, Uint8 distance)
 
 void AudioClip::headPhoneMode()
 {
-	chunkAngle %= 360;
-	else if((chunkAngle >= 180 && chunkAngle < 360) || (chunkAngle <= -180 && > -360))
+	//chunkAngle %= 360;
+	//else if((chunkAngle >= 180 && chunkAngle < 360) || (chunkAngle <= -180 && > -360))
 	{
 		chunkAngle -= 360;
 	}
-	chunkAngle %= 90;
+	//chunkAngle %= 90;
 	chunkAngle /= 2;
 	setPosition(chunkAngle,chunkDistance);
 }
