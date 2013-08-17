@@ -27,6 +27,12 @@ int AudioClip::used_channels=0;
 
 AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 {
+#ifdef _WIN32
+init(filename, autoplay, loop);
+}
+
+void init(string filename, bool autoplay, bool loop){
+#endif
 	if(!mix_initialized)
 	{
 		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024);
@@ -55,7 +61,7 @@ AudioClip::AudioClip(string filename) : AudioClip(filename,0,0){}
 #else
 AudioClip::AudioClip(string filename)
 {
-	AudioClip(filename,0,0);
+	init(filename,0,0);
 }
 #endif
 
