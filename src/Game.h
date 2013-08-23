@@ -94,7 +94,6 @@ namespace MINX
 			/** A pointer to the GameTime being used by the game.
 			 */
 			GameTime* gameTime;
-		protected:
-			MINX::Content* content;	};
+	};
 }
 #endif

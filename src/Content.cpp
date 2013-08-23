@@ -20,35 +20,17 @@ matching
 #include "Content.h"
 using namespace MINX;
 
-Content::Content(void * addTo)
+AudioClip* Content::loadAudioClip(std::string name,  bool autoplay, bool loop)
 {
-	game=(Game*)addTo;
-	textures = new map<std::string, Texture2D*>();
-	TTFFonts = new map<std::string, TTF_Font*>();
-	audioClips = new map<std::string, AudioClip*>();
+	return new AudioClip(name,autoplay,loop);
 }
 
-AudioClip* Content::loadAudioClip(std::string name, std::string assetName, bool autoplay, bool loop)
+Texture2D* Content::loadTexture(std::string name,  GameWindow* window)
 {
-	AudioClip* snd = new AudioClip(name,autoplay,loop);
-	audioClips->insert(std::pair<string, AudioClip*>(assetName, snd));
-	return snd;
+	Texture2D* texture = new Texture2D(IMG_Load((name).c_str()), window);
+	return texture;
 }
-
-Texture2D* Content::loadTexture(std::string name, std::string assetName)
+TTF_Font* Content::loadTTFFont(std::string name, int size)
 {
-	SDL_Surface* surface = NULL;
-	surface = IMG_Load((name).c_str());
-	if( surface == NULL)
-	{
-		return NULL;
-	}
-	Texture2D* tex = new Texture2D(surface, game->gameWindow);
-	textures->insert(std::pair<string, Texture2D*>(assetName, tex));
-	return tex;
-}
-TTF_Font* Content::loadTTFFont(std::string name, int size, std::string assetName)
-{
-	TTFFonts->insert(std::pair<string, TTF_Font*>(assetName, TTF_OpenFont(name.c_str(), size)));
-	return TTFFonts->find(assetName)->second;
+	return TTF_OpenFont(name.c_str(), size);
 }

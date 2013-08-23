@@ -62,7 +62,6 @@ int doUpdate(void * game){
 
 void Game::Run()
 {
-	content = new MINX::Content((void*)this);
 	std::cout << "Game Running!\n";
 	preventAutoQuitting = false;
 	this->Initialize();
@@ -137,20 +136,6 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
-	while (!content->TTFFonts->empty())
-	{
-		TTF_CloseFont((content->TTFFonts->begin()->second));
-		content->TTFFonts->erase(content->TTFFonts->begin());
-	}
-	while (!content->textures->empty())
-	{
-		SDL_FreeSurface((content->textures->begin()->second->tex));
-		content->textures->erase(content->textures->begin());
-	}
-	while (!content->audioClips->empty())
-	{
-		content->audioClips->erase(content->audioClips->begin());
-	}
 	Mix_CloseAudio();
 	SDL_Quit();
 }
