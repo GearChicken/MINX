@@ -43,6 +43,7 @@ namespace MINX
 			AudioClip(string filename, bool autoplay, bool loop);
 				/** If the clip is paused, unpause it, if it's stopped, start it, otherwise do nothing
 				 */
+			void init(std::string filename, bool autoplay, bool loop);
 			void play();
 				/** Pause the clip if it is playing
 				 */

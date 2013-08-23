@@ -34,6 +34,7 @@ namespace MINX
 		{
 			public:
 			Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
+			Texture2D();
 			~Texture2D();
 			void Draw(int x, int y);
 			void Draw(int x, int y, Color* tint);

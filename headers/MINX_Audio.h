@@ -38,6 +38,7 @@ namespace MINX
 				AudioClip(std::string filename);
 				AudioClip(std::string filename, bool autoplay, bool loop);
 				void play();
+				void init(std::string filename, bool autoplay, bool loop);
 				void pause();
 				void stop();
 				void setVolume(float volume);

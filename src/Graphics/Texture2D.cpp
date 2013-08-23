@@ -29,6 +29,10 @@ Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow)
 	tex=surface;
 	screen=gameWindow->screen;
 }
+Texture2D::Texture2D()
+{
+
+}
 
 void Texture2D::Draw(int x, int y)
 {

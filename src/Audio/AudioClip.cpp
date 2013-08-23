@@ -29,10 +29,12 @@ AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 {
 #ifdef _WIN32
 init(filename, autoplay, loop);
+#else
+	AudioClip(filename,autoplay,loop);
+#endif
 }
 
-void init(string filename, bool autoplay, bool loop){
-#endif
+void AudioClip::init(string filename, bool autoplay, bool loop){
 	if(!mix_initialized)
 	{
 		Mix_OpenAudio(MIX_DEFAULT_FREQUENCY,MIX_DEFAULT_FORMAT,MIX_DEFAULT_CHANNELS,1024);
