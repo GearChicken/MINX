@@ -84,14 +84,14 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
+    <IncludePath>..\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>c:\SDL\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\include;c:\SDL\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\include;c:\SDL\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\include;c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\include;$(IncludePath)</IncludePath>
-    <LibraryPath>c:\SDL\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86;c:\SDL\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\SDL\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\SDL\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>Z:\MINX\MINX\include;$(IncludePath)</IncludePath>
+    <LibraryPath>z:\MINX\MINX\lib\x86\;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -106,7 +106,7 @@
       <AdditionalDependencies>SDL.lib; SDLmain.lib; SDL_ttf.lib; SDL_mixer.lib; SDL_image.lib</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -124,7 +124,7 @@
     </Link>
     <Lib>
       <AdditionalDependencies>SDL.lib; SDLmain.lib; SDL_ttf.lib; SDL_mixer.lib; SDL_image.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>c:\sdl\SDL-devel-1.2.15-VC\SDL-1.2.15\lib\x86;c:\sdl\SDL_ttf-devel-2.0.11-VC\SDL_ttf-2.0.11\lib\x86;c:\sdl\SDL_mixer-devel-1.2.12-VC\SDL_mixer-1.2.12\lib\x86;c:\sdl\SDL_image-devel-1.2.12-VC\SDL_image-1.2.12\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\lib\x86\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
