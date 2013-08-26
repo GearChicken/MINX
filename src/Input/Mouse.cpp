@@ -21,9 +21,10 @@
 
 using namespace MINX::Input;
 
-Mouse::Mouse(Game * game) : IGenericHID(game,0xFFF,4)
+Mouse::Mouse(Game * game) : IGenericHID(game,0xFFF,6)
 {
-
+	(*axes)[4].val = 65535; //I will change this if anyone finds me a display that is at least 65535 pixels wide
+	(*axes)[5].val = 65535; //I will change this if anyone finds me a display that is at least 65535 pixels tall
 }
 
 void Mouse::handleEvent(SDL_Event * evt, GameTime * gameTime)
@@ -39,6 +40,16 @@ void Mouse::handleEvent(SDL_Event * evt, GameTime * gameTime)
 	}
 	(*axes)[2].prevVal = (*axes)[2].val;
 	(*axes)[3].prevVal = (*axes)[3].val;
+	if((*axes)[4].val == 65535)
+	{
+		(*axes)[4].val = (*axes)[0].val;
+		(*axes)[4].prevVal = (*axes)[0].prevVal;
+	}
+	if((*axes)[5].val == 65535)
+	{
+		(*axes)[5].val = (*axes)[1].val;
+		(*axes)[5].prevVal = (*axes)[1].prevVal;
+	}
 	if(evt->type == SDL_MOUSEMOTION)
 	{
 		(*axes)[0].prevVal = (*axes)[0].val;
@@ -47,9 +58,24 @@ void Mouse::handleEvent(SDL_Event * evt, GameTime * gameTime)
 		(*axes)[1].val = evt->motion.y;
 		(*axes)[2].val = evt->motion.xrel;
 		(*axes)[3].val = evt->motion.yrel;
+		(*axes)[4].val += (*axes)[2].val;
+		(*axes)[5].val += (*axes)[3].val;
 	} else
 	{
 		(*axes)[2].val = 0;
 		(*axes)[3].val = 0;
 	}
+}
+
+Vector2 Mouse::getPositionOnScreen()
+{
+	return Vector2((*axes)[0].val,(*axes)[1].val);
+}
+Vector2 Mouse::getRelativeMotion()
+{
+	return Vector2((*axes)[2].val,(*axes)[3].val);
+}
+Vector2 Mouse::getAccumulatedPosition()
+{
+	return Vector2((*axes)[4].val,(*axes)[5].val);
 }
