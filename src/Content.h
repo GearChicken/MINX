@@ -38,21 +38,19 @@ namespace MINX
 	{
 			/** Loads a texture
 			 * @param name The filename
-			 * @param assetName The name to store the texture as in the textures map
+			 * @param gameWindow A pointer to the GameWindow that the texture will be drawn on
 			 * @return A pointer to the texture loaded, This is also stored in the textures map
 			 */
 			Texture2D* loadTexture(std::string name, GameWindow* window);
 			
 			/** Loads a font
 			 * @param name The filename
-			 * @param assetName  The name to store the texture as in the textures map
 			 * @return A pointer to the texture loaded, This is also stored in the the textures map
 			 */
 			TTF_Font* loadTTFFont(std::string name, int size);
 			
 			/** Loads a sound
 			 * @param name The filename
-			 * @param assetName  The name to store the sound as in the sounds map
 			 * @param autoplay  Autoplay the sound file
 			 * @param loop  loop the sound file
 			 * @return A pointer to the sound loaded, This is also stored in the the sounds map

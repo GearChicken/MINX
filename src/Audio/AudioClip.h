@@ -41,9 +41,11 @@ namespace MINX
 				 * @param loop whether or not to loop the clip
 				 */
 			AudioClip(string filename, bool autoplay, bool loop);
+				/** Initialize the Audio Clip (This function is needed by the _WIN32 platform).
+				*/
+			void init(std::string filename, bool autoplay, bool loop);
 				/** If the clip is paused, unpause it, if it's stopped, start it, otherwise do nothing
 				 */
-			void init(std::string filename, bool autoplay, bool loop);
 			void play();
 				/** Pause the clip if it is playing
 				 */
@@ -75,6 +77,8 @@ namespace MINX
 				 * You probably don't want to mess with this
 				 */
 				int mix_channel;
+				/** The volume of the AudioClip
+				*/
 				float chunkVolume;
 				float chunkDistance;
 				float chunkAngle;
