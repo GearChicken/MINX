@@ -26,9 +26,10 @@
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
-
+SDL_sem* videoLock;
 Game::Game()
 {	
+	videoLock = SDL_CreateSemaphore(1);
 	desiredFPS = 60;
 	windowWidth = 640;
 	windowHeight = 480;
@@ -46,7 +47,9 @@ int doDraw(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
 	{
+		SDL_SemWait(videoLock);
 		thisGame->Draw(thisGame->getGameTime());
+		SDL_SemPost(videoLock);
 	}
 	return 0;
 }
@@ -55,7 +58,9 @@ int doUpdate(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
 	{
+		SDL_SemWait(videoLock);
 		thisGame->Update(thisGame->getGameTime());
+		SDL_SemPost(videoLock);
 	}
 	return 0;
 }
@@ -66,8 +71,8 @@ void Game::Run()
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
-	SDL_Thread * drawingThread = SDL_CreateThread(&doDraw,(void*)this);
-	SDL_Thread * updatingThread = SDL_CreateThread(&doUpdate,(void*)this);
+	SDL_Thread * drawingThread = SDL_CreateThread(doDraw,(void*)this);
+	SDL_Thread * updatingThread = SDL_CreateThread(doUpdate,(void*)this);
 	while(isRunning)
 	{
 		if(SDL_WaitEvent(&evt))
@@ -82,8 +87,8 @@ void Game::Run()
 			}
 		}
 	}
-	SDL_WaitThread(drawingThread,NULL);
 	SDL_WaitThread(updatingThread,NULL);
+	SDL_WaitThread(drawingThread,NULL);
 	this->UnloadContent();
 }
 
@@ -136,6 +141,7 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
+    SDL_DestroySemaphore( videoLock );
 	Mix_CloseAudio();
 	SDL_Quit();
 }

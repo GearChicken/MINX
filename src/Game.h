@@ -94,6 +94,8 @@ namespace MINX
 			/** A pointer to the GameTime being used by the game.
 			 */
 			GameTime* gameTime;
+			/** A semaphore to protect the draw thread  reading invalid data
+			*/
 	};
 }
 #endif
