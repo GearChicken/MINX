@@ -27,11 +27,7 @@ int AudioClip::used_channels=0;
 
 AudioClip::AudioClip(string filename, bool autoplay, bool loop)
 {
-#ifdef _WIN32
-init(filename, autoplay, loop);
-#else
-	AudioClip(filename,autoplay,loop);
-#endif
+	init(filename, autoplay, loop);
 }
 
 void AudioClip::init(string filename, bool autoplay, bool loop){
@@ -58,14 +54,10 @@ void AudioClip::init(string filename, bool autoplay, bool loop){
 	chunkDistance = 0;
 	chunkVolume = MIX_MAX_VOLUME;
 }
-#ifndef _WIN32
-AudioClip::AudioClip(string filename) : AudioClip(filename,0,0){}
-#else
 AudioClip::AudioClip(string filename)
 {
 	init(filename,0,0);
 }
-#endif
 
 AudioClip::~AudioClip()
 {
