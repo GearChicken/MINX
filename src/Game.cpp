@@ -47,9 +47,13 @@ int doDraw(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
 	{
+		#ifdef _WIN32
 		SDL_SemWait(videoLock);
+		#endif
 		thisGame->Draw(thisGame->getGameTime());
+		#ifdef _WIN32
 		SDL_SemPost(videoLock);
+		#endif
 	}
 	return 0;
 }
@@ -58,9 +62,13 @@ int doUpdate(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
 	{
+		#ifdef _WIN32
 		SDL_SemWait(videoLock);
+		#endif
 		thisGame->Update(thisGame->getGameTime());
+		#ifdef _WIN32
 		SDL_SemPost(videoLock);
+		#endif
 	}
 	return 0;
 }

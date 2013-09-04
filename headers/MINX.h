@@ -24,8 +24,10 @@
 #include <string>
 #include <vector>
 #ifdef _WIN32
+#include <SDL.h>
 #include <SDL_ttf.h>
 #else
+#include <SDL/SDL.h>
 #include <SDL/SDL_ttf.h>
 #endif
 namespace MINX
@@ -63,7 +65,6 @@ namespace MINX
 			Game * game;
 			int updateOrder;
 	};
-	class Graphics::GameWindow;
 	namespace Content
 	{
 			Graphics::Texture2D* loadTexture(std::string name,  Graphics::GameWindow* window);
@@ -151,14 +152,7 @@ namespace MINX
 		float X;
 		float Y;
 	};
-}
-#ifdef _WIN32
 #include <MINX_Audio.h>
 #include <MINX_Graphics.h>
 #include <MINX_Input.h>
-#else
-#include <MINX/MINX_Audio.h>
-#include <MINX/MINX_Graphics.h>
-#include <MINX/MINX_Input.h>
-#endif
 #endif
