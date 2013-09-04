@@ -22,11 +22,8 @@
 
 using namespace MINX;
 
-Vector2::Vector2(float x, float y)
-{
-	X=x;
-	Y=y;
-}
+Vector2::Vector2(float x, float y) : X( x ), Y( y ) { }
+
 Vector2 Vector2::operator+(const Vector2& addTo)
 {
 	return Vector2(X+addTo.X,Y+addTo.Y);
