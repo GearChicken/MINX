@@ -19,9 +19,15 @@
 #ifndef CONTENT_H_
 #define CONTENT_H_
 #include <map>
+#ifdef _WIN32
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
+#else
+#include "SDL/SDL.h"
+#include <SDL/SDL_ttf.h>
+#include <SDL/SDL_image.h>
+#endif
 #include "Audio/AudioClip.h"
 #include "Graphics/Texture2D.h"
 #include <string>

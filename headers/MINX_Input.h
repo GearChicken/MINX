@@ -25,7 +25,6 @@
 #include <MINX.h>
 #else
 #include <SDL/SDL.h>
-#include <MINX/MINX.h>
 #endif
 namespace MINX
 {

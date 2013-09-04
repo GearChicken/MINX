@@ -22,8 +22,13 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#ifdef _WIN32
 #include <SDL.h>
 #include <SDL_mixer.h>
+#else
+#include "SDL/SDL.h"
+#include "SDL/SDL_mixer.h"
+#endif
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Content.h"

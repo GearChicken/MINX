@@ -1,5 +1,5 @@
 ##### Variables
-
+AT:=@
 INCDIR = -I/usr/include -I/usr/include/SDL
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -O3
 LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
@@ -78,6 +78,6 @@ doxygen:
 	doxygen
 
 doxygenupload:
-	ncftpput -R -v -u MINX gearchicken.com / ./doxygen/html/
+	ncftpput -R -v -u minx$(AT)gearchicken.com gearchicken.com / ./doxygen/html/
 
 ##### End of Makefile
