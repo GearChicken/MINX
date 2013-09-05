@@ -34,7 +34,8 @@
 #include "Content.h"
 #include "Graphics/GameWindow.h"
 #include "EventHandler.h"
-
+#include <thread>
+#include <mutex>
 #ifdef _WIN32
 
 #endif
