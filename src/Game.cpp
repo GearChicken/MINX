@@ -26,10 +26,10 @@
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
-SDL_sem* videoLock;
+mutex * videoLock;
 Game::Game()
 {	
-	videoLock = SDL_CreateSemaphore(1);
+	videoLock = new mutex();
 	desiredFPS = 60;
 	windowWidth = 640;
 	windowHeight = 480;
@@ -48,12 +48,12 @@ int doDraw(void * game){
 	while(thisGame->isRunning)
 	{
 		#ifdef _WIN32
-		SDL_SemWait(videoLock);
+		videoLock->lock();
+		#endif
+		#ifdef _WIN32
+		videoLock->unlock();
 		#endif
 		thisGame->Draw(thisGame->getGameTime());
-		#ifdef _WIN32
-		SDL_SemPost(videoLock);
-		#endif
 	}
 	return 0;
 }
@@ -63,11 +63,11 @@ int doUpdate(void * game){
 	while(thisGame->isRunning)
 	{
 		#ifdef _WIN32
-		SDL_SemWait(videoLock);
+		videoLock->lock();
 		#endif
 		thisGame->Update(thisGame->getGameTime());
 		#ifdef _WIN32
-		SDL_SemPost(videoLock);
+		videoLock->unlock();
 		#endif
 	}
 	return 0;
@@ -79,8 +79,8 @@ void Game::Run()
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
-	SDL_Thread * drawingThread = SDL_CreateThread(doDraw,(void*)this);
-	SDL_Thread * updatingThread = SDL_CreateThread(doUpdate,(void*)this);
+	thread * drawingThread = new thread(doDraw,(void*)this);
+	thread * updatingThread = new thread(doUpdate,(void*)this);
 	while(isRunning)
 	{
 		if(SDL_WaitEvent(&evt))
@@ -95,8 +95,8 @@ void Game::Run()
 			}
 		}
 	}
-	SDL_WaitThread(updatingThread,NULL);
-	SDL_WaitThread(drawingThread,NULL);
+	updatingThread->join();
+	drawingThread->join();
 	this->UnloadContent();
 }
 
@@ -149,7 +149,7 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
-    SDL_DestroySemaphore( videoLock );
+    //SDL_DestroySemaphore( videoLock );
 	Mix_CloseAudio();
 	SDL_Quit();
 }
