@@ -32,7 +32,7 @@ namespace MINX
 		{
 			public:
 				GameWindow(int width, int height, int bpp, Uint32 flags);
-				SDL_Surface* screen;
+				SDL_Window* screen;
 				int width, height, bpp;
 				Uint32 flags;
 			private:

@@ -60,6 +60,11 @@ Color* MINX::Graphics::Primitives::pixelToColor(int x, int y, SDL_Surface* surfa
 	SDL_UnlockSurface(surface);
 	return pixelToColor(*(pixels + y * surface->w + x), surface);
 }
+void MINX::Graphics::Primitives::drawColorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Renderer* renderer)
+{
+	SDL_SetRenderDrawColor(renderer, color->R, color->G, color->B, color->A);
+	SDL_RenderDrawPoint(renderer, x, y);
+}
 void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int x, int y, SDL_Surface* surface)
 {
 	if(y > 0 && x > 0 && y < surface->h && x < surface->w)
@@ -69,26 +74,25 @@ void MINX::Graphics::Primitives::colorToPixel(MINX::Graphics::Color* color, int 
 		pixels[(y * surface->w)+x] = pixel;
 	}
 }
-void MINX::Graphics::Primitives::drawRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface)
+void MINX::Graphics::Primitives::drawRectangle(Color* color, int x, int y, int w, int h, SDL_Renderer* renderer)
 {
-	for(int i = y; i < y+h; i++)
-	{
-		for(int j = x; j < x+w; j++)
-		{
-			colorToPixel(color,j,i,surface);
-		}
-	}
+	SDL_SetRenderDrawColor(renderer, color->R, color->G, color->B, color->A);
+	SDL_Rect* rect = new SDL_Rect();
+	rect->x = x;
+	rect->y = y;
+	rect->w = w;
+	rect->h = h;
+	SDL_RenderFillRect(renderer, rect);
+	delete rect;
 }
-void MINX::Graphics::Primitives::drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Surface* surface)
+void MINX::Graphics::Primitives::drawOutlineRectangle(Color* color, int x, int y, int w, int h, SDL_Renderer* renderer)
 {
-	for(int i = y; i < y+h; i++)
-	{
-		colorToPixel(color,x,i,surface);
-		colorToPixel(color,x+w,i,surface);
-	}
-	for(int j = x; j < x+w; j++)
-	{
-		colorToPixel(color,j,y,surface);
-		colorToPixel(color,j,y+h,surface);
-	}
+	SDL_SetRenderDrawColor(renderer, color->R, color->G, color->B, color->A);
+	SDL_Rect* rect = new SDL_Rect();
+	rect->x = x;
+	rect->y = y;
+	rect->w = w;
+	rect->h = h;
+	SDL_RenderDrawRect(renderer, rect);
+	delete rect;
 }

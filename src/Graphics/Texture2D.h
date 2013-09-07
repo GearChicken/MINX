@@ -28,7 +28,6 @@
 #include "Primitives.h"
 #include "Color.h"
 
-
 namespace MINX
 {
 	namespace Graphics
@@ -36,15 +35,17 @@ namespace MINX
 		class Texture2D
 		{
 			public:
-			Texture2D(SDL_Surface * surface, GameWindow * gameWindow);
+			Texture2D(SDL_Surface * surface, GameWindow * gameWindow, SDL_Renderer* sdlRenderer);
 			Texture2D();
 			~Texture2D();
 			void Draw(int x, int y);
 			void Draw(int x, int y, Color* tint);
 				int width, height;
-				SDL_Surface * tex;
+				SDL_Surface * surf;
+				SDL_Texture * tex;
 			private:
-				SDL_Surface * screen;
+				SDL_Window * screen;
+				SDL_Renderer * sdlRenderer;
 				
 		};
 	}

@@ -47,7 +47,7 @@ namespace MINX
 			 * @param gameWindow A pointer to the GameWindow that the texture will be drawn on
 			 * @return A pointer to the texture loaded, This is also stored in the textures map
 			 */
-			Texture2D* loadTexture(std::string name, GameWindow* window);
+			Texture2D* loadTexture(std::string name, GameWindow* window, SDL_Renderer* sdlRenderer);
 			
 			/** Loads a font
 			 * @param name The filename

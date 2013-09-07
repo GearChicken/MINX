@@ -34,7 +34,7 @@ Game::Game()
 	windowWidth = 640;
 	windowHeight = 480;
 	windowBPP = 32;
-	windowFlags = SDL_HWSURFACE|SDL_DOUBLEBUF|SDL_SRCALPHA|SDL_HWACCEL;
+	windowFlags = 0;
 	Components = new vector<GameComponent*>();
 	eventHandlers = new vector<EventHandler*>();
 	gameTime = new GameTime();
@@ -120,7 +120,7 @@ void Game::Initialize()
 
 					//uses video memory,prevents tearing,alpha works,hardware accelerated 
 	 gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags);
-
+	 sdlRenderer = SDL_CreateRenderer(gameWindow->screen, -1, SDL_RENDERER_ACCELERATED);
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
@@ -144,7 +144,7 @@ void Game::Update(GameTime * gameTime)
 }
 void Game::Draw(GameTime * gameTime)
 {
-	SDL_Flip(gameWindow->screen);
+	SDL_RenderPresent(sdlRenderer);
 }
 
 void Game::UnloadContent()
