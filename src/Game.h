@@ -93,6 +93,7 @@ namespace MINX
 			int windowHeight;
 			int windowBPP;
 			Uint32 windowFlags;
+			SDL_Renderer* sdlRenderer;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */
@@ -102,6 +103,7 @@ namespace MINX
 			GameTime* gameTime;
 			/** A semaphore to protect the draw thread  reading invalid data
 			*/
+		protected:
 	};
 }
 #endif

@@ -35,7 +35,7 @@ namespace MINX
 {
 	namespace Graphics
 	{
-			void DrawString(int x, int y, string text, SDL_Surface* screen, TTF_Font* font);
+		void DrawString(int x, int y, string text, SDL_Renderer* sdlRenderer, TTF_Font* font);
 	}
 }
 #endif

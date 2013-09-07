@@ -21,7 +21,7 @@
 #include <bitset>
 using namespace MINX::Graphics;
 
-void MINX::Graphics::DrawString(int x, int y, string text, SDL_Surface* screen, TTF_Font * font)
+void MINX::Graphics::DrawString(int x, int y, string text, SDL_Renderer* renderer, TTF_Font * font)
 {
 #ifdef _WIN32
 	SDL_Color white = {255,255,255};
@@ -29,9 +29,13 @@ void MINX::Graphics::DrawString(int x, int y, string text, SDL_Surface* screen, 
 #else
 	SDL_Surface* messageTex = TTF_RenderText_Solid(font, text.c_str(), {255,255,255});
 #endif
-	SDL_Rect loc;
-	loc.x=x;
-	loc.y=y;
-	SDL_BlitSurface(messageTex,NULL,screen,&loc);
+	SDL_Rect* loc =  new SDL_Rect();
+	loc->x=x;
+	loc->y=y;
+	TTF_SizeText(font, text.c_str(), &(loc->w), &(loc->h));
+	SDL_Texture* tex = SDL_CreateTextureFromSurface(renderer, messageTex);
+	SDL_RenderCopy(renderer, tex, NULL, loc);
 	SDL_FreeSurface(messageTex);
+	SDL_DestroyTexture(tex);
+	delete loc;
 }

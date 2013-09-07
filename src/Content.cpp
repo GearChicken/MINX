@@ -25,9 +25,9 @@ AudioClip* Content::loadAudioClip(std::string name,  bool autoplay, bool loop)
 	return new AudioClip(name,autoplay,loop);
 }
 
-Texture2D* Content::loadTexture(std::string name,  GameWindow* window)
+Texture2D* Content::loadTexture(std::string name,  GameWindow* window, SDL_Renderer* sdlRenderer)
 {
-	Texture2D* texture = new Texture2D(IMG_Load((name).c_str()), window);
+	Texture2D* texture = new Texture2D(IMG_Load((name).c_str()), window, sdlRenderer);
 	return texture;
 }
 TTF_Font* Content::loadTTFFont(std::string name, int size)
