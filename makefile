@@ -1,7 +1,7 @@
 ##### Variables
 AT:=@
 INCDIR = -I/usr/local/include/SDL2
-CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -O3
+CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
 LFLAGS = -lX11 -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 CXX = g++
 ifeq ($(OS),Windows_NT)
