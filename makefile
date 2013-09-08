@@ -1,8 +1,8 @@
 ##### Variables
 AT:=@
-INCDIR = -I/usr/include -I/usr/include/SDL
+INCDIR = -I/usr/local/include/SDL2
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC -O3
-LFLAGS = -lSDL_gfx -lX11 -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
+LFLAGS = -lX11 -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows

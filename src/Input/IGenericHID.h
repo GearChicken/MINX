@@ -21,11 +21,8 @@
 
 #include "../GameTime.h"
 #include "../GameComponent.h"
-#ifdef _WIN32
+#include "../EventHandler.h"
 #include <SDL.h>
-#else
-#include "SDL/SDL.h"
-#endif
 #include "Button.h"
 #include "Axis.h"
 #include "../Game.h"

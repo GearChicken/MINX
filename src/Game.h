@@ -22,13 +22,8 @@
 #include <vector>
 #include <queue>
 #include <iostream>
-#ifdef _WIN32
 #include <SDL.h>
 #include <SDL_mixer.h>
-#else
-#include "SDL/SDL.h"
-#include "SDL/SDL_mixer.h"
-#endif
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Content.h"
@@ -36,9 +31,6 @@
 #include "EventHandler.h"
 #include <thread>
 #include <mutex>
-#ifdef _WIN32
-
-#endif
 using namespace std;
 
 namespace MINX

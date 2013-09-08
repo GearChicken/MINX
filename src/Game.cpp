@@ -116,11 +116,9 @@ void Game::Initialize()
 	{
 		std::cout << "TTF NOT INITED!\n";
 	}
-
-
-					//uses video memory,prevents tearing,alpha works,hardware accelerated 
 	 gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags);
 	 sdlRenderer = SDL_CreateRenderer(gameWindow->screen, -1, SDL_RENDERER_ACCELERATED);
+	 cout << SDL_GetError() << endl;
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
