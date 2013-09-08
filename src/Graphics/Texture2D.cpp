@@ -54,6 +54,7 @@ void Texture2D::Draw(int x, int y)
 
 void Texture2D::Draw(int x, int y, Color* tint)
 {
+	if(surf != NULL){
 	SDL_Surface * tempTex = SDL_ConvertSurface(surf, surf->format, surf->flags);
 	Color * pixel;
 	for(int i = 0; i < tempTex->h; i++)
@@ -73,7 +74,8 @@ void Texture2D::Draw(int x, int y, Color* tint)
 	loc.x=x;
 	loc.y=y;
 	//SDL_BlitSurface(tempTex,NULL,screen,&loc);
-	SDL_UpdateTexture(tex,NULL, tempTex->pixels, tempTex->pitch);
+	SDL_LockTexture(tex,NULL, &(tempTex->pixels), &(tempTex->pitch));
+	SDL_UnlockTexture(tex);
 	SDL_Rect* destRect = new SDL_Rect();
 	destRect->x = x;
 	destRect->y = y;
@@ -82,6 +84,7 @@ void Texture2D::Draw(int x, int y, Color* tint)
 	SDL_RenderCopy(sdlRenderer, tex, NULL, destRect);
 	SDL_FreeSurface(tempTex);
 	delete destRect;
+	}
 }
 
 Texture2D::~Texture2D()

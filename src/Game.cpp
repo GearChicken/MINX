@@ -43,21 +43,6 @@ Game::Game()
 	#endif
 }
 
-int doDraw(void * game){
-	Game * thisGame = (Game*)game;
-	while(thisGame->isRunning)
-	{
-		#ifdef _WIN32
-		videoLock->lock();
-		#endif
-		#ifdef _WIN32
-		videoLock->unlock();
-		#endif
-		thisGame->Draw(thisGame->getGameTime());
-	}
-	return 0;
-}
-
 int doUpdate(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
@@ -79,11 +64,10 @@ void Game::Run()
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
-	thread * drawingThread = new thread(doDraw,(void*)this);
-	thread * updatingThread = new thread(doUpdate,(void*)this);
+	SDL_Thread * updatingThread = SDL_CreateThread(doUpdate,"a",(void*)this);
 	while(isRunning)
 	{
-		if(SDL_WaitEvent(&evt))
+		if(SDL_PollEvent(&evt))
 		{
 			for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 			{
@@ -94,9 +78,9 @@ void Game::Run()
 				isRunning = preventAutoQuitting;
 			}
 		}
+		this->Draw(this->gameTime);
 	}
-	updatingThread->join();
-	drawingThread->join();
+	SDL_WaitThread(updatingThread,NULL);
 	this->UnloadContent();
 }
 

@@ -22,6 +22,7 @@
 #include <vector>
 #include <queue>
 #include <iostream>
+#include <SDL_thread.h>
 #include <SDL.h>
 #include <SDL_mixer.h>
 #include "GameComponent.h"
