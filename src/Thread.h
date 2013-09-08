@@ -16,11 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifdef _WIN32
 #include <SDL.h>
-#else
-#include <SDL/SDL.h>
-#endif
+#include <thread>
 #ifndef THREAD_H_
 #define THREAD_H_
 namespace MINX
@@ -31,10 +28,12 @@ namespace MINX
 			Thread();
 			void start();
 			void kill();
+			void detach();
 			void join();
 			virtual void run();
+			~Thread();
 		private:
-			SDL_Thread * internalThread;
+			std::thread * internalThread;
 	};
 }
 #endif

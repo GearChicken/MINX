@@ -32,15 +32,25 @@ void Thread::run(){}
 
 void Thread::start()
 {
-	internalThread = SDL_CreateThread(&doRun,(void*)this);
-}
-
-void Thread::kill()
-{
-	SDL_KillThread(internalThread);
+	internalThread = new std::thread(&doRun,(void*)this);
 }
 
 void Thread::join()
 {
-	SDL_WaitThread(internalThread,NULL);
+	internalThread->join();
+}
+
+void Thread::detach()
+{
+	internalThread->detach();
+}
+
+void Thread::kill()
+{
+	detach();
+	delete internalThread;
+}
+Thread::~Thread()
+{
+	kill();
 }

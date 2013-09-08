@@ -16,11 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifdef _WIN32
 #include <SDL.h>
-#else
-#include <SDL/SDL.h>
-#endif
 #include "GameTime.h"
 #ifndef EVENT_HANDLER_H_
 #define EVENT_HANDLER_H_
