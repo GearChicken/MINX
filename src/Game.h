@@ -22,9 +22,10 @@
 #include <vector>
 #include <queue>
 #include <iostream>
-#include <SDL_thread.h>
-#include <SDL.h>
-#include <SDL_mixer.h>
+
+#include <GL/glew.h>
+#include <GL/glfw.h>
+
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Content.h"
@@ -78,19 +79,19 @@ namespace MINX
 			 * Currently GameTime is pretty much just stubbed.
 			 */
 			 GameTime * getGameTime();
-			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, Uint32 windowFlags);
+			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, int windowFlags);
+			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, int windowFlags, char* windowTitle);
 			bool isRunning;
 			bool preventAutoQuitting;
 			int desiredFPS;
 			int windowWidth;
 			int windowHeight;
 			int windowBPP;
-			Uint32 windowFlags;
-			SDL_Renderer* sdlRenderer;
+			char* windowTitle;
+			int windowFlags;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */
-			SDL_Event evt;
 			/** A pointer to the GameTime being used by the game.
 			 */
 			GameTime* gameTime;
