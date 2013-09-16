@@ -21,12 +21,29 @@
 
 using namespace MINX::Graphics;
 
-GameWindow::GameWindow(int width, int height, int bpp, Uint32 flags)
+GameWindow::GameWindow(int width, int height, int bpp, int flags)
 {
 	width = width;
 	height = height;
 	bpp = bpp;
 	flags = flags;
-	screen = SDL_CreateWindow("",SDL_WINDOWPOS_UNDEFINED,SDL_WINDOWPOS_UNDEFINED,width, height, flags);
+	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MAJOR, 3 );
+	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MINOR, 2 );
+	glfwOpenWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+	glfwOpenWindowHint( GLFW_WINDOW_NO_RESIZE, GL_TRUE );
+	glfwOpenWindow( 800, 600, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
+}
+GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
+{
+	width = width;
+	height = height;
+	bpp = bpp;
+	flags = flags;
+	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MAJOR, 3 );
+	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MINOR, 2 );
+	glfwOpenWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+	glfwOpenWindowHint( GLFW_WINDOW_NO_RESIZE, GL_TRUE );
+	glfwOpenWindow( 800, 600, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
+	glfwSetWindowTitle(title);
 }
 				

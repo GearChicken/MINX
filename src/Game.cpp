@@ -78,7 +78,10 @@ void Game::Run()
 				isRunning = preventAutoQuitting;
 			}
 		}
+		videoLock->lock();
 		this->Draw(this->gameTime);
+		
+		videoLock->unlock();
 	}
 	SDL_WaitThread(updatingThread,NULL);
 	this->UnloadContent();
@@ -91,18 +94,16 @@ GameTime * Game::getGameTime()
 
 void Game::Initialize()
 {
-	if( SDL_Init(SDL_INIT_EVERYTHING) == -1 )
+	if(glfwInit() == -1)
 	{
-		std::cout << "SDL NOT INITED!\n";
+		std::cout << "GLFW NOT INITED!\n";
 	}
-
-	if(TTF_Init() == -1 )
+	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, "Window");
+	glewExperimental=true;
+	if(glewInit() == -1 )
 	{
-		std::cout << "TTF NOT INITED!\n";
+		std::cout << "GLEW NOT INITED!\n";
 	}
-	 gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags);
-	 sdlRenderer = SDL_CreateRenderer(gameWindow->screen, -1, SDL_RENDERER_ACCELERATED);
-	 cout << SDL_GetError() << endl;
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
@@ -132,15 +133,23 @@ void Game::Draw(GameTime * gameTime)
 void Game::UnloadContent()
 {
     //SDL_DestroySemaphore( videoLock );
-	Mix_CloseAudio();
-	SDL_Quit();
+	glfwTerminate();
 }
 
-void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, Uint32 DwindowFlags)
+void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags)
 {
 	desiredFPS = DdesiredFPS;
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
 	windowBPP = DwindowBPP;
 	windowFlags =DwindowFlags;
+}
+void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags, char* DwindowTitle)
+{
+	desiredFPS = DdesiredFPS;
+	windowWidth = DwindowWidth;
+	windowHeight = DwindowHeight;
+	windowBPP = DwindowBPP;
+	windowFlags =DwindowFlags;
+	windowTitle = DwindowTitle;
 }

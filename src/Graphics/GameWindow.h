@@ -18,7 +18,7 @@
 	*/
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
-#include <SDL.h>
+#include <GL\glfw.h>
 namespace MINX
 {
 	namespace Graphics
@@ -26,10 +26,10 @@ namespace MINX
 		class GameWindow
 		{
 			public:
-				GameWindow(int width, int height, int bpp, Uint32 flags);
-				SDL_Window* screen;
+				GameWindow(int width, int height, int bpp, int flags);
+				GameWindow(int width, int height, int bpp, int flags, char* title);
 				int width, height, bpp;
-				Uint32 flags;
+				int flags;
 			private:
 		};
 	}
