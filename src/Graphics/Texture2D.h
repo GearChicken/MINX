@@ -1,49 +1,36 @@
-/*
-    MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013  MINX Team
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-	*/
-#ifndef TEXTURE2D_H_
-#define TEXTURE2D_H_
-#include <SDL.h>
-#include <string>
-#include "GameWindow.h"
-#include "Primitives.h"
+#ifndef _TEXTURE2D_H
+#define _TEXTURE2D_H
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <GL/glew.h>
+#include <GL/FreeImage.h>
 #include "Color.h"
-
 namespace MINX
 {
 	namespace Graphics
 	{
 		class Texture2D
 		{
-			public:
-			Texture2D(SDL_Surface * surface, GameWindow * gameWindow, SDL_Renderer* sdlRenderer);
-			Texture2D();
+		public:
+			Texture2D(char* fileLoc, GLuint shaderProgram, int instanceNum);
 			~Texture2D();
 			void Draw(int x, int y);
-			void Draw(int x, int y, Color* tint);
-				int width, height;
-				SDL_Surface * surf;
-				SDL_Texture * tex;
-			private:
-				SDL_Window * screen;
-				SDL_Renderer * sdlRenderer;
-				
+			void Draw(int x, int y, float rotation);
+			void Draw(int x, int y, float scaleX, float scaleY);
+			void Draw(int x, int y, float scaleX, float scaleY, float rotation);
+			void Draw(int x, int y, float scaleX, float scaleY, float rotation, Color* tint);
+		private:	
+			void Draw();
+			float vertices[42];
+			GLuint vertexBuffer;
+			GLuint vertexArray;
+			GLuint shaderProgram;
+			GLint uniTrans;
+			GLint uniTint;
 		};
+
 	}
+
 }
 #endif

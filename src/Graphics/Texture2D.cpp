@@ -1,94 +1,127 @@
-/*
-    MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013  MINX Team
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-	*/
 #include "Texture2D.h"
-#include <iostream>
-#include <bitset>
-#include <math.h>
 using namespace MINX::Graphics;
-using namespace MINX::Graphics::Primitives;
-using namespace std;
-
-Texture2D::Texture2D(SDL_Surface * surface, GameWindow * gameWindow, SDL_Renderer* renderer)
+Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, int instanceNum)
 {
-	surf=surface;
-	tex = SDL_CreateTextureFromSurface(renderer, surface);
-	screen=gameWindow->screen;
-	sdlRenderer = renderer;
-}
-Texture2D::Texture2D()
-{
+	float tempVertices[] = {
+	-01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
+     01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
+     01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
 
-}
+     01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+    -01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
+    -01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+	};
 
-void Texture2D::Draw(int x, int y)
-{
-	SDL_Rect loc;
-	loc.x=x;
-	loc.y=y;
-	//SDL_BlitSurface(tex,NULL,screen,&loc);
-	SDL_UpdateTexture(tex,NULL, surf->pixels, surf->pitch);
-	SDL_Rect* destRect = new SDL_Rect();
-	destRect->x = x;
-	destRect->y = y;
-	destRect->w = surf->w;
-	destRect->h = surf->h;
-	SDL_RenderCopy(sdlRenderer, tex, NULL, destRect);
-	delete &loc;
-}
-
-void Texture2D::Draw(int x, int y, Color* tint)
-{
-	if(surf != NULL){
-	SDL_Surface * tempTex = SDL_ConvertSurface(surf, surf->format, surf->flags);
-	Color * pixel;
-	for(int i = 0; i < tempTex->h; i++)
+	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
 	{
-		for(int j = 0; j < tempTex->w; j++)
-		{
-			pixel = pixelToColor(j, i, tempTex);//
-			// The next three lines set the color the average of it's original value with a 2/3's tint bias
-			pixel->R = sqrt(float(tint->R)*float(pixel->R));
-			pixel->G = sqrt(float(tint->G)*float(pixel->G));
-			pixel->B = sqrt(float(tint->B)*float(pixel->B));
-			colorToPixel(pixel, j, i, tempTex);
-			delete pixel;
-		}
+		vertices[i] =  tempVertices[i];
 	}
-	SDL_Rect loc;
-	loc.x=x;
-	loc.y=y;
-	//SDL_BlitSurface(tempTex,NULL,screen,&loc);
-	SDL_LockTexture(tex,NULL, &(tempTex->pixels), &(tempTex->pitch));
-	SDL_UnlockTexture(tex);
-	SDL_Rect* destRect = new SDL_Rect();
-	destRect->x = x;
-	destRect->y = y;
-	destRect->w = surf->w;
-	destRect->h = surf->h;
-	SDL_RenderCopy(sdlRenderer, tex, NULL, destRect);
-	SDL_FreeSurface(tempTex);
-	delete destRect;
-	}
-}
 
+	glGenVertexArrays(1,&vertexArray);
+	glBindVertexArray(vertexArray);
+	glGenBuffers(1, &vertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER,  sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+
+	
+	GLint posAttrib = glGetAttribLocation( shaderProgram, "position" );
+	glEnableVertexAttribArray( posAttrib );
+	glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), 0 );
+
+	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib,3,GL_FLOAT,GL_FALSE,7*sizeof(float),(void*)(2*sizeof(float)));
+
+	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), (void*)(5*sizeof(float)));
+		this->shaderProgram = shaderProgram;
+	
+	GLuint tex;
+	glGenTextures(1, &tex);
+	glActiveTexture( GL_TEXTURE0 );
+	//glBindTexture(GL_TEXTURE_2D, tex);
+	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
+	// IMAGAE LOADING
+		FIBITMAP* bitmap = FreeImage_Load(
+			FreeImage_GetFileType(fileLoc, 0),
+			fileLoc);
+		FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
+
+		int nWidth = FreeImage_GetWidth(pImage);
+		int nHeight = FreeImage_GetHeight(pImage);
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, nWidth, nHeight,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
+
+		FreeImage_Unload(pImage);
+	//END IMAGE LOADING);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	//glGenerateMipmap(GL_TEXTURE_2D);
+
+	 uniTrans = glGetUniformLocation( shaderProgram, "trans" );
+	 uniTint = glGetUniformLocation(shaderProgram, "tint");
+	//*/
+}
 Texture2D::~Texture2D()
 {
-	SDL_DestroyTexture(tex);
-	SDL_FreeSurface(surf);
+	glDeleteBuffers( 1, &vertexBuffer );
+	glDeleteVertexArrays( 1, &vertexArray );
+}
+void Texture2D::Draw(int x, int y)
+{
+	glm::mat4 trans;
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
+	this->Draw();
+}
+void Texture2D::Draw(int x, int y, float scaleX, float scaleY)
+{
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
+	this->Draw();
+}
+void Texture2D::Draw(int x, int y, float rotationAngle)
+{
+	glm::mat4 trans;
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
+	this->Draw();
+}
+void Texture2D::Draw(int x, int y, float scaleX, float scaleY, float rotationAngle)
+{
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
+	this->Draw();
+}
+void Texture2D::Draw(int x, int y, float scaleX, float scaleY, float rotationAngle, Color* tint)
+{
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	glUniform3f(uniTint, tint->R,tint->G,tint->B);
+	this->Draw();
+}
+
+void Texture2D::Draw()
+{
+	glBindVertexArray(vertexArray);
+	glDrawArrays(GL_TRIANGLES,0,6);
 }
