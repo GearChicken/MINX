@@ -22,7 +22,7 @@
 #include "../GameTime.h"
 #include "../GameComponent.h"
 #include "../EventHandler.h"
-#include <SDL.h>
+#include <GL\glfw.h>
 #include "Button.h"
 #include "Axis.h"
 #include "../Game.h"

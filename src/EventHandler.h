@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include <SDL.h>
+
 #include "GameTime.h"
 #ifndef EVENT_HANDLER_H_
 #define EVENT_HANDLER_H_
@@ -27,7 +27,7 @@ namespace MINX
 	{
 		public:
 			EventHandler(Game * attachTo);
-			virtual void handleEvent(SDL_Event * evt, GameTime * gameTime);
+			virtual void handleEvent();
 		private:
 			Game * game;
 	};

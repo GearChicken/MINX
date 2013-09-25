@@ -19,6 +19,10 @@
 #ifndef KEYBOARD_H_
 #define KEYBOARD_H_
 
+#define 	GLFW_KEY_LEFT_SHIFT   340
+#define 	GLFW_KEY_RIGHT_SHIFT   344
+
+
 #include "IGenericHID.h"
 #include "Button.h"
 #include <map>
@@ -36,7 +40,7 @@ namespace MINX
 				Keyboard(Game * game);
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
-				void handleEvent(SDL_Event * evt, GameTime * gameTime);
+				void handleEvent();
 				Button getKey(char key);
 		};
 	}

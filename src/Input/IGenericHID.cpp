@@ -18,6 +18,7 @@
 	*/
 #include "IGenericHID.h"
 using namespace MINX::Input;
+using namespace MINX;
 IGenericHID::IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize) : EventHandler(game)
 {
 	Button b;

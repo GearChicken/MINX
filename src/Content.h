@@ -19,9 +19,6 @@
 #ifndef CONTENT_H_
 #define CONTENT_H_
 #include <map>
-#include <SDL.h>
-#include <SDL_ttf.h>
-#include <SDL_image.h>
 #include "Audio/AudioClip.h"
 #include "Graphics/Texture2D.h"
 #include <string>

@@ -25,4 +25,4 @@ EventHandler::EventHandler(Game * attachTo)
 	game->eventHandlers->push_back(this);
 }
 
-void EventHandler::handleEvent(SDL_Event * evt, GameTime * gameTime){}
+void EventHandler::handleEvent(){}
