@@ -28,7 +28,6 @@
 
 #include "GameComponent.h"
 #include "GameTime.h"
-#include "Content.h"
 #include "Graphics/GameWindow.h"
 #include "EventHandler.h"
 #include <thread>

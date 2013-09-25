@@ -26,10 +26,8 @@
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
-mutex * videoLock;
 Game::Game()
 {	
-	videoLock = new mutex();
 	desiredFPS = 60;
 	windowWidth = 640;
 	windowHeight = 480;
@@ -47,13 +45,7 @@ int doUpdate(void * game){
 	Game * thisGame = (Game*)game;
 	while(thisGame->isRunning)
 	{
-		#ifdef _WIN32
-		videoLock->lock();
-		#endif
 		thisGame->Update(thisGame->getGameTime());
-		#ifdef _WIN32
-		videoLock->unlock();
-		#endif
 	}
 	return 0;
 }
@@ -64,30 +56,20 @@ void Game::Run()
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
-	SDL_Thread * updatingThread = SDL_CreateThread(doUpdate,"a",(void*)this);
+
 	while(isRunning)
 	{
-		if(SDL_PollEvent(&evt))
+		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 		{
-			for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
-			{
-				(*eventHandlers)[i]->handleEvent(&evt,gameTime);
-			}
-			if(evt.type == SDL_QUIT)
-			{
-				isRunning = preventAutoQuitting;
-			}
+			(*eventHandlers)[i]->handleEvent();
 		}
-		videoLock->lock();
+		doUpdate(this);
 		this->Draw(this->gameTime);
-		
-		videoLock->unlock();
 	}
-	SDL_WaitThread(updatingThread,NULL);
 	this->UnloadContent();
 }
 
-GameTime * Game::getGameTime()
+GameTime* Game::getGameTime()
 {
 	return gameTime;
 }
@@ -127,7 +109,7 @@ void Game::Update(GameTime * gameTime)
 }
 void Game::Draw(GameTime * gameTime)
 {
-	SDL_RenderPresent(sdlRenderer);
+	//
 }
 
 void Game::UnloadContent()

@@ -20,22 +20,20 @@
 #include "Keyboard.h"
 
 using namespace MINX::Input;
+using namespace MINX;
 using namespace std;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,512,0) //512 might be a little high
+Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a little high
 {
 }
 
-void Keyboard::handleEvent(SDL_Event * evt,GameTime * gameTime)
+void Keyboard::handleEvent()
 {
-	if(evt->type == SDL_KEYDOWN || evt->type == SDL_KEYUP)
+	for(int id = 0; id < 350; id++)
 	{
-		int id = evt->key.keysym.sym;
-		if(id > 0 && id < 512)
-		{
 			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state= evt->type == SDL_KEYDOWN;
-		}
+			(*buttons)[id].state= glfwGetKey(id) == GLFW_PRESS;
+		
 	}
 }
 
@@ -46,57 +44,57 @@ Button Keyboard::getKey(char key)
 		case '\n':
 			return getButton(int('\r'));
 		case '~':
-			return getButton(int('`')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('`')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '`':
-			return getButton(int('`')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('`')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '+':
-			return getButton(int('=')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('=')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '=':
-			return getButton(int('=')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('=')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '!':
-			return getButton(int('1')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('1')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '1':
-			return getButton(int('1')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('1')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '@':
-			return getButton(int('2')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('2')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '2':
-			return getButton(int('2')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('2')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '#':
-			return getButton(int('3')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('3')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '3':
-			return getButton(int('3')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('3')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '$':
-			return getButton(int('4')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('4')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '4':
-			return getButton(int('4')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('4')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '%':
-			return getButton(int('5')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('5')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '5':
-			return getButton(int('5')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('5')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '^':
-			return getButton(int('6')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('6')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '6':
-			return getButton(int('6')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('6')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '&':
-			return getButton(int('7')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('7')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '7':
-			return getButton(int('7')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('7')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '*':
-			return getButton(int('8')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('8')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '8':
-			return getButton(int('8')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('8')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '(':
-			return getButton(int('9')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('9')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '9':
-			return getButton(int('9')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('9')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case ')':
-			return getButton(int('0')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('0')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '0':
-			return getButton(int('0')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('0')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '|':
-			return getButton(int('\\')) && (getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('\\')) && (getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		case '\\':
-			return getButton(int('\\')) && !(getButton(SDLK_RSHIFT) || getButton(SDLK_LSHIFT));
+			return getButton(int('\\')) && !(getButton(GLFW_KEY_RIGHT_SHIFT) || getButton(GLFW_KEY_LEFT_SHIFT));
 		default:
 			return getButton(int(key));
 	}

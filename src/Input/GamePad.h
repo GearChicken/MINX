@@ -34,7 +34,7 @@ namespace MINX
 			GamePad(Game * game);
 			/** Updates the state of the GamePad.
 			 */
-			void handleEvent(SDL_Event * evt, GameTime * gameTime);
+			void handleEvent();
 		};
 	}
 }
