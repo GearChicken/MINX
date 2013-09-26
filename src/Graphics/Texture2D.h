@@ -13,7 +13,7 @@ namespace MINX
 		class Texture2D
 		{
 		public:
-			Texture2D(char* fileLoc, GLuint shaderProgram, int instanceNum);
+			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint** textures, int texID);
 			~Texture2D();
 			void Draw(int x, int y);
 			void Draw(int x, int y, float rotation);
@@ -28,6 +28,8 @@ namespace MINX
 			GLuint shaderProgram;
 			GLint uniTrans;
 			GLint uniTint;
+			int texID;
+			GLuint** textures;
 		};
 
 	}
