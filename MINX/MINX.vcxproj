@@ -17,7 +17,6 @@
     <ClCompile Include="..\src\GameTime.cpp" />
     <ClCompile Include="..\src\Graphics\Color.cpp" />
     <ClCompile Include="..\src\Graphics\GameWindow.cpp" />
-    <ClCompile Include="..\src\Graphics\Primitives.cpp" />
     <ClCompile Include="..\src\Graphics\Texture2D.cpp" />
     <ClCompile Include="..\src\Input\Button.cpp" />
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />
@@ -34,7 +33,6 @@
     <ClInclude Include="..\src\GameTime.h" />
     <ClInclude Include="..\src\Graphics\Color.h" />
     <ClInclude Include="..\src\Graphics\GameWindow.h" />
-    <ClInclude Include="..\src\Graphics\Primitives.h" />
     <ClInclude Include="..\src\Graphics\Texture2D.h" />
     <ClInclude Include="..\src\Input\Axis.h" />
     <ClInclude Include="..\src\Input\Button.h" />
@@ -75,7 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)GL\x86\include;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)GL\x86\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\include;$(IncludePath)</IncludePath>
@@ -94,7 +92,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>glew32s.lib;glew32mxs.lib;GLFWDLL.lib;GLFW.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32s.lib; GLFWDLL.lib;GLFW.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

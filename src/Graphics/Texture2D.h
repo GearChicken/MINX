@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 #include <GL/FreeImage.h>
 #include "Color.h"
+#include "GameWindow.h"
 namespace MINX
 {
 	namespace Graphics
@@ -13,7 +14,7 @@ namespace MINX
 		class Texture2D
 		{
 		public:
-			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint** textures, int texID);
+			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint* textures, int texID);
 			~Texture2D();
 			void Draw(int x, int y);
 			void Draw(int x, int y, float rotation);
@@ -29,7 +30,8 @@ namespace MINX
 			GLint uniTrans;
 			GLint uniTint;
 			int texID;
-			GLuint** textures;
+			GLuint* textures;
+			glm::mat4 fitToScreen(glm::mat4 trans);
 		};
 
 	}

@@ -19,8 +19,6 @@
 
 #ifndef GAMETIME_H_
 #define GAMETIME_H_
-#include <GL\glew.h>
-#include <GL\glfw.h>
 namespace MINX
 {
 	/** Contains a bunch of time related functions for use in the Game
