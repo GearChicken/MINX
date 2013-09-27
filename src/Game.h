@@ -18,13 +18,14 @@
 	*/
 #ifndef GAME_H_
 #define GAME_H_
+#define GLEW_STATIC
+#include <GL/glew.h>
+#include <GL\glfw.h>
 #include <string>
 #include <vector>
 #include <queue>
 #include <iostream>
 
-#include <GL/glew.h>
-#include <GL/glfw.h>
 
 #include "GameComponent.h"
 #include "GameTime.h"
@@ -88,6 +89,7 @@ namespace MINX
 			int windowBPP;
 			char* windowTitle;
 			int windowFlags;
+			GLuint shaderProgram;
 		private:
 			/** The object that will store the event received by SDL_PollEvent() each cycle.
 			 */

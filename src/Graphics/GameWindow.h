@@ -28,7 +28,8 @@ namespace MINX
 			public:
 				GameWindow(int width, int height, int bpp, int flags);
 				GameWindow(int width, int height, int bpp, int flags, char* title);
-				int width, height, bpp;
+				static int width, height;
+				int bpp;
 				int flags;
 			private:
 		};

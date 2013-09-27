@@ -20,11 +20,12 @@
 #include "GameWindow.h"
 
 using namespace MINX::Graphics;
-
+int GameWindow::width=0;
+int GameWindow::height=0;
 GameWindow::GameWindow(int width, int height, int bpp, int flags)
 {
-	width = width;
-	height = height;
+	GameWindow::width = width;
+	GameWindow::height = height;
 	bpp = bpp;
 	flags = flags;
 	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MAJOR, 3 );

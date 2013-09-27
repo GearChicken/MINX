@@ -1,38 +1,51 @@
-﻿Build started 9/7/2013 5:24:06 PM.
+﻿Build started 9/26/2013 11:52:22 PM.
      1>Project "Z:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Graphics\Primitives.cpp
-         Primitives.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Graphics\Texture2D.cpp
+         Texture2D.cpp
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"Z:\MINX\MINX\Debug\MINX.lib" SDL2.lib SDL2main.lib SDL2_ttf.lib SDL2_mixer.lib SDL2_image.lib /LIBPATH:..\lib\x86\ /NOLOGO Debug\AudioClip.obj
-         Debug\Content.obj
-         Debug\EventHandler.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"Z:\MINX\MINX\Debug\MINX.lib" glew32s.lib GLFWDLL.lib GLFW.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
          Debug\GameComponent.obj
          Debug\GameTime.obj
          Debug\Color.obj
-         Debug\Font.obj
          Debug\GameWindow.obj
-         Debug\Primitives.obj
          Debug\Texture2D.obj
          Debug\Button.obj
-         Debug\GamePad.obj
          Debug\IGenericHID.obj
          Debug\Keyboard.obj
-         Debug\Mouse.obj
          Debug\Point.obj
          Debug\Ray2.obj
          Debug\Rectangle.obj
          Debug\Vector2.obj
-     1>SDL2_ttf.lib(SDL2_ttf.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
-     1>SDL2_ttf.lib(SDL2_ttf.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
-     1>SDL2_mixer.lib(SDL2_mixer.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>SDL2_image.lib(SDL2_image.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in SDL2.lib(SDL2.dll); second definition ignored
-     1>SDL2_image.lib(SDL2_image.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>FreeImage.lib(FreeImage.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>FreeImage.lib(FreeImage.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>kernel32.lib(KERNEL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>kernel32.lib(KERNEL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>user32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>user32.lib(USER32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>gdi32.lib(GDI32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>winspool.lib(WINSPOOL.DRV) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>winspool.lib(WINSPOOL.DRV) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>comdlg32.lib(COMDLG32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>comdlg32.lib(COMDLG32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>advapi32.lib(ADVAPI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>advapi32.lib(ADVAPI32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>shell32.lib(SHELL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>ole32.lib(ole32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>ole32.lib(ole32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>oleaut32.lib(OLEAUT32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>oleaut32.lib(OLEAUT32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
+     1>uuid.lib(iid.obj) : warning LNK4006: _IID_IEventDispatcher already defined in uuid.lib(seo_i.obj); second definition ignored
+     1>odbc32.lib(ODBC32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
+     1>odbc32.lib(ODBC32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
          MINX.vcxproj -> Z:\MINX\MINX\Debug\MINX.lib
      1>Done Building Project "Z:\MINX\MINX\MINX\MINX.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:06.15
+Time Elapsed 00:00:05.51
