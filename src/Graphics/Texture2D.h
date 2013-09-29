@@ -23,6 +23,8 @@ namespace MINX
 			void Draw(int x, int y, float scaleX, float scaleY, float rotation, Color* tint);
 		private:	
 			void Draw();
+			double width;
+			double height;
 			float vertices[42];
 			GLuint vertexBuffer;
 			GLuint vertexArray;
@@ -31,7 +33,8 @@ namespace MINX
 			GLint uniTint;
 			int texID;
 			GLuint* textures;
-			glm::mat4 fitToScreen(glm::mat4 trans);
+			glm::mat4 MINXCoordstoGLCoords(glm::mat4 trans);
+			glm::mat4 ConvCoords(glm::vec4 coords);
 		};
 
 	}

@@ -36,8 +36,8 @@ GameWindow::GameWindow(int width, int height, int bpp, int flags)
 }
 GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
 {
-	width = width;
-	height = height;
+	GameWindow::width = width;
+	GameWindow::height = height;
 	bpp = bpp;
 	flags = flags;
 	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MAJOR, 3 );
