@@ -44,7 +44,7 @@ void GameTime::update()
 }
 long GameTime::getElapsedMillis()
 {
-	return totalTimeMillis;
+	return totalTimeMillis > 0 ? totalTimeMillis : totalTimeMillis+1;
 }
 
 long GameTime::getDeltaTime()
