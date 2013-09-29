@@ -1,12 +1,9 @@
-﻿Build started 9/29/2013 5:23:57 PM.
+﻿Build started 9/29/2013 6:51:33 PM.
      1>Project "Z:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Graphics\Texture2D.cpp
-         Texture2D.cpp
-     1>z:\minx\minx\src\graphics\texture2d.cpp(160): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>z:\minx\minx\src\graphics\texture2d.cpp(161): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>z:\minx\minx\src\graphics\texture2d.cpp(162): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
-     1>z:\minx\minx\src\graphics\texture2d.cpp(163): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\GameTime.cpp
+         GameTime.cpp
+     1>z:\minx\minx\src\gametime.cpp(41): warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"Z:\MINX\MINX\Debug\MINX.lib" glew32s.lib GLFWDLL.lib GLFW.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
@@ -52,4 +49,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:05.40
+Time Elapsed 00:00:03.71
