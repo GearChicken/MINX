@@ -137,6 +137,7 @@ namespace MINX
 			GLint uniColumns;
 			int texID;
 			GLuint* textures;
+			glm::mat4 MINXCoordstoGLCoords(glm::mat4 trans);
 			glm::mat4 ConvCoords(glm::vec4 coords);
 		};
 

@@ -18,7 +18,7 @@
 	*/
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
-#include <GL\glfw.h>
+#include <GL/glfw.h>
 namespace MINX
 {
 	namespace Graphics

@@ -16,9 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Game.h"
-#include "Input/Keyboard.h"
-#include "Vector2.h"
+#include <Game.h>
+#include <Input/Keyboard.h>
+#include <Vector2.h>
 #include <vector>
 #include "Gem.h"
 #include <GL/glew.h>

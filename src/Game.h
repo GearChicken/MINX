@@ -20,7 +20,7 @@
 #define GAME_H_
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include <GL\glfw.h>
+#include <GL/glfw.h>
 #include <string>
 #include <vector>
 #include <queue>
