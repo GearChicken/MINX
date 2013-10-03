@@ -156,6 +156,9 @@ void Game::Initialize()
 
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
+	
+glEnable (GL_BLEND);
+glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
 
 }
 void Game::LoadContent()
@@ -176,9 +179,6 @@ void Game::Update(GameTime * gameTime)
 }
 void Game::Draw(GameTime * gameTime)
 {
-	//
-glEnable (GL_BLEND);
-glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // partial transparency
 	glfwSwapBuffers();
 }
 

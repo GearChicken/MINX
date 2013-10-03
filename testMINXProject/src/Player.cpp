@@ -109,5 +109,5 @@ void Player::Update(GameTime * gametime, Keyboard* keyboard, vector<Gem*> * gems
 void Player::Draw(GameTime * gametime)
 {
 	//Put stuff here to draw your game each frame.
-	texture->Draw(rect->X,rect->Y,1.0f,1.0f,0.0f,new Color(255,255,255));
+	texture->Draw(rect->X,rect->Y,new MINX_Rectangle(0,0,16,16),1.0f,1.0f,0.0f,new Color(255,255,255));
 }
