@@ -221,8 +221,9 @@ void GemGame::Draw(GameTime * gameTime)
 	DrawString(850,50, "FPS: " + ToString(framespersecond), sdlRenderer, font);
 	Primitives::drawOutlineMINX_Rectangle(new Color(255,255,255,0), 192, 144, 640, 480, sdlRenderer);
 	*/
+	gem->Draw(10,10);
 	rotationAngle += 0.50f;
-	text->DrawString(50, 50, "hello world", new Color(255,0,0));
+	text->DrawString(50, 50, "hello world", new Color(255,255,0));
 	Game::Draw(gameTime);
 	//cout << 1000.0/gameTime->getDeltaTime() << endl;
 }

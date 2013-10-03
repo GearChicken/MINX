@@ -102,80 +102,62 @@ Texture2D::~Texture2D()
 }
 void Texture2D::Draw(float x, float y)
 {
-
-	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
+	glm::mat4 trans;
+	double wScale = width/GameWindow::width;
+	//trans = glm::scale(trans, glm::vec3(1.0/width, 1.0/height, 1.0));
+	//trans = glm::scale(trans, glm::vec3(width/GameWindow::width, height/GameWindow::height, 1.0));
 	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
 	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
 	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
 
 	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
-
+	//trans = MINXCoordstoGLCoords(trans);
+	//glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY)
 {
-	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
-
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	trans = MINXCoordstoGLCoords(trans);
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float rotationAngle)
 {
-	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glm::mat4 trans;
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	trans = MINXCoordstoGLCoords(trans);
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle)
 {
-	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(1,1,0));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glm::mat4 trans;
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	trans = MINXCoordstoGLCoords(trans);
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//glUniform3f(uniTint, .75,0,.75);
 	this->Draw();
 }
 
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
 {
-	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glm::mat4 trans;
+
+	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
+	trans = glm::rotate(trans, rotationAngle,glm::vec3(0,0,1));
+	trans = glm::translate(trans, glm::vec3(x,y,0));
+	trans = MINXCoordstoGLCoords(trans);
+	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
 	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
 	this->Draw();
 }
@@ -286,6 +268,15 @@ void Texture2D::Draw()
 	glBindVertexArray(vertexArray);
 	glDrawArrays(GL_TRIANGLES,0,6);
 }
+glm::mat4 Texture2D::MINXCoordstoGLCoords(glm::mat4 trans)
+{
+	trans = glm::translate(trans, glm::vec3(-GameWindow::width/2.0, -GameWindow::height/2.0, 0.0));
+	trans = glm::scale(trans, glm::vec3(1,-1,1.0));
+	trans = glm::scale(trans, glm::vec3(2.0/GameWindow::width, 2.0/GameWindow::height, 1.0));
+	glm::vec4 result = trans * glm::vec4(1.0,1.0,1.0,1.0);
+	std::cout << "x: " << result.x << " y: " << result.y << std::endl;
+	return trans;
+}
 glm::mat4 Texture2D::ConvCoords(glm::vec4 coords)
 {
 	glm::mat4 trans;
@@ -293,5 +284,6 @@ glm::mat4 Texture2D::ConvCoords(glm::vec4 coords)
 	coords.y +=-GameWindow::height/2.0;
 	coords.x *= 2.0/GameWindow::width;
 	coords.y *= -(2.0/GameWindow::height);
+	std::cout << "x: " << coords.x << " y: " << coords.y << std::endl;
 	return glm::translate(trans,glm::vec3(coords.x, coords.y, coords.z));
 }
