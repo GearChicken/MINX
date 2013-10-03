@@ -2,7 +2,7 @@
 AT:=@
 INCDIR = -I/usr/local/include/SDL2
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
-LFLAGS = -lX11 -lSDL2 -lSDL2_image -lSDL2_mixer -lSDL2_ttf
+LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows

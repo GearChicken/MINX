@@ -16,8 +16,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef _TEXTURE2D_H
-#define _TEXTURE2D_H
+#ifndef _TEXT2D_H
+#define _TEXT2D_H
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -26,28 +26,21 @@
 #include "Color.h"
 #include "GameWindow.h"
 #include "../Rectangle.h"
+#include <string>
 //TODO: Implement Sprite Sheet http://antongerdelan.net/opengl/sprite_sheets.html
 namespace MINX
 {
 	namespace Graphics
 	{
-		class Texture2D
+		class Text2D
 		{
 		public:
-			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint* textures, int texID);
-			~Texture2D();
-			void Draw(float x, float y);
-			void Draw(float x, float y, float rotation);
-			void Draw(float x, float y, float scaleX, float scaleY);
-			void Draw(float x, float y, float scaleX, float scaleY, float rotation);
-			void Draw(float x, float y, float scaleX, float scaleY, float rotation, Color* tint);
-			void Draw(float x, float y, MINX_Rectangle* sourceRect);
-			void Draw(float x, float y, MINX_Rectangle* sourceRect, float rotation);
-			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY);
-			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotation);
-			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotation, Color* tint);
-		private:	
-			void Draw();
+			Text2D(char* fileLoc, GLuint shaderProgram);
+			~Text2D();
+			void DrawString(float x, float y, std::string text);
+			void DrawString(float x, float y, std::string text, Color* color);
+		private:
+			MINX_Rectangle* GlyphToCoords(char glyph);
 			void Draw(MINX_Rectangle* sourceRect);
 			double width;
 			double height;
@@ -61,9 +54,7 @@ namespace MINX
 			GLint uniSourceY;
 			GLint uniRows;
 			GLint uniColumns;
-			int texID;
-			GLuint* textures;
-			glm::mat4 MINXCoordstoGLCoords(glm::mat4 trans);
+			GLuint texture;
 			glm::mat4 ConvCoords(glm::vec4 coords);
 		};
 

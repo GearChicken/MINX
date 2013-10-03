@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 9/29/2013 5:23:57 PM.
      1>Project "Z:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -7,6 +8,25 @@
      1>z:\minx\minx\src\graphics\texture2d.cpp(161): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
      1>z:\minx\minx\src\graphics\texture2d.cpp(162): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
      1>z:\minx\minx\src\graphics\texture2d.cpp(163): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
+=======
+﻿Build started 10/2/2013 9:38:42 PM.
+     1>Project "Z:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Text2D.cpp
+         Text2D.cpp
+     1>z:\minx\minx\src\text2d.cpp(105): warning C4018: '<' : signed/unsigned mismatch
+     1>z:\minx\minx\src\text2d.cpp(129): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(130): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(131): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(132): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(133): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(134): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(143): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(144): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(145): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(146): warning C4244: '*=' : conversion from 'double' to 'float', possible loss of data
+     1>z:\minx\minx\src\text2d.cpp(235): warning C4715: 'MINX::Graphics::Text2D::GlyphToCoords' : not all control paths return a value
+>>>>>>> 28e705941737d542deffe7a9b3f0304599c1a545
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"Z:\MINX\MINX\Debug\MINX.lib" glew32s.lib GLFWDLL.lib GLFW.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
@@ -14,6 +34,7 @@
          Debug\GameTime.obj
          Debug\Color.obj
          Debug\GameWindow.obj
+         Debug\Text2D.obj
          Debug\Texture2D.obj
          Debug\Button.obj
          Debug\IGenericHID.obj
@@ -21,7 +42,9 @@
          Debug\Point.obj
          Debug\Ray2.obj
          Debug\Rectangle.obj
+         Debug\Text2D.obj
          Debug\Vector2.obj
+     1>Debug\Text2D.obj : warning LNK4042: object specified more than once; extras ignored
      1>FreeImage.lib(FreeImage.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
      1>FreeImage.lib(FreeImage.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFWDLL.lib(GLFW.DLL); second definition ignored
@@ -52,4 +75,8 @@
 
 Build succeeded.
 
+<<<<<<< HEAD
 Time Elapsed 00:00:05.40
+=======
+Time Elapsed 00:00:06.57
+>>>>>>> 28e705941737d542deffe7a9b3f0304599c1a545
