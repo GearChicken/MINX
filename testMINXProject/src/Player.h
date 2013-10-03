@@ -16,9 +16,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Game.h"
-#include "Input/Keyboard.h"
-#include "Vector2.h"
+#include <Game.h>
+#include <Input/Keyboard.h>
+#include <Vector2.h>
 #include <vector>
 #include "Gem.h"
 #include <GL/glew.h>
@@ -41,7 +41,7 @@ namespace MINX_GEMGAME
 			void Draw(GameTime * gametime);
 			float speedMultiplier;
 		private:
-			Rectangle* rect;
+			MINX_Rectangle* rect;
 			Color* color;
 			Vector2* velocity;
 			Vector2 * loc;

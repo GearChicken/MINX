@@ -16,10 +16,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Rectangle.h"
-#include "GameTime.h"
-#include "Graphics/Color.h"
-#include "Graphics/Texture2D.h"
+#include <Rectangle.h>
+#include <GameTime.h>
+#include <Graphics/Color.h>
+#include <Graphics/Texture2D.h>
 #ifndef GEM_H_
 #define GEM_H_
 
@@ -33,7 +33,7 @@ namespace MINX_GEMGAME
 		public:
 			Gem(int X, int Y, Color* color, Texture2D* tex);
 			void Draw(GameTime * gametime);
-			Rectangle* rect;
+			MINX_Rectangle* rect;
 			Color* color;
 			Texture2D* tex;
 	};

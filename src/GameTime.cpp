@@ -38,7 +38,7 @@ void GameTime::limitFPS(int desiredFPS)
 }
 void GameTime::update()
 {
-	totalTimeMillis = glfwGetTime();
+	totalTimeMillis = glfwGetTime()*1000.0;
 	deltaTimeMillis = totalTimeMillis - lastUpdate;
 	lastUpdate = totalTimeMillis;
 }
