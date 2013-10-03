@@ -37,7 +37,7 @@ namespace MINX
 				Mouse(Game * game);
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
-				void handleEvent(SDL_Event * evt, GameTime * gameTime);
+				void handleEvent(GameTime * gameTime);
 				Vector2 getPositionOnScreen();
 				Vector2 getRelativeMotion();
 				Vector2 getAccumulatedPosition();

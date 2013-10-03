@@ -31,20 +31,94 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		/** A Sprite class that take a texture and draws it to the screen
+		*/
 		class Texture2D
 		{
 		public:
+			/** Creates a new Texture2D object
+			*	@param fileLoc The file to load the texture from.
+			*	@param shaderProgram The GLSL program that the Texture2D will use to draw.
+			*	@param textures An array of GLuints that passes references to texture placeholders
+			*	@param texID The index of the array of textures
+			*/
 			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint* textures, int texID);
 			~Texture2D();
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*/
 			void Draw(float x, float y);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*/
 			void Draw(float x, float y, float rotation);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*/
 			void Draw(float x, float y, float scaleX, float scaleY);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*/
 			void Draw(float x, float y, float scaleX, float scaleY, float rotation);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*	@param tint The color to tint the image to.
+			*/
 			void Draw(float x, float y, float scaleX, float scaleY, float rotation, Color* tint);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The rectangle to get the pixelData from the texture.
+			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The rectangle to get the pixelData from the texture.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect, float rotation);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The rectangle to get the pixelData from the texture.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The rectangle to get the pixelData from the texture.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotation);
+			/** Draws the texture to the screen.
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The rectangle to get the pixelData from the texture.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*	@param tint The color to tint the image to.
+			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotation, Color* tint);
 		private:	
 			void Draw();
