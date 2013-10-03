@@ -33,7 +33,7 @@ namespace MINX_GEMGAME
 		public:
 			Gem(int X, int Y, Color* color, Texture2D* tex);
 			void Draw(GameTime * gametime);
-			Rectangle* rect;
+			MINX_Rectangle* rect;
 			Color* color;
 			Texture2D* tex;
 	};

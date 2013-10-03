@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+#define MINX_DEBUG
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GL/glfw.h>
@@ -49,12 +50,13 @@ int doUpdate(void * game){
 	
 	return 0;
 }
-
 void Game::Run()
 {
 
 	gameTime = new GameTime();
+#ifdef MINX_DEBUG
 	std::cout << "Game Running!\n";
+#endif
 	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
@@ -98,20 +100,25 @@ void Game::Initialize()
 
 	
 	const char* vertexSource =
-		"#version 150\n"
+		"#version 420\n"
 		"in vec2 position;"
 		"in vec3 color;"
 		"in vec2 texcoord;"
 		"out vec3 Color;"
 		"out vec2 Texcoord;"
 		"uniform mat4 trans;"
+		"uniform float rows;"
+		"uniform float columns;"
+		"uniform float sourceX;"
+		"uniform float sourceY;"
 		"void main() {"
 		"	Color = color;"
-		"	Texcoord = texcoord;"
+		"	Texcoord = vec2(texcoord.x / columns + sourceX,  1.0-(((1.0-texcoord.y) / rows) + sourceY) );" //need to reverse the y
 		"	gl_Position = trans * vec4( position, 0.0, 1.0 );"
 		"}";
+
 	const char* fragmentSource =
-		"#version 150\n"
+		"#version 420\n"
 		"in vec3 Color;"
 		"in vec2 Texcoord;"
 		"out vec4 outColor;"
@@ -125,19 +132,21 @@ void Game::Initialize()
 	glShaderSource(vertexShader, 1, &vertexSource, NULL);	//Create a new Vertex Shader and set it to the value of vertex source
 	glCompileShader(vertexShader);	// compile the vertex shader
 
+#ifdef MINX_DEBUG
 	GLint status;
 	glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &status );
 	//Check if the shader compiled succesfully
-
+	
 	std::cout << status << " Vertex Shader\n";
-
+#endif
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(fragmentShader, 1, & fragmentSource, NULL); //Create a new Fragment shader and set it to the value of fragment source
 	glCompileShader(fragmentShader);	//compile the vertexShader
-
+	
+#ifdef MINX_DEBUG
 	glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &status );
 	std::cout << status << " Fragment Shader\n";
-
+#endif
 	
 	shaderProgram = glCreateProgram();
 	glAttachShader(shaderProgram, vertexShader);
@@ -168,6 +177,8 @@ void Game::Update(GameTime * gameTime)
 void Game::Draw(GameTime * gameTime)
 {
 	//
+glEnable (GL_BLEND);
+glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); // partial transparency
 	glfwSwapBuffers();
 }
 

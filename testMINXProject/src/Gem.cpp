@@ -22,7 +22,7 @@ using namespace MINX_GEMGAME;
 
 using namespace MINX;
 
-MINX_GEMGAME::Gem::Gem(int X, int Y, Color* color, Texture2D* tex):rect(new Rectangle(X,Y,16,16)),color(color), tex(tex)
+MINX_GEMGAME::Gem::Gem(int X, int Y, Color* color, Texture2D* tex):rect(new MINX_Rectangle(X,Y,16,16)),color(color), tex(tex)
 {
 
 }
@@ -30,6 +30,6 @@ MINX_GEMGAME::Gem::Gem(int X, int Y, Color* color, Texture2D* tex):rect(new Rect
 void MINX_GEMGAME::Gem::Draw(GameTime * gametime)
 {
 	//Put stuff here to draw your game each frame.
-	//Graphics::Primitives::drawRectangle(color, rect->X, rect->Y, rect->Width, rect->Height, screen);
-	tex->Draw(rect->X,rect->Y,1.0f,1.0f,0.0f,color);
+	//Graphics::Primitives::drawMINX_Rectangle(color, rect->X, rect->Y, rect->Width, rect->Height, screen);
+	tex->Draw((float)rect->X,(float)rect->Y,new MINX_Rectangle(0,0,16,16),1.0f,1.0f,0.0f,color);
 }

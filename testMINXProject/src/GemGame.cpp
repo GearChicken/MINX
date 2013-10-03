@@ -30,7 +30,7 @@
 #include <iostream>
 #include <GL/glew.h>
 #include <GL/glfw.h>
-
+#include <Graphics/Text2D.h>
 using namespace MINX_GEMGAME;
 using namespace MINX;
 using namespace MINX::Graphics;
@@ -42,7 +42,7 @@ int gemsCollected=0;
 int timelimit = 15;
 int roundID = 0;
 int gemCount = 0;
-
+Text2D* text;
 GLuint textures[2];
 Texture2D* gem;
 bool loseCondition= false;
@@ -115,9 +115,11 @@ void GemGame::Initialize()
 	colors->push_back(new Color(255,0,255,0));
 	colors->push_back(new Color(255,255,0,0));
 	colors->push_back(new Color(0,255,255,0));
+#ifdef MINX_DEBUG
 	cout << "Game inited!\n";
-	keyboard= new Input::Keyboard(this);
 	cout << "gems made!\n";
+#endif
+	keyboard= new Input::Keyboard(this);
 
 }
 
@@ -128,9 +130,12 @@ void GemGame::LoadContent()
 	textures[1] = 0;
 	glGenTextures(2, textures);
 	gem = new Texture2D("gem.png", shaderProgram, (GLuint*)textures, 0);
+	text = new Text2D("font1.png", shaderProgram);
 	player = new Player(50,50,gem);
 	newRound(0);
+#ifdef MINX_DEBUG
 	cout << "content loaded!\n";
+#endif
 	Game::LoadContent();
 }
 
@@ -194,7 +199,7 @@ void GemGame::Draw(GameTime * gameTime)
 	//Put stuff here to draw your game each frame.
 	if(loseCondition)
 	{
-		
+	//	cout << loseString << endl;
 		//DrawString(50,100, loseString, sdlRenderer, font);
 
 	}
@@ -205,14 +210,19 @@ void GemGame::Draw(GameTime * gameTime)
 			gem->Draw(gameTime);
 		}
 		player->Draw(gameTime);
-		
+	//	cout << "Time: " << ToString(timelimit,3) << endl;
 	//DrawString(50,50, "Time: " + ToString(timelimit,3), sdlRenderer, font);
-	}/*
+	}
+	//cout << "Gems Collected: " << ToString(gemsCollected) << endl;
+	//cout << "Round: " << ToString(roundID) << endl;
+	/*
 	DrawString(50,650, "Gems Collected: " + ToString(gemsCollected), sdlRenderer, font);
 	DrawString(50,720, "Round: " + ToString(roundID), sdlRenderer, font);
 	DrawString(850,50, "FPS: " + ToString(framespersecond), sdlRenderer, font);
-	Primitives::drawOutlineRectangle(new Color(255,255,255,0), 192, 144, 640, 480, sdlRenderer);
+	Primitives::drawOutlineMINX_Rectangle(new Color(255,255,255,0), 192, 144, 640, 480, sdlRenderer);
 	*/
 	rotationAngle += 0.50f;
+	text->DrawString(50, 50, "hello world", new Color(255,0,0));
 	Game::Draw(gameTime);
+	//cout << 1000.0/gameTime->getDeltaTime() << endl;
 }
