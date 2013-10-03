@@ -2262,10 +2262,10 @@ typedef void (GLAPIENTRY * PFNGLVERTEXATTRIBIPOINTERPROC) (GLuint, GLint, GLenum
 #ifndef GL_VERSION_3_1
 #define GL_VERSION_3_1 1
 
-#define GL_TEXTURE_RECTANGLE 0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE 0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE 0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE 0x84F8
+#define GL_TEXTURE_MINX_Rectangle 0x84F5
+#define GL_TEXTURE_BINDING_MINX_Rectangle 0x84F6
+#define GL_PROXY_TEXTURE_MINX_Rectangle 0x84F7
+#define GL_MAX_MINX_Rectangle_TEXTURE_SIZE 0x84F8
 #define GL_SAMPLER_2D_RECT 0x8B63
 #define GL_SAMPLER_2D_RECT_SHADOW 0x8B64
 #define GL_TEXTURE_BUFFER 0x8C2A
@@ -4252,7 +4252,7 @@ typedef void (GLAPIENTRY * PFNGLGETINTERNALFORMATIVPROC) (GLenum target, GLenum 
 #define GL_VIEW_CLASS_RGTC2_RG 0x82D1
 #define GL_VIEW_CLASS_BPTC_UNORM 0x82D2
 #define GL_VIEW_CLASS_BPTC_FLOAT 0x82D3
-#define GL_TEXTURE_RECTANGLE 0x84F5
+#define GL_TEXTURE_MINX_Rectangle 0x84F5
 #define GL_TEXTURE_1D_ARRAY 0x8C18
 #define GL_TEXTURE_2D_ARRAY 0x8C1A
 #define GL_TEXTURE_BUFFER 0x8C2A
@@ -5873,21 +5873,21 @@ typedef void (GLAPIENTRY * PFNGLTEXIMAGE3DMULTISAMPLEPROC) (GLenum target, GLsiz
 
 #endif /* GL_ARB_texture_query_lod */
 
-/* ------------------------ GL_ARB_texture_rectangle ----------------------- */
+/* ------------------------ GL_ARB_texture_MINX_Rectangle ----------------------- */
 
-#ifndef GL_ARB_texture_rectangle
-#define GL_ARB_texture_rectangle 1
+#ifndef GL_ARB_texture_MINX_Rectangle
+#define GL_ARB_texture_MINX_Rectangle 1
 
-#define GL_TEXTURE_RECTANGLE_ARB 0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE_ARB 0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE_ARB 0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE_ARB 0x84F8
+#define GL_TEXTURE_MINX_Rectangle_ARB 0x84F5
+#define GL_TEXTURE_BINDING_MINX_Rectangle_ARB 0x84F6
+#define GL_PROXY_TEXTURE_MINX_Rectangle_ARB 0x84F7
+#define GL_MAX_MINX_Rectangle_TEXTURE_SIZE_ARB 0x84F8
 #define GL_SAMPLER_2D_RECT_ARB 0x8B63
 #define GL_SAMPLER_2D_RECT_SHADOW_ARB 0x8B64
 
-#define GLEW_ARB_texture_rectangle GLEW_GET_VAR(__GLEW_ARB_texture_rectangle)
+#define GLEW_ARB_texture_MINX_Rectangle GLEW_GET_VAR(__GLEW_ARB_texture_MINX_Rectangle)
 
-#endif /* GL_ARB_texture_rectangle */
+#endif /* GL_ARB_texture_MINX_Rectangle */
 
 /* --------------------------- GL_ARB_texture_rg --------------------------- */
 
@@ -9773,19 +9773,19 @@ typedef void (GLAPIENTRY * PFNGLTEXTURENORMALEXTPROC) (GLenum mode);
 
 #endif /* GL_EXT_texture_perturb_normal */
 
-/* ------------------------ GL_EXT_texture_rectangle ----------------------- */
+/* ------------------------ GL_EXT_texture_MINX_Rectangle ----------------------- */
 
-#ifndef GL_EXT_texture_rectangle
-#define GL_EXT_texture_rectangle 1
+#ifndef GL_EXT_texture_MINX_Rectangle
+#define GL_EXT_texture_MINX_Rectangle 1
 
-#define GL_TEXTURE_RECTANGLE_EXT 0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE_EXT 0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE_EXT 0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE_EXT 0x84F8
+#define GL_TEXTURE_MINX_Rectangle_EXT 0x84F5
+#define GL_TEXTURE_BINDING_MINX_Rectangle_EXT 0x84F6
+#define GL_PROXY_TEXTURE_MINX_Rectangle_EXT 0x84F7
+#define GL_MAX_MINX_Rectangle_TEXTURE_SIZE_EXT 0x84F8
 
-#define GLEW_EXT_texture_rectangle GLEW_GET_VAR(__GLEW_EXT_texture_rectangle)
+#define GLEW_EXT_texture_MINX_Rectangle GLEW_GET_VAR(__GLEW_EXT_texture_MINX_Rectangle)
 
-#endif /* GL_EXT_texture_rectangle */
+#endif /* GL_EXT_texture_MINX_Rectangle */
 
 /* -------------------------- GL_EXT_texture_sRGB -------------------------- */
 
@@ -12221,28 +12221,28 @@ typedef void (GLAPIENTRY * PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC) (GLuint texture
 
 #endif /* GL_NV_texture_multisample */
 
-/* ------------------------ GL_NV_texture_rectangle ------------------------ */
+/* ------------------------ GL_NV_texture_MINX_Rectangle ------------------------ */
 
-#ifndef GL_NV_texture_rectangle
-#define GL_NV_texture_rectangle 1
+#ifndef GL_NV_texture_MINX_Rectangle
+#define GL_NV_texture_MINX_Rectangle 1
 
-#define GL_TEXTURE_RECTANGLE_NV 0x84F5
-#define GL_TEXTURE_BINDING_RECTANGLE_NV 0x84F6
-#define GL_PROXY_TEXTURE_RECTANGLE_NV 0x84F7
-#define GL_MAX_RECTANGLE_TEXTURE_SIZE_NV 0x84F8
+#define GL_TEXTURE_MINX_Rectangle_NV 0x84F5
+#define GL_TEXTURE_BINDING_MINX_Rectangle_NV 0x84F6
+#define GL_PROXY_TEXTURE_MINX_Rectangle_NV 0x84F7
+#define GL_MAX_MINX_Rectangle_TEXTURE_SIZE_NV 0x84F8
 
-#define GLEW_NV_texture_rectangle GLEW_GET_VAR(__GLEW_NV_texture_rectangle)
+#define GLEW_NV_texture_MINX_Rectangle GLEW_GET_VAR(__GLEW_NV_texture_MINX_Rectangle)
 
-#endif /* GL_NV_texture_rectangle */
+#endif /* GL_NV_texture_MINX_Rectangle */
 
 /* -------------------------- GL_NV_texture_shader ------------------------- */
 
 #ifndef GL_NV_texture_shader
 #define GL_NV_texture_shader 1
 
-#define GL_OFFSET_TEXTURE_RECTANGLE_NV 0x864C
-#define GL_OFFSET_TEXTURE_RECTANGLE_SCALE_NV 0x864D
-#define GL_DOT_PRODUCT_TEXTURE_RECTANGLE_NV 0x864E
+#define GL_OFFSET_TEXTURE_MINX_Rectangle_NV 0x864C
+#define GL_OFFSET_TEXTURE_MINX_Rectangle_SCALE_NV 0x864D
+#define GL_DOT_PRODUCT_TEXTURE_MINX_Rectangle_NV 0x864E
 #define GL_RGBA_UNSIGNED_DOT_PRODUCT_MAPPING_NV 0x86D9
 #define GL_UNSIGNED_INT_S8_S8_8_8_NV 0x86DA
 #define GL_UNSIGNED_INT_8_8_S8_S8_REV_NV 0x86DB
@@ -12363,12 +12363,12 @@ typedef void (GLAPIENTRY * PFNGLTEXTUREIMAGE3DMULTISAMPLENVPROC) (GLuint texture
 
 #define GL_OFFSET_PROJECTIVE_TEXTURE_2D_NV 0x8850
 #define GL_OFFSET_PROJECTIVE_TEXTURE_2D_SCALE_NV 0x8851
-#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_NV 0x8852
-#define GL_OFFSET_PROJECTIVE_TEXTURE_RECTANGLE_SCALE_NV 0x8853
+#define GL_OFFSET_PROJECTIVE_TEXTURE_MINX_Rectangle_NV 0x8852
+#define GL_OFFSET_PROJECTIVE_TEXTURE_MINX_Rectangle_SCALE_NV 0x8853
 #define GL_OFFSET_HILO_TEXTURE_2D_NV 0x8854
-#define GL_OFFSET_HILO_TEXTURE_RECTANGLE_NV 0x8855
+#define GL_OFFSET_HILO_TEXTURE_MINX_Rectangle_NV 0x8855
 #define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_2D_NV 0x8856
-#define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_RECTANGLE_NV 0x8857
+#define GL_OFFSET_HILO_PROJECTIVE_TEXTURE_MINX_Rectangle_NV 0x8857
 #define GL_DEPENDENT_HILO_TEXTURE_2D_NV 0x8858
 #define GL_DEPENDENT_RGB_TEXTURE_3D_NV 0x8859
 #define GL_DEPENDENT_RGB_TEXTURE_CUBE_MAP_NV 0x885A
@@ -16740,7 +16740,7 @@ GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_multisample;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_non_power_of_two;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_query_levels;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_query_lod;
-GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_rectangle;
+GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_MINX_Rectangle;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_rg;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_rgb10_a2ui;
 GLEW_VAR_EXPORT GLboolean __GLEW_ARB_texture_storage;
@@ -16871,7 +16871,7 @@ GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_lod_bias;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_mirror_clamp;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_object;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_perturb_normal;
-GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_rectangle;
+GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_MINX_Rectangle;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_sRGB;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_sRGB_decode;
 GLEW_VAR_EXPORT GLboolean __GLEW_EXT_texture_shared_exponent;
@@ -16959,7 +16959,7 @@ GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_compression_vtc;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_env_combine4;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_expand_normal;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_multisample;
-GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_rectangle;
+GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_MINX_Rectangle;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_shader;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_shader2;
 GLEW_VAR_EXPORT GLboolean __GLEW_NV_texture_shader3;

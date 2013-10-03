@@ -16,14 +16,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef RECTANGLE_H_
-#define RECTANGLE_H_
+#ifndef MINX_Rectangle_H_
+#define MINX_Rectangle_H_
 #include <cmath>
 namespace MINX
 {
-	struct Rectangle
+	struct MINX_Rectangle
 	{
-			Rectangle(int x, int y, int width, int height);
+			MINX_Rectangle(int x, int y, int width, int height);
 			int area();
 		int X;
 		int Y;
@@ -33,7 +33,7 @@ namespace MINX
 			int Bottom();
 			int Left();
 			int Right();
-			bool intersects(Rectangle* rect2);
+			bool intersects(MINX_Rectangle* rect2);
 	};
 }
 #endif

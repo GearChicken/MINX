@@ -22,7 +22,7 @@ using namespace MINX_GEMGAME;
 
 using namespace MINX;
 
-MINX_GEMGAME::Player::Player(int X, int Y, Texture2D* texture):rect(new Rectangle(X,Y,16,16)) // Instantiate a new Player with a width and height equal to 16.
+MINX_GEMGAME::Player::Player(int X, int Y, Texture2D* texture):rect(new MINX_Rectangle(X,Y,16,16)) // Instantiate a new Player with a width and height equal to 16.
 {
 	color = new Color(255,255,255,0); // make the player whitee
 	velocity = new Vector2(0,0); // make the player's velocity zero

@@ -41,7 +41,7 @@ namespace MINX_GEMGAME
 			void Draw(GameTime * gametime);
 			float speedMultiplier;
 		private:
-			Rectangle* rect;
+			MINX_Rectangle* rect;
 			Color* color;
 			Vector2* velocity;
 			Vector2 * loc;
