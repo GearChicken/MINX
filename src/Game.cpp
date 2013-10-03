@@ -113,7 +113,7 @@ void Game::Initialize()
 		"uniform float sourceY;"
 		"void main() {"
 		"	Color = color;"
-		"	Texcoord = vec2(texcoord.x / columns + sourceX,  1.0-(((1.0-texcoord.y) / rows) + sourceY) );" //need to reverse the y
+		"	Texcoord = vec2(texcoord.x / columns + sourceX,  1.0-(((1.0-texcoord.y) / rows) + sourceY) );" 
 		"	gl_Position = trans * vec4( position, 0.0, 1.0 );"
 		"}";
 

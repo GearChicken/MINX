@@ -32,12 +32,30 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		/** A Container for a Bitmap Font
+		*/
 		class Text2D
 		{
 		public:
+			/** Creates a new Text2D object
+			*	@param fileLoc The location of the file to load into the Text2D
+			*	@param shaderProgram The GLSL program that contains the shaders that will be used to draw the text.
+			*/
 			Text2D(char* fileLoc, GLuint shaderProgram);
 			~Text2D();
+			/** Draw a string of text to the screen.
+			*	@param x The X coordinate to draw on the screen to.
+			*	@param y The Y coordinate to draw on the screen to.
+			*	@param text The string of text to draw on the screen.
+			*/
 			void DrawString(float x, float y, std::string text);
+			
+			/** Draw a string of text to the screen.
+			*	@param x The X coordinate to draw on the screen to.
+			*	@param y The Y coordinate to draw on the screen to.
+			*	@param text The string of text to draw on the screen.
+			*	@param color The color to draw the test as.
+			*/
 			void DrawString(float x, float y, std::string text, Color* color);
 		private:
 			MINX_Rectangle* GlyphToCoords(char glyph);
