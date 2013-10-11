@@ -80,11 +80,13 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, GLuint textures[], int
 	//END IMAGE LOADING);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	
-	 uniTrans = glGetUniformLocation( shaderProgram, "trans" );
+	 uniTransformMatrix = glGetUniformLocation( shaderProgram, "trans" );
+	 uniViewMatrix = glGetUniformLocation( shaderProgram, "proj" );
+	 uniProjectionMatrix = glGetUniformLocation( shaderProgram, "view" );
 	 uniSourceX = glGetUniformLocation( shaderProgram, "sourceX" );
 	 uniSourceY = glGetUniformLocation( shaderProgram, "sourceY" );
 	 uniRows = glGetUniformLocation( shaderProgram, "rows" );
@@ -102,62 +104,79 @@ Texture2D::~Texture2D()
 }
 void Texture2D::Draw(float x, float y)
 {
-	glm::mat4 trans;
-	double wScale = width/GameWindow::width;
-	//trans = glm::scale(trans, glm::vec3(1.0/width, 1.0/height, 1.0));
-	//trans = glm::scale(trans, glm::vec3(width/GameWindow::width, height/GameWindow::height, 1.0));
+	//make new translation matrix
+	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
 	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
+	//convert matrix position to vec4
 	glm::vec4 result = trans * glm::vec4(1,1,1,1);
+	//convert coords to OpenGL style coords
 	glm::mat4 finalMat = ConvCoords(result);
+	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
 
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
-	//trans = MINXCoordstoGLCoords(trans);
-	//glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
-	//glUniform3f(uniTint, .75,0,.75);
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY)
 {
-	glm::mat4 trans;
-	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
-	trans = glm::translate(trans, glm::vec3(x,y,0));
-	trans = MINXCoordstoGLCoords(trans);
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
-	//glUniform3f(uniTint, .75,0,.75);
+	//make new translation matrix
+	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
+	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
+	//convert matrix position to vec4
+	glm::vec4 result = trans * glm::vec4(1,1,1,1);
+	//convert coords to OpenGL style coords
+	glm::mat4 finalMat = ConvCoords(result);
+	//scale the matrix to compensate for the size of the image on the screen
+	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float rotationAngle)
 {
-	glm::mat4 trans;
-	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
-	trans = glm::translate(trans, glm::vec3(x,y,0));
-	trans = MINXCoordstoGLCoords(trans);
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
-	//glUniform3f(uniTint, .75,0,.75);
+	//make new translation matrix
+	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
+	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
+	//convert matrix position to vec4
+	glm::vec4 result = trans * glm::vec4(1,1,1,1);
+	//convert coords to OpenGL style coords
+	glm::mat4 finalMat = ConvCoords(result);
+	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
+	//scale the matrix to compensate for the size of the image on the screen
+	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle)
 {
-	glm::mat4 trans;
-	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
-	trans = glm::rotate(trans, rotationAngle,glm::vec3(1,1,0));
-	trans = glm::translate(trans, glm::vec3(x,y,0));
-	trans = MINXCoordstoGLCoords(trans);
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
-	//glUniform3f(uniTint, .75,0,.75);
+	//make new translation matrix
+	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
+	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
+	//convert matrix position to vec4
+	glm::vec4 result = trans * glm::vec4(1,1,1,1);
+	//convert coords to OpenGL style coords
+	glm::mat4 finalMat = ConvCoords(result);
+	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(1,1,0));
+	//scale the matrix to compensate for the size of the image on the screen
+	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw();
 }
 
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
 {
-	glm::mat4 trans;
-
-	trans = glm::scale(trans, glm::vec3(scaleX, scaleY, 1));
-	trans = glm::rotate(trans, rotationAngle,glm::vec3(0,0,1));
-	trans = glm::translate(trans, glm::vec3(x,y,0));
-	trans = MINXCoordstoGLCoords(trans);
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr( trans ) );
+	//make new translation matrix
+	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
+	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
+	//convert matrix position to vec4
+	glm::vec4 result = trans * glm::vec4(1,1,1,1);
+	//convert coords to OpenGL style coords
+	glm::mat4 finalMat = ConvCoords(result);
+	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
+	//scale the matrix to compensate for the size of the image on the screen
+	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
 	this->Draw();
 }
@@ -176,7 +195,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect)
 	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(1.0*sourceRect->Width/GameWindow::width, 1.0*sourceRect->Height/GameWindow::height, 1.0));
 
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 
 	this->Draw(sourceRect);
 }
@@ -192,7 +211,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
 
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw(sourceRect);
 }
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float rotationAngle)
@@ -207,7 +226,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float rotatio
 	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
 	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(1.0*sourceRect->Width/GameWindow::width, 1.0*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw(sourceRect);
 }
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle)
@@ -222,7 +241,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(1,1,0));
 	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw(sourceRect);
 }
 
@@ -238,7 +257,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
 	//scale the matrix to compensate for the size of the image on the screen
 	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTrans, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
 	this->Draw(sourceRect);
 }
@@ -246,6 +265,20 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 
 void Texture2D::Draw(MINX_Rectangle* sourceRect)
 {
+	glm::mat4 viewMatrix = glm::mat4(1);
+	/*
+	viewMatrix = glm::lookAt(
+		glm::vec3(0.0f,0.0f,-1.0f),
+		glm::vec3(0.0f,0.0f,0.0f),
+		glm::vec3(0.0f,1.0f,0.0f)
+		);
+		//*/
+	glUniformMatrix4fv( uniViewMatrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+	glm::mat4 projectionMatrix = glm::mat4(1);
+	//projectionMatrix = glm::ortho(-GameWindow::width/1.0f,GameWindow::width/1.0f,-GameWindow::height/1.0f,GameWindow::height/1.0f, -10.0f, 10.0f);
+	//projectionMatrix = glm::ortho(-(float)GameWindow::width/(float)GameWindow::height,(float)GameWindow::width/(float)GameWindow::height,-1.0f,1.0f, -10.0f, 10.0f);
+	glUniformMatrix4fv( uniProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
 	int columns = width / sourceRect->Width;
 	int rows = height / sourceRect->Height;
 	glUniform1f( uniSourceX, sourceRect->X / width);
@@ -259,6 +292,20 @@ void Texture2D::Draw(MINX_Rectangle* sourceRect)
 }
 void Texture2D::Draw()
 {
+	glm::mat4 viewMatrix = glm::mat4(1);
+	/*
+	viewMatrix = glm::lookAt(
+		glm::vec3(0.0f,0.0f,-1.0f),
+		glm::vec3(0.0f,0.0f,0.0f),
+		glm::vec3(0.0f,1.0f,0.0f)
+		);
+		//*/
+	glUniformMatrix4fv( uniViewMatrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
+	glm::mat4 projectionMatrix = glm::mat4(1);
+	//projectionMatrix = glm::ortho(-GameWindow::width/1.0f,GameWindow::width/1.0f,-GameWindow::height/1.0f,GameWindow::height/1.0f, -10.0f, 10.0f);
+	//projectionMatrix = glm::ortho(-(float)GameWindow::width/(float)GameWindow::height,(float)GameWindow::width/(float)GameWindow::height,-1.0f,1.0f, -10.0f, 10.0f);
+	glUniformMatrix4fv( uniProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
+
 	glUniform1f( uniSourceX, 0.0);
 	glUniform1f( uniSourceY, 0.0);
 	glUniform1f( uniColumns, 1.0);
