@@ -26,7 +26,6 @@
 #include "Color.h"
 #include "GameWindow.h"
 #include "../Rectangle.h"
-//TODO: Implement Sprite Sheet http://antongerdelan.net/opengl/sprite_sheets.html
 namespace MINX
 {
 	namespace Graphics
@@ -129,7 +128,9 @@ namespace MINX
 			GLuint vertexBuffer;
 			GLuint vertexArray;
 			GLuint shaderProgram;
-			GLint uniTrans;
+			GLint uniTransformMatrix;
+			GLint uniViewMatrix;
+			GLint uniProjectionMatrix;
 			GLint uniTint;
 			GLint uniSourceX;
 			GLint uniSourceY;
@@ -139,6 +140,9 @@ namespace MINX
 			GLuint* textures;
 			glm::mat4 MINXCoordstoGLCoords(glm::mat4 trans);
 			glm::mat4 ConvCoords(glm::vec4 coords);
+			glm::mat4 modelMatrix;
+			glm::mat4 viewMatrix;
+			glm::mat4 projectionMatrix;
 		};
 
 	}

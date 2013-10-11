@@ -107,14 +107,17 @@ void Game::Initialize()
 		"out vec3 Color;"
 		"out vec2 Texcoord;"
 		"uniform mat4 trans;"
+		"uniform mat4 view;"
+		"uniform mat4 proj;"
 		"uniform float rows;"
 		"uniform float columns;"
 		"uniform float sourceX;"
 		"uniform float sourceY;"
 		"void main() {"
 		"	Color = color;"
+		//"	Texcoord = texcoord;"
 		"	Texcoord = vec2(texcoord.x / columns + sourceX,  1.0-(((1.0-texcoord.y) / rows) + sourceY) );" 
-		"	gl_Position = trans * vec4( position, 0.0, 1.0 );"
+		"	gl_Position = trans * view * proj * vec4( position, 0.0, 1.0 );"
 		"}";
 
 	const char* fragmentSource =

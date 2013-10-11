@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+
 #include "GemGame.h"
 #include "Gem.h"
 #include <stdio.h>
@@ -31,23 +32,30 @@
 #include <GL/glew.h>
 #include <GL/glfw.h>
 #include <Graphics/Text2D.h>
+
+
+
 using namespace MINX_GEMGAME;
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
+
+
 vector<Gem*> * gems;
 vector<Color*> * colors;
 Player* player;
-int gemsCollected=0;
-int timelimit = 15;
-int roundID = 0;
-int gemCount = 0;
+int gemsCollected;
+int timelimit;
+int roundID;
+int gemCount;
 Text2D* text;
 GLuint textures[2];
 Texture2D* gem;
-bool loseCondition= false;
-string loseString = "Welcome! Press Spacebar to Play!";
-float rotationAngle = 0.0f;
+bool loseCondition;
+string loseString;
+float rotationAngle;
+
+
 void newRound(int roundID)
 {
 	srand(time(NULL));
@@ -88,6 +96,13 @@ string ToString(int val, int decimal)
 }
 GemGame::GemGame()
 {
+	loseString = "Welcome! Press Spacebar to Play!";
+	gemsCollected = 0;
+	timelimit = 15;
+	roundID = 0;
+	gemCount = 0;
+	loseCondition = false;
+	rotationAngle = 0.0f;
 	desiredFPS = 120;
 	windowWidth = 1024;
 	windowHeight = 768;
@@ -108,6 +123,7 @@ void GemGame::Initialize()
 {
 	//Put stuff here that should happen when the Game is initialized.
 	Game::Initialize();
+	//create the vector of available gem colors
 	colors->push_back(new Color(255,0,0,0));
 	colors->push_back(new Color(0,255,0,0));
 	colors->push_back(new Color(0,0,255,0));
@@ -115,10 +131,13 @@ void GemGame::Initialize()
 	colors->push_back(new Color(255,0,255,0));
 	colors->push_back(new Color(255,255,0,0));
 	colors->push_back(new Color(0,255,255,0));
+
 #ifdef MINX_DEBUG
 	cout << "Game inited!\n";
 	cout << "gems made!\n";
 #endif
+
+	//instantiate a new keyboard listener
 	keyboard= new Input::Keyboard(this);
 
 }
@@ -141,7 +160,7 @@ void GemGame::LoadContent()
 
 void GemGame::UnloadContent()
 {
-	//Put stuff here that unloads content from your game.
+	//Put stuff here that unloads content from your game
 	Game::UnloadContent();
 }
 
@@ -150,13 +169,14 @@ void GemGame::Update(GameTime * gameTime)
 	//Put stuff here to update the logic in your game each tick.
 	Game::Update(gameTime);
 	player->Update(gameTime, keyboard, gems, &gemsCollected);
+	//check for end round condition
 	if(gems->size() <= 0)
 	{
 		roundID++;
 		newRound(roundID);
 		player->speedMultiplier *= .85;
 	}
-	if(timelimit <= 0)
+	else if(timelimit <= 0)
 	{
 		loseString = "You Lose! Press Spacebar to play again!";
 		loseCondition = true;
@@ -167,8 +187,8 @@ void GemGame::Update(GameTime * gameTime)
 	}
 	if(loseCondition && keyboard->getButton(GLFW_KEY_SPACE).state)
 	{
-	gems = NULL;
-	gems = new vector<Gem*>();
+		gems = NULL;
+		gems = new vector<Gem*>();
 #ifdef _WIN32
 		for(vector<Gem*>::iterator it = gems->begin(); it < gems->end(); ++it)
 		{
@@ -194,16 +214,19 @@ void GemGame::Update(GameTime * gameTime)
 
 void GemGame::Draw(GameTime * gameTime)
 {
-	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
-		glClear( GL_COLOR_BUFFER_BIT );
+	glClearColor( 100/255.0f, 149/255.0f, 237/255.0f, 1.0f );
+	glClear( GL_COLOR_BUFFER_BIT );
 	//Put stuff here to draw your game each frame.
+
+
+	/*
 	if(loseCondition)
 	{
-	//	cout << loseString << endl;
-		//DrawString(50,100, loseString, sdlRenderer, font);
-
+		cout << loseString << endl;
+		DrawString(50,100, loseString, sdlRenderer, font);
 	}
 	else
+	//*/
 	{
 		for(Gem* gem : *gems)
 		{
@@ -212,7 +235,7 @@ void GemGame::Draw(GameTime * gameTime)
 		player->Draw(gameTime);
 	//	cout << "Time: " << ToString(timelimit,3) << endl;
 	//DrawString(50,50, "Time: " + ToString(timelimit,3), sdlRenderer, font);
-	}
+	}						
 	//cout << "Gems Collected: " << ToString(gemsCollected) << endl;
 	//cout << "Round: " << ToString(roundID) << endl;
 	/*
@@ -221,9 +244,9 @@ void GemGame::Draw(GameTime * gameTime)
 	DrawString(850,50, "FPS: " + ToString(framespersecond), sdlRenderer, font);
 	Primitives::drawOutlineMINX_Rectangle(new Color(255,255,255,0), 192, 144, 640, 480, sdlRenderer);
 	*/
-	gem->Draw(10,10);
-	rotationAngle += 0.50f;
+	//rotationAngle += 0.50f;
 	text->DrawString(50, 50, "hello world", new Color(255,255,0));
+	gem->Draw(0,0);
 	Game::Draw(gameTime);
 	//cout << 1000.0/gameTime->getDeltaTime() << endl;
 }
