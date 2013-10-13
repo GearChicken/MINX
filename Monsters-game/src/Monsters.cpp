@@ -48,6 +48,7 @@ MonsterGame::MonsterGame()
 	std::cout << "The Red Monster will move randomly around the screen." << std::endl;
 	std::cout << "The Cyan Monster will follow a rectangular movement pattern." << std::endl;
 	std::cout << std::endl << "Due to a bug in the MINX Framework this game must be closed through the Console Window!\a" << std::endl;
+	std::cout << std::endl << "Source code for this project can be found online at:" << std::endl << "https://github.com/GearChicken/MINX/tree/master/Monsters-game/src" << std::endl;
 }
 
 void MonsterGame::Initialize()
