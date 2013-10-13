@@ -31,6 +31,7 @@ namespace MINX
 				static int width, height;
 				int bpp;
 				int flags;
+				int window;
 			private:
 		};
 	}
