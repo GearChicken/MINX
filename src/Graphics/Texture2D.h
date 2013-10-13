@@ -41,7 +41,7 @@ namespace MINX
 			*	@param textures An array of GLuints that passes references to texture placeholders
 			*	@param texID The index of the array of textures
 			*/
-			Texture2D(char* fileLoc, GLuint shaderProgram, GLuint* textures, int texID);
+			Texture2D(char* fileLoc, GLuint shaderProgram);
 			~Texture2D();
 			/** Draws the texture to the screen.
 			*	@param x The X value to draw the texture to on the screen.
@@ -119,11 +119,11 @@ namespace MINX
 			*	@param tint The color to tint the image to.
 			*/
 			void Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotation, Color* tint);
+			double width;
+			double height;
 		private:	
 			void Draw();
 			void Draw(MINX_Rectangle* sourceRect);
-			double width;
-			double height;
 			float vertices[42];
 			GLuint vertexBuffer;
 			GLuint vertexArray;
@@ -137,7 +137,7 @@ namespace MINX
 			GLint uniRows;
 			GLint uniColumns;
 			int texID;
-			GLuint* textures;
+			GLuint texture;
 			glm::mat4 MINXCoordstoGLCoords(glm::mat4 trans);
 			glm::mat4 ConvCoords(glm::vec4 coords);
 			glm::mat4 modelMatrix;
