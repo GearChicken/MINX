@@ -29,8 +29,6 @@
 #include <algorithm>
 #include <time.h>
 #include <iostream>
-#include <GL/glew.h>
-#include <GL/glfw.h>
 #include <Graphics/Text2D.h>
 
 
@@ -145,9 +143,6 @@ void GemGame::Initialize()
 void GemGame::LoadContent()
 {
 	//Put stuff here that loads content for your game.
-	textures[0] = 0;
-	textures[1] = 0;
-	glGenTextures(2, textures);
 	gem = new Texture2D("gem.png", shaderProgram, (GLuint*)textures, 0);
 	text = new Text2D("font1.png", shaderProgram);
 	player = new Player(50,50,gem);

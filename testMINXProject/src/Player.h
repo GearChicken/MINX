@@ -21,8 +21,6 @@
 #include <Vector2.h>
 #include <vector>
 #include "Gem.h"
-#include <GL/glew.h>
-#include <GL/glfw.h>
 #ifndef PLAYER_H_
 #define PLAYER_H_
 

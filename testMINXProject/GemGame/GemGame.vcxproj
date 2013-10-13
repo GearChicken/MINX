@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\GL\x86\include;$(SolutionDir)..\..\src;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)..\GL\x86\lib;$(SolutionDir)..\..\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)..\..\src;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)..\..\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -51,7 +51,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32s.lib;GLFWDLL.lib;GLFW.lib;FreeImage.lib;opengl32.lib;minx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>minx.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
