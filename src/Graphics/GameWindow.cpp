@@ -32,7 +32,7 @@ GameWindow::GameWindow(int width, int height, int bpp, int flags)
 	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MINOR, 2 );
 	glfwOpenWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 	glfwOpenWindowHint( GLFW_WINDOW_NO_RESIZE, GL_TRUE );
-	glfwOpenWindow( 800, 600, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
+	window = glfwOpenWindow( width, height, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
 }
 GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
 {
@@ -44,7 +44,6 @@ GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
 	glfwOpenWindowHint( GLFW_OPENGL_VERSION_MINOR, 2 );
 	glfwOpenWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
 	glfwOpenWindowHint( GLFW_WINDOW_NO_RESIZE, GL_TRUE );
-	glfwOpenWindow( 800, 600, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
+	window = glfwOpenWindow( width, height, 0, 0, 0, 0, 0, 0, GLFW_WINDOW );
 	glfwSetWindowTitle(title);
 }
-				

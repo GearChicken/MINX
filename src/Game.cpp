@@ -16,7 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#define MINX_DEBUG
+//#define MINX_DEBUG
 #define GLEW_STATIC
 #include <GL/glew.h>
 #include <GL/glfw.h>
@@ -87,7 +87,7 @@ void Game::Initialize()
 	}	
 
 	
-	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, "Window");
+	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, windowTitle);
 	glewExperimental=true;
 	if(glewInit() == -1 )
 	{
@@ -180,6 +180,8 @@ void Game::Update(GameTime * gameTime)
 	}/*
 	gameTime->limitFPS(desiredFPS);*/
 }
+				
+
 void Game::Draw(GameTime * gameTime)
 {
 	glfwSwapBuffers();
