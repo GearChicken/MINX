@@ -40,6 +40,7 @@
     <ClInclude Include="..\src\Graphics\Texture2D.h" />
     <ClInclude Include="..\src\Input\Axis.h" />
     <ClInclude Include="..\src\Input\Button.h" />
+    <ClInclude Include="..\src\input\GamePad.h" />
     <ClInclude Include="..\src\Input\IGenericHID.h" />
     <ClInclude Include="..\src\Input\Keyboard.h" />
     <ClInclude Include="..\src\Point.h" />
@@ -76,8 +77,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)GL\x86\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;</IncludePath>
+    <LibraryPath>$(SolutionDir)GL\x86\lib;$(LibraryPath); $(SolutionDir)GamePad\library\debug-win32;</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\include;$(IncludePath)</IncludePath>

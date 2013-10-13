@@ -146,5 +146,8 @@
     <ClInclude Include="..\src\Input\Keyboard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\src\input\GamePad.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
