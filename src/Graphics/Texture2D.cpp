@@ -20,7 +20,7 @@
 #include <iostream>
 using namespace MINX::Graphics;
 using namespace MINX;
-Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, GLuint textures[], int texID)
+Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 {
 	float tempVertices[] = {
 	-01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
@@ -36,7 +36,7 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, GLuint textures[], int
 	{
 		vertices[i] =  tempVertices[i];
 	}
-
+	glGenTextures(1, &texture);
 	glGenVertexArrays(1,&vertexArray);
 	glBindVertexArray(vertexArray);
 	glGenBuffers(1, &vertexBuffer);
@@ -59,7 +59,7 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, GLuint textures[], int
 		this->shaderProgram = shaderProgram;
 	
 	glActiveTexture( GL_TEXTURE0 );
-	glBindTexture(GL_TEXTURE_2D, (textures)[texID]);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	//glBindTexture(GL_TEXTURE_2D, tex);
 	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
 	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
@@ -94,7 +94,6 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram, GLuint textures[], int
 	 uniTint = glGetUniformLocation(shaderProgram, "tint");
 
 	 this->texID = texID;
-	 this->textures = textures;
 	//*/
 }
 Texture2D::~Texture2D()
@@ -286,12 +285,13 @@ void Texture2D::Draw(MINX_Rectangle* sourceRect)
 	glUniform1f( uniColumns, columns);
 	glUniform1f( uniRows, rows);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, (textures)[texID]);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vertexArray);
 	glDrawArrays(GL_TRIANGLES,0,6);
 }
 void Texture2D::Draw()
-{
+{ 
+	MINX_Rectangle* sourceRect = new MINX_Rectangle(0,0,width,height);
 	glm::mat4 viewMatrix = glm::mat4(1);
 	/*
 	viewMatrix = glm::lookAt(
@@ -311,9 +311,10 @@ void Texture2D::Draw()
 	glUniform1f( uniColumns, 1.0);
 	glUniform1f( uniRows, 1.0);
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, (textures)[texID]);
+	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vertexArray);
 	glDrawArrays(GL_TRIANGLES,0,6);
+	delete sourceRect;
 }
 glm::mat4 Texture2D::MINXCoordstoGLCoords(glm::mat4 trans)
 {
@@ -321,7 +322,7 @@ glm::mat4 Texture2D::MINXCoordstoGLCoords(glm::mat4 trans)
 	trans = glm::scale(trans, glm::vec3(1,-1,1.0));
 	trans = glm::scale(trans, glm::vec3(2.0/GameWindow::width, 2.0/GameWindow::height, 1.0));
 	glm::vec4 result = trans * glm::vec4(1.0,1.0,1.0,1.0);
-	std::cout << "x: " << result.x << " y: " << result.y << std::endl;
+	//std::cout << "x: " << result.x << " y: " << result.y << std::endl;
 	return trans;
 }
 glm::mat4 Texture2D::ConvCoords(glm::vec4 coords)
@@ -331,6 +332,6 @@ glm::mat4 Texture2D::ConvCoords(glm::vec4 coords)
 	coords.y +=-GameWindow::height/2.0;
 	coords.x *= 2.0/GameWindow::width;
 	coords.y *= -(2.0/GameWindow::height);
-	std::cout << "x: " << coords.x << " y: " << coords.y << std::endl;
+	//std::cout << "x: " << coords.x << " y: " << coords.y << std::endl;
 	return glm::translate(trans,glm::vec3(coords.x, coords.y, coords.z));
 }
