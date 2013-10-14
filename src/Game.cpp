@@ -101,7 +101,7 @@ void Game::Initialize()
 
 	
 	const char* vertexSource =
-		"#version 420\n"
+		"#version 330\n"
 		"in vec2 position;"
 		"in vec3 color;"
 		"in vec2 texcoord;"
@@ -122,7 +122,7 @@ void Game::Initialize()
 		"}";
 
 	const char* fragmentSource =
-		"#version 420\n"
+		"#version 330\n"
 		"in vec3 Color;"
 		"in vec2 Texcoord;"
 		"out vec4 outColor;"
