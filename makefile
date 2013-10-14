@@ -1,8 +1,8 @@
 ##### Variables
 AT:=@
-INCDIR = -I/usr/local/include/SDL2
+INCDIR = -I./GamePad/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
-LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage
+LFLAGS = -L./GamePad/library/debug-linux64 -lstem_gamepad -lX11 -lglfw -lGL -lGLEW -lfreeimage
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows
