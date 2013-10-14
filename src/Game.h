@@ -33,6 +33,7 @@
 #include "EventHandler.h"
 #include <thread>
 #include <mutex>
+#include <gamepad/Gamepad.h>
 using namespace std;
 
 namespace MINX

@@ -26,8 +26,6 @@
 extern "C" {
 #endif
 
-#include <stdbool.h>
-
 struct Gamepad_device {
 	// Unique device identifier for application session, starting at 0 for the first device attached and
 	// incrementing by 1 for each additional device. If a device is removed and subsequently reattached

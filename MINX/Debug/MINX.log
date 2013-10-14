@@ -1,10 +1,13 @@
-﻿Build started 10/13/2013 12:12:32 AM.
+﻿Build started 10/13/2013 8:34:00 PM.
      1>Project "D:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Game.cpp
-         Game.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Input\GamePad.cpp
+         GamePad.cpp
+     1>d:\minx\minx\src\input\gamepad.cpp(25): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\minx\minx\src\input\gamepad.cpp(39): warning C4018: '<' : signed/unsigned mismatch
+     1>d:\minx\minx\src\input\gamepad.cpp(44): warning C4018: '<' : signed/unsigned mismatch
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" glew32s.lib GLFWDLL.lib GLFW.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" GamePad.lib glew32s.lib GLFWDLL.lib GLFW.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
          Debug\GameComponent.obj
          Debug\GameTime.obj
@@ -13,6 +16,7 @@
          Debug\Text2D.obj
          Debug\Texture2D.obj
          Debug\Button.obj
+         Debug\GamePad.obj
          Debug\IGenericHID.obj
          Debug\Keyboard.obj
          Debug\Point.obj
@@ -52,4 +56,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.74
+Time Elapsed 00:00:01.71

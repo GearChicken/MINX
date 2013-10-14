@@ -97,6 +97,7 @@ void Game::Initialize()
 	{
 		(*Components)[i]->Initialize();
 	}
+	Gamepad_init();
 
 	
 	const char* vertexSource =
@@ -190,6 +191,7 @@ void Game::Draw(GameTime * gameTime)
 void Game::UnloadContent()
 {
     //SDL_DestroySemaphore( videoLock );
+	Gamepad_shutdown();
 	glDeleteProgram( shaderProgram );
 	glfwTerminate();
 }
