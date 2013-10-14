@@ -21,19 +21,44 @@
 
 #define GENERIC_GAMEPAD 0
 #define XBOX_360_GAMEPAD 1
+//#ifdef XBOX_360_GAMEPAD
+#define CONTROLLER_A 0
+#define CONTROLLER_X 1
+#define CONTROLLER_Y 2
+#define CONTROLLER_O 3
+#define CONTROLLER_LB 4
+#define CONTROLLER_RB 5
+#define CONTROLLER_BACK 6
+#define CONTROLLER_START 7
+#define CONTROLLER_LEFTSTICK 8
+#define CONTROLLER_RIGHTSTICK 9
+#define CONTROLLER_LEFTAXIS_X 0
+#define CONTROLLER_LEFTAXIS_Y 1
+#define CONTROLLER_LEFTTRIGGER 3:1
+#define CONTROLLER_RIGHTTRIGGER 3:-1
+#define CONTROLLER_RIGHTSTICK_Y 3
+#define CONTROLLER_RIGHTSTICK_X 4
+//#endif
 #include <gamepad/gamepad.h>
+#include "IGenericHID.h"
+#include "../Game.h"
 namespace MINX
 {
 	namespace Input
 	{
 		/** A Sprite class that take a texture and draws it to the screen
 		*/
-		class GamePad
+		class GamePad : public IGenericHID
 		{
 			public:
-				GamePad(int deviceIndex);
+				GamePad(int deviceIndex, Game* game);
+				GamePad(int deviceIndex, Game* game, int gamePadType);
+				static bool CheckIfDeviceValid(int deviceIndex);
+				void handleEvent();
+				Button getButton(int buttonID);
+				Axis getAxis(int axisID);
 			private:
-				Gamepad_device gamePad;
+				Gamepad_device* gamePad;
 				int gamePadType;
 		};
 
