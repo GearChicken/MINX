@@ -42,6 +42,7 @@ namespace MINX_monsters
 			virtual void Update(GameTime* gameTime, Input::Keyboard* keyboard);
 			void Draw();
 			Input::GamePad* gamePad;
+			bool usingGamePad;
 	};
 }
 #endif
