@@ -39,7 +39,7 @@
 #define CONTROLLER_RIGHTSTICK_Y 3
 #define CONTROLLER_RIGHTSTICK_X 4
 //#endif
-#include <gamepad/gamepad.h>
+#include <gamepad/Gamepad.h>
 #include "IGenericHID.h"
 #include "../Game.h"
 namespace MINX
