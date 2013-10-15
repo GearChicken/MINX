@@ -42,6 +42,7 @@
 #include <gamepad/Gamepad.h>
 #include "IGenericHID.h"
 #include "../Game.h"
+#include <functional>
 namespace MINX
 {
 	namespace Input
@@ -60,6 +61,9 @@ namespace MINX
 			private:
 				Gamepad_device* gamePad;
 				int gamePadType;
+				bool isConnected;
+				static void GamePadRemoved(struct Gamepad_device* device, void* context);
+				static void GamePadAttached(struct Gamepad_device* device, void* context);
 		};
 
 	}
