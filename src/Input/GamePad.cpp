@@ -26,32 +26,58 @@ bool GamePad::CheckIfDeviceValid(int deviceIndex)
 }
 GamePad::GamePad(int deviceIndex, Game* game):IGenericHID(game, 16, 16)
 {
+	isConnected=true;
 	this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
+	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
+	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
 GamePad::GamePad(int deviceIndex, Game* game, int gamePadType):IGenericHID(game, 16, 16)
 {
+	isConnected=true;
 	this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
 	this->gamePadType = gamePadType;
+	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
+	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
 void GamePad::handleEvent()
 {
 	Gamepad_processEvents();
-	for(int id = 0; id < gamePad->numButtons; id++)
+
+	if(isConnected)
 	{
-		(*buttons)[id].prevState = (*buttons)[id].state;
-		(*buttons)[id].state= gamePad->buttonStates[id*4];
-	}
-	for(int id = 0; id < gamePad->numAxes; id++)
-	{
-		(*axes)[id].prevVal = (*axes)[id].val;
-		(*axes)[id].val= gamePad->axisStates[id];
+		for(int id = 0; id < gamePad->numButtons; id++)
+		{
+			(*buttons)[id].prevState = (*buttons)[id].state;
+			(*buttons)[id].state= gamePad->buttonStates[id*4];
+		}
+		for(int id = 0; id < gamePad->numAxes; id++)
+		{
+			(*axes)[id].prevVal = (*axes)[id].val;
+			(*axes)[id].val= gamePad->axisStates[id];
+		}
 	}
 }
 Button GamePad::getButton(int buttonID)
 {
-	return IGenericHID::getButton(buttonID);
+	if(isConnected)
+	{
+		return IGenericHID::getButton(buttonID);
+	}
+	return Button();
 }
 Axis GamePad::getAxis(int axisID)
 {
-	return IGenericHID::getAxis(axisID);
+	if(isConnected)
+	{
+		return IGenericHID::getAxis(axisID);
+	}
+	return Axis();
+}
+void GamePad::GamePadRemoved(struct Gamepad_device* device, void* context)
+{
+	((GamePad*)context)->isConnected = (((GamePad*)context)->gamePad != device);
+}
+void GamePad::GamePadAttached(struct Gamepad_device* device, void* context)
+{
+	((GamePad*)context)->isConnected = (((GamePad*)context)->gamePad == device);
 }
