@@ -58,6 +58,7 @@ namespace MINX
 				void handleEvent();
 				Button getButton(int buttonID);
 				Axis getAxis(int axisID);
+				int deviceIndex;
 			private:
 				Gamepad_device* gamePad;
 				int gamePadType;
