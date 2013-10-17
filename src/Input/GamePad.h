@@ -59,10 +59,10 @@ namespace MINX
 				Button getButton(int buttonID);
 				Axis getAxis(int axisID);
 				int deviceIndex;
+				bool isConnected;
 			private:
 				Gamepad_device* gamePad;
 				int gamePadType;
-				bool isConnected;
 				static void GamePadRemoved(struct Gamepad_device* device, void* context);
 				static void GamePadAttached(struct Gamepad_device* device, void* context);
 		};

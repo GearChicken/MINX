@@ -26,18 +26,26 @@ bool GamePad::CheckIfDeviceValid(int deviceIndex)
 }
 GamePad::GamePad(int deviceIndex, Game* game):IGenericHID(game, 16, 16)
 {
-	isConnected=true;
 	this->deviceIndex = deviceIndex;
-	this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
+	isConnected=false;
+	if(CheckIfDeviceValid(deviceIndex))
+	{
+		isConnected=true;
+		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
+	}
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
 GamePad::GamePad(int deviceIndex, Game* game, int gamePadType):IGenericHID(game, 16, 16)
 {
-	isConnected=true;
 	this->deviceIndex = deviceIndex;
-	this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
 	this->gamePadType = gamePadType;
+	isConnected=false;
+	if(CheckIfDeviceValid(deviceIndex))
+	{
+		isConnected=true;
+		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
+	}
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
