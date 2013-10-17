@@ -18,7 +18,7 @@
 	*/
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 namespace MINX
 {
 	namespace Graphics
@@ -31,7 +31,7 @@ namespace MINX
 				static int width, height;
 				int bpp;
 				int flags;
-				int window;
+				GLFWwindow* window;
 			private:
 		};
 	}
