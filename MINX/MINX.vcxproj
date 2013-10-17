@@ -25,6 +25,7 @@
     <ClCompile Include="..\src\Input\GamePad.cpp" />
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />
     <ClCompile Include="..\src\Input\Keyboard.cpp" />
+    <ClCompile Include="..\src\input\Mouse.cpp" />
     <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
@@ -44,6 +45,7 @@
     <ClInclude Include="..\src\input\GamePad.h" />
     <ClInclude Include="..\src\Input\IGenericHID.h" />
     <ClInclude Include="..\src\Input\Keyboard.h" />
+    <ClInclude Include="..\src\Input\Mouse.h" />
     <ClInclude Include="..\src\Point.h" />
     <ClInclude Include="..\src\Ray2.h" />
     <ClInclude Include="..\src\Rectangle.h" />
@@ -98,7 +100,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>GamePad.lib;glew32s.lib; GLFWDLL.lib;GLFW.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>GamePad.lib;glew32s.lib; GLFW3DLL.lib;GLFW3.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

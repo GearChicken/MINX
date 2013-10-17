@@ -16,37 +16,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef MOUSE_H_
-#define MOUSE_H_
-
-#define MINX_MOUSE_LEFT 0
-#define MINX_MOUSE_RIGHT 1
-#define MINX_MOUSE_MIDDLE 2
-#include "IGenericHID.h"
-#include "../Game.h"
-#include "../Vector2.h"
-#include <GL/glfw3.h>
-
-namespace MINX
+#include "Mouse.h"
+using namespace MINX;
+using namespace MINX::Input;
+Mouse::Mouse(Game* game) : IGenericHID(game, 8, 8)
 {
-	namespace Input
+
+}
+void Mouse::handleEvent(GameTime* gameTime)
+{
+	for(int id = 0; id < 8; id++)
 	{
-		/** Represents a mouse device
-		 */
-		class Mouse : public IGenericHID
-		{
-			public:
-				/** Calls the IGenericHID constructor with game,0xFFF,4
-				 */
-				Mouse(Game * game);
-				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
-				 */
-				void handleEvent(GameTime * gameTime);
-				Vector2 getPositionOnScreen();
-				Vector2 getRelativeMotion();
-				Vector2 getAccumulatedPosition();
-				Button getMouseButton(int buttonID);
-		};
+		(*axes)[id].prevVal = (*axes)[id].val;
+		(*axes)[id].val= (glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
 	}
 }
-#endif
+Vector2 Mouse::getPositionOnScreen()
+{
+	double x, y;
+	glfwGetCursorPos(game->gameWindow->window,&x,&y);
+	return Vector2(x, y);
+}
+Button Mouse::getMouseButton(int buttonID)
+{
+	return getButton(buttonID);
+}
