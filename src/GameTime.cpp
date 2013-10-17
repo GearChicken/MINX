@@ -19,7 +19,7 @@
 
 #include "GameTime.h"
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 using namespace MINX;
 
 GameTime::GameTime()
@@ -28,13 +28,14 @@ GameTime::GameTime()
 
 void GameTime::limitFPS(int desiredFPS)
 {
-	
+	/*
 	int NextTick = totalTimeMillis + (1000/desiredFPS);
 	if(NextTick > totalTimeMillis)
 	{
 		glfwSleep(NextTick - totalTimeMillis);
 	}
 	NextTick = totalTimeMillis + (1000/desiredFPS);
+	//*/
 }
 void GameTime::update()
 {

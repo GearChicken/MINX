@@ -21,7 +21,7 @@
 #define MINX_DEBUG
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include <string>
 #include <vector>
 #include <queue>

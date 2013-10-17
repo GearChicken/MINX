@@ -32,7 +32,7 @@ void Keyboard::handleEvent()
 	for(int id = 0; id < 350; id++)
 	{
 			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state= (glfwGetKey(id) == GLFW_PRESS);
+			(*buttons)[id].state= (glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
 		
 	}
 }

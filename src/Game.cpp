@@ -19,7 +19,7 @@
 //#define MINX_DEBUG
 #define GLEW_STATIC
 #include <GL/glew.h>
-#include <GL/glfw.h>
+#include <GL/glfw3.h>
 #include "Game.h"
 #include <iostream>
 #if defined(LINUX) || defined(OSX)
@@ -88,6 +88,7 @@ void Game::Initialize()
 
 	
 	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, windowTitle);
+	glfwMakeContextCurrent(gameWindow->window);
 	glewExperimental=true;
 	if(glewInit() == -1 )
 	{
@@ -185,7 +186,9 @@ void Game::Update(GameTime * gameTime)
 
 void Game::Draw(GameTime * gameTime)
 {
-	glfwSwapBuffers();
+	glfwSwapBuffers(gameWindow->window);
+	glfwPollEvents();
+
 }
 
 void Game::UnloadContent()
