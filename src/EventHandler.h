@@ -28,7 +28,7 @@ namespace MINX
 		public:
 			EventHandler(Game * attachTo);
 			virtual void handleEvent();
-		private:
+		protected:
 			Game * game;
 	};
 }
