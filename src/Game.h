@@ -80,7 +80,7 @@ namespace MINX
 			/** Returns a pointer to the GameTime being used by the game.
 			 * Currently GameTime is pretty much just stubbed.
 			 */
-			 GameTime * getGameTime();
+			GameTime * getGameTime();
 			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, int windowFlags);
 			void setVideoOptions(int desiredFPS, int windowWidth, int windowHeight, int windowBPP, int windowFlags, char* windowTitle);
 			bool isRunning;
