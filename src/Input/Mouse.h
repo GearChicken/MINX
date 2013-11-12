@@ -42,9 +42,18 @@ namespace MINX
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
 				void handleEvent(GameTime * gameTime);
+				/** Gets the Position of the Mouse on the Screen (Realtive to GameWindow)
+				*/
 				Vector2 getPositionOnScreen();
+				/** Gets the Relative Motion of the Mouse on the Screen (Realitive to the GameWindow's Center)
+				*/
 				Vector2 getRelativeMotion();
+				/** Gets the Total Accumulated Position of the Mouse on the Screen (Realitive to the GameWindow's Center)
+				*/
 				Vector2 getAccumulatedPosition();
+				/** Gets a button for the state of the mouse button at 'buttonID'
+				*	@param buttonID The Identifier of the Mouse Button to get the state of
+				*/
 				Button getMouseButton(int buttonID);
 		};
 	}

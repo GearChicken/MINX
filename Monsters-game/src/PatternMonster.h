@@ -26,10 +26,10 @@ namespace MINX_monsters
 	class PatternMonster : public Monster
 	{
 		public:
-			PatternMonster(MINX_Rectangle* patternRect, Graphics::Texture2D* texture);
+			PatternMonster(Rectangle* patternRect, Graphics::Texture2D* texture);
 			void Update(GameTime* gameTime, Input::Keyboard* keyboard);
 		private:
-			MINX_Rectangle* patternRect;
+			Rectangle* patternRect;
 	};
 }
 #endif

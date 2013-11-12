@@ -23,16 +23,39 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		/** A class that holds the GLFW window pointer and some basic info about the window
+		*/
 		class GameWindow
 		{
 			public:
+				/** Creates a new instance of GameWindow
+				*	@param width The Width of the GameWindow
+				*	@param height The Height of the GameWindow
+				*	@param bpp The Bits Per Pixel of the GameWindow
+				*	@param flags The flags to create the GameWindow with
+				*/
 				GameWindow(int width, int height, int bpp, int flags);
+				
+				/** Creates a new instance of GameWindow
+				*	@param width The Width of the GameWindow
+				*	@param height The Height of the GameWindow
+				*	@param bpp The Bits Per Pixel of the GameWindow
+				*	@param flags The flags to create the GameWindow with
+				*	@param title The Title of the GameWindow
+				*/
 				GameWindow(int width, int height, int bpp, int flags, char* title);
-				static int width, height;
-				int bpp;
-				int flags;
+				/** The Width of the GameWindow
+				*/
+				static int width;
+				/** The Height of the GameWindow
+				*/
+				static int height;
+				/** A Pointer to the instance of the GLFWwindow
+				*/
 				GLFWwindow* window;
 			private:
+				int bpp;
+				int flags;
 		};
 	}
 }

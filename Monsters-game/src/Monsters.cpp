@@ -69,7 +69,7 @@ void MonsterGame::LoadContent()
 	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
 	monsters->push_back(new Bouncer(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
-	monsters->push_back(new PatternMonster(new MINX_Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
+	monsters->push_back(new PatternMonster(new Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
 	monsters->push_back(new RandomMonster(new Vector2(GameWindow::width/2,GameWindow::height/2), monsterTexture));
 	//*/
 	Game::LoadContent();

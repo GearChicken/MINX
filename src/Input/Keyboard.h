@@ -164,6 +164,9 @@ namespace MINX
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
 				void handleEvent();
+				/** Gets a button for the state of 'key'
+				*	@param key The Key to get the state of
+				*/
 				Button getKey(char key);
 		};
 	}

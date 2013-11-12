@@ -76,6 +76,8 @@ namespace MINX
 		/** A pointer to a vector of pointers to the GameComponents used in the game.
 		*/
 		vector<GameComponent*> * Components;
+		/** A pointer to a vector of pointers to the EventHandlers used in the game.
+		*/
 		vector<EventHandler*> * eventHandlers;
 		/** Returns a pointer to the GameTime being used by the game.
 		* Currently GameTime is pretty much just stubbed.

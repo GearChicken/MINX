@@ -23,10 +23,18 @@
 namespace MINX
 {
 	class Game; //forward declaration to avoid dependency problems
+
+	/** An Event Handler class
+	*/
 	class EventHandler
 	{
 		public:
+			/** Creates a new instance of an event handler
+			*	@param attachTo A pointer to the game object to attach to.
+			*/
 			EventHandler(Game * attachTo);
+			/** Handles the event
+			*/
 			virtual void handleEvent();
 		protected:
 			Game * game;
