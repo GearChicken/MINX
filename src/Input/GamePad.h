@@ -47,21 +47,40 @@ namespace MINX
 {
 	namespace Input
 	{
-		/** A Sprite class that take a texture and draws it to the screen
+		/** A GamePad class that handles input from a USB gamepad
 		*/
 		class GamePad : public IGenericHID
 		{
 			public:
+				/** Creates a new GamePad instance.
+				*	@param deviceIndex The Index of the GamePad to get an instance of.
+				*	@param game A pointer to an instance of the game object.
+				*/
 				GamePad(int deviceIndex, Game* game);
+				/** Creates a new Gamepad instance.
+				*	@param deviceIndex The Index of the GamePad to get an instance of.
+				*	@param game A pointer to an instance of the game object.
+				*	@param gamePadType The Type of GamePad that is being Instantiated
+				*/
 				GamePad(int deviceIndex, Game* game, int gamePadType);
+				/** Checks if a GamePad is connected at the specified deviceIndex
+				*	@param deviceIndex The index of the device to check for.
+				*	@return Whether or not the GamePad at the specified index is connected.
+				*/
 				static bool CheckIfDeviceValid(int deviceIndex);
+				/** Checks is the GamePad's state has changed, and saves the data properly.
+				*/
 				void handleEvent();
+				/** Gets the Button at the specified index
+				*/
 				Button getButton(int buttonID);
+				/** Gets the Axis at the specified index
+				*/
 				Axis getAxis(int axisID);
-				int deviceIndex;
-				bool isConnected;
 			private:
 				Gamepad_device* gamePad;
+				bool isConnected;
+				int deviceIndex;
 				int gamePadType;
 				static void GamePadRemoved(struct Gamepad_device* device, void* context);
 				static void GamePadAttached(struct Gamepad_device* device, void* context);

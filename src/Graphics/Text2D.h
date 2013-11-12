@@ -58,8 +58,8 @@ namespace MINX
 			*/
 			void DrawString(float x, float y, std::string text, Color* color);
 		private:
-			MINX_Rectangle* GlyphToCoords(char glyph);
-			void Draw(MINX_Rectangle* sourceRect);
+			Rectangle* GlyphToCoords(char glyph);
+			void Draw(Rectangle* sourceRect);
 			double width;
 			double height;
 			float vertices[42];

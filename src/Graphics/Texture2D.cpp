@@ -182,7 +182,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 }
 
 
-void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect)
 {
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
@@ -196,7 +196,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect)
 
 	this->Draw(sourceRect);
 }
-void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY)
 {
 	
 	//setup the ortho projection matrix
@@ -212,7 +212,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 
 	this->Draw(sourceRect);
 }
-void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float rotationAngle)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float rotationAngle)
 {
 	
 	//setup the ortho projection matrix
@@ -228,7 +228,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float rotatio
 
 	this->Draw(sourceRect);
 }
-void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle)
 {
 	
 	
@@ -249,7 +249,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 	this->Draw(sourceRect);
 }
 
-void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
 {
 	
 	//setup the ortho projection matrix
@@ -272,7 +272,7 @@ void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX,
 }
 
 
-void Texture2D::Draw(MINX_Rectangle* sourceRect)
+void Texture2D::Draw(Rectangle* sourceRect)
 {
 
 	int columns = width / sourceRect->Width;
@@ -288,7 +288,7 @@ void Texture2D::Draw(MINX_Rectangle* sourceRect)
 }
 void Texture2D::Draw()
 { 
-	MINX_Rectangle* sourceRect = new MINX_Rectangle(0,0,width,height);
+	Rectangle* sourceRect = new Rectangle(0,0,width,height);
 
 	glUniform1f( uniSourceX, 0.0);
 	glUniform1f( uniSourceY, 0.0);

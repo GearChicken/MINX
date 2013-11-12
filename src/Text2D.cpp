@@ -124,7 +124,7 @@ void Text2D::DrawString(float x, float y, std::string text, Color* color)
 	glUniform3f(uniTint, color->R/255.0f,color->G/255.0f,color->B/255.0f);
 	DrawString(x,y,text);
 }
-void Text2D::Draw(MINX_Rectangle* sourceRect)
+void Text2D::Draw(Rectangle* sourceRect)
 {
 	int columns = width / sourceRect->Width;
 	int rows = height / sourceRect->Height;
@@ -146,90 +146,90 @@ glm::mat4 Text2D::ConvCoords(glm::vec4 coords)
 	coords.y *= -(2.0/GameWindow::height);
 	return glm::translate(trans,glm::vec3(coords.x, coords.y, coords.z));
 }
-MINX_Rectangle* Text2D::GlyphToCoords(char glyph)
+Rectangle* Text2D::GlyphToCoords(char glyph)
 {
 	switch (glyph)
 	{
 	case 'a':
-		return new MINX_Rectangle(0,0,64,64);
+		return new Rectangle(0,0,64,64);
 		break;
 	case 'b':
-		return new MINX_Rectangle(64,0,64,64);
+		return new Rectangle(64,0,64,64);
 		break;
 	case 'c':
-		return new MINX_Rectangle(128,0,64,64);
+		return new Rectangle(128,0,64,64);
 		break;
 	case 'd':
-		return new MINX_Rectangle(192,0,64,64);
+		return new Rectangle(192,0,64,64);
 		break;
 	case 'e':
-		return new MINX_Rectangle(256,0,64,64);
+		return new Rectangle(256,0,64,64);
 		break;
 	case 'f':
-		return new MINX_Rectangle(320,0,64,64);
+		return new Rectangle(320,0,64,64);
 		break;
 	case 'g':
-		return new MINX_Rectangle(384,0,64,64);
+		return new Rectangle(384,0,64,64);
 		break;
 	case 'h':
-		return new MINX_Rectangle(448,0,64,64);
+		return new Rectangle(448,0,64,64);
 		break;
 	case 'i':
-		return new MINX_Rectangle(512,0,64,64);
+		return new Rectangle(512,0,64,64);
 		break;
 	case 'j':
-		return new MINX_Rectangle(576,0,64,64);
+		return new Rectangle(576,0,64,64);
 		break;
 	case 'k':
-		return new MINX_Rectangle(640,0,64,64);
+		return new Rectangle(640,0,64,64);
 		break;
 	case 'l':
-		return new MINX_Rectangle(704,0,64,64);
+		return new Rectangle(704,0,64,64);
 		break;
 	case 'm':
-		return new MINX_Rectangle(768,0,64,64);
+		return new Rectangle(768,0,64,64);
 		break;
 	case 'n':
-		return new MINX_Rectangle(832,0,64,64);
+		return new Rectangle(832,0,64,64);
 		break;
 	case 'o':
-		return new MINX_Rectangle(896,0,64,64);
+		return new Rectangle(896,0,64,64);
 		break;
 	case 'p':
-		return new MINX_Rectangle(960,0,64,64);
+		return new Rectangle(960,0,64,64);
 		break;
 	case 'q':
-		return new MINX_Rectangle(0,64,64,64);
+		return new Rectangle(0,64,64,64);
 		break;
 	case 'r':
-		return new MINX_Rectangle(64,64,64,64);
+		return new Rectangle(64,64,64,64);
 		break;
 	case 's':
-		return new MINX_Rectangle(128,64,64,64);
+		return new Rectangle(128,64,64,64);
 		break;
 	case 't':
-		return new MINX_Rectangle(192,64,64,64);
+		return new Rectangle(192,64,64,64);
 		break;
 	case 'u':
-		return new MINX_Rectangle(256,64,64,64);
+		return new Rectangle(256,64,64,64);
 		break;
 	case 'v':
-		return new MINX_Rectangle(320,64,64,64);
+		return new Rectangle(320,64,64,64);
 		break;
 	case 'w':
-		return new MINX_Rectangle(384,64,64,64);
+		return new Rectangle(384,64,64,64);
 		break;
 	case 'x':
-		return new MINX_Rectangle(448,64,64,64);
+		return new Rectangle(448,64,64,64);
 		break;
 	case 'y':
-		return new MINX_Rectangle(512,64,64,64);
+		return new Rectangle(512,64,64,64);
 		break;
 	case 'z':
-		return new MINX_Rectangle(576,64,64,64);
+		return new Rectangle(576,64,64,64);
 		break;
 	case ' ':
-		return new MINX_Rectangle(640,64,64,64);
+		return new Rectangle(640,64,64,64);
 		break;
 	}
 }

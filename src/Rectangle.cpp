@@ -21,34 +21,34 @@
 
 using namespace MINX;
 
-MINX_Rectangle::MINX_Rectangle(int x, int y, int width, int height)
+Rectangle::Rectangle(int x, int y, int width, int height)
 {
 	X=x;
 	Y=y;
 	Width = width;
 	Height = height;
 }
-int MINX_Rectangle::area()
+int Rectangle::area()
 {
 	return Width * Height;
 }
-int MINX_Rectangle::Top()
+int Rectangle::Top()
 {
 	return Y;
 }
-int MINX_Rectangle::Bottom()
+int Rectangle::Bottom()
 {
 	return Y + Height;
 }
-int MINX_Rectangle::Left()
+int Rectangle::Left()
 {
 	return X;
 }
-int MINX_Rectangle::Right()
+int Rectangle::Right()
 {
 	return X + Width;
 }
-bool MINX_Rectangle::intersects(MINX_Rectangle* rect2)
+bool Rectangle::intersects(Rectangle* rect2)
 {
 	return !(
 			(Bottom() < rect2->Top()) ||

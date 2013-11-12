@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "PatternMonster.h"
 using namespace MINX_monsters;
-PatternMonster::PatternMonster(MINX_Rectangle* patternRect, Graphics::Texture2D* texture) : Monster(new Vector2(patternRect->X, patternRect->Y), texture, new Graphics::Color(0.0f,255.0f,255.0f))
+PatternMonster::PatternMonster(Rectangle* patternRect, Graphics::Texture2D* texture) : Monster(new Vector2(patternRect->X, patternRect->Y), texture, new Graphics::Color(0.0f,255.0f,255.0f))
 {
 	velocity->X = 1;
 	velocity->Y = 0;
