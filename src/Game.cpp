@@ -31,8 +31,7 @@ using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
 Game::Game()
-{	
-	desiredFPS = 60;
+{
 	windowWidth = 640;
 	windowHeight = 480;
 	windowBPP = 32;
@@ -57,7 +56,6 @@ void Game::Run()
 #ifdef MINX_DEBUG
 	std::cout << "Game Running!\n";
 #endif
-	preventAutoQuitting = false;
 	this->Initialize();
 	this->LoadContent();
 	while(isRunning)

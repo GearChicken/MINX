@@ -1,9 +1,16 @@
-﻿Build started 10/17/2013 2:59:34 PM.
+﻿Build started 11/12/2013 12:41:16 AM.
      1>Project "D:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\input\Mouse.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\EventHandler.cpp ..\src\Game.cpp ..\src\GameComponent.cpp ..\src\Input\GamePad.cpp ..\src\Input\IGenericHID.cpp ..\src\Input\Keyboard.cpp ..\src\input\Mouse.cpp
+         Game.cpp
+         Generating Code...
+         Skipping... (no relevant changes detected)
          Mouse.cpp
-     1>d:\minx\minx\src\input\mouse.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         Keyboard.cpp
+         IGenericHID.cpp
+         GamePad.cpp
+         GameComponent.cpp
+         EventHandler.cpp
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" GamePad.lib glew32s.lib GLFW3DLL.lib GLFW3.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
@@ -129,4 +136,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.53
+Time Elapsed 00:00:01.82

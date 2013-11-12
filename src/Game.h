@@ -102,6 +102,7 @@ namespace MINX
 		bool isRunning;
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
+		*/
 		GLuint shaderProgram;
 	private:
 		/** A pointer to the GameTime being used by the game.
