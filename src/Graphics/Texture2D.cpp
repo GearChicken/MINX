@@ -23,13 +23,13 @@ using namespace MINX;
 Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 {
 	float tempVertices[] = {
-	-01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
-     01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
-     01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
-
-     01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
-    -01.0f, -01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
-    -01.0f,  01.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+	-08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
+     08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
+     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+			   
+     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+    -08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
+    -08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
 	};
 
 	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
@@ -85,97 +85,98 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	
 	 uniTransformMatrix = glGetUniformLocation( shaderProgram, "trans" );
-	 uniViewMatrix = glGetUniformLocation( shaderProgram, "proj" );
-	 uniProjectionMatrix = glGetUniformLocation( shaderProgram, "view" );
 	 uniSourceX = glGetUniformLocation( shaderProgram, "sourceX" );
 	 uniSourceY = glGetUniformLocation( shaderProgram, "sourceY" );
 	 uniRows = glGetUniformLocation( shaderProgram, "rows" );
 	 uniColumns = glGetUniformLocation( shaderProgram, "columns" );
 	 uniTint = glGetUniformLocation(shaderProgram, "tint");
-
-	 this->texID = texID;
 	//*/
 }
 Texture2D::~Texture2D()
 {
 	glDeleteBuffers( 1, &vertexBuffer );
 	glDeleteVertexArrays( 1, &vertexArray );
+	modelviewMatrix = glm::mat4(1);
+	projectionMatrix = glm::mat4(1);
 }
 void Texture2D::Draw(float x, float y)
 {
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw();
+
 }
 void Texture2D::Draw(float x, float y, float rotationAngle)
 {
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(1.0*width/GameWindow::width, 1.0*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
 	this->Draw();
 }
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(1,1,0));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
 	this->Draw();
 }
 
 void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + width/2.0,y + height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*width/GameWindow::width, scaleY*height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
 	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
 	this->Draw();
 }
@@ -183,100 +184,96 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect)
 {
-
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + sourceRect->Width/2.0,y + sourceRect->Height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(1.0*sourceRect->Width/GameWindow::width, 1.0*sourceRect->Height/GameWindow::height, 1.0));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
 
 	this->Draw(sourceRect);
 }
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + sourceRect->Width/2.0,y + sourceRect->Height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
 	this->Draw(sourceRect);
 }
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float rotationAngle)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + sourceRect->Width/2.0,y + sourceRect->Height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(1.0*sourceRect->Width/GameWindow::width, 1.0*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
+
 	this->Draw(sourceRect);
 }
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle)
 {
+	
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + sourceRect->Width/2.0,y + sourceRect->Height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(1,1,0));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
+
 	this->Draw(sourceRect);
 }
 
 void Texture2D::Draw(float x, float y, MINX_Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
 {
+	
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+	
 	//make new translation matrix
-	glm::mat4 trans;//translate to the new xy coords, and add w/2 h/2 to switch origin to the top left
-	trans = glm::translate(trans, glm::vec3(x + sourceRect->Width/2.0,y + sourceRect->Height/2.0 ,0));
-	//convert matrix position to vec4
-	glm::vec4 result = trans * glm::vec4(1,1,1,1);
-	//convert coords to OpenGL style coords
-	glm::mat4 finalMat = ConvCoords(result);
-	finalMat = glm::rotate(finalMat, rotationAngle,glm::vec3(0,0,1));
-	//scale the matrix to compensate for the size of the image on the screen
-	finalMat = glm::scale(finalMat, glm::vec3(scaleX*sourceRect->Width/GameWindow::width, scaleY*sourceRect->Height/GameWindow::height, 1.0));
-	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(finalMat));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	//scale the coordinates up by the specified amounts
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
+	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
+
 	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
+
+
 	this->Draw(sourceRect);
 }
 
 
 void Texture2D::Draw(MINX_Rectangle* sourceRect)
 {
-	glm::mat4 viewMatrix = glm::mat4(1);
-	/*
-	viewMatrix = glm::lookAt(
-		glm::vec3(0.0f,0.0f,-1.0f),
-		glm::vec3(0.0f,0.0f,0.0f),
-		glm::vec3(0.0f,1.0f,0.0f)
-		);
-		//*/
-	glUniformMatrix4fv( uniViewMatrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-	glm::mat4 projectionMatrix = glm::mat4(1);
-	//projectionMatrix = glm::ortho(-GameWindow::width/1.0f,GameWindow::width/1.0f,-GameWindow::height/1.0f,GameWindow::height/1.0f, -10.0f, 10.0f);
-	//projectionMatrix = glm::ortho(-(float)GameWindow::width/(float)GameWindow::height,(float)GameWindow::width/(float)GameWindow::height,-1.0f,1.0f, -10.0f, 10.0f);
-	glUniformMatrix4fv( uniProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
 	int columns = width / sourceRect->Width;
 	int rows = height / sourceRect->Height;
@@ -292,19 +289,6 @@ void Texture2D::Draw(MINX_Rectangle* sourceRect)
 void Texture2D::Draw()
 { 
 	MINX_Rectangle* sourceRect = new MINX_Rectangle(0,0,width,height);
-	glm::mat4 viewMatrix = glm::mat4(1);
-	/*
-	viewMatrix = glm::lookAt(
-		glm::vec3(0.0f,0.0f,-1.0f),
-		glm::vec3(0.0f,0.0f,0.0f),
-		glm::vec3(0.0f,1.0f,0.0f)
-		);
-		//*/
-	glUniformMatrix4fv( uniViewMatrix, 1, GL_FALSE, glm::value_ptr(viewMatrix));
-	glm::mat4 projectionMatrix = glm::mat4(1);
-	//projectionMatrix = glm::ortho(-GameWindow::width/1.0f,GameWindow::width/1.0f,-GameWindow::height/1.0f,GameWindow::height/1.0f, -10.0f, 10.0f);
-	//projectionMatrix = glm::ortho(-(float)GameWindow::width/(float)GameWindow::height,(float)GameWindow::width/(float)GameWindow::height,-1.0f,1.0f, -10.0f, 10.0f);
-	glUniformMatrix4fv( uniProjectionMatrix, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 
 	glUniform1f( uniSourceX, 0.0);
 	glUniform1f( uniSourceY, 0.0);
@@ -313,25 +297,6 @@ void Texture2D::Draw()
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindVertexArray(vertexArray);
-	glDrawArrays(GL_TRIANGLES,0,6);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
 	delete sourceRect;
-}
-glm::mat4 Texture2D::MINXCoordstoGLCoords(glm::mat4 trans)
-{
-	trans = glm::translate(trans, glm::vec3(-GameWindow::width/2.0, -GameWindow::height/2.0, 0.0));
-	trans = glm::scale(trans, glm::vec3(1,-1,1.0));
-	trans = glm::scale(trans, glm::vec3(2.0/GameWindow::width, 2.0/GameWindow::height, 1.0));
-	glm::vec4 result = trans * glm::vec4(1.0,1.0,1.0,1.0);
-	//std::cout << "x: " << result.x << " y: " << result.y << std::endl;
-	return trans;
-}
-glm::mat4 Texture2D::ConvCoords(glm::vec4 coords)
-{
-	glm::mat4 trans;
-	coords.x +=-GameWindow::width/2.0;
-	coords.y +=-GameWindow::height/2.0;
-	coords.x *= 2.0/GameWindow::width;
-	coords.y *= -(2.0/GameWindow::height);
-	//std::cout << "x: " << coords.x << " y: " << coords.y << std::endl;
-	return glm::translate(trans,glm::vec3(coords.x, coords.y, coords.z));
 }

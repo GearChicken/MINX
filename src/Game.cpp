@@ -109,8 +109,6 @@ void Game::Initialize()
 		"out vec3 Color;"
 		"out vec2 Texcoord;"
 		"uniform mat4 trans;"
-		"uniform mat4 view;"
-		"uniform mat4 proj;"
 		"uniform float rows;"
 		"uniform float columns;"
 		"uniform float sourceX;"
@@ -118,8 +116,8 @@ void Game::Initialize()
 		"void main() {"
 		"	Color = color;"
 		//"	Texcoord = texcoord;"
-		"	Texcoord = vec2(texcoord.x / columns + sourceX,  1.0-(((1.0-texcoord.y) / rows) + sourceY) );" 
-		"	gl_Position = trans * view * proj * vec4( position, 0.0, 1.0 );"
+		"	Texcoord = vec2(texcoord.x / columns + sourceX,  (((texcoord.y) / rows) + sourceY) );" 
+		"	gl_Position = trans * vec4(position, 0.0, 1.0);"
 		"}";
 
 	const char* fragmentSource =
@@ -157,7 +155,7 @@ void Game::Initialize()
 	glAttachShader(shaderProgram, vertexShader);
 	glAttachShader(shaderProgram, fragmentShader);
 	glBindFragDataLocation(shaderProgram, 0, "outColor");
-	//bind the fragmentation data
+
 
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
@@ -199,17 +197,15 @@ void Game::UnloadContent()
 	glfwTerminate();
 }
 
-void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags)
+void Game::setVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags)
 {
-	desiredFPS = DdesiredFPS;
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
 	windowBPP = DwindowBPP;
 	windowFlags =DwindowFlags;
 }
-void Game::setVideoOptions(int DdesiredFPS, int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags, char* DwindowTitle)
+void Game::setVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags, char* DwindowTitle)
 {
-	desiredFPS = DdesiredFPS;
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
 	windowBPP = DwindowBPP;
