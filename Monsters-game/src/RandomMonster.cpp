@@ -30,11 +30,11 @@ void RandomMonster::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 	position->Y += velocity->Y;
 	velocity->X = rand()%3 -1;
 	velocity->Y = rand()%3 -1;
-	if (position->X + velocity->X < 0 || position->X + velocity->X > Graphics::GameWindow::width - texture->width)
+	if (position->X + velocity->X < 0 || position->X + velocity->X > Graphics::GameWindow::width - texture->GetWidth())
 	{
 		velocity->X *= -1;
 	}
-	if (position->Y + velocity->Y < 0 || position->Y + velocity->Y > Graphics::GameWindow::height - texture->height)
+	if (position->Y + velocity->Y < 0 || position->Y + velocity->Y > Graphics::GameWindow::height - texture->GetHeight())
 	{
 		velocity->Y *= -1;
 	}

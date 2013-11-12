@@ -28,11 +28,11 @@ void Bouncer::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 	position->X += velocity->X;
 	position->Y += velocity->Y;
 	
-	if(position->X < 1 || position->X > Graphics::GameWindow::width - texture->width)
+	if(position->X < 1 || position->X > Graphics::GameWindow::width - texture->GetWidth())
 	{
 		velocity->X *=-1;
 	}
-	if(position->Y < 1 || position->Y > Graphics::GameWindow::height - texture->height)
+	if(position->Y < 1 || position->Y > Graphics::GameWindow::height - texture->GetHeight())
 	{
 		velocity->Y *=-1;
 	}

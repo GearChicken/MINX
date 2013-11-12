@@ -34,7 +34,7 @@ Texture2D* monsterTexture;
 MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
-	Game::setVideoOptions(120, 640, 300 ,32,0,"MINX Monster Game!");
+	Game::setVideoOptions(640, 300 ,32,0,"MINX Monster Game!");
 	srand(time(NULL));
 	isRunning = true;
 	monsters = new vector<Monster*>();
