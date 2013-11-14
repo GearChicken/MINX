@@ -97,7 +97,10 @@ void Game::Initialize()
 		(*Components)[i]->Initialize();
 	}
 	Gamepad_init();
-
+	if(FT_Init_FreeType(&freeTypeLibrary))
+	{
+		std::cout << "FreeType Not Inited!";
+	}
 	
 	const char* vertexSource =
 		"#version 330\n"
