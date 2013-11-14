@@ -51,7 +51,7 @@ void Font::RenderString(std::string text, float x, float y, float sx, float sy)
 
 		Texture2D* texture;
 		texture = new Texture2D(glyphSlot->bitmap.buffer, w, h, GL_ALPHA, shaderProgram);
-		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f, 1.0f, -1.0f);
+		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f);
 		texture->~Texture2D();
 		delete texture;
 
@@ -78,7 +78,7 @@ void Font::RenderCharStar(const char *text, float x, float y, float sx, float sy
 
 		Texture2D* texture;
 		texture = new Texture2D(glyphSlot->bitmap.buffer, w, h, GL_ALPHA, shaderProgram);
-		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f, 1.0f, -1.0f);
+		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f);
 		texture->~Texture2D();
 		delete texture;
 
