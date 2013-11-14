@@ -40,6 +40,14 @@ namespace MINX
 			*	@param shaderProgram The GLSL program that the Texture2D will use to draw.
 			*/
 			Texture2D(char* fileLoc, GLuint shaderProgram);
+			/** Creates a new Texture2D object
+			*	@param pixelData The Pixel Data to Place into the Texture
+			*	@param nWidth The Width of the Texture
+			*	@param nHeight The Height of the Texture
+			*	@param format The format of the Texture
+			*	@param shaderProgram The GLSL program that the Texture2D will use to draw.
+			*/
+			Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLuint shaderProgram);
 			/** Safely destroys a Texture2D object
 			*/
 			~Texture2D();
@@ -96,7 +104,7 @@ namespace MINX
 			*	@param y the Y value to draw the texture to on the screen.
 			*	@param sourceRect The rectangle to get the pixelData from the texture.
 			*	@param scaleX The amount to horizontally scale the texture by.
-			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by. 
 			*/
 			void Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY);
 			/** Draws the texture to the screen.
