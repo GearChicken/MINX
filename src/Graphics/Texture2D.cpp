@@ -32,13 +32,13 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 		this->width = nWidth;
 		this->height = nHeight;
 	float tempVertices[] = {
-	-nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
-     nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
-     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+	-nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f, // Top-left
+     nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Top-right
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Bottom-right
 			   
-     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
-    -nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
-    -nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Bottom-right
+    -nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f,// Bottom-left
+    -nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f// Top-left
 	};
 
 	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
@@ -175,7 +175,6 @@ void Texture2D::Draw(float x, float y)
 	
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -188,10 +187,11 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY)
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 	
 	//make new translation matrix
-	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
 	
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
 	
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -207,7 +207,6 @@ void Texture2D::Draw(float x, float y, float rotationAngle)
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -224,8 +223,6 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
-	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -244,7 +241,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -260,7 +257,6 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect)
 	
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
@@ -278,7 +274,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 	
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
 	
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -294,7 +290,6 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float rotationAngl
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -314,7 +309,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -334,7 +329,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
