@@ -22,14 +22,23 @@ using namespace MINX::Graphics;
 using namespace MINX;
 Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 {
+		FIBITMAP* bitmap = FreeImage_Load(
+			FreeImage_GetFileType(fileLoc, 0),
+			fileLoc);
+		FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
+
+		int nWidth = FreeImage_GetWidth(pImage);
+		int nHeight = FreeImage_GetHeight(pImage);
+		this->width = nWidth;
+		this->height = nHeight;
 	float tempVertices[] = {
-	-08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
-     08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
-     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+	-nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
+     nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
 			   
-     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
-    -08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
-    -08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+    -nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
+    -nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
 	};
 
 	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
@@ -64,15 +73,6 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
 	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
 	// IMAGAE LOADING
-		FIBITMAP* bitmap = FreeImage_Load(
-			FreeImage_GetFileType(fileLoc, 0),
-			fileLoc);
-		FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
-
-		int nWidth = FreeImage_GetWidth(pImage);
-		int nHeight = FreeImage_GetHeight(pImage);
-		this->width = nWidth;
-		this->height = nHeight;
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, nWidth, nHeight,
 			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
 
@@ -90,14 +90,83 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 	 uniRows = glGetUniformLocation( shaderProgram, "rows" );
 	 uniColumns = glGetUniformLocation( shaderProgram, "columns" );
 	 uniTint = glGetUniformLocation(shaderProgram, "tint");
+
+	glUniform3f(uniTint, 1.0f, 1.0f, 1.0f);
+	//*/
+}
+Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLuint shaderProgram)
+{
+	float tempVertices[] = {
+	-nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
+     nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+			   
+     nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+    -nWidth/2.0f,  -nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
+    -nWidth/2.0f,   nHeight /2.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+	};
+
+	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
+	{
+		vertices[i] =  tempVertices[i];
+	}
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	glGenTextures(1, &texture);
+	glGenVertexArrays(1,&vertexArray);
+	glBindVertexArray(vertexArray);
+	glGenBuffers(1, &vertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER,  sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+
+	
+	GLint posAttrib = glGetAttribLocation( shaderProgram, "position" );
+	glEnableVertexAttribArray( posAttrib );
+	glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), 0 );
+
+	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib,3,GL_FLOAT,GL_FALSE,7*sizeof(float),(void*)(2*sizeof(float)));
+
+	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), (void*)(5*sizeof(float)));
+		this->shaderProgram = shaderProgram;
+	
+	glActiveTexture( GL_TEXTURE0 );
+	glBindTexture(GL_TEXTURE_2D, texture);
+	//glBindTexture(GL_TEXTURE_2D, tex);
+	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
+	// IMAGAE LOADING
+
+		this->width = nWidth;
+		this->height = nHeight;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, nWidth, nHeight,
+			0, GL_ALPHA, GL_UNSIGNED_BYTE, pixelData);
+
+	//END IMAGE LOADING);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	//glGenerateMipmap(GL_TEXTURE_2D);
+	
+	 uniTransformMatrix = glGetUniformLocation( shaderProgram, "trans" );
+	 uniSourceX = glGetUniformLocation( shaderProgram, "sourceX" );
+	 uniSourceY = glGetUniformLocation( shaderProgram, "sourceY" );
+	 uniRows = glGetUniformLocation( shaderProgram, "rows" );
+	 uniColumns = glGetUniformLocation( shaderProgram, "columns" );
+	 uniTint = glGetUniformLocation(shaderProgram, "tint");
+	 
+	glUniform3f(uniTint, 1.0f, 1.0f, 1.0f);
 	//*/
 }
 Texture2D::~Texture2D()
 {
 	glDeleteBuffers( 1, &vertexBuffer );
 	glDeleteVertexArrays( 1, &vertexArray );
-	modelviewMatrix = glm::mat4(1);
-	projectionMatrix = glm::mat4(1);
+	glDeleteTextures(1, &texture);
 }
 void Texture2D::Draw(float x, float y)
 {
@@ -106,6 +175,7 @@ void Texture2D::Draw(float x, float y)
 	
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -121,7 +191,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY)
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 	
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
 	
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -137,6 +207,7 @@ void Texture2D::Draw(float x, float y, float rotationAngle)
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -173,7 +244,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -189,6 +260,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect)
 	
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
@@ -206,7 +278,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 	
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
 	
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -222,6 +294,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float rotationAngl
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(1.0f, -1.0f, 1.0f));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -241,7 +314,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
@@ -261,7 +334,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	modelviewMatrix = glm::rotate(modelviewMatrix, rotationAngle,glm::vec3(0,0,1));
 
 	//scale the coordinates up by the specified amounts
-	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	modelviewMatrix = glm::scale(modelviewMatrix, glm::vec3(scaleX, -scaleY, 1.0));
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
