@@ -162,6 +162,71 @@ Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLu
 	glUniform3f(uniTint, 1.0f, 1.0f, 1.0f);
 	//*/
 }
+Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLuint shaderProgram)
+{
+	float tempVertices[] = {
+	-08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f, // Top-left
+     08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 1.0f,// Top-right
+     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+			   
+     08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		1.0f, 0.0f,// Bottom-right
+    -08.0f, -08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 0.0f,// Bottom-left
+    -08.0f,  08.0f,		 1.0f, 1.0f, 1.0f,		0.0f, 1.0f// Top-left
+	};
+
+	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
+	{
+		vertices[i] =  tempVertices[i];
+	}
+	glGenTextures(1, &texture);
+	glGenVertexArrays(1,&vertexArray);
+	glBindVertexArray(vertexArray);
+	glGenBuffers(1, &vertexBuffer);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glBufferData(GL_ARRAY_BUFFER,  sizeof(vertices), vertices, GL_STATIC_DRAW);
+
+
+	
+	GLint posAttrib = glGetAttribLocation( shaderProgram, "position" );
+	glEnableVertexAttribArray( posAttrib );
+	glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), 0 );
+
+	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
+	glEnableVertexAttribArray(colAttrib);
+	glVertexAttribPointer(colAttrib,3,GL_FLOAT,GL_FALSE,7*sizeof(float),(void*)(2*sizeof(float)));
+
+	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
+	glEnableVertexAttribArray(texAttrib);
+	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), (void*)(5*sizeof(float)));
+		this->shaderProgram = shaderProgram;
+	
+	glActiveTexture( GL_TEXTURE0 );
+	glBindTexture(GL_TEXTURE_2D, texture);
+	//glBindTexture(GL_TEXTURE_2D, tex);
+	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
+	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
+	// IMAGAE LOADING
+
+		this->width = nWidth;
+		this->height = nHeight;
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, nWidth, nHeight,
+			0, GL_ALPHA, GL_UNSIGNED_BYTE, pixelData);
+
+	//END IMAGE LOADING);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	//glGenerateMipmap(GL_TEXTURE_2D);
+	
+	 uniTransformMatrix = glGetUniformLocation( shaderProgram, "trans" );
+	 uniSourceX = glGetUniformLocation( shaderProgram, "sourceX" );
+	 uniSourceY = glGetUniformLocation( shaderProgram, "sourceY" );
+	 uniRows = glGetUniformLocation( shaderProgram, "rows" );
+	 uniColumns = glGetUniformLocation( shaderProgram, "columns" );
+	 uniTint = glGetUniformLocation(shaderProgram, "tint");
+	//*/
+}
 Texture2D::~Texture2D()
 {
 	glDeleteBuffers( 1, &vertexBuffer );

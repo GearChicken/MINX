@@ -16,10 +16,8 @@
     <ClCompile Include="..\src\GameComponent.cpp" />
     <ClCompile Include="..\src\GameTime.cpp" />
     <ClCompile Include="..\src\Graphics\Color.cpp" />
+    <ClCompile Include="..\src\Graphics\Font.cpp" />
     <ClCompile Include="..\src\Graphics\GameWindow.cpp" />
-    <ClCompile Include="..\src\Graphics\Text2D.h">
-      <FileType>CppHeader</FileType>
-    </ClCompile>
     <ClCompile Include="..\src\Graphics\Texture2D.cpp" />
     <ClCompile Include="..\src\Input\Button.cpp" />
     <ClCompile Include="..\src\Input\GamePad.cpp" />
@@ -29,7 +27,6 @@
     <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
-    <ClCompile Include="..\src\Text2D.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +35,7 @@
     <ClInclude Include="..\src\GameComponent.h" />
     <ClInclude Include="..\src\GameTime.h" />
     <ClInclude Include="..\src\Graphics\Color.h" />
+    <ClInclude Include="..\src\Graphics\Font.h" />
     <ClInclude Include="..\src\Graphics\GameWindow.h" />
     <ClInclude Include="..\src\Graphics\Texture2D.h" />
     <ClInclude Include="..\src\Input\Axis.h" />
@@ -80,8 +78,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;</IncludePath>
-    <LibraryPath>$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
+    <LibraryPath>$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\include;$(IncludePath)</IncludePath>
@@ -100,7 +98,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>GamePad.lib;glew32s.lib; GLFW3DLL.lib;GLFW3.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>freetype.lib;GamePad.lib;glew32s.lib; GLFW3DLL.lib;GLFW3.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
