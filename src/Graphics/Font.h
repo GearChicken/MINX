@@ -22,6 +22,8 @@
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <GL/glew.h>
+#include "GameWindow.h"
+#include <string>
 
 namespace MINX
 {
@@ -34,7 +36,8 @@ namespace MINX
 		public:
 			Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram);
 			void RenderChar(char charToRender, int x, int y);
-			void RenderString(char* string, int x, int y);
+			void RenderString(std::string text, float x, float y, float sx, float sy);
+			void RenderCharStar(const char *text, float x, float y, float sx, float sy);
 		private:
 			GLuint shaderProgram;
 			FT_Library library;

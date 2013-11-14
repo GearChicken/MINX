@@ -1,4 +1,4 @@
-﻿Build started 11/13/2013 2:51:37 PM.
+﻿Build started 11/13/2013 10:46:11 PM.
      1>Project "D:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Graphics\Font.cpp
@@ -7,10 +7,8 @@
                  d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
      1>d:\minx\minx\src\graphics\texture2d.h(131): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
      1>d:\minx\minx\src\graphics\texture2d.h(134): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>d:\minx\minx\src\graphics\font.cpp(36): warning C4554: '>>' : check operator precedence for possible error; use parentheses to clarify precedence
-     1>d:\minx\minx\src\graphics\font.cpp(36): warning C4244: 'argument' : conversion from 'FT_Pos' to 'float', possible loss of data
-     1>d:\minx\minx\src\graphics\font.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
-     1>d:\minx\minx\src\graphics\font.cpp(49): warning C4244: 'argument' : conversion from 'FT_Int' to 'float', possible loss of data
+     1>d:\minx\minx\src\graphics\font.cpp(53): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>d:\minx\minx\src\graphics\font.cpp(80): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
        Lib:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" freetype.lib GamePad.lib glew32s.lib GLFW3DLL.lib GLFW3.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
@@ -136,4 +134,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.27
+Time Elapsed 00:00:01.99
