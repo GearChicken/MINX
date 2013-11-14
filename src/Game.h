@@ -20,6 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GAME_H_
 #define MINX_DEBUG
 #define GLEW_STATIC
+
+
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 #include <string>
@@ -106,6 +111,7 @@ namespace MINX
 		/** The Shader Program that OpenGl will use to draw to the screen
 		*/
 		GLuint shaderProgram;
+		FT_Library freeTypeLibrary;
 	private:
 		/** A pointer to the GameTime being used by the game.
 		*/

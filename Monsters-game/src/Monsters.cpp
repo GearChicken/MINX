@@ -25,10 +25,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "RandomMonster.h"
 #include <vector>
 #include <iostream>
+#include <Graphics/Font.h>
 using namespace MINX_monsters;
 using namespace MINX;
 using namespace MINX::Graphics;
-
+Font* testFont;
 vector<Monster*>* monsters;
 Texture2D* monsterTexture;
 MonsterGame::MonsterGame()
@@ -47,7 +48,7 @@ MonsterGame::MonsterGame()
 	std::cout << "The Blue Monster will wrap around the edges of the screen." << std::endl;
 	std::cout << "The Red Monster will move randomly around the screen." << std::endl;
 	std::cout << "The Cyan Monster will follow a rectangular movement pattern." << std::endl;
-	std::cout << std::endl << "Due to a bug in the MINX Framework this game must be closed through the Console Window!\a" << std::endl;
+	std::cout << std::endl << "Due to a bug in the MINX Framework this game must be closed through the Console Window!" << std::endl;
 	std::cout << std::endl << "Source code for this project can be found online at:" << std::endl << "https://github.com/GearChicken/MINX/tree/master/Monsters-game/src" << std::endl;
 }
 
@@ -71,6 +72,7 @@ void MonsterGame::LoadContent()
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new PatternMonster(new Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
 	monsters->push_back(new RandomMonster(new Vector2(GameWindow::width/2,GameWindow::height/2), monsterTexture));
+	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", shaderProgram);
 	//*/
 	Game::LoadContent();
 }
@@ -106,5 +108,6 @@ void MonsterGame::Draw(GameTime* gameTime)
 	{
 		m->Draw();
 	}
+	testFont->RenderString("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 0);
 	Game::Draw(gameTime);
 }

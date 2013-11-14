@@ -1,39 +1,24 @@
-﻿Build started 11/12/2013 1:43:45 AM.
+﻿Build started 11/13/2013 2:51:37 PM.
      1>Project "D:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\EventHandler.cpp ..\src\Game.cpp ..\src\GameComponent.cpp ..\src\Graphics\GameWindow.cpp ..\src\Graphics\Text2D.h ..\src\Graphics\Texture2D.cpp ..\src\Input\GamePad.cpp ..\src\Input\IGenericHID.cpp ..\src\Input\Keyboard.cpp ..\src\input\Mouse.cpp
-         Mouse.cpp
-     1>d:\minx\minx\src\input\mouse.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         Keyboard.cpp
-         Game.cpp
-         Generating Code...
-         Compiling...
-         Texture2D.cpp
-     1>d:\minx\minx\src\graphics\texture2d.h(126): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.h(129): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(278): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(279): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(280): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(281): warning C4244: 'argument' : conversion from 'double' to 'GLfloat', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(282): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(283): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
-     1>d:\minx\minx\src\graphics\texture2d.cpp(291): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-         GameWindow.cpp
-         Generating Code...
-         Skipping... (no relevant changes detected)
-         IGenericHID.cpp
-         GamePad.cpp
-         Text2D.h
-         GameComponent.cpp
-         EventHandler.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Graphics\Font.cpp
+         Font.cpp
+     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
+                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
+     1>d:\minx\minx\src\graphics\texture2d.h(131): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>d:\minx\minx\src\graphics\texture2d.h(134): warning C4244: 'return' : conversion from 'double' to 'int', possible loss of data
+     1>d:\minx\minx\src\graphics\font.cpp(36): warning C4554: '>>' : check operator precedence for possible error; use parentheses to clarify precedence
+     1>d:\minx\minx\src\graphics\font.cpp(36): warning C4244: 'argument' : conversion from 'FT_Pos' to 'float', possible loss of data
+     1>d:\minx\minx\src\graphics\font.cpp(49): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>d:\minx\minx\src\graphics\font.cpp(49): warning C4244: 'argument' : conversion from 'FT_Int' to 'float', possible loss of data
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" GamePad.lib glew32s.lib GLFW3DLL.lib GLFW3.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" freetype.lib GamePad.lib glew32s.lib GLFW3DLL.lib GLFW3.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\EventHandler.obj
          Debug\Game.obj
          Debug\GameComponent.obj
          Debug\GameTime.obj
          Debug\Color.obj
+         Debug\Font.obj
          Debug\GameWindow.obj
-         Debug\Text2D.obj
          Debug\Texture2D.obj
          Debug\Button.obj
          Debug\GamePad.obj
@@ -43,9 +28,9 @@
          Debug\Point.obj
          Debug\Ray2.obj
          Debug\Rectangle.obj
-         Debug\Text2D.obj
          Debug\Vector2.obj
-     1>Debug\Text2D.obj : warning LNK4042: object specified more than once; extras ignored
+     1>GLFW3DLL.lib(glfw3.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
+     1>GLFW3DLL.lib(glfw3.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>GLFW3.lib(clipboard.obj) : warning LNK4006: _glfwGetClipboardString already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
      1>GLFW3.lib(clipboard.obj) : warning LNK4006: _glfwSetClipboardString already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
      1>GLFW3.lib(clipboard.obj) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
@@ -121,34 +106,34 @@
      1>GLFW3.lib(window.obj) : warning LNK4006: _glfwWindowShouldClose already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
      1>GLFW3.lib(win32_window.obj) : warning LNK4006: _glfwGetWin32Window already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
      1>GLFW3.lib(wgl_context.obj) : warning LNK4006: _glfwGetWGLContext already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
-     1>FreeImage.lib(FreeImage.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>FreeImage.lib(FreeImage.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>FreeImage.lib(FreeImage.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>opengl32.lib(OPENGL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>kernel32.lib(KERNEL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>kernel32.lib(KERNEL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>kernel32.lib(KERNEL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>user32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>user32.lib(USER32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>user32.lib(USER32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>gdi32.lib(GDI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>gdi32.lib(GDI32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>winspool.lib(WINSPOOL.DRV) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>winspool.lib(WINSPOOL.DRV) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>winspool.lib(WINSPOOL.DRV) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>comdlg32.lib(COMDLG32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>comdlg32.lib(COMDLG32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>comdlg32.lib(COMDLG32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>advapi32.lib(ADVAPI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>advapi32.lib(ADVAPI32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>advapi32.lib(ADVAPI32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>shell32.lib(SHELL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>shell32.lib(SHELL32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>ole32.lib(ole32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>ole32.lib(ole32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>ole32.lib(ole32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
-     1>oleaut32.lib(OLEAUT32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>oleaut32.lib(OLEAUT32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>oleaut32.lib(OLEAUT32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>uuid.lib(iid.obj) : warning LNK4006: _IID_IEventDispatcher already defined in uuid.lib(seo_i.obj); second definition ignored
-     1>odbc32.lib(ODBC32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in GLFW3DLL.lib(glfw3.dll); second definition ignored
+     1>odbc32.lib(ODBC32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>odbc32.lib(ODBC32.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
          MINX.vcxproj -> D:\MINX\MINX\Debug\MINX.lib
      1>Done Building Project "D:\MINX\MINX\MINX\MINX.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.06
+Time Elapsed 00:00:01.27
