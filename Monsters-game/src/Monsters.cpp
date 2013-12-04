@@ -66,14 +66,14 @@ void MonsterGame::LoadContent()
 {
 	//Put stuff here that loads content for your game.
 
-	monsterTexture = new Texture2D("gem.png",shaderProgram);
 	penTex = new Texture2D("penguin.jpg", shaderProgram);
-	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
+	monsterTexture = new Texture2D("gem.png",shaderProgram);
 	monsters->push_back(new Bouncer(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new PatternMonster(new Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
 	monsters->push_back(new RandomMonster(new Vector2(GameWindow::width/2,GameWindow::height/2), monsterTexture));
-	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", shaderProgram);
+	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
+	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", fontShaderProgram);
 	//*/
 	Game::LoadContent();
 }
@@ -102,14 +102,16 @@ void MonsterGame::Update(GameTime* gameTime)
 
 void MonsterGame::Draw(GameTime* gameTime)
 {
+	double sx = 2.0 / GameWindow::width;
+	double sy = 2.0 / GameWindow::height;
 	glClearColor( 100/255.0f, 149/255.0f, 237/255.0f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
-	penTex->Draw(0,-100,.25f,.25f);
+	penTex->Draw(10.0f,-0.0f,.25f,.5f);
 	//Put stuff here to draw your game each frame.
 	for(Monster *m : *monsters)
 	{
 		m->Draw();
-	}
-	testFont->RenderCharStar("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0, 0,1,1);
+	}//*/
+	testFont->RenderCharStar("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0,  0, sx, sy, 12);
 	Game::Draw(gameTime);
 }
