@@ -36,7 +36,7 @@ Texture2D* penTex;
 MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
-	Game::setVideoOptions(640, 300 ,32,0,"MINX Monster Game!");
+	Game::setVideoOptions(640, 480 ,32,0,"MINX Monster Game!");
 	srand(time(NULL));
 	isRunning = true;
 	monsters = new vector<Monster*>();
@@ -102,8 +102,6 @@ void MonsterGame::Update(GameTime* gameTime)
 
 void MonsterGame::Draw(GameTime* gameTime)
 {
-	double sx = 2.0 / GameWindow::width;
-	double sy = 2.0 / GameWindow::height;
 	glClearColor( 100/255.0f, 149/255.0f, 237/255.0f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
 	penTex->Draw(10.0f,-0.0f,.25f,.5f);
@@ -112,6 +110,11 @@ void MonsterGame::Draw(GameTime* gameTime)
 	{
 		m->Draw();
 	}//*/
-	testFont->RenderCharStar("ABCDEFGHIJKLMNOPQRSTUVWXYZ", 0,  0, sx, sy, 12);
+	testFont->RenderText("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}\/|:;><", 0,  0, 12);
+	for (int i = 0; i < 1000; i++)
+	{
+		//stress test
+		//monsterTexture->Draw(rand()%GameWindow::width, rand()%GameWindow::height, 1.0f, 1.0f, 0.0f, new Color(rand()%256, rand()%256, rand()%256));
+	}
 	Game::Draw(gameTime);
 }

@@ -361,11 +361,16 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 void Texture2D::Draw(Rectangle* sourceRect)
 {
 	//MakeProgramActive(sourceRect);
-	GLfloat box[4][4] = {
+	GLfloat box[6][4] = {
+
 		{-width/2.0f,   height /2.0f, 0, 0},
-		{width/2.0f,  -height /2.0f, 0, 1},
 		{width/2.0f,   height /2.0f, 1, 0},
-		{-width/2.0f,  -height /2.0f, 1, 1}
+		{width/2.0f,  -height /2.0f, 1, 1},
+		
+		{width/2.0f,  -height /2.0f, 1, 1},
+		{-width/2.0f,  -height /2.0f, 0, 1},
+		{-width/2.0f,   height /2.0f, 0, 0}
+		//*/
     };
 	glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		
@@ -379,13 +384,7 @@ void Texture2D::Draw()
 
 	//MakeProgramActive(NULL);
 	GLfloat box[6][4] = {
-		/*
-		{-width/2.0f,   height /2.0f, 0, 0},
-		{width/2.0f,   height /2.0f, 1, 0},
-		{width/2.0f,  -height /2.0f, 0, 1},
-		{-width/2.0f,  -height /2.0f, 1, 1}
-		//*/
-		
+
 		{-width/2.0f,   height /2.0f, 0, 0},
 		{width/2.0f,   height /2.0f, 1, 0},
 		{width/2.0f,  -height /2.0f, 1, 1},
@@ -398,6 +397,7 @@ void Texture2D::Draw()
 	glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		
 	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glDisableVertexAttribArray(this->attribute_coord);
 
 	delete sourceRect;

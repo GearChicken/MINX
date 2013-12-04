@@ -23,6 +23,7 @@
 #include FT_FREETYPE_H
 #include <GL/glew.h>
 #include "GameWindow.h"
+#include "../Vector2.h"
 #include <string>
 
 namespace MINX
@@ -34,10 +35,32 @@ namespace MINX
 		class Font
 		{
 		public:
+			/** Creates a new Instance of a Font
+			*/
 			Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram);
-			void RenderChar(char charToRender, int x, int y);
-			void RenderString(std::string text, float x, float y, float sx, float sy, int fontSize);
-			void RenderCharStar(const char *text, float x, float y, float sx, float sy, int fontSize);
+			
+			/** Renders Text Onto the Screen using a string from the C++ standard library
+			*	@param text The text to render to the screen.
+			*	@param x The X component of the screen to draw the text to.
+			*	@param y The Y component of the screen to draw the text to.
+			*	@param fontSixe The size in points (pt.) to draw the font.
+			*/
+			void RenderText(std::string text, float x, float y, int fontSize);
+
+			/** Renders Text Onto the Screen using a c-string (char*)
+			*	@param text The text to render to the screen.
+			*	@param x The X component of the screen to draw the text to.
+			*	@param y The Y component of the screen to draw the text to.
+			*	@param fontSixe The size in points (pt.) to draw the font.
+			*/
+			void RenderText(const char *text, float x, float y, int fontSize);
+
+			/** Gets the size of the text if it were to be rendered
+			*	@param text The text to check the size of.
+			*	@param fontSize The size in points (pt.) to check the size of.
+			*	@return The Size of the Text as a Vector2 with the width as the X component and the height as the Y component
+			*/
+			Vector2* TextSize(const char *text, int fontSize);
 		private:
 			GLuint shaderProgram;
 			GLint attribute_coord;
