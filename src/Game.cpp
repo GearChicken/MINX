@@ -102,34 +102,23 @@ void Game::Initialize()
 		std::cout << "FreeType Not Inited!";
 	}
 	
-	const char* vertexSource =
+	 const char* vertexSource =
 		"#version 330\n"
-		"in vec2 position;"
-		"in vec3 color;"
-		"in vec2 texcoord;"
-		"out vec3 Color;"
-		"out vec2 Texcoord;"
+		"in vec4 coord;"
+		"out vec2 texpos;"
 		"uniform mat4 trans;"
-		"uniform float rows;"
-		"uniform float columns;"
-		"uniform float sourceX;"
-		"uniform float sourceY;"
 		"void main() {"
-		"	Color = color;"
-		//"	Texcoord = texcoord;"
-		"	Texcoord = vec2(texcoord.x / columns + sourceX,  (((texcoord.y) / rows) + sourceY) );" 
-		"	gl_Position = trans * vec4(position, 0.0, 1.0);"
+		"	texpos = coord.zw;" 
+		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
 		"}";
 
-	const char* fragmentSource =
+	 const char* fragmentSource =
 		"#version 330\n"
-		"in vec3 Color;"
-		"in vec2 Texcoord;"
-		"out vec4 outColor;"
+		"in vec2 texpos;"
 		"uniform sampler2D tex;"
-		"uniform vec3 tint;"
+		"uniform vec3 color;"
 		"void main() {"
-		"	outColor = vec4(Color,1.0) * texture(tex, Texcoord) * vec4(tint,1.0);"
+		"	gl_FragColor = texture(tex, texpos) * vec4(color,1.0);"
 		"}";
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
@@ -158,11 +147,56 @@ void Game::Initialize()
 	glBindFragDataLocation(shaderProgram, 0, "outColor");
 
 
+
 	glLinkProgram(shaderProgram);
 	glUseProgram(shaderProgram);
+
+
+	const char* fontVertexSource =
+		"#version 120\n"
+		"attribute vec4 coord;"
+		"varying vec2 texpos;"
+		"void main() {"
+		"	gl_Position = vec4(coord.xy, 0.0, 1.0);"
+		"	texpos = coord.zw;" 
+		"}";
+
+	const char* fontFragmentSource =
+		"#version 120\n"
+		"varying vec2 texpos;"
+		"uniform sampler2D tex;"
+		"uniform vec4 color;"
+		"void main() {"
+		"	gl_FragColor = vec4(1,1,1,texture2D(tex, texpos).a)* color;"
+		"}";
+
+	 GLuint fontVertexShader = glCreateShader(GL_VERTEX_SHADER);
+	glShaderSource(fontVertexShader, 1, &fontVertexSource, NULL);	//Create a new Vertex Shader and set it to the value of vertex source
+	glCompileShader(fontVertexShader);	// compile the vertex shader
+
+#ifdef MINX_DEBUG
+	glGetShaderiv( fontVertexShader, GL_COMPILE_STATUS, &status );
+	//Check if the shader compiled succesfully
 	
-glEnable (GL_BLEND);
-glBlendFunc (GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA); 
+	std::cout << status << " Vertex Shader\n";
+#endif
+	GLuint fontFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+	glShaderSource(fontFragmentShader, 1, & fontFragmentSource, NULL); //Create a new Fragment shader and set it to the value of fragment source
+	glCompileShader(fontFragmentShader);	//compile the vertexShader
+	
+#ifdef MINX_DEBUG
+	glGetShaderiv( fontFragmentShader, GL_COMPILE_STATUS, &status );
+	std::cout << status << " Fragment Shader\n";
+#endif
+	
+	fontShaderProgram = glCreateProgram();
+	glAttachShader(fontShaderProgram, fontVertexShader);
+	glAttachShader(fontShaderProgram, fontFragmentShader);
+	
+	glLinkProgram(fontShaderProgram);
+	
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
 void Game::LoadContent()
