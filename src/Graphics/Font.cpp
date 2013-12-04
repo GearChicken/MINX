@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Font.h"
 #include "Texture2D.h"
+#include <iostream>
 using namespace MINX;
 using namespace MINX::Graphics;
 Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
@@ -25,65 +26,144 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 	this->library = libraryRef;
 	this->shaderProgram = shaderProgram;
 	FT_New_Face(library, fileLocation, 0, &fontFace);
-	FT_Set_Char_Size(fontFace, 0, 16*64, 96, 96);
+	FT_Set_Pixel_Sizes(fontFace, 0, 48);
+	//FT_Set_Char_Size(fontFace, 0, 16*64, 96, 96);
+	attribute_coord = glGetAttribLocation(shaderProgram, "coord");
+	uniform_tex = glGetUniformLocation(shaderProgram, "tex");
+	uniform_color = glGetUniformLocation(shaderProgram, "color");
+	glGenBuffers(1, &vertexBuffer);
 }
 void Font::RenderChar(char charToRender, int x, int y)
 { 
 	FT_Load_Char(fontFace, charToRender, FT_LOAD_RENDER);
 }
 
-void Font::RenderString(std::string text, float x, float y, float sx, float sy)
+void Font::RenderString(std::string text, float x, float y, float sx, float sy, int fontSize)
 {
-
+	glUseProgram(shaderProgram);
+	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+	GLfloat color[] = {0.0f, 0.0f, 0.0f, 1.0f};
+	glUniform4fv(uniform_color, 1, color); 
 	glyphSlot = fontFace->glyph;
 	const char *p;
+
+	GLuint tex;
+
+	glActiveTexture(GL_TEXTURE0);
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+	glUniform1i(uniform_tex, 0);
+
+	//1 byte alignmeny
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	//clamp edges
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	//linear filetering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	//vertexbuffer
+	glEnableVertexAttribArray(attribute_coord);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
+
 	for(p = text.c_str(); *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 			continue;
 
 
-
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, glyphSlot->bitmap.width, glyphSlot->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, glyphSlot->bitmap.buffer);
 		float x2 = x + glyphSlot->bitmap_left * sx;
-		float y2 = y + glyphSlot->bitmap_top * sy;
-		float w = glyphSlot->bitmap.width * sx;
-		float h = glyphSlot->bitmap.rows * sy;
+	    float y2 = -y - glyphSlot->bitmap_top * sy;
+	    float w = glyphSlot->bitmap.width * sx;
+	    float h = glyphSlot->bitmap.rows * sy;
 
-		Texture2D* texture;
-		texture = new Texture2D(glyphSlot->bitmap.buffer, w, h, GL_ALPHA, shaderProgram);
-		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f);
-		texture->~Texture2D();
-		delete texture;
+
+		GLfloat box[4][4] = {
+        {x2,     -y2    , 0, 0},
+        {x2 + w, -y2    , 1, 0},
+        {x2,     -y2 - h, 0, 1},
+        {x2 + w, -y2 - h, 1, 1},
+    };
+
+		std::cout << "X: " << box[0][0] << " Y: " << box[0][1] << std::endl;
+		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 		x += (glyphSlot->advance.x >> 6) * sx;
 		y += (glyphSlot->advance.y >> 6) * sy;
 	}
-}
-void Font::RenderCharStar(const char *text, float x, float y, float sx, float sy)
-{
 
+	glDisableVertexAttribArray(attribute_coord);
+	glDeleteTextures(1, &tex);
+
+}
+void Font::RenderCharStar(const char *text, float x, float y, float sx, float sy, int fontSize)
+{
+	glUseProgram(shaderProgram);
+	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+	GLfloat color[] = {0.0f, 0.0f, 0.0f, 1.0f};
+	glUniform4fv(uniform_color, 1, color); 
 	glyphSlot = fontFace->glyph;
 	const char *p;
+
+	GLuint tex;
+
+	glActiveTexture(GL_TEXTURE0);
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+	glUniform1i(uniform_tex, 0);
+
+	//1 byte alignmeny
+	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+	//clamp edges
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+	//linear filetering
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	//vertexbuffer
+	glEnableVertexAttribArray(attribute_coord);
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
+
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 			continue;
 
 
-
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, glyphSlot->bitmap.width, glyphSlot->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, glyphSlot->bitmap.buffer);
 		float x2 = x + glyphSlot->bitmap_left * sx;
-		float y2 = y + glyphSlot->bitmap_top * sy;
-		float w = glyphSlot->bitmap.width * sx;
-		float h = glyphSlot->bitmap.rows * sy;
+	    float y2 = -y - glyphSlot->bitmap_top * sy;
+	    float w = glyphSlot->bitmap.width * sx;
+	    float h = glyphSlot->bitmap.rows * sy;
 
-		Texture2D* texture;
-		texture = new Texture2D(glyphSlot->bitmap.buffer, w, h, GL_ALPHA, shaderProgram);
-		texture->Draw(x2, y2  + (glyphSlot->metrics.vertAdvance - glyphSlot->metrics.height)/64.0f - glyphSlot->metrics.horiBearingY/64.0f + (glyphSlot->metrics.height - glyphSlot->metrics.horiBearingY)/64.0f);
-		texture->~Texture2D();
-		delete texture;
+
+		GLfloat box[4][4] = {
+        {x2,     -y2    , 0, 0},
+        {x2 + w, -y2    , 1, 0},
+        {x2,     -y2 - h, 0, 1},
+        {x2 + w, -y2 - h, 1, 1},
+		};
+
+		//std::cout << "X: " << box[0][0] << " Y: " << box[0][1] << std::endl;
+		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
 		x += (glyphSlot->advance.x >> 6) * sx;
 		y += (glyphSlot->advance.y >> 6) * sy;
 	}
+
+	glDisableVertexAttribArray(attribute_coord);
+	glDeleteTextures(1, &tex);
+	
 }
 //http://www.freetype.org/freetype2/docs/tutorial/example1.c

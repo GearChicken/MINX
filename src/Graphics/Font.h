@@ -36,10 +36,14 @@ namespace MINX
 		public:
 			Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram);
 			void RenderChar(char charToRender, int x, int y);
-			void RenderString(std::string text, float x, float y, float sx, float sy);
-			void RenderCharStar(const char *text, float x, float y, float sx, float sy);
+			void RenderString(std::string text, float x, float y, float sx, float sy, int fontSize);
+			void RenderCharStar(const char *text, float x, float y, float sx, float sy, int fontSize);
 		private:
 			GLuint shaderProgram;
+			GLint attribute_coord;
+			GLint uniform_tex;
+			GLint uniform_color;
+			GLuint vertexBuffer;
 			FT_Library library;
 			FT_Face fontFace;
 			FT_CharMap charMap;
