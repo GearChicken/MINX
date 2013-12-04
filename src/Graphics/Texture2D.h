@@ -137,13 +137,15 @@ namespace MINX
 			//add documentation for private members later
 			void Draw();
 			void Draw(Rectangle* sourceRect);
+			void MakeProgramActive(Rectangle* sourceRect);
 			double width;
 			double height;
 			float vertices[42];
-			GLuint vertexBuffer;
-			GLuint vertexArray;
+			GLint attribute_coord;
 			GLuint shaderProgram;
+			GLuint vertexBuffer;
 			// 'uni' implies a shader's uniform member
+			GLint uniform_tex;
 			GLint uniTransformMatrix;
 			GLint uniTint;
 			GLint uniSourceX;
