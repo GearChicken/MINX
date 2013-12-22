@@ -32,6 +32,10 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 	uniform_tex = glGetUniformLocation(shaderProgram, "tex");
 	uniform_color = glGetUniformLocation(shaderProgram, "color");
 	glGenBuffers(1, &vertexBuffer);
+	for (int i = 0; i < 256; i++)
+	{
+		tex[i] = 0;
+	}
 }
 
 void Font::RenderText(std::string text, float x, float y, int fontSize)
@@ -40,7 +44,7 @@ void Font::RenderText(std::string text, float x, float y, int fontSize)
 }
 void Font::RenderText(const char *text, float x, float y, int fontSize)
 {
-	
+
 	double sx = 2.0 / GameWindow::width;
 	double sy = 2.0 / GameWindow::height;
 
@@ -52,23 +56,6 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	glyphSlot = fontFace->glyph;
 	const char *p;
 
-	GLuint tex;
-
-	glActiveTexture(GL_TEXTURE0);
-	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_2D, tex);
-	glUniform1i(uniform_tex, 0);
-
-	//1 byte alignmeny
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-	//clamp edges
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-
-	//linear filetering
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	//vertexbuffer
 	glEnableVertexAttribArray(attribute_coord);
@@ -85,15 +72,15 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	x += 0 - textWidthGLCoords;
 	y += 1 - textHeightGLCoords;
 	*/
-			glm::mat4 modelviewMatrix;
-			glm::mat4 projectionMatrix;
+	glm::mat4 modelviewMatrix;
+	glm::mat4 projectionMatrix;
 	projectionMatrix = glm::ortho(0.0f, (float)GameWindow::width-0.0f, (float)GameWindow::height-0.0f, 0.0f);
 
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x, y + textHeightGLCoords-5, 1));
 	x = modelviewMatrix[3][0];
 	y = modelviewMatrix[3][1];
-	
+
 	//std::cout << x << " x" << std::endl;
 	//std::cout << y << " y" << std::endl;
 
@@ -103,18 +90,40 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 			continue;
 
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, glyphSlot->bitmap.width, glyphSlot->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, glyphSlot->bitmap.buffer);
+
+		if(!tex[*p])
+		{
+			glActiveTexture(GL_TEXTURE0);
+			glGenTextures(1, &(tex[*p]));
+			glBindTexture(GL_TEXTURE_2D, tex[*p]);
+			glUniform1i(uniform_tex, 0);
+
+			//1 byte alignmeny
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
+			//clamp edges
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+			//linear filetering
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, glyphSlot->bitmap.width, glyphSlot->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, glyphSlot->bitmap.buffer);
+
+		}
+		glBindTexture(GL_TEXTURE_2D, tex[*p]);
 		float x2 = x + glyphSlot->bitmap_left * sx;
-	    float y2 = -y - glyphSlot->bitmap_top * sy;
-	    float w = glyphSlot->bitmap.width * sx;
-	    float h = glyphSlot->bitmap.rows * sy;
+		float y2 = -y - glyphSlot->bitmap_top * sy;
+		float w = glyphSlot->bitmap.width * sx;
+		float h = glyphSlot->bitmap.rows * sy;
 
 
 		GLfloat box[4][4] = {
-        {x2,     -y2    , 0, 0},
-        {x2 + w, -y2    , 1, 0},
-        {x2,     -y2 - h, 0, 1},
-        {x2 + w, -y2 - h, 1, 1},
+			{x2,     -y2    , 0, 0},
+			{x2 + w, -y2    , 1, 0},
+			{x2,     -y2 - h, 0, 1},
+			{x2 + w, -y2 - h, 1, 1},
 		};
 
 		//std::cout << "X: " << box[0][0] << " Y: " << box[0][1] << std::endl;
@@ -126,8 +135,8 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	}
 
 	glDisableVertexAttribArray(attribute_coord);
-	glDeleteTextures(1, &tex);
-	
+	glDeleteTextures(1, &(tex[*p]));
+
 }
 Vector2 Font::TextSize(const char *text, int fontSize)
 {
@@ -138,10 +147,10 @@ Vector2 Font::TextSize(const char *text, int fontSize)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 			continue;
-	    textWidthGLCoords += glyphSlot->bitmap.width;// * sx;
+		textWidthGLCoords += glyphSlot->bitmap.width;// * sx;
 		textHeightGLCoords = (glyphSlot->bitmap.rows > textHeightGLCoords) ? glyphSlot->bitmap.rows : textHeightGLCoords;
 	}
-	
+
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
 	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	return Vector2(textWidthGLCoords, textHeightGLCoords);
