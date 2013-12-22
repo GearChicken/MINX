@@ -60,7 +60,7 @@ namespace MINX
 			*	@param fontSize The size in points (pt.) to check the size of.
 			*	@return The Size of the Text as a Vector2 with the width as the X component and the height as the Y component
 			*/
-			Vector2* TextSize(const char *text, int fontSize);
+			Vector2 TextSize(const char *text, int fontSize);
 		private:
 			GLuint shaderProgram;
 			GLint attribute_coord;
@@ -71,6 +71,7 @@ namespace MINX
 			FT_Face fontFace;
 			FT_CharMap charMap;
 			FT_GlyphSlot glyphSlot;
+			GLuint tex[256];
 		};
 	}
 }

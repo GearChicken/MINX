@@ -76,11 +76,11 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
 	float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
-	Vector2* textSize = TextSize(text, fontSize);
-	textWidthGLCoords = textSize->X;
-	textHeightGLCoords = textSize->Y;
-	std::cout << textWidthGLCoords << " Text width" << std::endl;
-	std::cout << textHeightGLCoords << " Text height" << std::endl;
+	Vector2 textSize = TextSize(text, fontSize);
+	textWidthGLCoords = textSize.X;
+	textHeightGLCoords = textSize.Y;
+	//std::cout << textWidthGLCoords << " Text width" << std::endl;
+	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	/*
 	x += 0 - textWidthGLCoords;
 	y += 1 - textHeightGLCoords;
@@ -94,8 +94,8 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	x = modelviewMatrix[3][0];
 	y = modelviewMatrix[3][1];
 	
-	std::cout << x << " x" << std::endl;
-	std::cout << y << " y" << std::endl;
+	//std::cout << x << " x" << std::endl;
+	//std::cout << y << " y" << std::endl;
 
 	for(p = text; *p; p++)
 	{
@@ -129,7 +129,7 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	glDeleteTextures(1, &tex);
 	
 }
-Vector2* Font::TextSize(const char *text, int fontSize)
+Vector2 Font::TextSize(const char *text, int fontSize)
 {
 	float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
@@ -142,8 +142,8 @@ Vector2* Font::TextSize(const char *text, int fontSize)
 		textHeightGLCoords = (glyphSlot->bitmap.rows > textHeightGLCoords) ? glyphSlot->bitmap.rows : textHeightGLCoords;
 	}
 	
-	std::cout << textWidthGLCoords << " Text width" << std::endl;
-	std::cout << textHeightGLCoords << " Text height" << std::endl;
-	return new Vector2(textWidthGLCoords, textHeightGLCoords);
+	//std::cout << textWidthGLCoords << " Text width" << std::endl;
+	//std::cout << textHeightGLCoords << " Text height" << std::endl;
+	return Vector2(textWidthGLCoords, textHeightGLCoords);
 }
 //http://www.freetype.org/freetype2/docs/tutorial/example1.c
