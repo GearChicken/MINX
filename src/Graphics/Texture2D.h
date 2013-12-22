@@ -40,14 +40,6 @@ namespace MINX
 			*	@param shaderProgram The GLSL program that the Texture2D will use to draw.
 			*/
 			Texture2D(char* fileLoc, GLuint shaderProgram);
-			/** Creates a new Texture2D object
-			*	@param pixelData The Pixel Data to Place into the Texture
-			*	@param nWidth The Width of the Texture
-			*	@param nHeight The Height of the Texture
-			*	@param format The format of the Texture
-			*	@param shaderProgram The GLSL program that the Texture2D will use to draw.
-			*/
-			Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLuint shaderProgram);
 			/** Safely destroys a Texture2D object
 			*/
 			~Texture2D();
@@ -85,7 +77,7 @@ namespace MINX
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*	@param tint The color to tint the image to.
 			*/
-			void Draw(float x, float y, float scaleX, float scaleY, float rotation, Color* tint);
+			void Draw(float x, float y, float scaleX, float scaleY, float rotation, Color tint);
 			/** Draws the texture to the screen.
 			*	@param x The X value to draw the texture to on the screen.
 			*	@param y the Y value to draw the texture to on the screen.
@@ -125,7 +117,7 @@ namespace MINX
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*	@param tint The color to tint the image to.
 			*/
-			void Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotation, Color* tint);
+			void Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotation, Color tint);
 			/** The Width of the Texture
 			*/
 			inline int GetWidth() { return width; }

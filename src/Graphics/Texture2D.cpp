@@ -86,81 +86,6 @@ Texture2D::Texture2D(char* fileLoc, GLuint shaderProgram)
 
 	//*/
 }
-Texture2D::Texture2D(void* pixelData, int nWidth, int nHeight, GLint format, GLuint shaderProgram)
-{
-
-	/*
-	attribute_coord = glGetAttribLocation(shaderProgram, "coord");
-	uniTransformMatrix = glGetUniformLocation( shaderProgram, "trans" );
-	uniSourceX = glGetUniformLocation( shaderProgram, "sourceX" );
-	uniSourceY = glGetUniformLocation( shaderProgram, "sourceY" );
-	uniRows = glGetUniformLocation( shaderProgram, "rows" );
-	uniColumns = glGetUniformLocation( shaderProgram, "columns" );
-	uniTint = glGetUniformLocation(shaderProgram, "tint");
-	uniform_tex = glGetUniformLocation(shaderProgram, "tex");
-
-
-	float tempVertices[] = {
-		-nWidth/2.0f,   nHeight /2.0f,
-		nWidth/2.0f,   nHeight /2.0f,
-		nWidth/2.0f,  -nHeight /2.0f,
-
-		nWidth/2.0f,  -nHeight /2.0f,
-		-nWidth/2.0f,  -nHeight /2.0f,
-		-nWidth/2.0f,   nHeight /2.0f
-	};
-
-	for(int i =0 ; i < sizeof(vertices) / sizeof(float); i++)
-	{
-		vertices[i] =  tempVertices[i];
-	}
-
-	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-	glGenTextures(1, &texture);
-
-	glGenBuffers(1, &vertexBuffer);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glBufferData(GL_ARRAY_BUFFER,  sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-
-
-	GLint posAttrib = glGetAttribLocation( shaderProgram, "position" );
-	glEnableVertexAttribArray( posAttrib );
-	glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), 0 );
-
-	GLint colAttrib = glGetAttribLocation(shaderProgram, "color");
-	glEnableVertexAttribArray(colAttrib);
-	glVertexAttribPointer(colAttrib,3,GL_FLOAT,GL_FALSE,7*sizeof(float),(void*)(2*sizeof(float)));
-
-	GLint texAttrib = glGetAttribLocation(shaderProgram, "texcoord");
-	glEnableVertexAttribArray(texAttrib);
-	glVertexAttribPointer(texAttrib, 2, GL_FLOAT, GL_FALSE, 7*sizeof(float), (void*)(5*sizeof(float)));
-	this->shaderProgram = shaderProgram;
-
-	glActiveTexture( GL_TEXTURE0 );
-	glBindTexture(GL_TEXTURE_2D, texture);
-	//glBindTexture(GL_TEXTURE_2D, tex);
-	//float color[] = {1.0f, 0.0f, 0.0f, 1.0f};
-	//glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color
-	// IMAGAE LOADING
-
-	this->width = nWidth;
-	this->height = nHeight;
-	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, nWidth, nHeight,
-		0, GL_ALPHA, GL_UNSIGNED_BYTE, pixelData);
-
-	//END IMAGE LOAING
-	glUniform3f(uniTint, 1.0f, 1.0f, 1.0f);
-	//*/
-	
-}
 Texture2D::~Texture2D()
 {
 	glDeleteBuffers( 1, &vertexBuffer );
@@ -235,7 +160,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 	this->Draw();
 }
 
-void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
+void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotationAngle, Color tintColor)
 {
 	MakeProgramActive(NULL);
 
@@ -253,7 +178,7 @@ void Texture2D::Draw(float x, float y, float scaleX, float scaleY, float rotatio
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
-	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
+	glUniform3f(uniTint, tintColor.R/255.0f,tintColor.G/255.0f,tintColor.B/255.0f);
 	this->Draw();
 }
 
@@ -333,7 +258,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 	this->Draw(sourceRect);
 }
 
-void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle, Color* tintColor)
+void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, float scaleY, float rotationAngle, Color tintColor)
 {
 
 	MakeProgramActive(sourceRect);
@@ -351,7 +276,7 @@ void Texture2D::Draw(float x, float y, Rectangle* sourceRect, float scaleX, floa
 
 	glUniformMatrix4fv( uniTransformMatrix, 1, GL_FALSE, glm::value_ptr(modelviewMatrix));
 
-	glUniform3f(uniTint, tintColor->R/255.0f,tintColor->G/255.0f,tintColor->B/255.0f);
+	glUniform3f(uniTint, tintColor.R/255.0f,tintColor.G/255.0f,tintColor.B/255.0f);
 
 
 	this->Draw(sourceRect);
