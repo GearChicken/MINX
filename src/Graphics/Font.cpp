@@ -135,7 +135,7 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	}
 
 	glDisableVertexAttribArray(attribute_coord);
-	glDeleteTextures(1, &(tex[*p]));
+	//glDeleteTextures(1, &(tex[*p]));
 
 }
 Vector2 Font::TextSize(const char *text, int fontSize)
