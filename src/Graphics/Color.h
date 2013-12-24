@@ -39,6 +39,9 @@ namespace MINX
 			/** The alpha component of the color.
 			 */
 			byte A;
+			/** Constructs the Color with a default value of White
+			 */
+			Color();
 			/** Constructs a color with the given red, green, blue, and alpha values.
 			 */
 			Color(byte r, byte g, byte b, byte a);
