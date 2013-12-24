@@ -18,6 +18,15 @@
 	*/
 #include "Color.h"
 using namespace MINX::Graphics;
+
+Color::Color()
+{
+	R = 255;
+	B = 255;
+	G = 255;
+	A = 255;
+}
+
 Color::Color(byte r, byte g, byte b, byte a)
 {
 	R=r;
