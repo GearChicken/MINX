@@ -77,7 +77,7 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	projectionMatrix = glm::ortho(0.0f, (float)GameWindow::width-0.0f, (float)GameWindow::height-0.0f, 0.0f);
 
 	//make new translation matrix
-	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x, y + textHeightGLCoords-5, 1));
+	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x, y + textHeightGLCoords, 1));
 	x = modelviewMatrix[3][0];
 	y = modelviewMatrix[3][1];
 
