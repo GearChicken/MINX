@@ -60,6 +60,7 @@ namespace MINX
 			*	@param y the Y value to draw the texture to on the screen.
 			*/
 			void Draw(Texture2D* texture, float x, float y);
+
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -67,6 +68,7 @@ namespace MINX
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float rotation);
+
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -75,6 +77,7 @@ namespace MINX
 			*	@param scaleY The amount to vertically scale the texture by.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY);
+
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -84,6 +87,7 @@ namespace MINX
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation);
+
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -94,6 +98,19 @@ namespace MINX
 			*	@param tint The color to tint the image to.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation, Color tint);
+			
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param matrix The 4x4 Matrix to draw the texture with.
+			*/
+			void Draw(Texture2D* texture, glm::mat4 transformMatrix);
+
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param matrix The 4x4 Matrix to draw the texture with.
+			*	@param tint The color to tint the image to.
+			*/
+			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint);
 
 
 		private:
