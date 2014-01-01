@@ -204,3 +204,31 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	texData.color = tintColor;
 	texturesToDraw.push_back(texData);
 }
+
+void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
+{
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = transformMatrix;
+	texData.color = Color(255,255,255);
+	texturesToDraw.push_back(texData);
+}
+
+void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tintColor)
+{
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = transformMatrix;
+	texData.color = tintColor;
+	texturesToDraw.push_back(texData);
+}
