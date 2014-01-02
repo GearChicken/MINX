@@ -110,8 +110,6 @@ namespace MINX
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
 		*/
-		GLuint shaderProgram;
-		GLuint fontShaderProgram;
 		FT_Library freeTypeLibrary;
 	private:
 		/** A pointer to the GameTime being used by the game.
