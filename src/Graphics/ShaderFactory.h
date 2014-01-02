@@ -31,18 +31,36 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		/** A Singleton Class for Handling Shaders
+		*/
 		class ShaderFactory
 		{
 		public:
+
+			/** Returns the instance of ShaderFactory. If one does not exist, it creates one.
+			*/
 			static ShaderFactory* GetInstance();
 			
+			/** Load a Shader from Source
+			*	@param vertexSource The source of the vertexShader
+			*	@param fragmentSource The source of the fragmentShader
+			*/
 			void LoadShader(std::string vertexSource, std::string fragmentSource);
+
+			/** Load a Shader from files
+			*	@param vertexLocation The file location of the vertexShader
+			*	@param fragmentLocation The file location of the fragmentShader
+			*/
 			void LoadShaderFromFile(char* vertexLocation, char* fragmentLocation);
 
-			std::vector<GLuint> shaderPrograms;
+			/** Returns the Shader Program at the specified index
+			*	@param index The index of the shader program to return
+			*/
+			inline GLuint GetShaderAtIndex(int index) { return shaderPrograms.at(index); };
 		private:
 			ShaderFactory();
 			static ShaderFactory* instance;
+			std::vector<GLuint> shaderPrograms;
 		};
 	}
 }
