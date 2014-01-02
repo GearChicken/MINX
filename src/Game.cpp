@@ -101,7 +101,7 @@ void Game::Initialize()
 	{
 		std::cout << "FreeType Not Inited!";
 	}
-	
+	/*
 	 const char* vertexSource =
 		"#version 330\n"
 		"in vec4 coord;"
@@ -194,7 +194,7 @@ void Game::Initialize()
 	glAttachShader(fontShaderProgram, fontFragmentShader);
 	
 	glLinkProgram(fontShaderProgram);
-	
+	//*/
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -228,7 +228,7 @@ void Game::UnloadContent()
 {
     //SDL_DestroySemaphore( videoLock );
 	Gamepad_shutdown();
-	glDeleteProgram( shaderProgram );
+
 	glfwTerminate();
 }
 
