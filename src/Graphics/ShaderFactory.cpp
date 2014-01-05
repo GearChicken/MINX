@@ -1,6 +1,6 @@
 /*
     MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013  MINX Team
+    Copyright (C) 2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,7 +30,8 @@ ShaderFactory::ShaderFactory()
 		"in vec4 coord;"
 		"out vec2 texpos;"
 		"uniform mat4 trans;"
-		"void main() {"
+		"void main()"
+		"{"
 		"	texpos = coord.zw;" 
 		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
 		"}";
@@ -39,7 +40,8 @@ ShaderFactory::ShaderFactory()
 		"in vec2 texpos;"
 		"uniform sampler2D tex;"
 		"uniform vec3 color;"
-		"void main() {"
+		"void main()"
+		"{"
 		"	gl_FragColor = texture(tex, texpos) * vec4(color,1.0);"
 		"}";
 	LoadShader(vertexSource, fragmentSource);
@@ -48,7 +50,8 @@ ShaderFactory::ShaderFactory()
 		"#version 120\n"
 		"attribute vec4 coord;"
 		"varying vec2 texpos;"
-		"void main() {"
+		"void main()"
+		"{"
 		"	gl_Position = vec4(coord.xy, 0.0, 1.0);"
 		"	texpos = coord.zw;" 
 		"}";
@@ -58,7 +61,8 @@ ShaderFactory::ShaderFactory()
 		"varying vec2 texpos;"
 		"uniform sampler2D tex;"
 		"uniform vec4 color;"
-		"void main() {"
+		"void main()"
+		"{"
 		"	gl_FragColor = vec4(1,1,1,texture2D(tex, texpos).a)* color;"
 		"}";
 	
