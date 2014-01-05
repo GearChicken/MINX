@@ -21,6 +21,13 @@
 
 using namespace MINX;
 
+Rectangle::Rectangle()
+{
+	X = 0;
+	Y = 0;
+	Width = 0;
+	Height = 0;
+}
 Rectangle::Rectangle(int x, int y, int width, int height)
 {
 	X=x;
