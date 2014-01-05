@@ -25,6 +25,10 @@ namespace MINX
 	*/
 	struct Rectangle
 	{
+		/** Creates a new instance of Rectangle with all 0 values
+		*/
+		Rectangle();
+
 		/** Creates a new instance of Rectangle
 		*	@param x The X coordinate of the Rectangle
 		*	@param y the Y coordinate of the Rectangle
