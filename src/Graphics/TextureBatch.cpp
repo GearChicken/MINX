@@ -65,15 +65,27 @@ void TextureBatch::DrawLoadedTextures()
 		
 		glUniform3f(uniformTint, textureToDraw.color.R/255.0f, textureToDraw.color.G/255.0f, textureToDraw.color.B/255.0f);
 		
+		float xMin, xMax, yMin, yMax;
+		Rectangle sourceRect = textureToDraw.sourceRect;
+		if(sourceRect.Width == 0 && sourceRect.Height == 0)
+		{
+			sourceRect.Width = texWidth;
+			sourceRect.Height = texHeight;
+		}
+		xMin = (double)sourceRect.X / texWidth;
+		xMax = (double)sourceRect.Right() / texWidth;
+		yMin = (double)sourceRect.Y / texHeight;
+		yMax = (double)sourceRect.Bottom() / texHeight;
+
 		GLfloat box[6][4] = {
 
-		{-texWidth/2.0f,   texHeight /2.0f, 0, 0},
-		{texWidth/2.0f,   texHeight /2.0f, 1, 0},
-		{texWidth/2.0f,  -texHeight /2.0f, 1, 1},
+		{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin},
+		{texWidth/2.0f,   texHeight /2.0f, xMax, yMin},
+		{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
 		
-		{texWidth/2.0f,  -texHeight /2.0f, 1, 1},
-		{-texWidth/2.0f,  -texHeight /2.0f, 0, 1},
-		{-texWidth/2.0f,   texHeight /2.0f, 0, 0}
+		{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
+		{-texWidth/2.0f,  -texHeight /2.0f, xMin, yMax},
+		{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin}
 		//*/
 		};
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
@@ -105,6 +117,28 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 	texData.color = Color(255,255,255);
 	texturesToDraw.push_back(texData);
 }
+
+void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRect)
+{
+	glm::mat4 projectionMatrix;
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = Color(255,255,255);
+	texData.sourceRect = sourceRect;
+	texturesToDraw.push_back(texData);
+}
+
 void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY)
 {
 	glm::mat4 projectionMatrix;
