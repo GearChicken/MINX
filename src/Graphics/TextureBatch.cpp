@@ -165,6 +165,35 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	texturesToDraw.push_back(texData);
 
 }
+
+void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, Rectangle sourceRect)
+{
+	glm::mat4 projectionMatrix;
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+
+	//scale the coordinates up by the specified amounts
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
+
+	
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = Color(255,255,255);
+	texData.sourceRect = sourceRect;
+	texturesToDraw.push_back(texData);
+
+}
+
 void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngle)
 {
 	glm::mat4 projectionMatrix;
@@ -187,6 +216,31 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	texData.color = Color(255,255,255);
 	texturesToDraw.push_back(texData);
 }
+
+void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngle, Rectangle sourceRect)
+{
+	glm::mat4 projectionMatrix;
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = Color(255,255,255);
+	texData.sourceRect = sourceRect;
+	texturesToDraw.push_back(texData);
+}
+
 void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotationAngle)
 {
 	glm::mat4 projectionMatrix;
@@ -209,6 +263,32 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	texData.height = height;
 	texData.matrix = projectionMatrix;
 	texData.color = Color(255,255,255);
+	texturesToDraw.push_back(texData);
+}
+
+void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotationAngle, Rectangle sourceRect)
+{
+	glm::mat4 projectionMatrix;
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = Color(255,255,255);
+	texData.sourceRect = sourceRect;
 	texturesToDraw.push_back(texData);
 }
 
@@ -239,6 +319,34 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	texturesToDraw.push_back(texData);
 }
 
+void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotationAngle, Color tintColor, Rectangle sourceRect)
+{
+	glm::mat4 projectionMatrix;
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+
+	//scale the coordinates up by the specified amounts
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = tintColor;
+	texData.sourceRect = sourceRect;
+	texturesToDraw.push_back(texData);
+}
+
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
 {
 	int width = texture->GetWidth();
@@ -253,6 +361,21 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
 	texturesToDraw.push_back(texData);
 }
 
+void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Rectangle sourceRect)
+{
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = transformMatrix;
+	texData.color = Color(255,255,255);
+	texData.sourceRect = sourceRect;
+	texturesToDraw.push_back(texData);
+}
+
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tintColor)
 {
 	int width = texture->GetWidth();
@@ -264,5 +387,20 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 	texData.height = height;
 	texData.matrix = transformMatrix;
 	texData.color = tintColor;
+	texturesToDraw.push_back(texData);
+}
+
+void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tintColor, Rectangle sourceRect)
+{
+	int width = texture->GetWidth();
+	int height = texture->GetHeight();
+
+	struct TextureData texData = TextureData();
+	texData.texture = texture->texture;
+	texData.width =  width;
+	texData.height = height;
+	texData.matrix = transformMatrix;
+	texData.color = tintColor;
+	texData.sourceRect = sourceRect;
 	texturesToDraw.push_back(texData);
 }

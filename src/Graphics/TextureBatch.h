@@ -69,7 +69,7 @@ namespace MINX
 			*	@param sourceRect The Source Rectangle for Texture Clipping
 			*/
 			void Draw(Texture2D* texture, float x, float y, Rectangle sourceRectangle);
-
+			
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -77,6 +77,15 @@ namespace MINX
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float rotation);
+
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, float x, float y, float rotation, Rectangle sourceRectangle);
 
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
@@ -93,9 +102,30 @@ namespace MINX
 			*	@param y the Y value to draw the texture to on the screen.
 			*	@param scaleX The amount to horizontally scale the texture by.
 			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, Rectangle sourceRectangle);
+			
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
 			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation);
+			
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation, Rectangle sourceRectangle);
 
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
@@ -107,12 +137,31 @@ namespace MINX
 			*	@param tint The color to tint the image to.
 			*/
 			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation, Color tint);
+
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param scaleX The amount to horizontally scale the texture by.
+			*	@param scaleY The amount to vertically scale the texture by.
+			*	@param rotation The value in radians to rotate the texture by. The origin is the center of the texture.
+			*	@param tint The color to tint the image to.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotation, Color tint, Rectangle sourceRectangle);
 			
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param matrix The 4x4 Matrix to draw the texture with.
 			*/
 			void Draw(Texture2D* texture, glm::mat4 transformMatrix);
+			
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param matrix The 4x4 Matrix to draw the texture with.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Rectangle sourceRectangle);
 
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
@@ -120,6 +169,14 @@ namespace MINX
 			*	@param tint The color to tint the image to.
 			*/
 			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint);
+
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param matrix The 4x4 Matrix to draw the texture with.
+			*	@param tint The color to tint the image to.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint, Rectangle sourceRectangle);
 
 
 		private:
