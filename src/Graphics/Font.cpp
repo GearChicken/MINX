@@ -45,8 +45,8 @@ void Font::RenderText(std::string text, float x, float y, int fontSize)
 void Font::RenderText(const char *text, float x, float y, int fontSize)
 {
 
-	double sx = 2.0 / GameWindow::width;
-	double sy = 2.0 / GameWindow::height;
+	float sx = 2.0f / GameWindow::width;
+	float sy = 2.0f / GameWindow::height;
 
 
 	glUseProgram(shaderProgram);
