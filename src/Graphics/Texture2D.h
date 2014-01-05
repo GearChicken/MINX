@@ -52,8 +52,8 @@ namespace MINX
 			*/
 			GLuint texture;
 		private:	
-			double width;
-			double height;
+			int width;
+			int height;
 		};
 
 	}
