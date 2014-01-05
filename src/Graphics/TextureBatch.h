@@ -35,6 +35,7 @@ namespace MINX
 			int height;
 			Color color;
 			glm::mat4  matrix;
+			Rectangle sourceRect;
 		};
 
 		/** A batching system for drawing Texture2D's to the screen. Batches can use different shaders
@@ -60,6 +61,14 @@ namespace MINX
 			*	@param y the Y value to draw the texture to on the screen.
 			*/
 			void Draw(Texture2D* texture, float x, float y);
+
+			/** Adds the texture to the list of texture instances to draw to the screen.
+			*	@param texture The texture to draw the the screen
+			*	@param x The X value to draw the texture to on the screen.
+			*	@param y the Y value to draw the texture to on the screen.
+			*	@param sourceRect The Source Rectangle for Texture Clipping
+			*/
+			void Draw(Texture2D* texture, float x, float y, Rectangle sourceRectangle);
 
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
