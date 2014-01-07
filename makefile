@@ -43,6 +43,7 @@ endif
 ##### Files
 
 SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) $(wildcard src/Input/*.cpp) $(wildcard src/Audio/*.cpp)
+HEADERS = $(wildcard src/*.h) $(wildcard src/Graphics/*.h) $(wildcard src/Input/*.h) $(wildcard src/Audio/*.h)
 OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp)) $(patsubst src/Audio/%.cpp,src/Audio/%.o,$(wildcard src/Audio/*.cpp))
 
 
@@ -74,6 +75,15 @@ clean:
 install:
 	cp bin/libMINX.so $(INSTALLTARGET)
 
+headers:
+	test -d /usr/include/MINX || mkdir -p /usr/include/MINX
+	test -d /usr/include/MINX/Input || mkdir -p /usr/include/MINX/Input
+	test -d /usr/include/MINX/Graphics || mkdir -p /usr/include/MINX/Graphics
+	cp -u -r src/*.h /usr/include/MINX/
+	cp -u -r src/Input/*.h /usr/include/MINX/Input
+	cp -u -r src/Graphics/*.h /usr/include/MINX/Graphics
+	cp -u -r GamePad/include/* /usr/include/MINX
+	cp -u -r GL/x86/include/* /usr/include/MINX
 doxygen:
 	doxygen
 
