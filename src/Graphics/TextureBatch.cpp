@@ -251,8 +251,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 
+	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 	
@@ -278,8 +279,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 
+	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
@@ -306,9 +308,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
-
+	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
@@ -334,8 +336,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 
+	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
