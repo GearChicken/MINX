@@ -23,6 +23,8 @@ using namespace MINX::Input;
 using namespace MINX;
 using namespace std;
 
+			
+
 Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a little high
 {
 }
@@ -37,64 +39,64 @@ void Keyboard::handleEvent()
 	}
 }
 
-Button Keyboard::getKey(char key)
+Button Keyboard::getKey(int key)
 {
 	switch(key)
 	{
 		case '\n':
 			return getButton(int('\r'));
 		case '~':
-			return getButton(int('`')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('`')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '`':
-			return getButton(int('`')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('`')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '+':
-			return getButton(int('=')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('=')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '=':
-			return getButton(int('=')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('=')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '!':
-			return getButton(int('1')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('1')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '1':
-			return getButton(int('1')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('1')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '@':
-			return getButton(int('2')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('2')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '2':
-			return getButton(int('2')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('2')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '#':
-			return getButton(int('3')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('3')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '3':
-			return getButton(int('3')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('3')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '$':
-			return getButton(int('4')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('4')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '4':
-			return getButton(int('4')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('4')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '%':
-			return getButton(int('5')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('5')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '5':
-			return getButton(int('5')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('5')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '^':
-			return getButton(int('6')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('6')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '6':
-			return getButton(int('6')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('6')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '&':
-			return getButton(int('7')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('7')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '7':
-			return getButton(int('7')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('7')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '*':
-			return getButton(int('8')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('8')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '8':
-			return getButton(int('8')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('8')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '(':
-			return getButton(int('9')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('9')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '9':
-			return getButton(int('9')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('9')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case ')':
-			return getButton(int('0')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('0')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '0':
-			return getButton(int('0')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('0')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '|':
-			return getButton(int('\\')) && (getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('\\')) && (getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		case '\\':
-			return getButton(int('\\')) && !(getButton(MINX_KEY_RIGHT_SHIFT) || getButton(MINX_KEY_LEFT_SHIFT));
+			return getButton(int('\\')) && !(getButton(Keys::KEY_LEFT_SHIFT) || getButton(Keys::KEY_RIGHT_SHIFT));
 		default:
 			return getButton(int(key));
 	}

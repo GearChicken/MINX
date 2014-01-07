@@ -20,131 +20,6 @@
 #define KEYBOARD_H_
 
 
-#ifndef MINX_KEYBOARD_ALIAS
-#define MINX_KEY_0   48
-#define MINX_KEY_1   49
-#define MINX_KEY_2   50
-#define MINX_KEY_3   51
-#define MINX_KEY_4   52
-#define MINX_KEY_5   53
-#define MINX_KEY_6   54
-#define MINX_KEY_7   55
-#define MINX_KEY_8   56
-#define MINX_KEY_9   57
-#define MINX_KEY_A   65
-#define MINX_KEY_APOSTROPHE   39 /* ' */
-#define MINX_KEY_B   66
-#define MINX_KEY_BACKSLASH   92 /* \ */
-#define MINX_KEY_BACKSPACE   259
-#define MINX_KEY_C   67
-#define MINX_KEY_CAPS_LOCK   280
-#define MINX_KEY_COMMA   44 /* , */
-#define MINX_KEY_D   68
-#define MINX_KEY_DELETE   261
-#define MINX_KEY_DOWN   264
-#define MINX_KEY_E   69
-#define MINX_KEY_END   269
-#define MINX_KEY_ENTER   257
-#define MINX_KEY_EQUAL   61 /* = */
-#define MINX_KEY_ESCAPE   256
-#define MINX_KEY_F   70
-#define MINX_KEY_F1   290
-#define MINX_KEY_F10   299
-#define MINX_KEY_F11   300
-#define MINX_KEY_F12   301
-#define MINX_KEY_F13   302
-#define MINX_KEY_F14   303
-#define MINX_KEY_F15   304
-#define MINX_KEY_F16   305
-#define MINX_KEY_F17   306
-#define MINX_KEY_F18   307
-#define MINX_KEY_F19   308
-#define MINX_KEY_F2   291
-#define MINX_KEY_F20   309
-#define MINX_KEY_F21   310
-#define MINX_KEY_F22   311
-#define MINX_KEY_F23   312
-#define MINX_KEY_F24   313
-#define MINX_KEY_F25   314
-#define MINX_KEY_F3   292
-#define MINX_KEY_F4   293
-#define MINX_KEY_F5   294
-#define MINX_KEY_F6   295
-#define MINX_KEY_F7   296
-#define MINX_KEY_F8   297
-#define MINX_KEY_F9   298
-#define MINX_KEY_G   71
-#define MINX_KEY_GRAVE_ACCENT   96 /* ` */
-#define MINX_KEY_H   72
-#define MINX_KEY_HOME   268
-#define MINX_KEY_I   73
-#define MINX_KEY_INSERT   260
-#define MINX_KEY_J   74
-#define MINX_KEY_K   75
-#define MINX_KEY_KP_0   320
-#define MINX_KEY_KP_1   321
-#define MINX_KEY_KP_2   322
-#define MINX_KEY_KP_3   323
-#define MINX_KEY_KP_4   324
-#define MINX_KEY_KP_5   325
-#define MINX_KEY_KP_6   326
-#define MINX_KEY_KP_7   327
-#define MINX_KEY_KP_8   328
-#define MINX_KEY_KP_9   329
-#define MINX_KEY_KP_ADD   334
-#define MINX_KEY_KP_DECIMAL   330
-#define MINX_KEY_KP_DIVIDE   331
-#define MINX_KEY_KP_ENTER   335
-#define MINX_KEY_KP_EQUAL   336
-#define MINX_KEY_KP_MULTIPLY   332
-#define MINX_KEY_KP_SUBTRACT   333
-#define MINX_KEY_L   76
-#define MINX_KEY_LAST   MINX_KEY_MENU
-#define MINX_KEY_LEFT   263
-#define MINX_KEY_LEFT_ALT   342
-#define MINX_KEY_LEFT_BRACKET   91 /* [ */
-#define MINX_KEY_LEFT_CONTROL   341
-#define MINX_KEY_LEFT_SHIFT   340
-#define MINX_KEY_LEFT_SUPER   343
-#define MINX_KEY_M   77
-#define MINX_KEY_MENU   348
-#define MINX_KEY_MINUS   45 /* - */
-#define MINX_KEY_N   78
-#define MINX_KEY_NUM_LOCK   282
-#define MINX_KEY_O   79
-#define MINX_KEY_P   80
-#define MINX_KEY_PAGE_DOWN   267
-#define MINX_KEY_PAGE_UP   266
-#define MINX_KEY_PAUSE   284
-#define MINX_KEY_PERIOD   46 /* . */
-#define MINX_KEY_PRINT_SCREEN   283
-#define MINX_KEY_Q   81
-#define MINX_KEY_R   82
-#define MINX_KEY_RIGHT   262
-#define MINX_KEY_RIGHT_ALT   346
-#define MINX_KEY_RIGHT_BRACKET   93 /* ] */
-#define MINX_KEY_RIGHT_CONTROL   345
-#define MINX_KEY_RIGHT_SHIFT   344
-#define MINX_KEY_RIGHT_SUPER   347
-#define MINX_KEY_S   83
-#define MINX_KEY_SCROLL_LOCK   281
-#define MINX_KEY_SEMICOLON   59 /* ; */
-#define MINX_KEY_SLASH   47 /* / */
-#define MINX_KEY_SPACE   32
-#define MINX_KEY_T   84
-#define MINX_KEY_TAB   258
-#define MINX_KEY_U   85
-#define MINX_KEY_UNKNOWN   -1
-#define MINX_KEY_UP   265
-#define MINX_KEY_V   86
-#define MINX_KEY_W   87
-#define MINX_KEY_WORLD_1   161 /* non-US #1 */
-#define MINX_KEY_WORLD_2   162 /* non-US #2 */
-#define MINX_KEY_X   88
-#define MINX_KEY_Y   89
-#define MINX_KEY_Z   90
-#define MINX_KEYBOARD_ALIAS
-#endif
 
 #include "IGenericHID.h"
 #include "Button.h"
@@ -153,6 +28,139 @@ namespace MINX
 {
 	namespace Input
 	{
+
+		namespace Keys
+		{
+#ifndef MINX_KEYS
+#define MINX_KEYS
+			enum Keys 
+			{
+				KEY_0 = 48,
+				KEY_1 = 49,
+				KEY_2 = 50,
+				KEY_3 = 51,
+				KEY_4 = 52,
+				KEY_5 = 53,
+				KEY_6 = 54,
+				KEY_7 = 55,
+				KEY_8 = 56,
+				KEY_9 = 57,
+				KEY_A = 65,
+				KEY_APOSTROPHE = 39, /* ' */
+				KEY_B = 66,
+				KEY_BACKSLASH = 92, /* \ */
+				KEY_BACKSPACE = 259,
+				KEY_C = 67,
+				KEY_CAPS_LOCK = 280,
+				KEY_COMMA = 44, /* , */
+				KEY_D = 68,
+				KEY_DELETE = 261,
+				KEY_DOWN = 264,
+				KEY_E = 69,
+				KEY_END = 269,
+				KEY_ENTER = 257,
+				KEY_EQUAL = 61, /* = */
+				KEY_ESCAPE = 256,
+				KEY_F = 70,
+				KEY_F1 = 290,
+				KEY_F10 = 299,
+				KEY_F11 = 300,
+				KEY_F12 = 301,
+				KEY_F13 = 302,
+				KEY_F14 = 303,
+				KEY_F15 = 304,
+				KEY_F16 = 305,
+				KEY_F17 = 306,
+				KEY_F18 = 307,
+				KEY_F19 = 308,
+				KEY_F2 = 291,
+				KEY_F20 = 309,
+				KEY_F21 = 310,
+				KEY_F22 = 311,
+				KEY_F23 = 312,
+				KEY_F24 = 313,
+				KEY_F25 = 314,
+				KEY_F3 = 292,
+				KEY_F4 = 293,
+				KEY_F5 = 294,
+				KEY_F6 = 295,
+				KEY_F7 = 296,
+				KEY_F8 = 297,
+				KEY_F9 = 298,
+				KEY_G = 71,
+				KEY_GRAVE_ACCENT = 96, /* ` */
+				KEY_H = 72,
+				KEY_HOME = 268,
+				KEY_I = 73,
+				KEY_INSERT = 260,
+				KEY_J = 74,
+				KEY_K = 75,
+				KEY_KP_0 = 320,
+				KEY_KP_1 = 321,
+				KEY_KP_2 = 322,
+				KEY_KP_3 = 323,
+				KEY_KP_4 = 324,
+				KEY_KP_5 = 325,
+				KEY_KP_6 = 326,
+				KEY_KP_7 = 327,
+				KEY_KP_8 = 328,
+				KEY_KP_9 = 329,
+				KEY_KP_ADD = 334,
+				KEY_KP_DECIMAL = 330,
+				KEY_KP_DIVIDE = 331,
+				KEY_KP_ENTER = 335,
+				KEY_KP_EQUAL = 336,
+				KEY_KP_MULTIPLY = 332,
+				KEY_KP_SUBTRACT = 333,
+				KEY_L = 76,
+				KEY_LAST = 348,
+				KEY_LEFT = 263,
+				KEY_LEFT_ALT = 342,
+				KEY_LEFT_BRACKET = 91, /* [ */
+				KEY_LEFT_CONTROL = 341,
+				KEY_LEFT_SHIFT = 340,
+				KEY_LEFT_SUPER = 343,
+				KEY_M = 77,
+				KEY_MENU = 348,
+				KEY_MINUS = 45, /* - */
+				KEY_N = 78,
+				KEY_NUM_LOCK = 282,
+				KEY_O = 79,
+				KEY_P = 80,
+				KEY_PAGE_DOWN = 267,
+				KEY_PAGE_UP = 266,
+				KEY_PAUSE = 284,
+				KEY_PERIOD = 46, /* . */
+				KEY_PRINT_SCREEN = 283,
+				KEY_Q = 81,
+				KEY_R = 82,
+				KEY_RIGHT = 262,
+				KEY_RIGHT_ALT = 346,
+				KEY_RIGHT_BRACKET = 93, /* ] */
+				KEY_RIGHT_CONTROL = 345,
+				KEY_RIGHT_SHIFT = 344,
+				KEY_RIGHT_SUPER = 347,
+				KEY_S = 83,
+				KEY_SCROLL_LOCK = 281,
+				KEY_SEMICOLON = 59, /* , */
+				KEY_SLASH = 47, /* / */
+				KEY_SPACE = 32,
+				KEY_T = 84,
+				KEY_TAB = 258,
+				KEY_U = 85,
+				KEY_UNKNOWN = -1,
+				KEY_UP = 265,
+				KEY_V = 86,
+				KEY_W = 87,
+				KEY_WORLD_1 = 161, /* non-US #1 */
+				KEY_WORLD_2 = 162, /* non-US #2 */
+				KEY_X = 88,
+				KEY_Y = 89,
+				KEY_Z = 90
+			};
+#endif
+		}
+
 		/** Represents a keyboard device.
 		 */
 		class Keyboard : public IGenericHID
@@ -167,7 +175,7 @@ namespace MINX
 				/** Gets a button for the state of 'key'
 				*	@param key The Key to get the state of
 				*/
-				Button getKey(char key);
+				Button getKey(int key);
 		};
 	}
 }
