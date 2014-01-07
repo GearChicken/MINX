@@ -1,6 +1,6 @@
 ##### Variables
 AT:=@
-INCDIR = -I./GamePad/include
+INCDIR = -I./GamePad/include -I/usr/include/freetype2 -I./GL/x86/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
 LFLAGS = -L./GamePad/library/debug-linux64 -lstem_gamepad -lX11 -lglfw -lGL -lGLEW -lfreeimage
 CXX = g++

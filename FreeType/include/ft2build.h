@@ -54,7 +54,7 @@
 
 #define FT_FREETYPE_H <freetype2/freetype/freetype.h>
   /* `<prefix>/include/freetype2' must be in your current inclusion path */
-#include <freetype/config/ftheader.h>
+#include <freetype2/freetype/ftheader.h>
 
 #endif /* __FT2_BUILD_UNIX_H__ */
 

@@ -68,15 +68,14 @@ void MonsterGame::Initialize()
 void MonsterGame::LoadContent()
 {
 	//Put stuff here that loads content for your game.
-	ShaderFactory::GetInstance()->LoadShaderFromFile("vertexShader.glsl", "fragmentShader.glsl");
-	ShaderFactory::GetInstance()->LoadShaderFromFile("fontVertexShader.glsl", "fontFragmentShader.glsl");
-
+	//ShaderFactory::GetInstance()->LoadShaderFromFile("vertexShader.glsl", "fragmentShader.glsl");
+	//ShaderFactory::GetInstance()->LoadShaderFromFile("fontVertexShader.glsl", "fontFragmentShader.glsl");
 
 	texBatch = new TextureBatch(ShaderFactory::GetInstance()->GetShaderAtIndex(0));
 
 	penTex = new Texture2D("penguin.jpg");
 
-	/*
+	
 	monsterTexture = new Texture2D("gem.png");
 	monsters->push_back(new Bouncer(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
@@ -85,7 +84,7 @@ void MonsterGame::LoadContent()
 	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
 	//*/
 
-	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", ShaderFactory::GetInstance()->GetShaderAtIndex(3));
+	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", ShaderFactory::GetInstance()->GetShaderAtIndex(1));
 	//*/
 	Game::LoadContent();
 }
@@ -104,7 +103,7 @@ void MonsterGame::Update(GameTime* gameTime)
 	//Put stuff here to update the logic in your game each tick.
 	Game::Update(gameTime);
 	
-	/*
+	
 	for(Monster* m : *monsters)
 	{
 		m->Update(gameTime, keyboard);
@@ -127,9 +126,9 @@ void MonsterGame::Draw(GameTime* gameTime)
 
 	//Put stuff here to draw your game each frame.
 
-	std::cout << "Width: " << GameWindow::width << " Height: " << GameWindow::height << std::endl;
+	//std::cout << "Width: " << GameWindow::width << " Height: " << GameWindow::height << std::endl;
 	
-	/*
+	
 	for (int i = 0; i < 10; i++)
 	{
 		texBatch->Draw(monsterTexture, rand()%GameWindow::width, rand()%GameWindow::height, 1.0f, 1.0f, 0.0f, Color(rand()%256, rand()%256, rand()%256));
@@ -137,7 +136,7 @@ void MonsterGame::Draw(GameTime* gameTime)
 	}
 	//*/
 
-	/*
+	
 	for(Monster *m : *monsters)
 	{
 		m->Draw(texBatch);
