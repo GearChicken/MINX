@@ -255,7 +255,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
-
+	
+	//scale the coordinates up by the specified amounts
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
 	
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
@@ -281,6 +283,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
+	
+	//scale the coordinates up by the specified amounts
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
 	
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
