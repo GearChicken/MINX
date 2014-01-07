@@ -16,7 +16,6 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
-
 #include "Monsters.h"
 #include "Monster.h"
 #include "Bouncer.h"
@@ -26,6 +25,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <vector>
 #include <iostream>
 #include <Graphics/Font.h>
+#include <Graphics/TextureBatch.h>
+#include <Graphics/ShaderFactory.h>
+
 using namespace MINX_monsters;
 using namespace MINX;
 using namespace MINX::Graphics;
@@ -33,11 +35,12 @@ Font* testFont;
 vector<Monster*>* monsters;
 Texture2D* monsterTexture;
 Texture2D* penTex;
+TextureBatch* texBatch;
 MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
-	Game::setVideoOptions(640, 480 ,32,0,"MINX Monster Game!");
 	srand(time(NULL));
+	Game::setVideoOptions(1024, 768, 32, 0, "MINX Monster Game!");
 	isRunning = true;
 	monsters = new vector<Monster*>();
 	std::cout << "Welcome to the MINX Monster Game!" << std::endl;
@@ -65,15 +68,24 @@ void MonsterGame::Initialize()
 void MonsterGame::LoadContent()
 {
 	//Put stuff here that loads content for your game.
+	ShaderFactory::GetInstance()->LoadShaderFromFile("vertexShader.glsl", "fragmentShader.glsl");
+	ShaderFactory::GetInstance()->LoadShaderFromFile("fontVertexShader.glsl", "fontFragmentShader.glsl");
 
-	penTex = new Texture2D("penguin.jpg", shaderProgram);
-	monsterTexture = new Texture2D("gem.png",shaderProgram);
+
+	texBatch = new TextureBatch(ShaderFactory::GetInstance()->GetShaderAtIndex(0));
+
+	penTex = new Texture2D("penguin.jpg");
+
+	/*
+	monsterTexture = new Texture2D("gem.png");
 	monsters->push_back(new Bouncer(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new PatternMonster(new Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
 	monsters->push_back(new RandomMonster(new Vector2(GameWindow::width/2,GameWindow::height/2), monsterTexture));
 	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
-	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", fontShaderProgram);
+	//*/
+
+	testFont = new Font(freeTypeLibrary, "Ubuntu-B.ttf", ShaderFactory::GetInstance()->GetShaderAtIndex(3));
 	//*/
 	Game::LoadContent();
 }
@@ -84,16 +96,21 @@ void MonsterGame::UnloadContent()
 
 
 	Game::UnloadContent();
+
 }
 
 void MonsterGame::Update(GameTime* gameTime)
 {
 	//Put stuff here to update the logic in your game each tick.
 	Game::Update(gameTime);
+	
+	/*
 	for(Monster* m : *monsters)
 	{
 		m->Update(gameTime, keyboard);
 	}
+	//*/
+
 	if(keyboard->getButton(MINX_KEY_ESCAPE).state)
 	{
 		isRunning = false;
@@ -104,17 +121,30 @@ void MonsterGame::Draw(GameTime* gameTime)
 {
 	glClearColor( 100/255.0f, 149/255.0f, 237/255.0f, 1.0f );
 	glClear( GL_COLOR_BUFFER_BIT );
-	penTex->Draw(10.0f,-0.0f,.25f,.5f);
+	
+	
+	texBatch->Draw(penTex, 10.0f, 10.0f, 0.25f, 0.5f, Rectangle(200,100,300,400));
+
 	//Put stuff here to draw your game each frame.
+
+	std::cout << "Width: " << GameWindow::width << " Height: " << GameWindow::height << std::endl;
+	
+	/*
+	for (int i = 0; i < 10; i++)
+	{
+		texBatch->Draw(monsterTexture, rand()%GameWindow::width, rand()%GameWindow::height, 1.0f, 1.0f, 0.0f, Color(rand()%256, rand()%256, rand()%256));
+
+	}
+	//*/
+
+	/*
 	for(Monster *m : *monsters)
 	{
-		m->Draw();
+		m->Draw(texBatch);
 	}//*/
-	testFont->RenderText("ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+-=[]{}\/|:;><", 0,  0, 12);
-	for (int i = 0; i < 1000; i++)
-	{
-		//stress test
-		//monsterTexture->Draw(rand()%GameWindow::width, rand()%GameWindow::height, 1.0f, 1.0f, 0.0f, new Color(rand()%256, rand()%256, rand()%256));
-	}
+
+	texBatch->DrawLoadedTextures();
+	testFont->RenderText(" !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 0,  0, 12);
+
 	Game::Draw(gameTime);
 }
