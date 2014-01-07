@@ -111,7 +111,7 @@ void MonsterGame::Update(GameTime* gameTime)
 	}
 	//*/
 
-	if(keyboard->getButton(MINX_KEY_ESCAPE).state)
+	if(keyboard->getButton(Input::Keys::KEY_ESCAPE).state)
 	{
 		isRunning = false;
 	}
