@@ -87,7 +87,7 @@ void Monster::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 	}
 	//*/
 }
-void Monster::Draw()
+void Monster::Draw(TextureBatch* texBatch)
 {
-	texture->Draw(position->X, position->Y, 1.0f, 1.0f, 0.0f, color);
+	texBatch->Draw(texture, position->X, position->Y, 1.0f, 1.0f, 0.0f, *color);
 }

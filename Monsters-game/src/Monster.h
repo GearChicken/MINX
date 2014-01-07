@@ -23,11 +23,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <GameTime.h>
 #include <Input/Keyboard.h>
 #include <Graphics/Color.h>
-#include <Graphics/Texture2D.h>
+#include <Graphics/TextureBatch.h>
 #include <Graphics/GameWindow.h>
 #include <Input/GamePad.h>
 using namespace MINX;
 using namespace MINX::Input;
+using namespace MINX::Graphics;
 namespace MINX_monsters
 {
 	class Monster
@@ -40,7 +41,7 @@ namespace MINX_monsters
 			Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Color* color, Game* game);
 			Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Color* color);
 			virtual void Update(GameTime* gameTime, Input::Keyboard* keyboard);
-			void Draw();
+			void Draw(TextureBatch* texBatch);
 			Input::GamePad* gamePad;
 			bool usingGamePad;
 	};
