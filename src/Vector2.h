@@ -24,6 +24,9 @@ namespace MINX
 	 */
 	struct Vector2
 	{
+		/** Initializes the Vector2 with a value of (0, 0)
+		 */
+			Vector2();
 		/** Initializes the Vector2 with an x and a y component.
 		 * @param x The x component of the Vector2.
 		 * @param y The y component of the Vector2.
@@ -33,10 +36,18 @@ namespace MINX
 		 * @param addTo the Vector2 to add.
 		 */
 			Vector2 operator+(const Vector2& addTo);
+		/** Adds 2 Vector2s.
+		 * @param addTo the Vector2 to add.
+		 */
+			void operator+=(const Vector2& addTo);
 		/** Subtracts a Vector2 from another.
 		 * @param subtractFrom the Vector2 to subtract.
 		 */
 			Vector2 operator-(const Vector2& subtractFrom);
+		/** Subtracts a Vector2 from another.
+		 * @param subtractFrom the Vector2 to subtract.
+		 */
+			void operator-=(const Vector2& subtractFrom);
 		/** "cross multiplies" 2 Vector2s.
 		 * There are "'s there because you can't REALLY cross multiply a 2 dimensional vector.
 		 * @param multiplyBy the Vector2 to "cross multiply" by.
@@ -50,6 +61,10 @@ namespace MINX
 		 * @param multiplyBy the scalar to multiply the length of the Vector2 by.
 		 */
 			Vector2 operator*(const float& multiplyBy);
+		/** Multiplies a Vector2 by a scalar.
+		 * @param multiplyBy the scalar to multiply the length of the Vector2 by.
+		 */
+			void operator*=(const float& multiplyBy);
 		/** Negates a Vector2.
 		 */
 			Vector2 operator-()const;

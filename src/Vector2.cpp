@@ -22,15 +22,27 @@
 
 using namespace MINX;
 
+Vector2::Vector2():  X(0), Y(0) {}
+
 Vector2::Vector2(float x, float y) : X( x ), Y( y ) { }
 
 Vector2 Vector2::operator+(const Vector2& addTo)
 {
 	return Vector2(X+addTo.X,Y+addTo.Y);
 }
+void Vector2::operator+=(const Vector2& addTo)
+{
+	X += addTo.X;
+	Y += addTo.Y;
+}
 Vector2 Vector2::operator-(const Vector2& subtractFrom)
 {
 	return Vector2(X-subtractFrom.X,Y-subtractFrom.Y);
+}
+void Vector2::operator-=(const Vector2& subtractFrom)
+{
+	X -= subtractFrom.X;
+	Y -= subtractFrom.Y;
 }
 Vector2 Vector2::crossMultiply(const Vector2& multiplyBy)
 {//really just guessing here, I'm not sure what the XNA implementation does actually, cause really this should be a 3d vector
@@ -47,6 +59,11 @@ float Vector2::operator*(const Vector2& multiplyBy)
 Vector2 Vector2::operator*(const float& multiplyBy)
 {
 	return Vector2(X*multiplyBy,Y*multiplyBy);
+}
+void Vector2::operator*=(const float& multiplyBy)
+{
+	X *= multiplyBy;
+	Y *= multiplyBy;
 }
 Vector2 Vector2::operator-()const
 {
