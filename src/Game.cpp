@@ -58,7 +58,7 @@ void Game::Run()
 #endif
 	this->Initialize();
 	this->LoadContent();
-	while(isRunning)
+	while(isRunning && !glfwWindowShouldClose(gameWindow->window))
 	{
 		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 		{
