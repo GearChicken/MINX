@@ -2,7 +2,7 @@
 AT:=@
 INCDIR = -I./GamePad/include -I/usr/include/freetype2 -I./GL/x86/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
-LFLAGS = -L./GamePad/library/debug-linux64 -lstem_gamepad -lX11 -lglfw -lGL -lGLEW -lfreeimage
+LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows
@@ -25,16 +25,18 @@ else
         TARGET = bin/libMINX.so
     endif
     ifeq ($(UNAME_S),Darwin)
-        CPPFLAGS += -D OSX -I/usr/include/SDL_mixer -I/usr/include/SDL_image -I/usr/include/SDL_ttf
+        CPPFLAGS += -D OSX 
         LFLAGS += -dynamiclib
         TARGET = bin/libMINX.dylib
     endif
     UNAME_P := $(shell uname -p)
     ifeq ($(UNAME_P),x86_64)
         CPPFLAGS += -D AMD64
+		LFLAGS += -L./GamePad/library/debug-linux64 -lstem_gamepad
     endif
     ifneq ($(filter %86,$(UNAME_P)),)
         CPPFLAGS += -D IA32
+		LFLAGS += -L./GamePad/library/debug-linux32 -lstem_gamepad
     endif
     ifneq ($(filter arm%,$(UNAME_P)),)
         CPPFLAGS += -D ARM
@@ -63,7 +65,7 @@ x86 : all;
 
 windows: CXX = i686-w64-mingw32-g++
 windows: CPPFLAGS = -mdll -I/usr/i686-w64-mingw32/include/ -I/usr/i686-w64-mingw32/include/SDL/ -D IA32 -std=c++0x
-windows: LFLAGS = -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf
+windows: LFLAGS = 
 windows: TARGET = bin/MINX.dll
 windows: all;
 
