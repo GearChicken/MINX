@@ -54,8 +54,12 @@
 
 #define FT_FREETYPE_H <freetype2/freetype/freetype.h>
   /* `<prefix>/include/freetype2' must be in your current inclusion path */
-#include <freetype2/freetype/ftheader.h>
 
+#if defined(LINUX) || defined(OSX)
+#include <freetype2/freetype/ftheader.h>
+#else
+#include <freetype/config/ftheader.h>
+#endif
 #endif /* __FT2_BUILD_UNIX_H__ */
 
 
