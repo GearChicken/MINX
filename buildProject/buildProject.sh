@@ -100,7 +100,7 @@ $fileName::$fileName() : Game::Game()
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 
 	isRunning = true;
-	Game::setVideoOptions(640, 480, 32, 0,"SampleMinxProject");
+	Game::setVideoOptions(640, 480, 32, 0, \"${fileName}\");
 }
 
 void $fileName::Initialize()
