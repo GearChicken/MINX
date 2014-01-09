@@ -27,7 +27,8 @@ fileName=$(echo $fileName | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\'<>,")
 
 
 test -d "$projectDir" || mkdir -p "$projectDir";
-
+test -d "$projectDir/src/" || mkdir -p "$projectDir/src/";
+test -d "$projectDir/bin/" || mkdir -p "$projectDir/bin/";
 echo "/*
     MINX - A C++ Graphics and Input Wrapper Library
     Copyright (C) 2013  MINX Team
@@ -171,9 +172,10 @@ echo "INCDIR = -I/usr/include/freetype2 -I/usr/include/MINX
 CPPFLAGS += -g -Wall -W \$(INCDIR) -std=c++11
 LFLAGS = -lMINX -lGL -lfreetype -lglfw -lX11 -lXxf86vm -lpthread -lXrandr -lXi
 CXX = g++
-SOURCES = \$(wildcard *.cpp)
-OBJECTS = \$(patsubst %.cpp,%.o,\$(wildcard *.cpp))
+SOURCES = \$(wildcard ./src/*.cpp)
+OBJECTS = \$(patsubst ./src/%.cpp,./src/%.o,\$(wildcard ./src/*.cpp))
 TARGET = $fileName
 
 all: \$(OBJECTS)
-	\$(CXX) \$(CPPFLAGS) \$(OBJECTS) \$(LFLAGS) -o \$(TARGET)" > "$projectDir/makefile"
+	test -d \"./bin/\" || mkdir -p \"./bin/\"
+	\$(CXX) \$(CPPFLAGS) \$(OBJECTS) \$(LFLAGS) -o ./bin/\$(TARGET)" > "$projectDir/makefile"
