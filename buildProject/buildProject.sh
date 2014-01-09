@@ -167,7 +167,7 @@ int main(int argc, char ** argv)
 }" > "$projectDir/Program.cpp"
 
 
-echo "INCDIR = -I/usr/include/freetype2
+echo "INCDIR = -I/usr/include/freetype2 -I/usr/include/MINX
 CPPFLAGS += -g -Wall -W \$(INCDIR) -std=c++11
 LFLAGS = -lMINX -lGL -lfreetype -lglfw -lX11 -lXxf86vm -lpthread -lXrandr -lXi
 CXX = g++
