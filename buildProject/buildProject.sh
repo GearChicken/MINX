@@ -71,7 +71,7 @@ namespace MINX_${fileName^^}
 	};
 }
 
-#endif" > "$projectDir/$fileName.h"
+#endif" > "$projectDir/src/$fileName.h"
 
 echo "/*
     MINX - A C++ Graphics and Input Wrapper Library
@@ -137,7 +137,7 @@ void $fileName::Draw(GameTime * gametime)
 
 	//Put stuff here to draw your game each frame.
 	Game::Draw(gametime);
-}" > "$projectDir/$fileName.cpp"
+}" > "$projectDir/src/$fileName.cpp"
 
 echo "/*
     MINX - A C++ Graphics and Input Wrapper Library
@@ -165,7 +165,7 @@ int main(int argc, char ** argv)
 	${fileName} * game = new ${fileName}();
 	game->Run();
 	exit(0);
-}" > "$projectDir/Program.cpp"
+}" > "$projectDir/src/Program.cpp"
 
 
 echo "INCDIR = -I/usr/include/freetype2 -I/usr/include/MINX
