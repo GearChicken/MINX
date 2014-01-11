@@ -31,6 +31,24 @@ namespace MINX
 {
 	namespace Input
 	{
+		namespace MouseButtons
+		{
+			enum MouseButtons
+			{
+				BUTTON_1 = 0,
+				BUTTON_2 = 1,
+				BUTTON_3 = 2,
+				BUTTON_4 = 3,
+				BUTTON_5 = 4,
+				BUTTON_6 = 5,
+				BUTTON_7 = 6,
+				BUTTON_8 = 7,
+				BUTTON_LEFT = BUTTON_1,
+				BUTTON_RIGHT = BUTTON_2,
+				BUTTON_MIDDLE = BUTTON_3
+				
+			};
+		}
 		/** Represents a mouse device
 		 */
 		class Mouse : public IGenericHID
@@ -42,15 +60,9 @@ namespace MINX
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
 				void handleEvent(GameTime * gameTime);
-				/** Gets the Position of the Mouse on the Screen (Realtive to GameWindow)
+				/** Gets the Position of the Mouse
 				*/
-				Vector2 getPositionOnScreen();
-				/** Gets the Relative Motion of the Mouse on the Screen (Realitive to the GameWindow's Center)
-				*/
-				Vector2 getRelativeMotion();
-				/** Gets the Total Accumulated Position of the Mouse on the Screen (Realitive to the GameWindow's Center)
-				*/
-				Vector2 getAccumulatedPosition();
+				Vector2 getPosition();
 				/** Gets a button for the state of the mouse button at 'buttonID'
 				*	@param buttonID The Identifier of the Mouse Button to get the state of
 				*/
