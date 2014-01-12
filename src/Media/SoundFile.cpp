@@ -19,19 +19,30 @@
 #include "SoundFile.h"
 
 using namespace MINX;
-using namespace MINX::Audio;
+using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle, char* soundType)
+SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 {
+	int length = strlen(fileLocation);
+	char* soundType = fileLocation + length - 3;
+
 	gorillaSoundFile = gau_load_sound_file(fileLocation, soundType);
 	
 	gorillaSoundHandle = gau_create_handle_sound(gameHandle->gorillaMixer, gorillaSoundFile, 0, 0, 0);
 
 	volume = 1.0;
 }
+
 SoundFile::~SoundFile()
 {
+	//ga_handle_destroy(gorillaSoundHandle);
+	//ga_sound_release(gorillaSoundFile);
+}
+
+void SoundFile::Unload()
+{
 	ga_handle_destroy(gorillaSoundHandle);
+	ga_sound_release(gorillaSoundFile);
 }
 void SoundFile::Play()
 {

@@ -34,13 +34,16 @@ namespace MINX
 			/* Load a sound file from the hard disk
 			*	@param fileLocation The path of the file to load.
 			*	@param gameHandle A pointer the the game that the sound will be played in.
-			*	@param soundType The sound format to load
 			*/
-			SoundFile(char* fileLocation, Game* gameHandle, char* soundType);
+			SoundFile(char* fileLocation, Game* gameHandle);
 			
 			/* Destroy the sound file safely
 			*/
 			~SoundFile();
+			
+			/* unload the sound file safely
+			*/
+			void Unload();
 			
 			/* Start playback of the sound file
 			*/
