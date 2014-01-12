@@ -20,13 +20,11 @@
 #ifndef SOUND_FILE_H_
 #define SOUND_FILE_H_
 
-#include <gorilla/gau.h>
-
 #include "../Game.h"
 
 namespace MINX
 {
-	namespace Sound
+	namespace Media
 	{
 		class SoundFile
 		{

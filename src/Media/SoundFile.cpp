@@ -19,7 +19,7 @@
 #include "SoundFile.h"
 
 using namespace MINX;
-using namespace MINX::Sound;
+using namespace MINX::Audio;
 
 SoundFile::SoundFile(char* fileLocation, Game* gameHandle, char* soundType)
 {
