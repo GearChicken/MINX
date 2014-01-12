@@ -28,10 +28,10 @@ namespace MINX
 		{
 			/** The current value of the axis.
 			 */
-			float val;
+			double val;
 			/** The previous value of the axis.
 			 */
-			float prevVal;
+			double prevVal;
 		};
 	}
 }
