@@ -27,15 +27,16 @@ void Mouse::handleEvent(GameTime* gameTime)
 {
 	for(int id = 0; id < 8; id++)
 	{
-		(*axes)[id].prevVal = (*axes)[id].val;
-		(*axes)[id].val= (glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
+		(*buttons)[id].prevState = (*buttons)[id].state;
+		(*buttons)[id].state = (glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
 	}
+	(*axes)[0].val = (*axes)[0].prevVal;
+	(*axes)[1].val = (*axes)[1].prevVal;
+	glfwGetCursorPos(game->gameWindow->window,&((*axes)[0].val),&((*axes)[1].val));
 }
-Vector2 Mouse::getPositionOnScreen()
+Vector2 Mouse::getPosition()
 {
-	double x, y;
-	glfwGetCursorPos(game->gameWindow->window,&x,&y);
-	return Vector2(x, y);
+	return Vector2((*axes)[0].val, (*axes)[1].val);
 }
 Button Mouse::getMouseButton(int buttonID)
 {
