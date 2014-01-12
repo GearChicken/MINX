@@ -26,18 +26,50 @@ namespace MINX
 {
 	namespace Media
 	{
+		/** A class to hold a single sound file
+		*/
 		class SoundFile
 		{
 		public:
+			/* Load a sound file from the hard disk
+			*	@param fileLocation The path of the file to load.
+			*	@param gameHandle A pointer the the game that the sound will be played in.
+			*	@param soundType The sound format to load
+			*/
 			SoundFile(char* fileLocation, Game* gameHandle, char* soundType);
+			
+			/* Destroy the sound file safely
+			*/
 			~SoundFile();
+			
+			/* Start playback of the sound file
+			*/
 			void Play();
+			
+			/* Pause playback of the sound file
+			*/
 			void Pause();
+			
+			/* Stop playback of the sound file
+			*/
 			void Stop();
+			
+			/* Set the Playback volume of the sound file
+			*	@param volume A double value from 0.0 to 1.0 for the GAIN or volume of the sound file
+			*/
 			void SetVolume(double volume);
 		private:
+
+			/* The volume of the sound file
+			*/
 			double volume;
+			
+			/* The Gorilla Audio sound object that will contain the loaded file data
+			*/
 			ga_Sound* gorillaSoundFile;
+			
+			/* The Gorilla Audio handle that will be used to play the loaded sound file
+			*/
 			ga_Handle* gorillaSoundHandle;
 		};
 	}
