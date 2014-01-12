@@ -150,7 +150,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
@@ -175,9 +175,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
-
+	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
@@ -253,7 +253,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 	
@@ -281,7 +281,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
@@ -310,7 +310,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::width-1.0f, (float)GameWindow::height-1.0f, 1.0f);
 	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
@@ -338,7 +338,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width*scaleX/2.0f, y + height*scaleY / 2.0f, 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
