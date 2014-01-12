@@ -27,6 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <GL/glew.h>
 #include <GL/glfw3.h>
+
+#include <gorilla/ga.h>
+#include <gorilla/gau.h>
+
 #include <string>
 #include <vector>
 #include <queue>
@@ -107,10 +111,16 @@ namespace MINX
 		/** Is the Game Running, or should it close?
 		*/
 		bool isRunning;
+
+		ga_Mixer* gorillaMixer;
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
 		*/
 		FT_Library freeTypeLibrary;
+
+		gau_Manager* gorillaManager;
+
+
 	private:
 		/** A pointer to the GameTime being used by the game.
 		*/

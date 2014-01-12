@@ -101,100 +101,13 @@ void Game::Initialize()
 	{
 		std::cout << "FreeType Not Inited!";
 	}
-	/*
-	 const char* vertexSource =
-		"#version 330\n"
-		"in vec4 coord;"
-		"out vec2 texpos;"
-		"uniform mat4 trans;"
-		"void main() {"
-		"	texpos = coord.zw;" 
-		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
-		"}";
 
-	 const char* fragmentSource =
-		"#version 330\n"
-		"in vec2 texpos;"
-		"uniform sampler2D tex;"
-		"uniform vec3 color;"
-		"void main() {"
-		"	gl_FragColor = texture(tex, texpos) * vec4(color,1.0);"
-		"}";
+	gc_initialize(0);
 
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexSource, NULL);	//Create a new Vertex Shader and set it to the value of vertex source
-	glCompileShader(vertexShader);	// compile the vertex shader
+	gorillaManager = gau_manager_create();
 
-#ifdef MINX_DEBUG
-	GLint status;
-	glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &status );
-	//Check if the shader compiled succesfully
-	
-	std::cout << status << " Vertex Shader\n";
-#endif
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, & fragmentSource, NULL); //Create a new Fragment shader and set it to the value of fragment source
-	glCompileShader(fragmentShader);	//compile the vertexShader
-	
-#ifdef MINX_DEBUG
-	glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &status );
-	std::cout << status << " Fragment Shader\n";
-#endif
-	
-	shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	glBindFragDataLocation(shaderProgram, 0, "outColor");
+	gorillaMixer = gau_manager_mixer(gorillaManager);
 
-
-
-	glLinkProgram(shaderProgram);
-	glUseProgram(shaderProgram);
-
-
-	const char* fontVertexSource =
-		"#version 120\n"
-		"attribute vec4 coord;"
-		"varying vec2 texpos;"
-		"void main() {"
-		"	gl_Position = vec4(coord.xy, 0.0, 1.0);"
-		"	texpos = coord.zw;" 
-		"}";
-
-	const char* fontFragmentSource =
-		"#version 120\n"
-		"varying vec2 texpos;"
-		"uniform sampler2D tex;"
-		"uniform vec4 color;"
-		"void main() {"
-		"	gl_FragColor = vec4(1,1,1,texture2D(tex, texpos).a)* color;"
-		"}";
-
-	 GLuint fontVertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(fontVertexShader, 1, &fontVertexSource, NULL);	//Create a new Vertex Shader and set it to the value of vertex source
-	glCompileShader(fontVertexShader);	// compile the vertex shader
-
-#ifdef MINX_DEBUG
-	glGetShaderiv( fontVertexShader, GL_COMPILE_STATUS, &status );
-	//Check if the shader compiled succesfully
-	
-	std::cout << status << " Vertex Shader\n";
-#endif
-	GLuint fontFragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fontFragmentShader, 1, & fontFragmentSource, NULL); //Create a new Fragment shader and set it to the value of fragment source
-	glCompileShader(fontFragmentShader);	//compile the vertexShader
-	
-#ifdef MINX_DEBUG
-	glGetShaderiv( fontFragmentShader, GL_COMPILE_STATUS, &status );
-	std::cout << status << " Fragment Shader\n";
-#endif
-	
-	fontShaderProgram = glCreateProgram();
-	glAttachShader(fontShaderProgram, fontVertexShader);
-	glAttachShader(fontShaderProgram, fontFragmentShader);
-	
-	glLinkProgram(fontShaderProgram);
-	//*/
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -212,7 +125,11 @@ void Game::Update(GameTime * gameTime)
 		{
 			(*Components)[i]->Update(gameTime);
 		}
-	}/*
+	}
+	
+	gau_manager_update(gorillaManager);
+
+	/*
 	gameTime->limitFPS(desiredFPS);*/
 }
 				
@@ -228,7 +145,8 @@ void Game::UnloadContent()
 {
     //SDL_DestroySemaphore( videoLock );
 	Gamepad_shutdown();
-
+	gau_manager_destroy(gorillaManager);
+	gc_shutdown();
 	glfwTerminate();
 }
 
