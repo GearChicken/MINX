@@ -21,6 +21,7 @@
 #define GAMETIME_H_
 #include <thread>
 #include <chrono>
+#include <GL/glfw3.h>
 namespace MINX
 {
 	/** Contains a bunch of time related functions for use in the Game
@@ -42,7 +43,7 @@ namespace MINX
 			void update();
 			/** limits the updates per second of the current thread by delaying
 			 */
-			inline void limitFPS(int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-deltaTimeMillis));}
+			inline void limitFPS(int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-(long(glfwGetTime())-lastUpdate)));}
 		private:
 			long totalTimeMillis;
 			long deltaTimeMillis;
