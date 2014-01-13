@@ -40,6 +40,7 @@ void GameTime::update()
 	lastUpdate = totalTimeMillis;
 	totalTimeMillis = glfwGetTime()*1000.0;
 	deltaTimeMillis = totalTimeMillis - lastUpdate;
+	deltaTimeMillis = deltaTimeMillis > 0 ? deltaTimeMillis : 1;
 }
 long GameTime::getElapsedMillis()
 {
