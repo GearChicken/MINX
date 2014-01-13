@@ -2,7 +2,7 @@
 AT:=@
 INCDIR = -I./GamePad/include -I/usr/include/freetype2 -I./GL/x86/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
-LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage
+LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage -lgorilla
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows
@@ -81,9 +81,11 @@ headers:
 	test -d /usr/include/MINX || mkdir -p /usr/include/MINX
 	test -d /usr/include/MINX/Input || mkdir -p /usr/include/MINX/Input
 	test -d /usr/include/MINX/Graphics || mkdir -p /usr/include/MINX/Graphics
+	test -d /usr/include/MINX/Media || mkdir -p /usr/include/MINX/Media
 	cp -u -r src/*.h /usr/include/MINX/
 	cp -u -r src/Input/*.h /usr/include/MINX/Input
 	cp -u -r src/Graphics/*.h /usr/include/MINX/Graphics
+	cp -u -r src/Media/*.h /usr/include/MINX/Media
 	cp -u -r GamePad/include/* /usr/include/MINX
 	cp -u -r GL/x86/include/* /usr/include/MINX
 doxygen:
