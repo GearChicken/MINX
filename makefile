@@ -44,9 +44,9 @@ else
 endif
 ##### Files
 
-SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) $(wildcard src/Input/*.cpp) $(wildcard src/Audio/*.cpp)
-HEADERS = $(wildcard src/*.h) $(wildcard src/Graphics/*.h) $(wildcard src/Input/*.h) $(wildcard src/Audio/*.h)
-OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp)) $(patsubst src/Audio/%.cpp,src/Audio/%.o,$(wildcard src/Audio/*.cpp))
+SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) $(wildcard src/Input/*.cpp) $(wildcard src/Media/*.cpp)
+HEADERS = $(wildcard src/*.h) $(wildcard src/Graphics/*.h) $(wildcard src/Input/*.h) $(wildcard src/Media/*.h)
+OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp)) $(patsubst src/Audio/%.cpp,src/Media/%.o,$(wildcard src/Media/*.cpp))
 
 
 
