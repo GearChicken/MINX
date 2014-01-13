@@ -55,3 +55,10 @@ Color * Color::operator*(const float& scale)
 {
 	return new Color(R*scale,G*scale,B*scale,A*scale);
 }
+void Color::operator*=(const float& scale)
+{
+	R*=scale;
+	G*=scale;
+	B*=scale;
+	A*=scale;
+}
