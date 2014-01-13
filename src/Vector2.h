@@ -87,6 +87,9 @@ namespace MINX
 		/** Returns a Vector2 of length 1 but the same direction as the current Vector2.
 		 */
 			Vector2 normalize();
+		/** Returns the direction of the vector in radians
+		*/
+			float direction();
 		/** The X component of the Vector2.
 		 */
 		float X;

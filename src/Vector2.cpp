@@ -45,7 +45,8 @@ void Vector2::operator-=(const Vector2& subtractFrom)
 	Y -= subtractFrom.Y;
 }
 Vector2 Vector2::crossMultiply(const Vector2& multiplyBy)
-{//really just guessing here, I'm not sure what the XNA implementation does actually, cause really this should be a 3d vector
+{
+	//really just guessing here, I'm not sure what the XNA implementation does actually, cause really this should be a 3d vector
 	float angle = atan2(Y,X)-atan2(multiplyBy.Y,multiplyBy.X);
 	float magnitude = sqrt(X*X+Y*Y)*sqrt(multiplyBy.X*multiplyBy.X+multiplyBy.Y*multiplyBy.Y);
 	float resultantMagnitude = magnitude*sin(angle);
@@ -92,4 +93,8 @@ Vector2 Vector2::normalize()
 		return Vector2(X/length(),Y/length());
 	}
 	return Vector2(0,0);
+}
+float Vector2::direction()
+{
+	return atan2(Y, X);
 }
