@@ -26,22 +26,20 @@ GameTime::GameTime()
 {
 }
 
-void GameTime::limitFPS(int desiredFPS)
+/*void GameTime::limitFPS(int desiredFPS)
 {
-	/*
+	
 	int NextTick = totalTimeMillis + (1000/desiredFPS);
-	if(NextTick > totalTimeMillis)
+	if(NextTick > glfwGetTime())
 	{
-		glfwSleep(NextTick - totalTimeMillis);
+		std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-deltaTimeMillis));
 	}
-	NextTick = totalTimeMillis + (1000/desiredFPS);
-	//*/
-}
+}//*/
 void GameTime::update()
 {
+	lastUpdate = totalTimeMillis;
 	totalTimeMillis = glfwGetTime()*1000.0;
 	deltaTimeMillis = totalTimeMillis - lastUpdate;
-	lastUpdate = totalTimeMillis;
 }
 long GameTime::getElapsedMillis()
 {
