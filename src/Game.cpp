@@ -46,9 +46,10 @@ Game::Game()
 
 int doUpdate(void * game)
 {
-
+	while(((Game*)game)->isRunning)
+	{
 		((Game*)game)->Update(((Game*)game)->getGameTime());
-	
+	}
 	return 0;
 }
 
@@ -70,17 +71,23 @@ void Game::Run()
 #endif
 	this->Initialize();
 	this->LoadContent();
-	thread audioThread = thread(audioUpdate,gorillaManager);
-	while(isRunning && !glfwWindowShouldClose(gameWindow->window))
+	thread audioThread = thread(audioUpdate, this);
+	thread updateThread = thread(doUpdate, this);
+	updateThread.detach();
+	audioThread.detach();
+	while(isRunning)
 	{
+		isRunning = !glfwWindowShouldClose(gameWindow->window);
 		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 		{
 			(*eventHandlers)[i]->handleEvent();
 		}
-		doUpdate(this);
+		//doUpdate(this);
 		this->Draw(this->gameTime);
 	}
+	updateThread.~thread();
 	this->UnloadContent();
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 GameTime* Game::getGameTime()
