@@ -22,6 +22,7 @@
 #include <GL/glfw3.h>
 #include "Game.h"
 #include <iostream>
+#include <thread>
 #if defined(LINUX) || defined(OSX)
 #include "X11/Xlib.h"
 #endif
@@ -43,12 +44,23 @@ Game::Game()
 	eventHandlers = new vector<EventHandler*>();
 }
 
-int doUpdate(void * game){
+int doUpdate(void * game)
+{
 
 		((Game*)game)->Update(((Game*)game)->getGameTime());
 	
 	return 0;
 }
+
+int audioUpdate(void * game)
+{
+	while(((Game*)game)->isRunning)
+	{
+		gau_manager_update(((Game*)game)->gorillaManager);
+	}
+	return 0;
+}
+
 void Game::Run()
 {
 
@@ -58,6 +70,7 @@ void Game::Run()
 #endif
 	this->Initialize();
 	this->LoadContent();
+	thread audioThread = thread(audioUpdate,gorillaManager);
 	while(isRunning && !glfwWindowShouldClose(gameWindow->window))
 	{
 		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
@@ -126,8 +139,6 @@ void Game::Update(GameTime * gameTime)
 			(*Components)[i]->Update(gameTime);
 		}
 	}
-	
-	gau_manager_update(gorillaManager);
 
 	/*
 	gameTime->limitFPS(desiredFPS);*/
