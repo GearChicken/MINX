@@ -18,8 +18,6 @@
 	*/
 
 #include "GameTime.h"
-#include <GL/glew.h>
-#include <GL/glfw3.h>
 using namespace MINX;
 
 GameTime::GameTime()
