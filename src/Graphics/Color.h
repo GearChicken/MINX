@@ -57,6 +57,9 @@ namespace MINX
 			/** Multiplies a color by a scale.
 			 */
 			Color * operator*(const float& scale);
+			/** Multiplies a color by a scale.
+			 */
+			void operator*=(const float& scale);
 		};
 	}
 }
