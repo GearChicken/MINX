@@ -52,11 +52,7 @@ namespace MINX
 			*	@param fragmentLocation The file location of the fragmentShader
 			*/
 			void LoadShaderFromFile(char* vertexLocation, char* fragmentLocation);
-
-			/** Get the MINX universal shader and pass it options
-			 *	@param options 
-			 */
-			void LoadUniversalShader();
+			
 			/** Returns the Shader Program at the specified index
 			*	@param index The index of the shader program to return
 			*/
