@@ -113,12 +113,13 @@ namespace MINX
 		bool isRunning;
 
 		ga_Mixer* gorillaMixer;
+		
+		gau_Manager* gorillaManager;
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
 		*/
 		FT_Library freeTypeLibrary;
 
-		gau_Manager* gorillaManager;
 
 
 	private:
