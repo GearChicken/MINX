@@ -29,7 +29,7 @@ namespace MINX
 		 * @param x the x coordinate of the Point.
 		 * @param y the y coordinate of the Point.
 		 */
-			Point(int x, int y);
+		Point(int x, int y);
 		/** The X coordinate of the Point.
 		 */
 		int X;
@@ -39,11 +39,11 @@ namespace MINX
 		/** Tests equality between 2 Points.
 		 * @param compareTo the Point to compare this one to.
 		 */
-			bool operator==(const Point& compareTo);
+		bool operator==(const Point& compareTo);
 		/** Tests equality between 2 Points.
 		 * @param compareTo the Point to compare this one to.
 		 */
-			bool operator!=(const Point& compareTo);
+		bool operator!=(const Point& compareTo);
 	};
 }
 #endif

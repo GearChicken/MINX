@@ -49,7 +49,7 @@ GamePad::GamePad(int deviceIndex, Game* game, int gamePadType):IGenericHID(game,
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
-void GamePad::handleEvent()
+void GamePad::HandleEvent()
 {
 	Gamepad_processEvents();
 	Gamepad_detectDevices();
@@ -67,19 +67,19 @@ void GamePad::handleEvent()
 		}
 	}
 }
-Button GamePad::getButton(int buttonID)
+Button GamePad::GetButton(int buttonID)
 {
 	if(isConnected)
 	{
-		return IGenericHID::getButton(buttonID);
+		return IGenericHID::GetButton(buttonID);
 	}
 	return Button();
 }
-Axis GamePad::getAxis(int axisID)
+Axis GamePad::GetAxis(int axisID)
 {
 	if(isConnected)
 	{
-		return IGenericHID::getAxis(axisID);
+		return IGenericHID::GetAxis(axisID);
 	}
 	return Axis();
 }

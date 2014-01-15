@@ -79,17 +79,17 @@ namespace MINX
 		/** Returns the length of the Vector2.
 		 */
 
-			float length();
+			float Length();
 		/** Returns the length of the Vector2 squared.
 		 * This is faster then squaring the result of length() because length() actually returns the square root of the mathematical result of the length squared.
 		 */
-			float lengthSquared();
+			float LengthSquared();
 		/** Returns a Vector2 of length 1 but the same direction as the current Vector2.
 		 */
-			Vector2 normalize();
+			Vector2 Normalize();
 		/** Returns the direction of the vector in radians
 		*/
-			float direction();
+			float Direction();
 		/** The X component of the Vector2.
 		 */
 		float X;

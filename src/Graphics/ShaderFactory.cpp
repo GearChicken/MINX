@@ -39,10 +39,10 @@ ShaderFactory::ShaderFactory()
 		"#version 330\n"
 		"in vec2 texpos;"
 		"uniform sampler2D tex;"
-		"uniform vec3 color;"
+		"uniform vec4 color;"
 		"void main()"
 		"{"
-		"	gl_FragColor = texture(tex, texpos) * vec4(color,1.0);"
+		"	gl_FragColor = texture(tex, texpos) * color;"
 		"}";
 	LoadShader(vertexSource, fragmentSource);
 

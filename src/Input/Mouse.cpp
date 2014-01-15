@@ -23,7 +23,7 @@ Mouse::Mouse(Game* game) : IGenericHID(game, 8, 8)
 {
 
 }
-void Mouse::handleEvent(GameTime* gameTime)
+void Mouse::HandleEvent(GameTime* gameTime)
 {
 	for(int id = 0; id < 8; id++)
 	{
@@ -34,11 +34,11 @@ void Mouse::handleEvent(GameTime* gameTime)
 	(*axes)[1].val = (*axes)[1].prevVal;
 	glfwGetCursorPos(game->gameWindow->window,&((*axes)[0].val),&((*axes)[1].val));
 }
-Vector2 Mouse::getPosition()
+Vector2 Mouse::GetPosition()
 {
 	return Vector2((*axes)[0].val, (*axes)[1].val);
 }
-Button Mouse::getMouseButton(int buttonID)
+Button Mouse::GetMouseButton(int buttonID)
 {
-	return getButton(buttonID);
+	return GetButton(buttonID);
 }

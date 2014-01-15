@@ -171,11 +171,11 @@ namespace MINX
 				Keyboard(Game * game);
 				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
 				 */
-				void handleEvent();
+				void HandleEvent();
 				/** Gets a button for the state of 'key'
 				*	@param key The Key to get the state of
 				*/
-				Button getKey(int key);
+				Button GetKey(int key);
 		};
 	}
 }

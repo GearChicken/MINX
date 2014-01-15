@@ -31,12 +31,12 @@ IGenericHID::IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize) 
 	axes = new vector<Axis>(axisVectorSize,a);
 }
 
-Button IGenericHID::getButton(int id)
+Button IGenericHID::GetButton(int id)
 {
 	return (* buttons)[id];
 }
 
-Axis IGenericHID::getAxis(int id)
+Axis IGenericHID::GetAxis(int id)
 {
 	return (* axes)[id];
 }

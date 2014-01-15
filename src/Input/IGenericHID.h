@@ -53,10 +53,10 @@ namespace MINX
 				vector<Axis> * axes;
 				/** Returns a Button from the specified index in the button vector.
 				 */
-				Button getButton(int id);
+				Button GetButton(int id);
 				/** Returns an Axis from the specified index in the axis vector.
 				 */
-				Axis getAxis(int id);
+				Axis GetAxis(int id);
 		};
 	}
 }

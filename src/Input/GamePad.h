@@ -70,13 +70,13 @@ namespace MINX
 				static bool CheckIfDeviceValid(int deviceIndex);
 				/** Checks is the GamePad's state has changed, and saves the data properly.
 				*/
-				void handleEvent();
+				void HandleEvent();
 				/** Gets the Button at the specified index
 				*/
-				Button getButton(int buttonID);
+				Button GetButton(int buttonID);
 				/** Gets the Axis at the specified index
 				*/
-				Axis getAxis(int axisID);
+				Axis GetAxis(int axisID);
 			private:
 				Gamepad_device* gamePad;
 				bool isConnected;

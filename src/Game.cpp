@@ -80,7 +80,7 @@ void Game::Run()
 		isRunning = !glfwWindowShouldClose(gameWindow->window);
 		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
 		{
-			(*eventHandlers)[i]->handleEvent();
+			(*eventHandlers)[i]->HandleEvent();
 		}
 		//doUpdate(this);
 		this->Draw(this->gameTime);
@@ -138,7 +138,7 @@ void Game::LoadContent()
 }
 void Game::Update(GameTime * gameTime)
 {
-	gameTime->update();
+	gameTime->Update();
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		if((*Components)[i]->enabled)
@@ -168,14 +168,14 @@ void Game::UnloadContent()
 	glfwTerminate();
 }
 
-void Game::setVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags)
+void Game::SetVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
 	windowBPP = DwindowBPP;
 	windowFlags =DwindowFlags;
 }
-void Game::setVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags, char* DwindowTitle)
+void Game::SetVideoOptions(int DwindowWidth, int DwindowHeight, int DwindowBPP, int DwindowFlags, char* DwindowTitle)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;

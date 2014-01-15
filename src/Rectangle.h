@@ -38,7 +38,7 @@ namespace MINX
 		Rectangle(int x, int y, int width, int height);
 		/** Returns the Area of the Rectangle
 		*/
-		int area();
+		int Area();
 		/** The X location of the Rectangle
 		*/
 		int X;
@@ -67,7 +67,7 @@ namespace MINX
 		*	@param rect2 The Rectangle to Check for Intersection against
 		*	@returns Whether or not the two Rectangles intersect
 		*/
-		bool intersects(Rectangle* rect2);
+		bool Intersects(Rectangle* rect2);
 	};
 }
 #endif
