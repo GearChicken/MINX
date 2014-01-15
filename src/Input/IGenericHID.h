@@ -45,18 +45,22 @@ namespace MINX
 				 * @param axisVectorSize The total number of axes that the device has.
 				 */
 				IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize);
+				
 				/** Contains all of the buttons used by the device.
 				 */
 				vector<Button> * buttons;
+				
 				/** Contains all of the axes used by the device.
 				 */
 				vector<Axis> * axes;
+				
 				/** Returns a Button from the specified index in the button vector.
 				 */
-				Button getButton(unsigned int id);
+				Button GetButton(unsigned int id);
+				
 				/** Returns an Axis from the specified index in the axis vector.
 				 */
-				Axis getAxis(unsigned int id);
+				Axis GetAxis(unsigned int id);
 		};
 	}
 }

@@ -35,7 +35,7 @@ namespace MINX
 			EventHandler(Game * attachTo);
 			/** Handles the event
 			*/
-			virtual void handleEvent();
+			virtual void HandleEvent();
 		protected:
 			Game * game;
 	};

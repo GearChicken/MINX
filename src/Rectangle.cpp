@@ -35,7 +35,7 @@ Rectangle::Rectangle(int x, int y, int width, int height)
 	Width = width;
 	Height = height;
 }
-int Rectangle::area()
+int Rectangle::Area()
 {
 	return Width * Height;
 }
@@ -55,7 +55,7 @@ int Rectangle::Right()
 {
 	return X + Width;
 }
-bool Rectangle::intersects(Rectangle* rect2)
+bool Rectangle::Intersects(Rectangle* rect2)
 {
 	return !(
 			(Bottom() < rect2->Top()) ||

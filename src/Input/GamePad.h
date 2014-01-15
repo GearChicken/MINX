@@ -57,26 +57,32 @@ namespace MINX
 				*	@param game A pointer to an instance of the game object.
 				*/
 				GamePad(unsigned int deviceIndex, Game* game);
+				
 				/** Creates a new Gamepad instance.
 				*	@param deviceIndex The Index of the GamePad to get an instance of.
 				*	@param game A pointer to an instance of the game object.
 				*	@param gamePadType The Type of GamePad that is being Instantiated
 				*/
 				GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType);
+				
 				/** Checks if a GamePad is connected at the specified deviceIndex
 				*	@param deviceIndex The index of the device to check for.
 				*	@return Whether or not the GamePad at the specified index is connected.
 				*/
 				static bool CheckIfDeviceValid(unsigned int deviceIndex);
+				
 				/** Checks is the GamePad's state has changed, and saves the data properly.
 				*/
-				void handleEvent();
+				void HandleEvent();
+				
 				/** Gets the Button at the specified index
 				*/
-				Button getButton(unsigned int buttonID);
+				Button GetButton(unsigned int buttonID);
+				
 				/** Gets the Axis at the specified index
 				*/
-				Axis getAxis(unsigned int axisID);
+				Axis GetAxis(unsigned int axisID);
+				
 			private:
 				Gamepad_device* gamePad;
 				bool isConnected;
