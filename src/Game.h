@@ -115,7 +115,6 @@ namespace MINX
 		ga_Mixer* gorillaMixer;
 		
 		gau_Manager* gorillaManager;
-		ga_StreamManager* gorillaStreamManager;
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
 		*/
