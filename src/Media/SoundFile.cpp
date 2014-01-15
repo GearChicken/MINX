@@ -26,9 +26,9 @@ SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 	int length = strlen(fileLocation);
 	char* soundType = fileLocation + length - 3;
 
-	gorillaSoundFile = gau_load_sound_file(fileLocation, soundType);
+	//gorillaSoundFile = gau_load_sound_file(fileLocation, soundType);
 	
-	gorillaSoundHandle = gau_create_handle_sound(gameHandle->gorillaMixer, gorillaSoundFile, 0, 0, 0);
+	gorillaSoundHandle = gau_create_handle_buffered_file(gameHandle->gorillaMixer, gameHandle->gorillaStreamManager, fileLocation, soundType, 0, 0, 0);
 
 	volume = 1.0;
 }
@@ -42,7 +42,7 @@ SoundFile::~SoundFile()
 void SoundFile::Unload()
 {
 	ga_handle_destroy(gorillaSoundHandle);
-	ga_sound_release(gorillaSoundFile);
+	//ga_sound_release(gorillaSoundFile);
 }
 void SoundFile::Play()
 {
