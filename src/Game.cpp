@@ -58,7 +58,6 @@ int audioUpdate(void * game)
 	while(((Game*)game)->isRunning)
 	{
 		gau_manager_update(((Game*)game)->gorillaManager);
-		std::this_thread::sleep_for(std::chrono::milliseconds(1));
 	}
 	return 0;
 }
@@ -126,7 +125,7 @@ void Game::Initialize()
 	gc_initialize(0);
 
 	gorillaManager = gau_manager_create();
-	gorillaStreamManager = gau_manager_streamManager(gorillaManager);
+
 	gorillaMixer = gau_manager_mixer(gorillaManager);
 
 	glEnable(GL_BLEND);
