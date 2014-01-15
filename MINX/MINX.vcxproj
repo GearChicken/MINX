@@ -11,8 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\Audio\SoundFile.cpp" />
-    <ClCompile Include="..\src\Audio\SoundFile.h" />
     <ClCompile Include="..\src\EventHandler.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameComponent.cpp" />
@@ -28,6 +26,8 @@
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />
     <ClCompile Include="..\src\Input\Keyboard.cpp" />
     <ClCompile Include="..\src\input\Mouse.cpp" />
+    <ClCompile Include="..\src\Media\SoundFile.cpp" />
+    <ClCompile Include="..\src\Media\SoundPlaylist.cpp" />
     <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
@@ -50,6 +50,8 @@
     <ClInclude Include="..\src\Input\IGenericHID.h" />
     <ClInclude Include="..\src\Input\Keyboard.h" />
     <ClInclude Include="..\src\Input\Mouse.h" />
+    <ClInclude Include="..\src\Media\SoundFile.h" />
+    <ClInclude Include="..\src\Media\SoundPlaylist.h" />
     <ClInclude Include="..\src\Point.h" />
     <ClInclude Include="..\src\Ray2.h" />
     <ClInclude Include="..\src\Rectangle.h" />

@@ -33,7 +33,7 @@ GameTime::GameTime()
 		std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-deltaTimeMillis));
 	}
 }//*/
-void GameTime::update()
+void GameTime::Update()
 {
 	totalTimeMillis = glfwGetTime()*1000.0;
 	deltaTime = totalTimeMillis - lastUpdate;
@@ -44,17 +44,17 @@ void GameTime::update()
 	deltaTime = totalTimeMillis - lastUpdate;
 	deltaTime = deltaTime > 0 ? deltaTime : std::numeric_limits<double>::epsilon();
 }
-long GameTime::getElapsedMillis()
+long GameTime::GetElapsedMillis()
 {
 	return totalTimeMillis;
 }
 
-double GameTime::getDeltaTimeSeconds()
+double GameTime::GetDeltaTimeSeconds()
 {
 	return deltaTime;
 }
 
-long GameTime::getDeltaTimeMillis()
+long GameTime::GetDeltaTimeMillis()
 {
 	return deltaTime*1000;
 }

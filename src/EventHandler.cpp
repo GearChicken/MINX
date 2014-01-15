@@ -25,4 +25,4 @@ EventHandler::EventHandler(Game * attachTo)
 	game->eventHandlers->push_back(this);
 }
 
-void EventHandler::handleEvent(){}
+void EventHandler::HandleEvent(){}
