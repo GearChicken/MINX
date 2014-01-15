@@ -42,12 +42,15 @@ namespace MINX
 			/** @return the number of seconds since the last update()
 			 */
 			double getDeltaTimeSeconds();
+			/** @return the number of seconds since the last update() as a float
+			 */
+			float getDeltaTimeSecondsF();
 			/** updates the gametime
 			 */
 			void update();
 			/** limits the updates per second of the current thread by delaying
 			 */
-			inline void limitFPS(int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-(long(glfwGetTime())-long(lastUpdate))));}
+			inline void limitFPS(int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-(long(glfwGetTime()*1000)-long(lastUpdate))));}
 		private:
 			double totalTimeMillis;
 			double deltaTime;

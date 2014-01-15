@@ -61,10 +61,10 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 	glEnableVertexAttribArray(attribute_coord);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
-	float textWidthGLCoords = 0.0f;
+	//float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
 	Vector2 textSize = TextSize(text, fontSize);
-	textWidthGLCoords = textSize.X;
+	//textWidthGLCoords = textSize.X;
 	textHeightGLCoords = textSize.Y;
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
 	//std::cout << textHeightGLCoords << " Text height" << std::endl;

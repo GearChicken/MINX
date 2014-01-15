@@ -108,7 +108,7 @@ void Game::Initialize()
 	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, windowTitle);
 	glfwMakeContextCurrent(gameWindow->window);
 	glewExperimental=true;
-	if(glewInit() == -1 )
+	if(glewInit() != GLEW_OK )
 	{
 		std::cout << "GLEW NOT INITED!\n";
 	}

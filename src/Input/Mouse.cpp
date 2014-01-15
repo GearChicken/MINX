@@ -25,7 +25,7 @@ Mouse::Mouse(Game* game) : IGenericHID(game, 8, 8)
 }
 void Mouse::handleEvent(GameTime* gameTime)
 {
-	for(int id = 0; id < 8; id++)
+	for(unsigned int id = 0; id < 8; id++)
 	{
 		(*buttons)[id].prevState = (*buttons)[id].state;
 		(*buttons)[id].state = (glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
@@ -38,7 +38,7 @@ Vector2 Mouse::getPosition()
 {
 	return Vector2((*axes)[0].val, (*axes)[1].val);
 }
-Button Mouse::getMouseButton(int buttonID)
+Button Mouse::getMouseButton(unsigned int buttonID)
 {
 	return getButton(buttonID);
 }

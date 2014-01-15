@@ -66,7 +66,7 @@ namespace MINX
 				/** Gets a button for the state of the mouse button at 'buttonID'
 				*	@param buttonID The Identifier of the Mouse Button to get the state of
 				*/
-				Button getMouseButton(int buttonID);
+				Button getMouseButton(unsigned int buttonID);
 		};
 	}
 }

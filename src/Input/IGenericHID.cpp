@@ -19,7 +19,7 @@
 #include "IGenericHID.h"
 using namespace MINX::Input;
 using namespace MINX;
-IGenericHID::IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize) : EventHandler(game)
+IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : EventHandler(game)
 {
 	Button b;
 	b.prevState = 0;
@@ -31,12 +31,12 @@ IGenericHID::IGenericHID(Game * game, int buttonVectorSize, int axisVectorSize) 
 	axes = new vector<Axis>(axisVectorSize,a);
 }
 
-Button IGenericHID::getButton(int id)
+Button IGenericHID::getButton(unsigned int id)
 {
 	return (* buttons)[id];
 }
 
-Axis IGenericHID::getAxis(int id)
+Axis IGenericHID::getAxis(unsigned int id)
 {
 	return (* axes)[id];
 }

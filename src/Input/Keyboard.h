@@ -175,7 +175,7 @@ namespace MINX
 				/** Gets a button for the state of 'key'
 				*	@param key The Key to get the state of
 				*/
-				Button getKey(int key);
+				Button getKey(unsigned int key);
 		};
 	}
 }
