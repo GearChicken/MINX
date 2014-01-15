@@ -178,6 +178,7 @@ namespace MINX
 			*/
 			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint, Rectangle sourceRectangle);
 
+			void DrawPrimitiveRectangle(Rectangle rectangle, Color tint);
 
 		private:
 
@@ -192,6 +193,8 @@ namespace MINX
 			GLint uniformTexture;
 
 			GLuint shaderProgram;
+
+			GLuint pixelTexture;
 
 			std::vector<TextureData> texturesToDraw;
 		};
