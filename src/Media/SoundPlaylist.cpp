@@ -24,11 +24,8 @@ using namespace MINX::Media;
 SoundPlaylist::SoundPlaylist(Game* gameHandle)
 {
 	songFiles = vector<char*>();
-
 	doShuffle = false;
-	
 	songIndex = 0;
-
 	this->gameHandle = gameHandle;
 }
 

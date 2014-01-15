@@ -27,12 +27,15 @@ bool GamePad::CheckIfDeviceValid(unsigned int deviceIndex)
 GamePad::GamePad(unsigned int deviceIndex, Game* game):IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
+	
 	isConnected=false;
+	
 	if(CheckIfDeviceValid(deviceIndex))
 	{
 		isConnected=true;
 		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
 	}
+	
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
@@ -40,19 +43,23 @@ GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType)
 {
 	this->deviceIndex = deviceIndex;
 	this->gamePadType = gamePadType;
+	
 	isConnected=false;
+	
 	if(CheckIfDeviceValid(deviceIndex))
 	{
 		isConnected=true;
 		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
 	}
+	
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
-void GamePad::handleEvent()
+void GamePad::HandleEvent()
 {
 	Gamepad_processEvents();
 	Gamepad_detectDevices();
+	
 	if(isConnected)
 	{
 		for(unsigned int id = 0; id < gamePad->numButtons; id++)
@@ -60,6 +67,7 @@ void GamePad::handleEvent()
 			(*buttons)[id].prevState = (*buttons)[id].state;
 			(*buttons)[id].state= gamePad->buttonStates[id*4];
 		}
+		
 		for(unsigned int id = 0; id < gamePad->numAxes; id++)
 		{
 			(*axes)[id].prevVal = (*axes)[id].val;
@@ -67,19 +75,19 @@ void GamePad::handleEvent()
 		}
 	}
 }
-Button GamePad::getButton(unsigned int buttonID)
+Button GamePad::GetButton(unsigned int buttonID)
 {
 	if(isConnected)
 	{
-		return IGenericHID::getButton(buttonID);
+		return IGenericHID::GetButton(buttonID);
 	}
 	return Button();
 }
-Axis GamePad::getAxis(unsigned int axisID)
+Axis GamePad::GetAxis(unsigned int axisID)
 {
 	if(isConnected)
 	{
-		return IGenericHID::getAxis(axisID);
+		return IGenericHID::GetAxis(axisID);
 	}
 	return Axis();
 }

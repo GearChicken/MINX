@@ -57,16 +57,19 @@ namespace MINX
 				/** Calls the IGenericHID constructor with game,0xFFF,4
 				 */
 				Mouse(Game * game);
+				
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
-				void handleEvent(GameTime * gameTime);
+				void HandleEvent(GameTime * gameTime);
+				
 				/** Gets the Position of the Mouse
 				*/
-				Vector2 getPosition();
+				Vector2 GetPosition();
+				
 				/** Gets a button for the state of the mouse button at 'buttonID'
 				*	@param buttonID The Identifier of the Mouse Button to get the state of
 				*/
-				Button getMouseButton(unsigned int buttonID);
+				Button GetMouseButton(unsigned int buttonID);
 		};
 	}
 }

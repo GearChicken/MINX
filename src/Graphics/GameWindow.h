@@ -44,16 +44,21 @@ namespace MINX
 				*	@param title The Title of the GameWindow
 				*/
 				GameWindow(int width, int height, int bpp, int flags, char* title);
+				
+				inline static int GetWidth() { return width; }
+
+				inline static int GetHeight() { return height; }
+
+				/** A Pointer to the instance of the GLFWwindow
+				*/
+				GLFWwindow* window;
+			private:
 				/** The Width of the GameWindow
 				*/
 				static int width;
 				/** The Height of the GameWindow
 				*/
 				static int height;
-				/** A Pointer to the instance of the GLFWwindow
-				*/
-				GLFWwindow* window;
-			private:
 				int bpp;
 				int flags;
 		};

@@ -78,23 +78,23 @@ bool Vector2::operator!=(const Vector2& compareTo)
 {
 	return !operator==(compareTo);
 }
-float Vector2::lengthSquared()
+float Vector2::LengthSquared()
 {
 	return X*X+Y*Y;
 }
-float Vector2::length()
+float Vector2::Length()
 {
-	return sqrt(lengthSquared());
+	return sqrt(LengthSquared());
 }
-Vector2 Vector2::normalize()
+Vector2 Vector2::Normalize()
 {
-	if(lengthSquared() != 0)
+	if(LengthSquared() != 0)
 	{
-		return Vector2(X/length(),Y/length());
+		return Vector2(X/Length(),Y/Length());
 	}
 	return Vector2(0,0);
 }
-float Vector2::direction()
+float Vector2::Direction()
 {
 	return atan2(Y, X);
 }

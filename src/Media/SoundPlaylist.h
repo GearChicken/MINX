@@ -29,11 +29,26 @@ namespace MINX
 		class SoundPlaylist
 		{
 		public:
+			/** Constructs a SoundPlaylist with a handle to a game
+			 */
 			SoundPlaylist(Game* gameHandle);
+			
+			/** Adds a sound to the playlist from a file
+			 */
 			void AddSound(char* fileLocation);
+			
+			/** Plays from the current location in the playlist
+			 */
 			void Play();
+			
+			/** Stops all songs in the playlist from playing
+			 */
 			void Stop();
+			
+			/** Enables/disables shuffling
+			 */
 			inline void Shuffle(bool doShuffle) { this->doShuffle = doShuffle; };
+			
 		private:
 			bool doShuffle;
 			Game* gameHandle;

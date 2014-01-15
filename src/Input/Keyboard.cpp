@@ -21,15 +21,13 @@
 
 using namespace MINX::Input;
 using namespace MINX;
-using namespace std;
-
-			
 
 Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a little high
 {
+
 }
 
-void Keyboard::handleEvent()
+void Keyboard::HandleEvent()
 {
 	for(unsigned int id = 0; id < 350; id++)
 	{
@@ -39,7 +37,7 @@ void Keyboard::handleEvent()
 	}
 }
 
-Button Keyboard::getKey(unsigned int key)
+Button Keyboard::GetKey(unsigned int key)
 {
 	return getButton(key);
 }
