@@ -39,10 +39,6 @@ void GameTime::update()
 	deltaTime = totalTimeMillis - lastUpdate;
 	lastUpdate = totalTimeMillis;
 	deltaTime = deltaTime > 0 ? deltaTime : std::numeric_limits<double>::epsilon();
-	lastUpdate = totalTimeMillis;
-	totalTimeMillis = glfwGetTime();
-	deltaTime = totalTimeMillis - lastUpdate;
-	deltaTime = deltaTime > 0 ? deltaTime : std::numeric_limits<double>::epsilon();
 }
 long GameTime::getElapsedMillis()
 {
@@ -52,6 +48,11 @@ long GameTime::getElapsedMillis()
 double GameTime::getDeltaTimeSeconds()
 {
 	return deltaTime;
+}
+
+float GameTime::getDeltaTimeSecondsF()
+{
+	return deltaTime > std::numeric_limits<float>::epsilon() ? deltaTime : std::numeric_limits<float>::epsilon();
 }
 
 long GameTime::getDeltaTimeMillis()
