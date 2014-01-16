@@ -47,20 +47,20 @@ Game::Game()
 
 int doUpdate(void * game)
 {
-	while(((Game*)game)->isRunning)
+	do
 	{
 		((Game*)game)->Update(((Game*)game)->getGameTime());
-	}
+	} while(((Game*)game)->isRunning);
 	
 	return 0;
 }
 
 int audioUpdate(void * game)
 {
-	while(((Game*)game)->isRunning)
+	do
 	{
 		gau_manager_update(((Game*)game)->gorillaManager);
-	}
+	} while(((Game*)game)->isRunning);
 	
 	return 0;
 }
@@ -82,11 +82,11 @@ void Game::Run()
 	updateThread.detach();
 	audioThread.detach();
 	
-	while(isRunning)
+	do
 	{
 		isRunning = !glfwWindowShouldClose(gameWindow->window);
 		this->Draw(this->gameTime);
-	}
+	} while(isRunning);
 	
 	updateThread.~thread();
 	this->UnloadContent();
