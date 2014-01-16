@@ -21,7 +21,7 @@
 using namespace MINX::Input;
 using namespace MINX;
 
-IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : EventHandler(game)
+IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : GameComponent(game)
 {
 	Button b;
 	b.prevState = 0;
