@@ -88,7 +88,6 @@ void Game::Run()
 		this->Draw(this->gameTime);
 	} while(isRunning);
 	
-	updateThread.~thread();
 	this->UnloadContent();
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
