@@ -25,6 +25,8 @@ int GameWindow::height=0;
 
 void windowResizeCallback(GLFWwindow* window, int width, int height)
 {
+	GameWindow::SetWidth(width);
+	GameWindow::SetHeight(height);
 	glfwSetWindowSize(window, GameWindow::GetWidth(), GameWindow::GetHeight());
 }
 
@@ -37,6 +39,7 @@ GameWindow::GameWindow(int width, int height, int bpp, int flags)
 	window = glfwCreateWindow(width, height, "MINX Window", NULL, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }
+
 GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
 {
 	GameWindow::width = width;

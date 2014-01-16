@@ -60,7 +60,7 @@ namespace MINX
 				
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
-				void HandleEvent(GameTime * gameTime);
+				void HandleEvent();
 				
 				/** Gets the Position of the Mouse
 				*/

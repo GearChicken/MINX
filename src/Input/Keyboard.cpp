@@ -39,5 +39,5 @@ void Keyboard::HandleEvent()
 
 Button Keyboard::GetKey(unsigned int key)
 {
-	return getButton(key);
+	return GetButton(key);
 }

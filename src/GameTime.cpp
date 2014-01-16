@@ -50,7 +50,7 @@ double GameTime::GetDeltaTimeSeconds()
 	return deltaTime;
 }
 
-float GameTime::getDeltaTimeSecondsF()
+float GameTime::GetDeltaTimeSecondsF()
 {
 	return deltaTime > std::numeric_limits<float>::epsilon() ? deltaTime : std::numeric_limits<float>::epsilon();
 }
