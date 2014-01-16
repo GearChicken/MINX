@@ -16,9 +16,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+	
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
+
 #include <GL/glfw3.h>
+
 namespace MINX
 {
 	namespace Graphics
@@ -48,6 +51,10 @@ namespace MINX
 				inline static int GetWidth() { return width; }
 
 				inline static int GetHeight() { return height; }
+				
+				inline static void SetWidth(int width) { GameWindow::width = width; }
+				
+				inline static void SetHeight(int height) { GameWindow::height = height; }
 
 				/** A Pointer to the instance of the GLFWwindow
 				*/
@@ -56,9 +63,11 @@ namespace MINX
 				/** The Width of the GameWindow
 				*/
 				static int width;
+				
 				/** The Height of the GameWindow
 				*/
 				static int height;
+				
 				int bpp;
 				int flags;
 		};
