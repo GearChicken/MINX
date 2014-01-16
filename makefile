@@ -55,6 +55,7 @@ OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Gra
 .PHONY: doxygen
 
 all: $(OBJECTS)
+	test -d $(shell dirname $(TARGET)) || mkdir -p $(shell dirname $(TARGET))
 	$(CXX) $(CPPFLAGS) $(OBJECTS) $(LFLAGS) -o $(TARGET)
 	
 raspi: CPPFLAGS += -mtune=arm1176jzf-s
