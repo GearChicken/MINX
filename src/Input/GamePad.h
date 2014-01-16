@@ -43,6 +43,7 @@
 #include "IGenericHID.h"
 #include "../Game.h"
 #include <functional>
+
 namespace MINX
 {
 	namespace Input
@@ -73,7 +74,7 @@ namespace MINX
 				
 				/** Checks is the GamePad's state has changed, and saves the data properly.
 				*/
-				void HandleEvent();
+				void Update(GameTime * gameTime);
 				
 				/** Gets the Button at the specified index
 				*/

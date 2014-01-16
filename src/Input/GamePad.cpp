@@ -55,7 +55,7 @@ GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType)
 	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
 	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
 }
-void GamePad::HandleEvent()
+void GamePad::Update(GameTime * gametime)
 {
 	Gamepad_processEvents();
 	Gamepad_detectDevices();

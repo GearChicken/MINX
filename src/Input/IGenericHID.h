@@ -21,7 +21,6 @@
 
 #include "../GameTime.h"
 #include "../GameComponent.h"
-#include "../EventHandler.h"
 #include <GL/glfw3.h>
 #include "Button.h"
 #include "Axis.h"
@@ -33,10 +32,10 @@ namespace MINX
 	namespace Input
 	{
 		/** Represents any Human Interface Device that has axes and/or buttons.
-		 * Extended by Keyboard, Mouse, and (in the future) Joystick classes.
+		 * Extended by Keyboard, Mouse, and GamePad classes.
 		 * This class should almost NEVER be used directly, but rather a subclass should be used.
 		 */
-		class IGenericHID : public EventHandler
+		class IGenericHID : public GameComponent
 		{
 			public:
 				/** Constructs an IGenericHID. Fills the button and axis vectors with zeroed values.

@@ -24,7 +24,7 @@ Mouse::Mouse(Game* game) : IGenericHID(game, 8, 8)
 
 }
 
-void Mouse::HandleEvent()
+void Mouse::Update(GameTime * gametime)
 {
 	for(unsigned int id = 0; id < 8; id++)
 	{

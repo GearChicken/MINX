@@ -43,7 +43,6 @@ Game::Game()
 	#endif
 	
 	Components = new vector<GameComponent*>();
-	eventHandlers = new vector<EventHandler*>();
 }
 
 int doUpdate(void * game)
@@ -86,12 +85,6 @@ void Game::Run()
 	while(isRunning)
 	{
 		isRunning = !glfwWindowShouldClose(gameWindow->window);
-
-		for(vector<EventHandler*>::size_type i = 0; i < eventHandlers->size(); i++)
-		{
-			(*eventHandlers)[i]->HandleEvent();
-		}
-		
 		this->Draw(this->gameTime);
 	}
 	

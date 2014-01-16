@@ -27,7 +27,7 @@ Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a litt
 
 }
 
-void Keyboard::HandleEvent()
+void Keyboard::Update(GameTime * gametime)
 {
 	for(unsigned int id = 0; id < 350; id++)
 	{
