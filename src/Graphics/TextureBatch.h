@@ -25,8 +25,6 @@
 #include "../Vector2.h"
 #include <iostream>
 
-#define TEXTURE_RADIUS 125
-
 namespace MINX
 {
 	namespace Graphics
@@ -185,8 +183,6 @@ namespace MINX
 			
 			void DrawPrimitiveRectangle(Rectangle rectangle, Color tint);
 
-			void DrawPrimitiveCircle(Vector2 position, double radius, Color tintColor);
-
 		private:
 
 			GLuint vertexBuffer;
@@ -203,11 +199,8 @@ namespace MINX
 
 			GLuint pixelTexture;
 
-			GLuint circleTexture;
 
 			std::vector<TextureData> texturesToDraw;
-
-			const double TAO;
 		};
 	}
 }

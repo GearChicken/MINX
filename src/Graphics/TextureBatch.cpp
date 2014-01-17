@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace MINX;
 using namespace MINX::Graphics;
 
-TextureBatch::TextureBatch(GLuint shaderProgram) : TAO(acos(-1))
+TextureBatch::TextureBatch(GLuint shaderProgram)
 {
 	this->shaderProgram= shaderProgram;
 	texturesToDraw = std::vector<TextureData>();
@@ -54,71 +54,6 @@ TextureBatch::TextureBatch(GLuint shaderProgram) : TAO(acos(-1))
 		0, GL_RGBA, GL_UNSIGNED_BYTE, texture);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
-
-	/**
-	*	Create Circle Texture with radius that is the larger bound of GameWindow
-	*/
-
-	glActiveTexture( GL_TEXTURE0 );
-	glGenTextures(1, &circleTexture);
-	glBindTexture(GL_TEXTURE_2D, circleTexture);
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-	int radius = GameWindow::GetWidth();
-	radius = radius > GameWindow::GetWidth() ? GameWindow::GetHeight() : radius;
-	radius = 25;
-	int doubleRadius = 2*radius;
-	byte*** circleTextureData = new byte**[doubleRadius];
-	std::cout << sizeof(circleTextureData) << std::endl;
-	for(int i = 0; i < doubleRadius; ++i)
-	{
-		circleTextureData[i] = new byte*[doubleRadius];
-		for(int j = 0; j < doubleRadius; ++j)
-		{
-			circleTextureData[i][j] = new byte[3];
-		}
-	}
-
-	std::cout << doubleRadius << std::endl;
-	std::cout << sizeof(circleTextureData) << std::endl;
-
-	for(int y = 0; y < doubleRadius; ++y)
-	{
-		for(int x = 0; x < doubleRadius; x+=3)
-		{
-			if(y - radius <= sqrt(radius*radius - (x - radius) * (x - radius)) && y - radius >= -sqrt(radius*radius - (x - radius) * (x - radius)))
-			{
-				circleTextureData[y][x][0] = 255;
-				circleTextureData[y][x][1] = 255;
-				circleTextureData[y][x][2] = 255;
-			}
-			else
-			{
-				circleTextureData[y][x][0] = 0;
-				circleTextureData[y][x][1] = 0;
-				circleTextureData[y][x][2] = 0;
-			}
-		}
-	}
-
-	/*
-	double angleStep = 1.0 / radius;
-	for (double angle = 0; angle < TAO; angle+= angleStep)
-	{
-	circleTexture[Math::Round(radius + radius*sin(angle))][Math::Round(radius + radius*cos(angle))] = 1;
-	}
-	//*/
-	std::cout << sizeof(circleTextureData) << std::endl;
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, doubleRadius, doubleRadius,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, circleTextureData);
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-
 
 	//*/
 }
@@ -521,35 +456,6 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 	texData.texture = pixelTexture;
 	texData.width =  width;
 	texData.height = height;
-	texData.matrix = projectionMatrix;
-	texData.color = tintColor;
-	texturesToDraw.push_back(texData);
-}
-
-void TextureBatch::DrawPrimitiveCircle(Vector2 position, double radius, Color tintColor)
-{
-
-	glm::mat4 projectionMatrix;
-
-
-	int radialTextureBound = GameWindow::GetWidth();
-	radialTextureBound = radialTextureBound > GameWindow::GetWidth() ? GameWindow::GetHeight() : radialTextureBound;
-	radialTextureBound = 25;
-	radius /= radialTextureBound;
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
-
-	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(position.X + abs(radialTextureBound*radius/2.0f), position.Y + abs(radialTextureBound*radius / 2.0f), 1));
-
-	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(radius, radius, 1.0));
-
-
-	struct TextureData texData = TextureData();
-	texData.texture = pixelTexture;
-	texData.width =  radialTextureBound;
-	texData.height = radialTextureBound;
 	texData.matrix = projectionMatrix;
 	texData.color = tintColor;
 	texturesToDraw.push_back(texData);
