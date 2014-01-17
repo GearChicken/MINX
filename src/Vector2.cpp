@@ -22,9 +22,10 @@
 
 using namespace MINX;
 
-Vector2::Vector2():  X(0), Y(0) {}
+Vector2::Vector2():  X( 0 ), Y( 0 ) {}
 
-Vector2::Vector2(float x, float y) : X( x ), Y( y ) { }
+Vector2::Vector2(double x, double y) : X( x ), Y( y ) {}
+Vector2::Vector2(double length, double angle, bool radians) : X( length*cos(angle*(radians ? 1 : 3.14159265/180)) ), Y( length*sin(radians*(radians ? 1 : 3.14159265/180)) ) {}
 
 Vector2 Vector2::operator+(const Vector2& addTo)
 {
@@ -44,24 +45,20 @@ void Vector2::operator-=(const Vector2& subtractFrom)
 	X -= subtractFrom.X;
 	Y -= subtractFrom.Y;
 }
-Vector2 Vector2::crossMultiply(const Vector2& multiplyBy)
+double Vector2::crossMultiply(const Vector2& multiplyBy)
 {
-	//really just guessing here, I'm not sure what the XNA implementation does actually, cause really this should be a 3d vector
-	float angle = atan2(Y,X)-atan2(multiplyBy.Y,multiplyBy.X);
-	float magnitude = sqrt(X*X+Y*Y)*sqrt(multiplyBy.X*multiplyBy.X+multiplyBy.Y*multiplyBy.Y);
-	float resultantMagnitude = magnitude*sin(angle);
-	return Vector2(sqrt(resultantMagnitude/2),sqrt(resultantMagnitude/2));
+	return X*multiplyBy.Y - Y*multiplyBy.X;
 }
-float Vector2::operator*(const Vector2& multiplyBy)
+double Vector2::operator*(const Vector2& multiplyBy)
 {
 	float angle = atan2(Y,X)-atan2(multiplyBy.Y,multiplyBy.X);
 	return sqrt(X*X+Y*Y)*sqrt(multiplyBy.X*multiplyBy.X+multiplyBy.Y*multiplyBy.Y)*cos(angle);
 }
-Vector2 Vector2::operator*(const float& multiplyBy)
+Vector2 Vector2::operator*(const double& multiplyBy)
 {
 	return Vector2(X*multiplyBy,Y*multiplyBy);
 }
-void Vector2::operator*=(const float& multiplyBy)
+void Vector2::operator*=(const double& multiplyBy)
 {
 	X *= multiplyBy;
 	Y *= multiplyBy;
@@ -78,11 +75,11 @@ bool Vector2::operator!=(const Vector2& compareTo)
 {
 	return !operator==(compareTo);
 }
-float Vector2::LengthSquared()
+double Vector2::LengthSquared()
 {
 	return X*X+Y*Y;
 }
-float Vector2::Length()
+double Vector2::Length()
 {
 	return sqrt(LengthSquared());
 }
@@ -94,7 +91,7 @@ Vector2 Vector2::Normalize()
 	}
 	return Vector2(0,0);
 }
-float Vector2::Direction()
+double Vector2::Direction()
 {
 	return atan2(Y, X);
 }
