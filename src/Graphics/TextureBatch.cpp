@@ -3,16 +3,16 @@ MINX - A C++ Graphics and Input Wrapper Library
 Copyright (C) 2013-2014  MINX Team
 
 This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
+it under the terms of the GNU Lesser General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU Lesser General Public License for more details.
 
-You should have received a copy of the GNU General Public License
+You should have received a copy of the GNU Lesser General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 */
@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace MINX;
 using namespace MINX::Graphics;
 
-TextureBatch::TextureBatch(GLuint shaderProgram)
+TextureBatch::TextureBatch(GLuint shaderProgram) : TAO(acos(-1))
 {
 	this->shaderProgram= shaderProgram;
 	texturesToDraw = std::vector<TextureData>();
@@ -34,7 +34,9 @@ TextureBatch::TextureBatch(GLuint shaderProgram)
 
 	glGenBuffers(1, &vertexBuffer);
 
-	
+	/**
+	*	Create Pixel Texture
+	*/
 	glActiveTexture( GL_TEXTURE0 );
 	glGenTextures(1, &pixelTexture);
 	glBindTexture(GL_TEXTURE_2D, pixelTexture);
@@ -50,22 +52,88 @@ TextureBatch::TextureBatch(GLuint shaderProgram)
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 1, 1,
 		0, GL_RGBA, GL_UNSIGNED_BYTE, texture);
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	/**
+	*	Create Circle Texture with radius that is the larger bound of GameWindow
+	*/
+
+	glActiveTexture( GL_TEXTURE0 );
+	glGenTextures(1, &circleTexture);
+	glBindTexture(GL_TEXTURE_2D, circleTexture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	int radius = GameWindow::GetWidth();
+	radius = radius > GameWindow::GetWidth() ? GameWindow::GetHeight() : radius;
+	radius = 25;
+	int doubleRadius = 2*radius;
+	byte*** circleTextureData = new byte**[doubleRadius];
+	std::cout << sizeof(circleTextureData) << std::endl;
+	for(int i = 0; i < doubleRadius; ++i)
+	{
+		circleTextureData[i] = new byte*[doubleRadius];
+		for(int j = 0; j < doubleRadius; ++j)
+		{
+			circleTextureData[i][j] = new byte[3];
+		}
+	}
+
+	std::cout << doubleRadius << std::endl;
+	std::cout << sizeof(circleTextureData) << std::endl;
+
+	for(int y = 0; y < doubleRadius; ++y)
+	{
+		for(int x = 0; x < doubleRadius; x+=3)
+		{
+			if(y - radius <= sqrt(radius*radius - (x - radius) * (x - radius)) && y - radius >= -sqrt(radius*radius - (x - radius) * (x - radius)))
+			{
+				circleTextureData[y][x][0] = 255;
+				circleTextureData[y][x][1] = 255;
+				circleTextureData[y][x][2] = 255;
+			}
+			else
+			{
+				circleTextureData[y][x][0] = 0;
+				circleTextureData[y][x][1] = 0;
+				circleTextureData[y][x][2] = 0;
+			}
+		}
+	}
+
+	/*
+	double angleStep = 1.0 / radius;
+	for (double angle = 0; angle < TAO; angle+= angleStep)
+	{
+	circleTexture[Math::Round(radius + radius*sin(angle))][Math::Round(radius + radius*cos(angle))] = 1;
+	}
+	//*/
+	std::cout << sizeof(circleTextureData) << std::endl;
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, doubleRadius, doubleRadius,
+		0, GL_RGBA, GL_UNSIGNED_BYTE, circleTextureData);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
+
+
+
 	//*/
 }
 
 void TextureBatch::DrawLoadedTextures()
 {
 	glUseProgram(shaderProgram);
-	
+
 	glUniform4f(uniformTint, 1.0f, 1.0f, 1.0f, 1.0f);
-	
+
 	glEnableVertexAttribArray(attributeCoord);
-	
+
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 
-	
+
 	glVertexAttribPointer(attributeCoord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
 
 	std::vector<TextureData>::iterator min = texturesToDraw.begin();
@@ -73,16 +141,16 @@ void TextureBatch::DrawLoadedTextures()
 
 	for (auto textureToDraw : texturesToDraw)
 	{
-		
+
 		glUniformMatrix4fv( uniformTransformMatrix, 1, GL_FALSE, glm::value_ptr(textureToDraw.matrix));
 		//texturesToDraw[i]->width;
-			glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureToDraw.texture);
 		int texWidth = textureToDraw.width;
 		int texHeight = textureToDraw.height;
-		
+
 		glUniform4f(uniformTint, textureToDraw.color.R/255.0f, textureToDraw.color.G/255.0f, textureToDraw.color.B/255.0f, textureToDraw.color.A/255.0f);
-		
+
 		float xMin, xMax, yMin, yMax;
 		Rectangle sourceRect = textureToDraw.sourceRect;
 		if(sourceRect.Width == 0 && sourceRect.Height == 0)
@@ -97,14 +165,14 @@ void TextureBatch::DrawLoadedTextures()
 
 		GLfloat box[6][4] = {
 
-		{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin},
-		{texWidth/2.0f,   texHeight /2.0f, xMax, yMin},
-		{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
-		
-		{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
-		{-texWidth/2.0f,  -texHeight /2.0f, xMin, yMax},
-		{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin}
-		//*/
+			{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin},
+			{texWidth/2.0f,   texHeight /2.0f, xMax, yMin},
+			{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
+
+			{texWidth/2.0f,  -texHeight /2.0f, xMax, yMax},
+			{-texWidth/2.0f,  -texHeight /2.0f, xMin, yMax},
+			{-texWidth/2.0f,   texHeight /2.0f, xMin, yMin}
+			//*/
 		};
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -126,7 +194,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -146,7 +214,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRe
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -173,7 +241,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -193,14 +261,14 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
-	
+
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
 
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -225,7 +293,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -248,7 +316,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -269,15 +337,15 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
 
-	
+
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
-	
+
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -297,16 +365,16 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
 
-	
+
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
 	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
 
-	
+
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -326,7 +394,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
-	
+
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
@@ -334,7 +402,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -354,7 +422,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	//setup the ortho projection matrix
 	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
 
-	
+
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
 
@@ -362,7 +430,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = texture->texture;
 	texData.width =  width;
@@ -433,7 +501,7 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 
 void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 {
-	
+
 	glm::mat4 projectionMatrix;
 	int width = 1;
 	int height = 1;
@@ -448,11 +516,40 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(rectangle.Width, rectangle.Height, 1.0));
 
-	
+
 	struct TextureData texData = TextureData();
 	texData.texture = pixelTexture;
 	texData.width =  width;
 	texData.height = height;
+	texData.matrix = projectionMatrix;
+	texData.color = tintColor;
+	texturesToDraw.push_back(texData);
+}
+
+void TextureBatch::DrawPrimitiveCircle(Vector2 position, double radius, Color tintColor)
+{
+
+	glm::mat4 projectionMatrix;
+
+
+	int radialTextureBound = GameWindow::GetWidth();
+	radialTextureBound = radialTextureBound > GameWindow::GetWidth() ? GameWindow::GetHeight() : radialTextureBound;
+	radialTextureBound = 25;
+	radius /= radialTextureBound;
+	//setup the ortho projection matrix
+	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+
+	//make new translation matrix
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(position.X + abs(radialTextureBound*radius/2.0f), position.Y + abs(radialTextureBound*radius / 2.0f), 1));
+
+	//scale the coordinates up by the specified amounts
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(radius, radius, 1.0));
+
+
+	struct TextureData texData = TextureData();
+	texData.texture = pixelTexture;
+	texData.width =  radialTextureBound;
+	texData.height = radialTextureBound;
 	texData.matrix = projectionMatrix;
 	texData.color = tintColor;
 	texturesToDraw.push_back(texData);
