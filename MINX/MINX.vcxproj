@@ -11,7 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\EventHandler.cpp" />
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameComponent.cpp" />
     <ClCompile Include="..\src\GameTime.cpp" />
@@ -26,6 +25,7 @@
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />
     <ClCompile Include="..\src\Input\Keyboard.cpp" />
     <ClCompile Include="..\src\input\Mouse.cpp" />
+    <ClCompile Include="..\src\MathHelper.cpp" />
     <ClCompile Include="..\src\Media\SoundFile.cpp" />
     <ClCompile Include="..\src\Media\SoundPlaylist.cpp" />
     <ClCompile Include="..\src\Point.cpp" />
@@ -34,7 +34,6 @@
     <ClCompile Include="..\src\Vector2.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\EventHandler.h" />
     <ClInclude Include="..\src\Game.h" />
     <ClInclude Include="..\src\GameComponent.h" />
     <ClInclude Include="..\src\GameTime.h" />
@@ -50,6 +49,7 @@
     <ClInclude Include="..\src\Input\IGenericHID.h" />
     <ClInclude Include="..\src\Input\Keyboard.h" />
     <ClInclude Include="..\src\Input\Mouse.h" />
+    <ClInclude Include="..\src\MathHelper.h" />
     <ClInclude Include="..\src\Media\SoundFile.h" />
     <ClInclude Include="..\src\Media\SoundPlaylist.h" />
     <ClInclude Include="..\src\Point.h" />
