@@ -173,9 +173,9 @@ double Math::pow(double num, double power)
 
 //General Functions
 
-bool Math::sign(double num)
+int Math::sign(double num)
 {
-	return num >= 0;
+	return int(num == 0 ? 0 : abs(num)/num);
 }
 
 double Math::abs(double num)
