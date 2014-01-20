@@ -62,7 +62,7 @@ namespace MINX
 		extern double pow(double num, double power);
 
 		//General Functions
-		extern bool sign(double num);
+		extern int sign(double num);
 		extern double abs(double num);
 		extern bool parity(long num);
 		extern double round(double x);
