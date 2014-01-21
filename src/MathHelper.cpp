@@ -190,9 +190,9 @@ bool Math::parity(long num)
 
 double Math::round(double x)
 {
-	double wholeNumber = (int)x;
+	double wholeNumber = int(x);
 	float dif = x - wholeNumber;
-	if(x >= 0.5f)
+	if(dif >= 0.5f)
 	{
 		return wholeNumber + 1;
 	}
@@ -212,4 +212,9 @@ double Math::cbrt(double num)
 double Math::root(double degree, double num)
 {
 	return pow(num, 1.0/degree);
+}
+
+double Math::fmod(double numerator, double denominator)
+{
+	return denominator == 0 ? 0 : ::fmod(numerator,denominator);
 }
