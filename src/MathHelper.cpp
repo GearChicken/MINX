@@ -27,6 +27,8 @@ double Math::PI = ::asin(-1.0);
 
 double Math::TAO = 2 * asin(-1.0);
 
+double Math::E = exp(1);
+
 //Trig Functions
 
 double Math::sin(double radians)
