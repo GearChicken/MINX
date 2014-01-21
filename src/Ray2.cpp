@@ -20,14 +20,14 @@
 
 using namespace MINX;
 
-Ray2::Ray2(float direction, float xPosition, float yPosition)
+Ray2::Ray2(double direction, double xPosition, double yPosition)
 {
 	dir=direction;
 	xPos=xPosition;
 	yPos=yPosition;
 }
 
-Ray2::Ray2(float direction)
+Ray2::Ray2(double direction)
 {
 	dir=direction;
 	xPos=0;

@@ -49,10 +49,13 @@ double Vector2::crossMultiply(const Vector2& multiplyBy)
 {
 	return X*multiplyBy.Y - Y*multiplyBy.X;
 }
-double Vector2::operator*(const Vector2& multiplyBy)
+double Vector2::dotMultiply(const Vector2& multiplyBy)
 {
-	float angle = atan2(Y,X)-atan2(multiplyBy.Y,multiplyBy.X);
-	return sqrt(X*X+Y*Y)*sqrt(multiplyBy.X*multiplyBy.X+multiplyBy.Y*multiplyBy.Y)*cos(angle);
+	return X*multiplyBy.X + Y*multiplyBy.Y;
+}
+Vector2 Vector2::operator*(const Vector2& multiplyBy)
+{
+	return Vector2(X*multiplyBy.X,Y*multiplyBy.Y);
 }
 Vector2 Vector2::operator*(const double& multiplyBy)
 {

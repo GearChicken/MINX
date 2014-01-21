@@ -28,19 +28,19 @@ namespace MINX
 	{
 		/** Creates a Ray2 with the specified direction and position.
 		 */
-		Ray2(float direction, float xPosition, float yPosition);
+		Ray2(double direction, double xPosition, double yPosition);
 		/** Creates a Ray2 with the specified direction.
 		 */
-		Ray2(float direction);
+		Ray2(double direction);
 		/** The direction of the Ray2.
 		 */
-		float dir;
+		double dir;
 		/** The X position of the Ray2.
 		 */
-		float xPos;
+		double xPos;
 		/** The Y position of the Ray2.
 		 */
-		float yPos;
+		double yPos;
 		/** Negates a Ray2.
 		 */
 		Ray2 operator-()const;
