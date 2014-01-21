@@ -28,6 +28,7 @@ namespace MINX
 	{
 		extern double PI;
 		extern double TAO;
+		extern double E;
 		/// Trig Functions
 		extern double sin(double radians);
 		extern double cos(double radians);
