@@ -70,7 +70,12 @@ namespace MINX
 		/** Dot multiplies 2 Vector2s.
 		 * @param multiplyBy the Vector2 to dot multiply by.
 		 */
-		double operator*(const Vector2& multiplyBy);
+		double dotMultiply(const Vector2& multiplyBy);
+		
+		/** Multiplies 2 Vector2s component-wise.
+		 * @param multiplyBy the Vector2 to dot multiply by.
+		 */
+		Vector2 operator*(const Vector2& multiplyBy);
 		
 		/** Multiplies a Vector2 by a scalar.
 		 * @param multiplyBy the scalar to multiply the length of the Vector2 by.
