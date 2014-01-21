@@ -23,7 +23,7 @@ echo "Please enter the name you would like to use for the source file of your ne
 
 read fileName
 
-fileName=$(echo $fileName | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\'<>,")
+fileName=$(echo $fileName | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\\'<>,")
 
 
 test -d "$projectDir" || mkdir -p "$projectDir";
