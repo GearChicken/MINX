@@ -69,6 +69,7 @@ namespace MINX
 		extern double sqrt(double num);
 		extern double cbrt(double num);
 		extern double root(double degree, double num);
+		extern double fmod(double numerator, double denominator);
 
 	}
 }
