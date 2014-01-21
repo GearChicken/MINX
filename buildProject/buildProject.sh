@@ -19,7 +19,7 @@ echo "Please type the directory in which you would like to create the new MINX p
 
 read projectDir
 
-echo "Please enter the name you would like to use for the source file of your new project (no extension): "
+echo "Please enter the name you would like to use for the source file of your new project (no extension, spaces, or non-alphanumeric characters): "
 
 read fileName
 
