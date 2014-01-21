@@ -92,7 +92,7 @@ void $fileName::UnloadContent()
 void $fileName::Update(GameTime * gameTime)
 {
 	//Put stuff here to update the logic in your game each tick.
-	Game::Update(gametime);
+	Game::Update(gameTime);
 }
 
 void $fileName::Draw(GameTime * gameTime)
@@ -101,7 +101,7 @@ void $fileName::Draw(GameTime * gameTime)
     	glClear( GL_COLOR_BUFFER_BIT );
 
 	//Put stuff here to draw your game each frame.
-	Game::Draw(gametime);
+	Game::Draw(gameTime);
 }" > "$projectDir/src/$fileName.cpp"
 
 echo "
