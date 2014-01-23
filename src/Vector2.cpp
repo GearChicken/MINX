@@ -31,19 +31,21 @@ Vector2 Vector2::operator+(const Vector2& addTo)
 {
 	return Vector2(X+addTo.X,Y+addTo.Y);
 }
-void Vector2::operator+=(const Vector2& addTo)
+Vector2 Vector2::operator+=(const Vector2& addTo)
 {
 	X += addTo.X;
 	Y += addTo.Y;
+	return *this;
 }
 Vector2 Vector2::operator-(const Vector2& subtractFrom)
 {
 	return Vector2(X-subtractFrom.X,Y-subtractFrom.Y);
 }
-void Vector2::operator-=(const Vector2& subtractFrom)
+Vector2 Vector2::operator-=(const Vector2& subtractFrom)
 {
 	X -= subtractFrom.X;
 	Y -= subtractFrom.Y;
+	return *this;
 }
 double Vector2::crossMultiply(const Vector2& multiplyBy)
 {
@@ -61,10 +63,37 @@ Vector2 Vector2::operator*(const double& multiplyBy)
 {
 	return Vector2(X*multiplyBy,Y*multiplyBy);
 }
-void Vector2::operator*=(const double& multiplyBy)
+Vector2 Vector2::operator*=(const double& multiplyBy)
 {
 	X *= multiplyBy;
 	Y *= multiplyBy;
+	return *this;
+}
+Vector2 Vector2::operator*=(const Vector2& multiplyBy)
+{
+	X *= multiplyBy.X;
+	Y *= multiplyBy.Y;
+	return *this;
+}
+Vector2 Vector2::operator/(const Vector2& divideBy)
+{
+	return Vector2(X/divideBy.X,Y/divideBy.Y);
+}
+Vector2 Vector2::operator/(const double& divideBy)
+{
+	return Vector2(X/divideBy,Y/divideBy);
+}
+Vector2 Vector2::operator/=(const double& divideBy)
+{
+	X /= divideBy;
+	Y /= divideBy;
+	return *this;
+}
+Vector2 Vector2::operator/=(const Vector2& divideBy)
+{
+	X /= divideBy.X;
+	Y /= divideBy.Y;
+	return *this;
 }
 Vector2 Vector2::operator-()const
 {

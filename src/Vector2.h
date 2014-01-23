@@ -49,7 +49,7 @@ namespace MINX
 		/** Adds 2 Vector2s.
 		 * @param addTo the Vector2 to add.
 		 */
-		void operator+=(const Vector2& addTo);
+		Vector2 operator+=(const Vector2& addTo);
 		
 		/** Subtracts a Vector2 from another.
 		 * @param subtractFrom the Vector2 to subtract.
@@ -59,7 +59,7 @@ namespace MINX
 		/** Subtracts a Vector2 from another.
 		 * @param subtractFrom the Vector2 to subtract.
 		 */
-		void operator-=(const Vector2& subtractFrom);
+		Vector2 operator-=(const Vector2& subtractFrom);
 		
 		/** "cross multiplies" 2 Vector2s.
 		 * There are "'s there because you can't REALLY cross multiply a 2 dimensional vector.
@@ -85,7 +85,32 @@ namespace MINX
 		/** Multiplies a Vector2 by a scalar.
 		 * @param multiplyBy the scalar to multiply the length of the Vector2 by.
 		 */
-		void operator*=(const double& multiplyBy);
+		Vector2 operator*=(const double& multiplyBy);
+		
+		/** Multiplies a Vector2 by another component-wise.
+		 * @param multiplyBy the Vector2 to multiply the Vector2 by.
+		 */
+		Vector2 operator*=(const Vector2& multiplyBy);
+		
+		/** Divides 2 Vector2s component-wise.
+		 * @param divideBy the Vector2 to dot multiply by.
+		 */
+		Vector2 operator/(const Vector2& divideBy);
+		
+		/** Divides a Vector2 by a scalar.
+		 * @param divideBy the scalar to divide the length of the Vector2 by.
+		 */
+		Vector2 operator/(const double& divideBy);
+		
+		/** Divides a Vector2 by a scalar.
+		 * @param multiplyBy the scalar to divide the length of the Vector2 by.
+		 */
+		Vector2 operator/=(const double& divideBy);
+		
+		/** Divides a Vector2 by a scalar.
+		 * @param multiplyBy the scalar to divide the length of the Vector2 by.
+		 */
+		Vector2 operator/=(const Vector2& divideBy);
 		
 		/** Negates a Vector2.
 		 */
