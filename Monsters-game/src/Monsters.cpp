@@ -40,7 +40,7 @@ MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 	srand(time(NULL));
-	Game::setVideoOptions(1024, 768, 32, 0, "MINX Monster Game!");
+	Game::SetVideoOptions(1024, 768, 32, 0, "MINX Monster Game!");
 	isRunning = true;
 	monsters = new vector<Monster*>();
 	std::cout << "Welcome to the MINX Monster Game!" << std::endl;
@@ -80,7 +80,7 @@ void MonsterGame::LoadContent()
 	monsters->push_back(new Bouncer(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new Wrapper(new Vector2(10,10), monsterTexture));
 	monsters->push_back(new PatternMonster(new Rectangle(6*8,5*8,50*8,8*8), monsterTexture));
-	monsters->push_back(new RandomMonster(new Vector2(GameWindow::width/2,GameWindow::height/2), monsterTexture));
+	monsters->push_back(new RandomMonster(new Vector2(GameWindow::GetWidth()/2,GameWindow::GetHeight()/2), monsterTexture));
 	monsters->push_back(new Monster(new Vector2(14*8,14*8), monsterTexture, new Graphics::Color(255.0f,255.0f,255.0f), this));
 	//*/
 
@@ -110,7 +110,7 @@ void MonsterGame::Update(GameTime* gameTime)
 	}
 	//*/
 
-	if(keyboard->getButton(Input::Keys::KEY_ESCAPE).state)
+	if(keyboard->GetButton(Input::Keys::KEY_ESCAPE).state)
 	{
 		isRunning = false;
 	}
@@ -126,12 +126,12 @@ void MonsterGame::Draw(GameTime* gameTime)
 
 	//Put stuff here to draw your game each frame.
 
-	//std::cout << "Width: " << GameWindow::width << " Height: " << GameWindow::height << std::endl;
+	//std::cout << "Width: " << GameWindow::GetWidth() << " Height: " << GameWindow::GetHeight() << std::endl;
 	
 	
 	for (int i = 0; i < 10; i++)
 	{
-		texBatch->Draw(monsterTexture, rand()%GameWindow::width, rand()%GameWindow::height, 1.0f, 1.0f, 0.0f, Color(rand()%256, rand()%256, rand()%256));
+		texBatch->Draw(monsterTexture, rand()%GameWindow::GetWidth(), rand()%GameWindow::GetHeight(), 1.0f, 1.0f, 0.0f, Color(rand()%256, rand()%256, rand()%256));
 
 	}
 	//*/
