@@ -42,9 +42,6 @@
     <ClCompile Include="..\src\GameTime.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\Point.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\Ray2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -123,9 +120,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\GameTime.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Point.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Ray2.h">

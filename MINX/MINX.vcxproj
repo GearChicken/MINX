@@ -28,7 +28,6 @@
     <ClCompile Include="..\src\MathHelper.cpp" />
     <ClCompile Include="..\src\Media\SoundFile.cpp" />
     <ClCompile Include="..\src\Media\SoundPlaylist.cpp" />
-    <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
@@ -52,7 +51,6 @@
     <ClInclude Include="..\src\MathHelper.h" />
     <ClInclude Include="..\src\Media\SoundFile.h" />
     <ClInclude Include="..\src\Media\SoundPlaylist.h" />
-    <ClInclude Include="..\src\Point.h" />
     <ClInclude Include="..\src\Ray2.h" />
     <ClInclude Include="..\src\Rectangle.h" />
     <ClInclude Include="..\src\Vector2.h" />
