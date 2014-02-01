@@ -29,17 +29,17 @@ void Wrapper::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 	position->Y += velocity->Y;
 	if (position->X < 0)
 	{
-		position->X = Graphics::GameWindow::width - texture->GetWidth();
+		position->X = Graphics::GameWindow::GetWidth() - texture->GetWidth();
 	}
 	if (position->Y < 0)
 	{
-		position->Y = Graphics::GameWindow::height - texture->GetHeight();
+		position->Y = Graphics::GameWindow::GetHeight() - texture->GetHeight();
 	}
-	if (position->X > Graphics::GameWindow::width - texture->GetWidth())
+	if (position->X > Graphics::GameWindow::GetWidth() - texture->GetWidth())
 	{
 		position->X = 0;
 	}
-	if (position->Y > Graphics::GameWindow::height - texture->GetHeight())
+	if (position->Y > Graphics::GameWindow::GetHeight() - texture->GetHeight())
 	{
 		position->Y = 0;
 	}
