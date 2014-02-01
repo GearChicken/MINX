@@ -55,16 +55,6 @@ int doUpdate(void * game)
 	return 0;
 }
 
-int audioUpdate(void * game)
-{
-	do
-	{
-		gau_manager_update(((Game*)game)->gorillaManager);
-	} while(((Game*)game)->isRunning);
-	
-	return 0;
-}
-
 void Game::Run()
 {
 
@@ -77,10 +67,8 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 	
-	thread audioThread = thread(audioUpdate, this);
 	thread updateThread = thread(doUpdate, this);
 	updateThread.detach();
-	audioThread.detach();
 	
 	do
 	{
@@ -128,10 +116,9 @@ void Game::Initialize()
 		std::cout << "FreeType Not Inited!";
 	}
 
-	gc_initialize(0);
-
-	gorillaManager = gau_manager_create();
-	gorillaMixer = gau_manager_mixer(gorillaManager);
+	libVLCInstance = libvlc_new(0, NULL);
+	
+	libVLCMediaPlayer = libvlc_media_player_new(libVLCInstance);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -166,8 +153,12 @@ void Game::Draw(GameTime * gameTime)
 void Game::UnloadContent()
 {
 	Gamepad_shutdown();
-	gau_manager_destroy(gorillaManager);
-	gc_shutdown();
+
+	libvlc_media_player_stop(libVLCMediaPlayer);
+	libvlc_media_player_release(libVLCMediaPlayer);
+
+	libvlc_release(libVLCInstance);
+
 	glfwTerminate();
 }
 

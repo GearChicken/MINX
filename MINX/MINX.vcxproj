@@ -28,7 +28,6 @@
     <ClCompile Include="..\src\MathHelper.cpp" />
     <ClCompile Include="..\src\Media\SoundFile.cpp" />
     <ClCompile Include="..\src\Media\SoundPlaylist.cpp" />
-    <ClCompile Include="..\src\Point.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
     <ClCompile Include="..\src\Rectangle.cpp" />
     <ClCompile Include="..\src\Vector2.cpp" />
@@ -52,7 +51,6 @@
     <ClInclude Include="..\src\MathHelper.h" />
     <ClInclude Include="..\src\Media\SoundFile.h" />
     <ClInclude Include="..\src\Media\SoundPlaylist.h" />
-    <ClInclude Include="..\src\Point.h" />
     <ClInclude Include="..\src\Ray2.h" />
     <ClInclude Include="..\src\Rectangle.h" />
     <ClInclude Include="..\src\Vector2.h" />
@@ -86,15 +84,15 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)GorillaAudio\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
-    <LibraryPath>$(SolutionDir)GorillaAudio\bin\win32\Release;$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)VLC\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
+    <LibraryPath>$(SolutionDir)VLC\lib;$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <IncludePath>..\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)GorillaAudio\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
-    <LibraryPath>$(SolutionDir)GorillaAudio\bin\win32\Release;$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)VLC\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
+    <LibraryPath>$(SolutionDir)VLC\lib;$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -106,7 +104,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>gorilla.lib;freetype.lib;GamePad.lib;glew32s.lib; GLFW3DLL.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libvlc.lib;libvlccore.lib;freetype.lib;GamePad.lib;glew32s.lib; GLFW3DLL.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -123,7 +121,7 @@
       <AdditionalDependencies>glew32s.lib;glew32mxs.lib;GLFWDLL.lib;GLFW.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
-      <AdditionalDependencies>gorilla.lib;freetype.lib;GamePad.lib;glew32s.lib; GLFW3DLL.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libvlc.lib;libvlccore.lib;freetype.lib;GamePad.lib;glew32s.lib; GLFW3DLL.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>

@@ -39,8 +39,8 @@ void SoundPlaylist::Play()
 	if(currentSong && !songDeleted)
 	{
 		currentSong->Stop();
-		currentSong->Unload();
-		delete currentSong;
+ 		delete currentSong;
+		currentSong = NULL;
 		songDeleted = true;
 	}
 
@@ -53,6 +53,10 @@ void SoundPlaylist::Play()
 	songDeleted = false;
 	currentSong->Play();
 	++songIndex;
+	if(songIndex >= songFiles.size())
+	{
+		songIndex = 0;
+	}
 }
 
 void SoundPlaylist::Stop()
@@ -60,7 +64,6 @@ void SoundPlaylist::Stop()
 	if(currentSong && !songDeleted)
 	{
 		currentSong->Stop();
-		currentSong->Unload();
 		delete currentSong;
 		songDeleted = true;
 		songIndex = 0;

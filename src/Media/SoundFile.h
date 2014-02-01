@@ -67,13 +67,9 @@ namespace MINX
 			*/
 			double volume;
 			
-			/* The Gorilla Audio sound object that will contain the loaded file data
-			*/
-			ga_Sound* gorillaSoundFile;
-			
-			/* The Gorilla Audio handle that will be used to play the loaded sound file
-			*/
-			ga_Handle* gorillaSoundHandle;
+			Game* gameHandle;
+
+			libvlc_media_t* libVLCMediaObject;
 		};
 	}
 }
