@@ -23,42 +23,36 @@ using namespace MINX::Media;
 
 SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 {
-	int length = strlen(fileLocation);
-	char* soundType = fileLocation + length - 3;
+	libVLCMediaObject = libvlc_media_new_path(gameHandle->libVLCInstance, fileLocation);
 
-	gorillaSoundFile = gau_load_sound_file(fileLocation, soundType);
-	
-	gorillaSoundHandle = gau_create_handle_sound(gameHandle->gorillaMixer, gorillaSoundFile, 0, 0, 0);
+	libvlc_media_player_set_media(gameHandle->libVLCMediaPlayer, libVLCMediaObject);
 
 	volume = 1.0;
+	
+	this->gameHandle = gameHandle;
 }
 
 SoundFile::~SoundFile()
 {
-	//ga_handle_destroy(gorillaSoundHandle);
-	//ga_sound_release(gorillaSoundFile);
-}
+	Stop();
 
-void SoundFile::Unload()
-{
-	ga_handle_destroy(gorillaSoundHandle);
-	ga_sound_release(gorillaSoundFile);
+	libvlc_media_player_set_media(gameHandle->libVLCMediaPlayer, NULL);
+	libvlc_media_release(libVLCMediaObject);
+	//ga_sound_release(gorillaSoundFile);
 }
 void SoundFile::Play()
 {
-	ga_handle_setParamf(gorillaSoundHandle, GA_HANDLE_PARAM_GAIN, volume);
-	ga_handle_play(gorillaSoundHandle);
+	libvlc_media_player_play(gameHandle->libVLCMediaPlayer);
 }
 
 void SoundFile::Pause()
 {
-	ga_handle_stop(gorillaSoundHandle);
+	libvlc_media_player_pause(gameHandle->libVLCMediaPlayer);
 }
 
 void SoundFile::Stop()
 {
-	ga_handle_stop(gorillaSoundHandle);
-	ga_handle_seek(gorillaSoundHandle, 0);
+	libvlc_media_player_stop(gameHandle->libVLCMediaPlayer);
 }
 void SoundFile::SetVolume(double volume)
 {

@@ -28,8 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <GL/glew.h>
 #include <GL/glfw3.h>
 
-#include <gorilla/ga.h>
-#include <gorilla/gau.h>
+#include "vlc/libvlc.h"
+#include "vlc/libvlc_media.h"
+#include "vlc/libvlc_media_player.h"
 
 #include <string>
 #include <vector>
@@ -118,10 +119,11 @@ namespace MINX
 		/** Is the Game Running, or should it close?
 		*/
 		bool isRunning;
-
-		ga_Mixer* gorillaMixer;
 		
-		gau_Manager* gorillaManager;
+
+		libvlc_instance_t* libVLCInstance;
+
+		libvlc_media_player_t* libVLCMediaPlayer;
 		
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen
