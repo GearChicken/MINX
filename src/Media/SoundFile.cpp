@@ -27,6 +27,7 @@ SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 
 	libVLCMediaPlayer = libvlc_media_player_new_from_media(libVLCMediaObject);
 
+
 	libvlc_media_release(libVLCMediaObject);
 
 	volume = 1.0;
@@ -42,8 +43,7 @@ SoundFile::~SoundFile()
 }
 void SoundFile::Play()
 {
-	int  x = libvlc_media_player_play(libVLCMediaPlayer);
-	cout << x;
+	libvlc_media_player_play(libVLCMediaPlayer);
 }
 
 void SoundFile::Pause()
