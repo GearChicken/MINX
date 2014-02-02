@@ -52,10 +52,11 @@
 #ifndef __FT2_BUILD_UNIX_H__
 #define __FT2_BUILD_UNIX_H__
 
-#define FT_FREETYPE_H <freetype2/freetype/freetype.h>
-  /* `<prefix>/include/freetype2' must be in your current inclusion path */
 #include <freetype/config/ftheader.h>
 
+//#define FT_FREETYPE_H <freetype2/freetype/freetype.h>
+  /* `<prefix>/include/freetype2' must be in your current inclusion path */
+  
 #endif /* __FT2_BUILD_UNIX_H__ */
 
 
