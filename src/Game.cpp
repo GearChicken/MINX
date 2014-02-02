@@ -117,8 +117,6 @@ void Game::Initialize()
 	}
 
 	libVLCInstance = libvlc_new(0, NULL);
-	
-	libVLCMediaPlayer = libvlc_media_player_new(libVLCInstance);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -154,8 +152,6 @@ void Game::UnloadContent()
 {
 	Gamepad_shutdown();
 
-	libvlc_media_player_stop(libVLCMediaPlayer);
-	libvlc_media_player_release(libVLCMediaPlayer);
 
 	libvlc_release(libVLCInstance);
 
