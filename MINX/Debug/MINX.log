@@ -1,67 +1,40 @@
-﻿Build started 1/12/2014 1:03:34 AM.
+﻿Build started 2/1/2014 7:55:02 PM.
      1>Project "D:\MINX\MINX\MINX\MINX.vcxproj" on node 2 (Rebuild target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Audio\SoundFile.cpp ..\src\Audio\SoundFile.h ..\src\EventHandler.cpp ..\src\Game.cpp ..\src\GameComponent.cpp ..\src\GameTime.cpp ..\src\Graphics\Color.cpp ..\src\Graphics\Font.cpp ..\src\Graphics\GameWindow.cpp ..\src\Graphics\ShaderFactory.cpp ..\src\Graphics\Texture2D.cpp ..\src\Graphics\TextureBatch.cpp ..\src\Input\Button.cpp ..\src\Input\GamePad.cpp ..\src\Input\IGenericHID.cpp ..\src\Input\Keyboard.cpp ..\src\input\Mouse.cpp ..\src\Point.cpp ..\src\Ray2.cpp ..\src\Rectangle.cpp ..\src\Vector2.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Game.cpp ..\src\GameComponent.cpp ..\src\GameTime.cpp ..\src\Graphics\Color.cpp ..\src\Graphics\Font.cpp ..\src\Graphics\GameWindow.cpp ..\src\Graphics\ShaderFactory.cpp ..\src\Graphics\Texture2D.cpp ..\src\Graphics\TextureBatch.cpp ..\src\Input\Button.cpp ..\src\Input\GamePad.cpp ..\src\Input\IGenericHID.cpp ..\src\Input\Keyboard.cpp ..\src\input\Mouse.cpp ..\src\MathHelper.cpp ..\src\Media\SoundFile.cpp ..\src\Media\SoundPlaylist.cpp ..\src\Ray2.cpp ..\src\Rectangle.cpp ..\src\Vector2.cpp
          Vector2.cpp
          Rectangle.cpp
          Ray2.cpp
-         Point.cpp
+         SoundPlaylist.cpp
+     1>d:\minx\minx\src\media\soundplaylist.cpp(56): warning C4018: '>=' : signed/unsigned mismatch
+         SoundFile.cpp
+         MathHelper.cpp
          Mouse.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-     1>d:\minx\minx\src\input\mouse.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
          Keyboard.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
          IGenericHID.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
          GamePad.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-     1>d:\minx\minx\src\input\gamepad.cpp(25): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\minx\minx\src\input\gamepad.cpp(58): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\minx\minx\src\input\gamepad.cpp(63): warning C4018: '<' : signed/unsigned mismatch
          Button.cpp
          TextureBatch.cpp
-     1>d:\minx\minx\src\graphics\texturebatch.cpp(75): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>d:\minx\minx\src\graphics\texturebatch.cpp(76): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>d:\minx\minx\src\graphics\texturebatch.cpp(77): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
-     1>d:\minx\minx\src\graphics\texturebatch.cpp(78): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
          Texture2D.cpp
          ShaderFactory.cpp
          GameWindow.cpp
          Font.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
+     1>d:\minx\minx\src\graphics\font.cpp(68): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
          Color.cpp
      1>d:\minx\minx\src\graphics\color.cpp(56): warning C4244: 'argument' : conversion from 'const float' to 'byte', possible loss of data
+     1>d:\minx\minx\src\graphics\color.cpp(60): warning C4244: '*=' : conversion from 'const float' to 'byte', possible loss of data
+     1>d:\minx\minx\src\graphics\color.cpp(61): warning C4244: '*=' : conversion from 'const float' to 'byte', possible loss of data
+     1>d:\minx\minx\src\graphics\color.cpp(62): warning C4244: '*=' : conversion from 'const float' to 'byte', possible loss of data
+     1>d:\minx\minx\src\graphics\color.cpp(63): warning C4244: '*=' : conversion from 'const float' to 'byte', possible loss of data
          GameTime.cpp
-     1>d:\minx\minx\src\gametime.cpp(42): warning C4244: '=' : conversion from 'double' to 'long', possible loss of data
+     1>d:\minx\minx\src\gametime.cpp(45): warning C4244: 'return' : conversion from 'double' to 'long', possible loss of data
+     1>d:\minx\minx\src\gametime.cpp(55): warning C4244: 'return' : conversion from 'double' to 'float', possible loss of data
+     1>d:\minx\minx\src\gametime.cpp(60): warning C4244: 'return' : conversion from 'double' to 'long', possible loss of data
          GameComponent.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
          Game.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-         EventHandler.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-         SoundFile.h
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-         Generating Code...
-         Compiling...
-         SoundFile.cpp
-     1>d:\minx\minx\freetype\include\freetype2\freetype\config\ftheader.h(172): warning C4005: 'FT_FREETYPE_H' : macro redefinition
-                 d:\minx\minx\freetype\include\ft2build.h(55) : see previous definition of 'FT_FREETYPE_H'
-     1>d:\minx\minx\src\audio\soundfile.cpp(38): warning C4244: 'argument' : conversion from 'double' to 'gc_float32', possible loss of data
          Generating Code...
        Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" gorilla.lib freetype.lib GamePad.lib glew32s.lib GLFW3DLL.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\SoundFile.obj
-         Debug\SoundFile.obj
-         Debug\EventHandler.obj
-         Debug\Game.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\Lib.exe /OUT:"D:\MINX\MINX\Debug\MINX.lib" libvlc.lib libvlccore.lib freetype.lib GamePad.lib glew32s.lib GLFW3DLL.lib FreeImage.lib opengl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NOLOGO Debug\Game.obj
          Debug\GameComponent.obj
          Debug\GameTime.obj
          Debug\Color.obj
@@ -75,11 +48,12 @@
          Debug\IGenericHID.obj
          Debug\Keyboard.obj
          Debug\Mouse.obj
-         Debug\Point.obj
+         Debug\MathHelper.obj
+         Debug\SoundFile.obj
+         Debug\SoundPlaylist.obj
          Debug\Ray2.obj
          Debug\Rectangle.obj
          Debug\Vector2.obj
-     1>Debug\SoundFile.obj : warning LNK4042: object specified more than once; extras ignored
      1>GLFW3DLL.lib(glfw3.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
      1>GLFW3DLL.lib(glfw3.dll) : warning LNK4221: This object file does not define any previously undefined public symbols, so it will not be used by any link operation that consumes this library
      1>FreeImage.lib(FreeImage.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in freetype.lib(freetype6.dll); second definition ignored
@@ -112,4 +86,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:07.22
+Time Elapsed 00:00:08.63
