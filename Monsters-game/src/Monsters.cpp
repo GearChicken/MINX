@@ -27,15 +27,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <Graphics/Font.h>
 #include <Graphics/TextureBatch.h>
 #include <Graphics/ShaderFactory.h>
+#include <Media/SoundPlaylist.h>
 
 using namespace MINX_monsters;
 using namespace MINX;
 using namespace MINX::Graphics;
+using namespace MINX::Media;
 Font* testFont;
 vector<Monster*>* monsters;
 Texture2D* monsterTexture;
 Texture2D* penTex;
 TextureBatch* texBatch;
+SoundPlaylist* playlist;
+
 MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
@@ -71,6 +75,10 @@ void MonsterGame::LoadContent()
 	//ShaderFactory::GetInstance()->LoadShaderFromFile("vertexShader.glsl", "fragmentShader.glsl");
 	//ShaderFactory::GetInstance()->LoadShaderFromFile("fontVertexShader.glsl", "fontFragmentShader.glsl");
 
+	playlist = new SoundPlaylist(this);
+
+	playlist->AddSound("Converted_file_c2ef41aa.ogg");
+	playlist->AddSound("Kalimba_-_Mr. Scruff_(HD).mp3");
 	texBatch = new TextureBatch(ShaderFactory::GetInstance()->GetShaderAtIndex(0));
 
 	penTex = new Texture2D("penguin.jpg");
@@ -109,10 +117,14 @@ void MonsterGame::Update(GameTime* gameTime)
 		m->Update(gameTime, keyboard);
 	}
 	//*/
-
+	
 	if(keyboard->GetButton(Input::Keys::KEY_ESCAPE).state)
 	{
 		isRunning = false;
+	}
+	if(keyboard->GetButton(Input::Keys::KEY_ENTER).state && !keyboard->GetButton(Input::Keys::KEY_ENTER).prevState)
+	{
+		playlist->Play();
 	}
 }
 
