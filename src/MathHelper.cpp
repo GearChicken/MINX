@@ -193,8 +193,8 @@ bool Math::parity(long num)
 double Math::round(double x)
 {
 	double wholeNumber = int(x);
-	float dif = x - wholeNumber;
-	if(dif >= 0.5f)
+	double dif = x - wholeNumber;
+	if(dif >= 0.5)
 	{
 		return wholeNumber + 1;
 	}
