@@ -23,11 +23,11 @@ using namespace MINX::Media;
 
 SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 {
-	libVLCMediaObject = libvlc_media_new_location(gameHandle->libVLCInstance, fileLocation);
+	libVLCMediaObject = libvlc_media_new_path(gameHandle->libVLCInstance, fileLocation);
 
 	libVLCMediaPlayer = libvlc_media_player_new_from_media(libVLCMediaObject);
 
-	//libvlc_media_release(libVLCMediaObject);
+	libvlc_media_release(libVLCMediaObject);
 
 	volume = 1.0;
 	
@@ -42,7 +42,8 @@ SoundFile::~SoundFile()
 }
 void SoundFile::Play()
 {
-	libvlc_media_player_play(libVLCMediaPlayer);
+	int  x = libvlc_media_player_play(libVLCMediaPlayer);
+	cout << x;
 }
 
 void SoundFile::Pause()
