@@ -123,7 +123,6 @@ namespace MINX
 
 		libvlc_instance_t* libVLCInstance;
 
-		libvlc_media_player_t* libVLCMediaPlayer;
 		
 	protected:
 		/** The Shader Program that OpenGl will use to draw to the screen

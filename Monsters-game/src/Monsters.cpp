@@ -126,6 +126,9 @@ void MonsterGame::Update(GameTime* gameTime)
 	{
 		playlist->Play();
 	}
+
+	//gameTime->LimitFPS(60);
+
 }
 
 void MonsterGame::Draw(GameTime* gameTime)

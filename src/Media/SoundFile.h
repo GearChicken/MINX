@@ -70,6 +70,8 @@ namespace MINX
 			Game* gameHandle;
 
 			libvlc_media_t* libVLCMediaObject;
+
+			libvlc_media_player_t* libVLCMediaPlayer;
 		};
 	}
 }
