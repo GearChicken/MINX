@@ -38,7 +38,6 @@ SoundFile::~SoundFile()
 {
 	libvlc_media_player_stop(libVLCMediaPlayer);
 	libvlc_media_player_release(libVLCMediaPlayer);
-	libvlc_media_player_set_media(libVLCMediaPlayer, NULL);
 	//ga_sound_release(gorillaSoundFile);
 }
 void SoundFile::Play()
