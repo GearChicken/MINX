@@ -93,10 +93,10 @@ void TextureBatch::DrawLoadedTextures()
 			sourceRect.Width = texWidth;
 			sourceRect.Height = texHeight;
 		}
-		xMin = (double)sourceRect.X / texWidth;
-		xMax = (double)sourceRect.Right() / texWidth;
-		yMin = (double)sourceRect.Y / texHeight;
-		yMax = (double)sourceRect.Bottom() / texHeight;
+		xMin = (float)sourceRect.X / texWidth;
+		xMax = (float)sourceRect.Right() / texWidth;
+		yMin = (float)sourceRect.Y / texHeight;
+		yMax = (float)sourceRect.Bottom() / texHeight;
 
 		GLfloat box[6][4] = {
 

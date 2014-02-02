@@ -84,7 +84,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)VLC\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2;</IncludePath>
+    <IncludePath>$(SolutionDir)VLC\include;$(SolutionDir)GL\x86\include;$(IncludePath);$(SolutionDir)GamePad\include;$(SolutionDir)FreeType\include\;$(SolutionDir)FreeType\include\freetype2</IncludePath>
     <LibraryPath>$(SolutionDir)VLC\lib;$(SolutionDir)GamePad\library\release-win32;$(SolutionDir)GL\x86\lib;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
