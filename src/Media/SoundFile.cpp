@@ -57,15 +57,18 @@ void SoundFile::Stop()
 }
 void SoundFile::SetVolume(double volume)
 {
-	if(volume > 1.0)
+	if(volume > 100.0)
 	{
-		this->volume = 1.0;
+		this->volume = 100.0;
+		libvlc_audio_set_volume(libVLCMediaPlayer, volume);
 		return;
 	}
 	if(volume < 0.0)
 	{
 		this->volume = 0.0;
+		libvlc_audio_set_volume(libVLCMediaPlayer, volume);
 		return;
 	}
 	this->volume = volume;
+	libvlc_audio_set_volume(libVLCMediaPlayer, volume);
 }
