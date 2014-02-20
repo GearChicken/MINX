@@ -26,9 +26,10 @@ ShaderFactory::ShaderFactory()
 {
 	shaderPrograms = std::vector<GLuint>();
 
-	std::string vertexSource = "#version 330\n"
-		"in vec4 coord;"
-		"out vec2 texpos;"
+	std::string vertexSource =
+		"#version 130\n"
+		"attribute vec4 coord;"
+		"varying vec2 texpos;"
 		"uniform mat4 trans;"
 		"void main()"
 		"{"
@@ -36,13 +37,13 @@ ShaderFactory::ShaderFactory()
 		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
 		"}";
 	std::string fragmentSource =
-		"#version 330\n"
-		"in vec2 texpos;"
+		"#version 130\n"
+		"varying vec2 texpos;"
 		"uniform sampler2D tex;"
 		"uniform vec4 color;"
 		"void main()"
 		"{"
-		"	gl_FragColor = texture(tex, texpos) * color;"
+		"	gl_FragColor = texture2D(tex, texpos) * color;"
 		"}";
 	LoadShader(vertexSource, fragmentSource);
 
