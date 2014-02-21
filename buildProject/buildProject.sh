@@ -73,8 +73,6 @@ void $fileName::Initialize()
 {
 	//Put stuff here that should happen when the Game is initialized.
 	Game::Initialize();
-	
-	keyboard = new Input::Keyboard(this);
 }
 
 void $fileName::LoadContent()
@@ -118,7 +116,7 @@ int main(int argc, char ** argv)
 
 echo "INCDIR = -I/usr/include/freetype2 -I/usr/include/MINX
 CPPFLAGS += -g -Wall -W \$(INCDIR) -std=c++11
-LFLAGS = -lMINX -lGL -lfreetype -lglfw -lX11 -lXxf86vm -lpthread -lXrandr -lXi
+LFLAGS = -lMINX -lGL -lfreetype -lglfw -lX11 -lXxf86vm -lpthread -lXrandr -lXi -lvlc
 CXX = g++
 SOURCES = \$(wildcard ./src/*.cpp)
 OBJECTS = \$(patsubst ./src/%.cpp,./src/%.o,\$(wildcard ./src/*.cpp))
