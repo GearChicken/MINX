@@ -25,6 +25,10 @@ int GameWindow::height=0;
 
 void windowResizeCallback(GLFWwindow* window, int width, int height)
 {
+	if (!width|| !height)
+	{
+		return;
+	}
 	GameWindow::SetWidth(width);
 	GameWindow::SetHeight(height);
 	glfwSetWindowSize(window, GameWindow::GetWidth(), GameWindow::GetHeight());
