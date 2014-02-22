@@ -25,7 +25,6 @@ using namespace MINX;
 Vector2::Vector2():  X( 0 ), Y( 0 ) {}
 
 Vector2::Vector2(double x, double y) : X( x ), Y( y ) {}
-Vector2::Vector2(double length, double angle, bool radians) : X( length*cos(angle*(radians ? 1 : 3.14159265/180)) ), Y( length*sin(radians*(radians ? 1 : 3.14159265/180)) ) {}
 
 Vector2 Vector2::operator+(const Vector2& addTo)
 {
