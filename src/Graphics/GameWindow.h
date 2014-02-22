@@ -48,6 +48,10 @@ namespace MINX
 				*/
 				GameWindow(int width, int height, int bpp, int flags, char* title);
 				
+				void Clear();
+				
+				void ClearColor(double r, double g, double b);
+				
 				inline static int GetWidth() { return width; }
 
 				inline static int GetHeight() { return height; }

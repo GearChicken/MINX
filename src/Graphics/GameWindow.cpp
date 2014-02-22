@@ -54,3 +54,16 @@ GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
 	window = glfwCreateWindow(width, height, title, NULL, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }
+
+void GameWindow::Clear()
+{
+	glClearColor(0.392156863,0.584313725,0.929411765,1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+}
+
+void GameWindow::ClearColor(double r, double g, double b)
+{
+	glClearColor(r,g,b,1.0);
+	glClear(GL_COLOR_BUFFER_BIT);
+
+}
