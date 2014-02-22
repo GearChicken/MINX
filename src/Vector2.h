@@ -34,13 +34,6 @@ namespace MINX
 		 */
 		Vector2(double x, double y);
 		
-		/** Initializes the Vector2 with a magnitude and direction.
-		 * @param length The length of the Vector2.
-		 * @param angle The angle of the Vector2.
-		 * @param radians Whether the angle is in radians or degrees.
-		 */
-		Vector2(double length, double angle, bool radians);
-		
 		/** Adds 2 Vector2s.
 		 * @param addTo the Vector2 to add.
 		 */
