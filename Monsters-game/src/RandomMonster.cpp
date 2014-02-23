@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "RandomMonster.h"
 using namespace MINX_monsters;
-RandomMonster::RandomMonster(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(1.0,0.0,0.0))
+RandomMonster::RandomMonster(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(255.0,0.0,0.0))
 {
 	velocity->X = 1;
 	velocity->Y = 1;

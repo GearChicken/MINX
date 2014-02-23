@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Wrapper.h"
 using namespace MINX_monsters;
-Wrapper::Wrapper(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(0.0,0.0,1.0))
+Wrapper::Wrapper(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(0.0,0.0,255.0))
 {
 	velocity->X = -1;
 	velocity->Y = -1;

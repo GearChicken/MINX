@@ -40,7 +40,7 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 
 void Font::RenderText(std::string text, float x, float y, int fontSize)
 {
-	RenderText(text.c_str(), x, y, fontSize, Color(0.0,0.0,0.0,1.0));
+	RenderText(text.c_str(), x, y, fontSize, Color(0.0,0.0,0.0,255.0));
 }
 
 void Font::RenderText(std::string text, float x, float y, int fontSize, Color color)
@@ -50,7 +50,7 @@ void Font::RenderText(std::string text, float x, float y, int fontSize, Color co
 
 void Font::RenderText(const char* text, float x, float y, int fontSize)
 {
-	RenderText(text, x, y, fontSize, Color(0.0,0.0,0.0,1.0));
+	RenderText(text, x, y, fontSize, Color(0.0,0.0,0.0,255.0));
 }
 
 void Font::RenderText(const char* text, float x, float y, int fontSize, Color fontColor)
@@ -62,7 +62,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 
 	glUseProgram(shaderProgram);
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
-	GLfloat color[] = {fontColor.R, fontColor.G, fontColor.B, fontColor.A};
+	GLfloat color[] = {fontColor.R/255.0, fontColor.G/255.0, fontColor.B/255.0, fontColor.A/255.0};
 	glUniform4fv(uniform_color, 1, color); 
 	glyphSlot = fontFace->glyph;
 	const char *p;

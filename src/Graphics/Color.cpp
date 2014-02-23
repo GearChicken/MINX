@@ -21,10 +21,10 @@ using namespace MINX::Graphics;
 
 Color::Color()
 {
-	R = 1.0;
-	B = 1.0;
-	G = 1.0;
-	A = 1.0;
+	R = 255.0;
+	B = 255.0;
+	G = 255.0;
+	A = 255.0;
 }
 
 Color::Color(double r, double g, double b, double a)
@@ -40,7 +40,7 @@ Color::Color(double r, double g, double b)
 	R=r;
 	G=g;
 	B=b;
-	A=1.0;
+	A=255.0;
 }
 bool Color::operator==(const Color& compareTo)
 {
