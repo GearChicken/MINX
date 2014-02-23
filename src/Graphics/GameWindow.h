@@ -21,6 +21,7 @@
 #define GAME_WINDOW_H_
 
 #include <GL/glfw3.h>
+#include "Color.h"
 
 namespace MINX
 {
@@ -50,7 +51,7 @@ namespace MINX
 				
 				void Clear();
 				
-				void ClearColor(double r, double g, double b);
+				void ClearColor(Color color);
 				
 				inline static int GetWidth() { return width; }
 

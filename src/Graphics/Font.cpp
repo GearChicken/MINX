@@ -40,9 +40,20 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 
 void Font::RenderText(std::string text, float x, float y, int fontSize)
 {
+	RenderText(text.c_str(), x, y, fontSize, Color(0.0,0.0,0.0,1.0));
+}
+
+void Font::RenderText(std::string text, float x, float y, int fontSize, Color color)
+{
 	RenderText(text.c_str(), x, y, fontSize);
 }
-void Font::RenderText(const char *text, float x, float y, int fontSize)
+
+void Font::RenderText(const char* text, float x, float y, int fontSize)
+{
+	RenderText(text, x, y, fontSize, Color(0.0,0.0,0.0,1.0));
+}
+
+void Font::RenderText(const char* text, float x, float y, int fontSize, Color fontColor)
 {
 
 	float sx = 2.0f / GameWindow::GetWidth();
@@ -51,7 +62,7 @@ void Font::RenderText(const char *text, float x, float y, int fontSize)
 
 	glUseProgram(shaderProgram);
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
-	GLfloat color[] = {0.0f, 0.0f, 0.0f, 1.0f};
+	GLfloat color[] = {fontColor.R, fontColor.G, fontColor.B, fontColor.A};
 	glUniform4fv(uniform_color, 1, color); 
 	glyphSlot = fontFace->glyph;
 	const char *p;

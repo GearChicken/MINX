@@ -18,7 +18,6 @@
 	*/
 #ifndef COLOR_H_
 #define COLOR_H_
-typedef unsigned char byte;
 namespace MINX
 {
 	namespace Graphics
@@ -29,25 +28,25 @@ namespace MINX
 		{
 			/** The red component of the color.
 			 */
-			byte R;
+			double R;
 			/** The green component of the color.
 			 */
-			byte G;
+			double G;
 			/** The blue component of the color.
 			 */
-			byte B;
+			double B;
 			/** The alpha component of the color.
 			 */
-			byte A;
+			double A;
 			/** Constructs the Color with a default value of White
 			 */
 			Color();
 			/** Constructs a color with the given red, green, blue, and alpha values.
 			 */
-			Color(byte r, byte g, byte b, byte a);
+			Color(double r, double g, double b, double a);
 			/** Constructs a color with the given red, green, and blue values.
 			 */
-			Color(byte r, byte g, byte b);
+			Color(double r, double g, double b);
 			/** Tests equality between two Colors.
 			 */
 			bool operator==(const Color& compareTo);
@@ -56,10 +55,10 @@ namespace MINX
 			bool operator!=(const Color& compareTo);
 			/** Multiplies a color by a scale.
 			 */
-			Color * operator*(const float& scale);
+			Color* operator*(const double& scale);
 			/** Multiplies a color by a scale.
 			 */
-			void operator*=(const float& scale);
+			Color* operator*=(const double& scale);
 		};
 	}
 }

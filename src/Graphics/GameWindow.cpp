@@ -61,9 +61,9 @@ void GameWindow::Clear()
 	glClear(GL_COLOR_BUFFER_BIT);
 }
 
-void GameWindow::ClearColor(double r, double g, double b)
+void GameWindow::ClearColor(Color color)
 {
-	glClearColor(r,g,b,1.0);
+	glClearColor(color.R, color.G, color.B, color.A);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 }

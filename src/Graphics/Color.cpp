@@ -21,13 +21,13 @@ using namespace MINX::Graphics;
 
 Color::Color()
 {
-	R = 255;
-	B = 255;
-	G = 255;
-	A = 255;
+	R = 1.0;
+	B = 1.0;
+	G = 1.0;
+	A = 1.0;
 }
 
-Color::Color(byte r, byte g, byte b, byte a)
+Color::Color(double r, double g, double b, double a)
 {
 	R=r;
 	G=g;
@@ -35,13 +35,12 @@ Color::Color(byte r, byte g, byte b, byte a)
 	A=a;
 }
 
-Color::Color(byte r, byte g, byte b)
+Color::Color(double r, double g, double b)
 {
-	//Color(r,g,b,255);
 	R=r;
 	G=g;
 	B=b;
-	A=255;
+	A=1.0;
 }
 bool Color::operator==(const Color& compareTo)
 {
@@ -51,14 +50,15 @@ bool Color::operator!=(const Color& compareTo)
 {
 	return !operator==(compareTo);
 }
-Color * Color::operator*(const float& scale)
+Color* Color::operator*(const double& scale)
 {
 	return new Color(R*scale,G*scale,B*scale,A*scale);
 }
-void Color::operator*=(const float& scale)
+Color* Color::operator*=(const double& scale)
 {
 	R*=scale;
 	G*=scale;
 	B*=scale;
 	A*=scale;
+	return this;
 }
