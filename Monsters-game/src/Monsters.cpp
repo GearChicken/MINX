@@ -146,7 +146,7 @@ void MonsterGame::Draw(GameTime* gameTime)
 	
 	for (int i = 0; i < 10; i++)
 	{
-		texBatch->Draw(monsterTexture, rand()%GameWindow::GetWidth(), rand()%GameWindow::GetHeight(), 1.0f, 1.0f, 0.0f, Color(rand()%256, rand()%256, rand()%256));
+		texBatch->Draw(monsterTexture, rand()%GameWindow::GetWidth(), rand()%GameWindow::GetHeight(), 1.0f, 1.0f, 0.0f, Color((rand()%256)/255.0f, (rand()%256)/255.0f, (rand()%256)/255.0f));
 
 	}
 	//*/
@@ -158,7 +158,7 @@ void MonsterGame::Draw(GameTime* gameTime)
 	}//*/
 
 	texBatch->DrawLoadedTextures();
-	testFont->RenderText(" !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 0,  0, 12);
+	testFont->RenderText(" !\"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~", 0,  0, 12,Color(1.0,0.0,1.0,0.5));
 
 	Game::Draw(gameTime);
 }

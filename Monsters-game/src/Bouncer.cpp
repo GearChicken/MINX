@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Bouncer.h"
 using namespace MINX_monsters;
-Bouncer::Bouncer(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(0.0f,255.0f,0.0f))
+Bouncer::Bouncer(Vector2* position, Graphics::Texture2D* texture) : Monster(position, texture, new Graphics::Color(0.0,1.0,0.0))
 {
 	velocity->X = 1;
 	velocity->Y = 1;
