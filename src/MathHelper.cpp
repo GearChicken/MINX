@@ -223,5 +223,5 @@ double Math::fmod(double numerator, double denominator)
 
 double Math::clamp(double number, double lowerLimit, double upperLimit)
 {
-	return max(lowerLimit,min(upperLimit,number));
+	return fmax(lowerLimit,fmin(upperLimit,number));
 }
