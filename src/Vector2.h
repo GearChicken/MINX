@@ -24,7 +24,28 @@ namespace MINX
 	 */
 	struct Vector2
 	{
-		/** Initializes the Vector2 with a value of (0, 0)
+	
+		enum Heading
+		{
+			E = 0,
+			E_BY_NE = 1,
+			NE = 2,
+			N_BY_NE = 3,
+			N = 4,
+			N_BY_NW = 5,
+			NW = 6,
+			W_BY_NW = 7,
+			W = 8,
+			W_BY_SW = 9,
+			SW = 10,
+			S_BY_SW = 11,
+			S = 12,
+			S_BY_SE = 13,
+			SE = 14,
+			E_BY_SE = 15
+		};
+		
+		/** Initializes the Vector2 with a value of (0, 0).
 		 */
 		Vector2();
 		
@@ -33,6 +54,12 @@ namespace MINX
 		 * @param y The y component of the Vector2.
 		 */
 		Vector2(double x, double y);
+		
+		/** Initializes the Vector2 with a magnitude, direction, and heading.
+		 * @param x The x component of the Vector2.
+		 * @param y The y component of the Vector2.
+		 */
+		Vector2(double magnitude, double direction, Heading heading);
 		
 		/** Adds 2 Vector2s.
 		 * @param addTo the Vector2 to add.

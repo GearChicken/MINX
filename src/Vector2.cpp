@@ -17,18 +17,20 @@
 
 	*/
 #include "Vector2.h"
-#include <math.h>
+#include "MathHelper.h"
 #include <iostream>
 
 using namespace MINX;
 
-Vector2::Vector2():  X( 0 ), Y( 0 ) {}
+Vector2::Vector2():  X(0), Y(0) {}
 
-Vector2::Vector2(double x, double y) : X( x ), Y( y ) {}
+Vector2::Vector2(double x, double y) : X(x), Y(y) {}
+
+Vector2::Vector2(double magnitude, double direction, Heading heading) : X(magnitude*Math::cos(direction+heading*Math::PI/8)), Y(magnitude*Math::sin(direction+heading*Math::PI/8)) {}
 
 Vector2 Vector2::operator+(const Vector2& addTo)
 {
-	return Vector2(X+addTo.X,Y+addTo.Y);
+	return Vector2(X+addTo.X, Y+addTo.Y);
 }
 Vector2 Vector2::operator+=(const Vector2& addTo)
 {
@@ -38,7 +40,7 @@ Vector2 Vector2::operator+=(const Vector2& addTo)
 }
 Vector2 Vector2::operator-(const Vector2& subtractFrom)
 {
-	return Vector2(X-subtractFrom.X,Y-subtractFrom.Y);
+	return Vector2(X-subtractFrom.X, Y-subtractFrom.Y);
 }
 Vector2 Vector2::operator-=(const Vector2& subtractFrom)
 {
@@ -56,11 +58,11 @@ double Vector2::dotMultiply(const Vector2& multiplyBy)
 }
 Vector2 Vector2::operator*(const Vector2& multiplyBy)
 {
-	return Vector2(X*multiplyBy.X,Y*multiplyBy.Y);
+	return Vector2(X*multiplyBy.X, Y*multiplyBy.Y);
 }
 Vector2 Vector2::operator*(const double& multiplyBy)
 {
-	return Vector2(X*multiplyBy,Y*multiplyBy);
+	return Vector2(X*multiplyBy, Y*multiplyBy);
 }
 Vector2 Vector2::operator*=(const double& multiplyBy)
 {
@@ -76,11 +78,11 @@ Vector2 Vector2::operator*=(const Vector2& multiplyBy)
 }
 Vector2 Vector2::operator/(const Vector2& divideBy)
 {
-	return Vector2(X/divideBy.X,Y/divideBy.Y);
+	return Vector2(X/divideBy.X, Y/divideBy.Y);
 }
 Vector2 Vector2::operator/(const double& divideBy)
 {
-	return Vector2(X/divideBy,Y/divideBy);
+	return Vector2(X/divideBy, Y/divideBy);
 }
 Vector2 Vector2::operator/=(const double& divideBy)
 {
@@ -118,11 +120,11 @@ Vector2 Vector2::Normalize()
 {
 	if(LengthSquared() != 0)
 	{
-		return Vector2(X/Length(),Y/Length());
+		return Vector2(X/Length(), Y/Length());
 	}
-	return Vector2(0,0);
+	return Vector2(0, 0);
 }
 double Vector2::Direction()
 {
-	return atan2(Y, X);
+	return Math::atan2(Y, X);
 }
