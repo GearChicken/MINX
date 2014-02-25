@@ -220,3 +220,8 @@ double Math::fmod(double numerator, double denominator)
 {
 	return denominator == 0 ? 0 : ::fmod(numerator,denominator);
 }
+
+double Math::clamp(double number, double lowerLimit, double upperLimit)
+{
+	return max(lowerLimit,min(upperLimit,number));
+}
