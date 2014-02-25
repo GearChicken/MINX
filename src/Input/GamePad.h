@@ -39,7 +39,6 @@
 #define CONTROLLER_RIGHTSTICK_Y 3
 #define CONTROLLER_RIGHTSTICK_X 4
 //#endif
-#include <gamepad/Gamepad.h>
 #include "IGenericHID.h"
 #include "../Game.h"
 #include <functional>
@@ -54,43 +53,39 @@ namespace MINX
 		{
 			public:
 				/** Creates a new GamePad instance.
-				*	@param deviceIndex The Index of the GamePad to get an instance of.
-				*	@param game A pointer to an instance of the game object.
-				*/
+				 *	@param deviceIndex The Index of the GamePad to get an instance of.
+				 *	@param game A pointer to an instance of the game object.
+				 */
 				GamePad(unsigned int deviceIndex, Game* game);
 				
 				/** Creates a new Gamepad instance.
-				*	@param deviceIndex The Index of the GamePad to get an instance of.
-				*	@param game A pointer to an instance of the game object.
-				*	@param gamePadType The Type of GamePad that is being Instantiated
-				*/
+				 *	@param deviceIndex The Index of the GamePad to get an instance of.
+				 *	@param game A pointer to an instance of the game object.
+				 *	@param gamePadType The Type of GamePad that is being Instantiated
+				 */
 				GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType);
 				
-				/** Checks if a GamePad is connected at the specified deviceIndex
-				*	@param deviceIndex The index of the device to check for.
-				*	@return Whether or not the GamePad at the specified index is connected.
-				*/
-				static bool CheckIfDeviceValid(unsigned int deviceIndex);
+				/** Returns the name of the gamepad
+				 *	@return GLFW's stored name for the gamepad
+				 */
+				const char * GetName();
 				
 				/** Checks is the GamePad's state has changed, and saves the data properly.
-				*/
+				 */
 				void Update(GameTime * gameTime);
 				
 				/** Gets the Button at the specified index
-				*/
+				 */
 				Button GetButton(unsigned int buttonID);
 				
 				/** Gets the Axis at the specified index
-				*/
+				 */
 				Axis GetAxis(unsigned int axisID);
 				
 			private:
-				Gamepad_device* gamePad;
 				bool isConnected;
 				unsigned int deviceIndex;
 				unsigned int gamePadType;
-				static void GamePadRemoved(struct Gamepad_device* device, void* context);
-				static void GamePadAttached(struct Gamepad_device* device, void* context);
 		};
 
 	}

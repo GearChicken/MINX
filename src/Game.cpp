@@ -109,8 +109,6 @@ void Game::Initialize()
 		(*Components)[i]->Initialize();
 	}
 
-	Gamepad_init();
-
 	if(FT_Init_FreeType(&freeTypeLibrary))
 	{
 		std::cout << "FreeType Not Inited!";
@@ -150,8 +148,6 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
-	Gamepad_shutdown();
-
 	if(libVLCInstance)
 	{
 		libvlc_release(libVLCInstance);

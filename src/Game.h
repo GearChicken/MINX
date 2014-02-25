@@ -43,7 +43,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Graphics/GameWindow.h"
 #include <thread>
 #include <mutex>
-#include <gamepad/Gamepad.h>
 using namespace std;
 
 namespace MINX

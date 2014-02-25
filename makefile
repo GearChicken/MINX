@@ -32,11 +32,9 @@ else
     UNAME_P := $(shell uname -p)
     ifeq ($(UNAME_P),x86_64)
         CPPFLAGS += -D AMD64
-		LFLAGS += -L./GamePad/library/debug-linux64 -lstem_gamepad
     endif
     ifneq ($(filter %86,$(UNAME_P)),)
         CPPFLAGS += -D IA32
-		LFLAGS += -L./GamePad/library/debug-linux32 -lstem_gamepad
     endif
     ifneq ($(filter arm%,$(UNAME_P)),)
         CPPFLAGS += -D ARM
@@ -87,7 +85,6 @@ headers:
 	cp -u -r src/Input/*.h /usr/include/MINX/Input
 	cp -u -r src/Graphics/*.h /usr/include/MINX/Graphics
 	cp -u -r src/Media/*.h /usr/include/MINX/Media
-	cp -u -r GamePad/include/* /usr/include/MINX
 	cp -u -r GL/x86/include/* /usr/include/MINX
 doxygen:
 	doxygen

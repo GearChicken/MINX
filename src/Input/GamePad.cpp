@@ -17,64 +17,46 @@
 
 	*/
 #include "GamePad.h"
+#include <GL/glfw3.h>
 using namespace MINX;
 using namespace MINX::Input;
-bool GamePad::CheckIfDeviceValid(unsigned int deviceIndex)
-{
-	Gamepad_detectDevices();
-	return deviceIndex < Gamepad_numDevices();
-}
 GamePad::GamePad(unsigned int deviceIndex, Game* game):IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
-	
-	isConnected=false;
-	
-	if(CheckIfDeviceValid(deviceIndex))
-	{
-		isConnected=true;
-		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
-	}
-	
-	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
-	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
+	isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
 }
+
 GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType):IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
 	this->gamePadType = gamePadType;
-	
-	isConnected=false;
-	
-	if(CheckIfDeviceValid(deviceIndex))
-	{
-		isConnected=true;
-		this->gamePad = Gamepad_deviceAtIndex(deviceIndex);
-	}
-	
-	Gamepad_deviceRemoveFunc(GamePad::GamePadRemoved, (void*)this);
-	Gamepad_deviceAttachFunc(GamePad::GamePadAttached, (void*)this);
+	isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
 }
+
 void GamePad::Update(GameTime * gametime)
 {
-	Gamepad_processEvents();
-	Gamepad_detectDevices();
+	int numButtons = 0;
+	const unsigned char * buttonValues = glfwGetJoystickButtons(deviceIndex,&numButtons);
+	
+	int numAxes = 0;
+	const float * axisValues = glfwGetJoystickAxes(deviceIndex,&numAxes);
 	
 	if(isConnected)
 	{
-		for(unsigned int id = 0; id < gamePad->numButtons; id++)
+		for(int id = 0; id < numButtons; id++)
 		{
 			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state= gamePad->buttonStates[id*4];
+			(*buttons)[id].state = buttonValues[id];
 		}
 		
-		for(unsigned int id = 0; id < gamePad->numAxes; id++)
+		for(int id = 0; id < numAxes; id++)
 		{
 			(*axes)[id].prevVal = (*axes)[id].val;
-			(*axes)[id].val= gamePad->axisStates[id];
+			(*axes)[id].val = axisValues[id];
 		}
 	}
 }
+
 Button GamePad::GetButton(unsigned int buttonID)
 {
 	if(isConnected)
@@ -83,6 +65,7 @@ Button GamePad::GetButton(unsigned int buttonID)
 	}
 	return Button();
 }
+
 Axis GamePad::GetAxis(unsigned int axisID)
 {
 	if(isConnected)
@@ -91,12 +74,8 @@ Axis GamePad::GetAxis(unsigned int axisID)
 	}
 	return Axis();
 }
-void GamePad::GamePadRemoved(struct Gamepad_device* device, void* context)
+
+const char * GamePad::GetName()
 {
-	((GamePad*)context)->isConnected = (((GamePad*)context)->gamePad != device);
-}
-void GamePad::GamePadAttached(struct Gamepad_device* device, void* context)
-{
-	((GamePad*)context)->isConnected = (device == Gamepad_deviceAtIndex(((GamePad*)context)->deviceIndex));
-	((GamePad*)context)->gamePad = Gamepad_deviceAtIndex(((GamePad*)context)->deviceIndex);
+	return glfwGetJoystickName(deviceIndex);
 }
