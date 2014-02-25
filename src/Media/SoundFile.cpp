@@ -17,6 +17,7 @@
 	*/
 
 #include "SoundFile.h"
+#include "../MathHelper.h"
 
 using namespace MINX;
 using namespace MINX::Media;
@@ -57,18 +58,6 @@ void SoundFile::Stop()
 }
 void SoundFile::SetVolume(double volume)
 {
-	if(volume > 100.0)
-	{
-		this->volume = 100.0;
-		libvlc_audio_set_volume(libVLCMediaPlayer, volume);
-		return;
-	}
-	if(volume < 0.0)
-	{
-		this->volume = 0.0;
-		libvlc_audio_set_volume(libVLCMediaPlayer, volume);
-		return;
-	}
-	this->volume = volume;
-	libvlc_audio_set_volume(libVLCMediaPlayer, volume);
+	this->volume = Math::clamp(volume,0,1);
+	libvlc_audio_set_volume(libVLCMediaPlayer, this->volume);
 }
