@@ -26,16 +26,8 @@ Monster::Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Colo
 	this->color = color;
 	this->velocity = new Vector2(0,0);
 	this->texture = texture;
-	if(GamePad::CheckIfDeviceValid(0))
-	{
-		this->usingGamePad=true;
-		this->gamePad = new Input::GamePad(0,game);
-	}
-	else
-	{
-		
-		this->gamePad=NULL;
-	}
+	this->usingGamePad=true;
+	this->gamePad = new Input::GamePad(0,game);
 }
 Monster::Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Color* color)
 {
@@ -69,7 +61,7 @@ void Monster::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 			position->X = Graphics::GameWindow::GetWidth() - (int)texture->GetWidth();
 		}
 	}
-	if(keyboard->GetKey(Input::Keys::KEY_W).state || (usingGamePad && gamePad->GetButton(3).state) || (usingGamePad && gamePad->GetAxis(1).val < -0.12))
+	if(keyboard->GetKey(Input::Keys::KEY_W).state || (usingGamePad && gamePad->GetButton(3).state) || (usingGamePad && gamePad->GetAxis(1).val > -0.12))
 	{
 		position->Y--;
 		if(position->Y < 0)
@@ -77,7 +69,7 @@ void Monster::Update(GameTime* gameTime, Input::Keyboard* keyboard)
 			position->Y = 0;
 		}
 	}
-	if(keyboard->GetKey(Input::Keys::KEY_S).state || (usingGamePad && gamePad->GetButton(0).state) || (usingGamePad && gamePad->GetAxis(1).val > 0.12))
+	if(keyboard->GetKey(Input::Keys::KEY_S).state || (usingGamePad && gamePad->GetButton(0).state) || (usingGamePad && gamePad->GetAxis(1).val < 0.12))
 	{
 		position->Y++;
 		if(position->Y >= Graphics::GameWindow::GetHeight() - (int)texture->GetHeight())
