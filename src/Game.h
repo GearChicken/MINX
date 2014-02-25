@@ -92,12 +92,12 @@ namespace MINX
 		
 		/** A pointer to a vector of pointers to the GameComponents used in the game.
 		*/
-		vector<GameComponent*> * Components;
+		vector<GameComponent*>* Components;
 		
 		/** Returns a pointer to the GameTime being used by the game.
 		* Currently GameTime is pretty much just stubbed.
 		*/
-		GameTime * getGameTime();
+		GameTime* getGameTime();
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow

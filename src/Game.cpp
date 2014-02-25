@@ -49,6 +49,7 @@ int doUpdate(void * game)
 {
 	do
 	{
+		((Game*)game)->isRunning = !glfwWindowShouldClose(((Game*)game)->gameWindow->window);
 		((Game*)game)->Update(((Game*)game)->getGameTime());
 	} while(((Game*)game)->isRunning);
 
@@ -72,7 +73,6 @@ void Game::Run()
 
 	do
 	{
-		isRunning = !glfwWindowShouldClose(gameWindow->window);
 		this->Draw(this->gameTime);
 	} while(isRunning);
 
@@ -104,7 +104,7 @@ void Game::Initialize()
 		std::cout << "GLEW NOT INITED!\n";
 	}
 
-	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
+	for(vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
 	{
 		(*Components)[i]->Initialize();
 	}
