@@ -127,7 +127,7 @@ void MonsterGame::Update(GameTime* gameTime)
 		playlist->Play();
 	}
 
-	//gameTime->LimitFPS(60);
+	gameTime->LimitFPS(60);
 
 }
 
@@ -146,7 +146,7 @@ void MonsterGame::Draw(GameTime* gameTime)
 	
 	for (int i = 0; i < 10; i++)
 	{
-		texBatch->Draw(monsterTexture, rand()%GameWindow::GetWidth(), rand()%GameWindow::GetHeight(), 1.0f, 1.0f, 0.0f, Color((rand()%256)/255.0f, (rand()%256)/255.0f, (rand()%256)/255.0f));
+		texBatch->Draw(monsterTexture, rand()%GameWindow::GetWidth(), rand()%GameWindow::GetHeight(), 1.0f, 1.0f, 0.0f, Color((rand()%256), (rand()%256), (rand()%256)));
 
 	}
 	//*/
