@@ -20,29 +20,36 @@
 
 using namespace MINX;
 using namespace MINX::Input;
+
+bool GamePad::IsConnected()
+{
+	return isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
+}
+
 GamePad::GamePad(unsigned int deviceIndex, Game* game):IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
-	isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
+	IsConnected();
 }
 
 GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType):IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
 	this->gamePadType = gamePadType;
-	isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
+	IsConnected();
 }
 
 void GamePad::Update(GameTime * gametime)
 {
-	int numButtons = 0;
-	const unsigned char * buttonValues = glfwGetJoystickButtons(deviceIndex,&numButtons);
 	
-	int numAxes = 0;
-	const float * axisValues = glfwGetJoystickAxes(deviceIndex,&numAxes);
-	
-	if(isConnected)
+	if(IsConnected())
 	{
+		int numButtons = 0;
+		const unsigned char * buttonValues = glfwGetJoystickButtons(deviceIndex,&numButtons);
+	
+		int numAxes = 0;
+		const float * axisValues = glfwGetJoystickAxes(deviceIndex,&numAxes);
+		
 		for(int id = 0; id < numButtons; id++)
 		{
 			(*buttons)[id].prevState = (*buttons)[id].state;
@@ -59,7 +66,7 @@ void GamePad::Update(GameTime * gametime)
 
 Button GamePad::GetButton(unsigned int buttonID)
 {
-	if(isConnected)
+	if(IsConnected())
 	{
 		return IGenericHID::GetButton(buttonID);
 	}
@@ -68,7 +75,7 @@ Button GamePad::GetButton(unsigned int buttonID)
 
 Axis GamePad::GetAxis(unsigned int axisID)
 {
-	if(isConnected)
+	if(IsConnected())
 	{
 		return IGenericHID::GetAxis(axisID);
 	}
@@ -77,5 +84,9 @@ Axis GamePad::GetAxis(unsigned int axisID)
 
 const char * GamePad::GetName()
 {
-	return glfwGetJoystickName(deviceIndex);
+	if(IsConnected())
+	{
+		return glfwGetJoystickName(deviceIndex);
+	}
+	return "DEVICE DISCONNECTED";
 }

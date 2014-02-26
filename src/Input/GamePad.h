@@ -65,8 +65,8 @@ namespace MINX
 				 */
 				GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType);
 				
-				/** Returns the name of the gamepad
-				 *	@return GLFW's stored name for the gamepad
+				/** Returns the name of the GamePad
+				 *	@return GLFW's stored name for the GamePad
 				 */
 				const char * GetName();
 				
@@ -81,6 +81,10 @@ namespace MINX
 				/** Gets the Axis at the specified index
 				 */
 				Axis GetAxis(unsigned int axisID);
+				
+				/** Returns whether or not the GamePad is connected
+				 */
+				bool IsConnected();
 				
 			private:
 				bool isConnected;
