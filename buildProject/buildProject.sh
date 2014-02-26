@@ -95,8 +95,7 @@ void $fileName::Update(GameTime * gameTime)
 
 void $fileName::Draw(GameTime * gameTime)
 {
-	glClearColor( 100/255.0f, 149/255.0f, 237/255.0f, 1.0f );
-    	glClear( GL_COLOR_BUFFER_BIT );
+	gameWindow->Clear();
 
 	//Put stuff here to draw your game each frame.
 	Game::Draw(gameTime);
