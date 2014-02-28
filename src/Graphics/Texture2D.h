@@ -40,6 +40,12 @@ namespace MINX
 			*	@param fileLoc The file to load the texture from.
 			*/
 			Texture2D(char* fileLoc);
+			/** Creates a new Texture2D object
+			*	@param texData An array of Colors to create the texture as
+			*	@param width The Width of the Texture
+			*	@param height The Height of the Texture
+			*/
+			Texture2D(Color* texData, int width, int height);
 			/** Safely destroys a Texture2D object
 			*/
 			~Texture2D();
