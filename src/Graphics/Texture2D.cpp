@@ -49,6 +49,35 @@ Texture2D::Texture2D(char* fileLoc)
 
 }
 
+Texture2D::Texture2D(Color* texData, int width, int height)
+{
+	this->width = width;
+	this->height = height;
+
+	glActiveTexture( GL_TEXTURE0 );
+	glGenTextures(1, &texture);
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+	//Convert the MINX::Graphics::Colors into GLubytes
+	GLubyte* texelData = new GLubyte[width*height*4];
+	for (int i = 0; i < width*height; ++i)
+	{
+		texelData[4*i+0] = (GLubyte)texData[i].R;
+		texelData[4*i+1] = (GLubyte)texData[i].G;
+		texelData[4*i+2] = (GLubyte)texData[i].B;
+		texelData[4*i+3] = (GLubyte)texData[i].A;
+	}
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+		0, GL_RGBA, GL_UNSIGNED_BYTE, texelData);
+	delete[] texelData;
+}
+
 Texture2D::~Texture2D()
 {
 	glDeleteTextures(1, &texture);
