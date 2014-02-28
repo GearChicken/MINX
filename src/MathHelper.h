@@ -72,7 +72,8 @@ namespace MINX
 		extern double root(double degree, double num);
 		extern double fmod(double numerator, double denominator);
 		extern double clamp(double number, double lowerLimit, double upperLimit);
-
+		extern double max(double num1, double num2);
+		extern double min(double num1, double num2);
 	}
 }
 #endif
