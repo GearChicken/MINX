@@ -221,7 +221,17 @@ double Math::fmod(double numerator, double denominator)
 	return denominator == 0 ? 0 : ::fmod(numerator,denominator);
 }
 
+double Math::max(double num1, double num2)
+{
+	return (num1 > num2) ? num1 : num2;
+}
+
+double Math::min(double num1, double num2)
+{
+	return (num1 < num2) ? num1 : num2;
+}
+
 double Math::clamp(double number, double lowerLimit, double upperLimit)
 {
-	return fmax(lowerLimit,fmin(upperLimit,number));
+	return max(lowerLimit,min(upperLimit,number));
 }
