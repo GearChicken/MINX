@@ -35,22 +35,18 @@ void windowResizeCallback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetHeight());
 }
 
-GameWindow::GameWindow(int width, int height, int bpp, int flags)
+GameWindow::GameWindow(int width, int height)
 {
 	GameWindow::width = width;
 	GameWindow::height = height;
-	this->bpp = bpp;
-	this->flags = flags;
 	window = glfwCreateWindow(width, height, "MINX Window", NULL, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }
 
-GameWindow::GameWindow(int width, int height, int bpp, int flags, char* title)
+GameWindow::GameWindow(int width, int height, char* title)
 {
 	GameWindow::width = width;
 	GameWindow::height = height;
-	this->bpp = bpp;
-	this->flags = flags;
 	window = glfwCreateWindow(width, height, title, NULL, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }

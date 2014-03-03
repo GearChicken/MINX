@@ -38,7 +38,7 @@ namespace MINX
 				*	@param bpp The Bits Per Pixel of the GameWindow
 				*	@param flags The flags to create the GameWindow with
 				*/
-				GameWindow(int width, int height, int bpp, int flags);
+				GameWindow(int width, int height);
 				
 				/** Creates a new instance of GameWindow
 				*	@param width The Width of the GameWindow
@@ -47,7 +47,7 @@ namespace MINX
 				*	@param flags The flags to create the GameWindow with
 				*	@param title The Title of the GameWindow
 				*/
-				GameWindow(int width, int height, int bpp, int flags, char* title);
+				GameWindow(int width, int height, char* title);
 				
 				void Clear();
 				
@@ -72,9 +72,6 @@ namespace MINX
 				/** The Height of the GameWindow
 				*/
 				static int height;
-				
-				int bpp;
-				int flags;
 		};
 	}
 }

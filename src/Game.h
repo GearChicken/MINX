@@ -104,7 +104,7 @@ namespace MINX
 		*	@param windowBPP The BitsPerPixel of the GameWindow
 		*	@param windowFlags The flags to instantiate the GameWindow with
 		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, unsigned int windowBPP, unsigned int windowFlags);
+		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight);
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
@@ -113,7 +113,7 @@ namespace MINX
 		*	@param windowFlags The flags to instantiate the GameWindow with
 		*	@param windowTitle The title of the GameWindow
 		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, unsigned int windowBPP, unsigned int windowFlags, char* windowTitle);
+		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, char* windowTitle);
 		
 		/** Is the Game Running, or should it close?
 		*/
