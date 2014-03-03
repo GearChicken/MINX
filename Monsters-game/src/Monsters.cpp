@@ -44,7 +44,7 @@ MonsterGame::MonsterGame()
 {
 	//This is the constructor. Put stuff here that should happen when the Game is created.
 	srand(time(NULL));
-	Game::SetVideoOptions(1024, 768, 32, 0, "MINX Monster Game!");
+	Game::SetVideoOptions(1024, 768, "MINX Monster Game!");
 	isRunning = true;
 	monsters = new vector<Monster*>();
 	std::cout << "Welcome to the MINX Monster Game!" << std::endl;

@@ -21,13 +21,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace MINX_monsters;
 Monster::Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Color* color, Game* game)
 {
-	this->usingGamePad=false;
 	this->position = position;
 	this->color = color;
 	this->velocity = new Vector2(0,0);
 	this->texture = texture;
-	this->usingGamePad=true;
 	this->gamePad = new Input::GamePad(0,game);
+	this->usingGamePad = false;
 }
 Monster::Monster(Vector2* position, Graphics::Texture2D* texture, Graphics::Color* color)
 {
