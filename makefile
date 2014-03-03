@@ -90,6 +90,6 @@ doxygen:
 	doxygen
 
 doxygenupload:
-	ncftpput -R -v -u minx$(AT)gearchicken.com gearchicken.com /docs ./doxygen/html/*
+	ncftpput -R -v -u minx$(AT)gearchicken.com gearchicken.com /docs/dev ./doxygen/html/*
 
 ##### End of Makefile
