@@ -1,6 +1,6 @@
 ##### Variables
 AT:=@
-INCDIR = -I./GamePad/include -I/usr/include/freetype2 -I./GL/x86/include
+INCDIR = -I/usr/include/freetype2 -I./GL/x86/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
 LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage -lvlc
 CXX = g++
