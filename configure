@@ -1,4 +1,4 @@
-apt-get -y install xorg-dev libglu1-mesa-dev cmake g++ libfreeimage-dev libglew-dev
+apt-get -y install xorg-dev libglu1-mesa-dev cmake g++ libfreeimage-dev libglew-dev libvlc-dev libvlccore-dev
 
 #wget GLFW3 Source
 
