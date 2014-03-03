@@ -93,7 +93,7 @@ void Game::Initialize()
 	}	
 
 
-	gameWindow = new GameWindow(windowWidth, windowHeight, windowBPP, windowFlags, windowTitle);
+	gameWindow = new GameWindow(windowWidth, windowHeight, windowTitle);
 	glfwMakeContextCurrent(gameWindow->window);
 	glewExperimental=true;
 
