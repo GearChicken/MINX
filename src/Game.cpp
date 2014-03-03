@@ -35,8 +35,6 @@ Game::Game()
 {
 	windowWidth = 640;
 	windowHeight = 480;
-	windowBPP = 32;
-	windowFlags = 0;
 
 #if defined(LINUX) || defined(OSX)
 	XInitThreads();
@@ -155,19 +153,15 @@ void Game::UnloadContent()
 	glfwTerminate();
 }
 
-void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, unsigned int DwindowBPP, unsigned int DwindowFlags)
+void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
-	windowBPP = DwindowBPP;
-	windowFlags =DwindowFlags;
 }
 
-void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, unsigned int DwindowBPP, unsigned int DwindowFlags, char *DwindowTitle)
+void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, char *DwindowTitle)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
-	windowBPP = DwindowBPP;
-	windowFlags =DwindowFlags;
 	windowTitle = DwindowTitle;
 }
