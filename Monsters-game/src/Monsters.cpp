@@ -24,10 +24,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "RandomMonster.h"
 #include <vector>
 #include <iostream>
-#include <Graphics/Font.h>
-#include <Graphics/TextureBatch.h>
-#include <Graphics/ShaderFactory.h>
-#include <Media/SoundPlaylist.h>
+#include <MINX/Graphics/Font.h>
+#include <MINX/Graphics/TextureBatch.h>
+#include <MINX/Graphics/ShaderFactory.h>
+#include <MINX/Media/SoundPlaylist.h>
 
 using namespace MINX_monsters;
 using namespace MINX;

@@ -38,10 +38,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)VLC\include;$(SolutionDir)GL\x86\include;$(SolutionDir)..\src;$(IncludePath);$(SolutionDir)FreeType\include;$(SolutionDir)FreeType\include\freetype2</IncludePath>
-    <LibraryPath>$(SolutionDir)VLC\lib;$(SolutionDir)GL\x86\lib;$(SolutionDir)..\Debug;$(SolutionDir)FreeType\lib;$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>

@@ -22,6 +22,9 @@ using namespace MINX;
 
 GameTime::GameTime()
 {
+	totalTimeMillis=0;
+	deltaTime=0;
+	lastUpdate=0;
 }
 
 /*void GameTime::limitFPS(int desiredFPS)
