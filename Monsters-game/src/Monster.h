@@ -19,13 +19,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef MONSTER_H_
 #define MONSTER_H_
 
-#include <Vector2.h>
-#include <GameTime.h>
-#include <Input/Keyboard.h>
-#include <Graphics/Color.h>
-#include <Graphics/TextureBatch.h>
-#include <Graphics/GameWindow.h>
-#include <Input/GamePad.h>
+#include <MINX/Vector2.h>
+#include <MINX/GameTime.h>
+#include <MINX/Input/Keyboard.h>
+#include <MINX/Graphics/Color.h>
+#include <MINX/Graphics/TextureBatch.h>
+#include <MINX/Graphics/GameWindow.h>
+#include <MINX/Input/GamePad.h>
 using namespace MINX;
 using namespace MINX::Input;
 using namespace MINX::Graphics;
