@@ -85,7 +85,6 @@ headers:
 	cp -u -r src/Input/*.h /usr/include/MINX/Input
 	cp -u -r src/Graphics/*.h /usr/include/MINX/Graphics
 	cp -u -r src/Media/*.h /usr/include/MINX/Media
-	cp -u -r GL/x86/include/* /usr/include/MINX
 doxygen:
 	doxygen
 
