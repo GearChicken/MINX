@@ -23,7 +23,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <GL/glew.h>
+
+#if defined(LINUX)
 #include <FreeImage.h>
+#else
+#include <GL/FreeImage.h>
+#endif
+
 #include "Color.h"
 #include "GameWindow.h"
 #include "../Rectangle.h"
