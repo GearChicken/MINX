@@ -26,7 +26,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include FT_FREETYPE_H
 
 #include <GL/glew.h>
+
+#if defined(LINUX)
+#include <GLFW/glfw3.h>
+#else
 #include <GL/glfw3.h>
+#endif
 
 #include "vlc/libvlc.h"
 #include "vlc/libvlc_media.h"

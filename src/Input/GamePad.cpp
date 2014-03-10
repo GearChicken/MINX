@@ -17,7 +17,7 @@
 
 	*/
 #include "GamePad.h"
-#include <GL/glfw3.h>
+
 using namespace MINX;
 using namespace MINX::Input;
 GamePad::GamePad(unsigned int deviceIndex, Game* game):IGenericHID(game, 16, 16)

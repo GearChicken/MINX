@@ -20,7 +20,12 @@
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
 
+#if defined(LINUX)
+#include <GLFW/glfw3.h>
+#else
 #include <GL/glfw3.h>
+#endif
+
 #include "Color.h"
 
 namespace MINX
