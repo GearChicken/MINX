@@ -1,7 +1,7 @@
 src/*.o
 src/Input/*.o
 src/Graphics/*.o
-src/Audio/*.o
+src/Media/*.o
 bin/
 doxygen/
 ipch/
