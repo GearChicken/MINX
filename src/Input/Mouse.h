@@ -25,7 +25,6 @@
 #include "IGenericHID.h"
 #include "../Game.h"
 #include "../Vector2.h"
-#include <GL/glfw3.h>
 
 namespace MINX
 {

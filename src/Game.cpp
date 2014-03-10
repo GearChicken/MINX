@@ -18,8 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #define GLEW_STATIC
-#include <GL/glew.h>
-#include <GL/glfw3.h>
 #include "Game.h"
 #include <iostream>
 #include <thread>

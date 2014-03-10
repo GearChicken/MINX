@@ -9,3 +9,5 @@ cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles"
 make
 make install
 cp /usr/local/lib/libglfw* /usr/lib/
+test -d /usr/include/GLFW || mkdir -p /usr/include/GLFW
+cp /usr/local/include/GLFW/* /usr/include/GLFW/
