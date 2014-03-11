@@ -23,9 +23,9 @@ using namespace MINX;
 
 //Constants
 
-double Math::PI = ::asin(-1.0);
+double Math::PI = ::acos(-1.0);
 
-double Math::TAO = 2 * asin(-1.0);
+double Math::TAO = 2 * Math::PI;
 
 double Math::E = exp(1);
 
