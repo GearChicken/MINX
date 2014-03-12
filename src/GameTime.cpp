@@ -50,15 +50,15 @@ long GameTime::GetElapsedMillis()
 
 double GameTime::GetDeltaTimeSeconds()
 {
-	return deltaTime;
+	return deltaTime / 1000.0;
 }
 
 float GameTime::GetDeltaTimeSecondsF()
 {
-	return deltaTime > std::numeric_limits<float>::epsilon() ? deltaTime : std::numeric_limits<float>::epsilon();
+	return GetDeltaTimeSeconds() > std::numeric_limits<float>::epsilon() ? GetDeltaTimeSeconds() : std::numeric_limits<float>::epsilon();
 }
 
 long GameTime::GetDeltaTimeMillis()
 {
-	return deltaTime*1000;
+	return deltaTime;
 }
