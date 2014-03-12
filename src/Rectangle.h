@@ -35,34 +35,34 @@ namespace MINX
 		*	@param width The Width of the Rectangle
 		*	@param height The Height of the Rectangle
 		*/
-		Rectangle(int x, int y, int width, int height);
+		Rectangle(double x, double y, double width, double height);
 		/** Returns the Area of the Rectangle
 		*/
-		int Area();
+		double Area();
 		/** The X location of the Rectangle
 		*/
-		int X;
+		double X;
 		/** The Y location of the Rectangle
 		*/
-		int Y;
+		double Y;
 		/** The Width of the Rectangle
 		*/
-		int Width;
+		double Width;
 		/** The Hight of the Rectangle
 		*/
-		int Height;
+		double Height;
 		/** The Y coordinate of the Top Edge of the Rectangle
 		*/
-		int Top();
+		double Top();
 		/** The Y coordinate of the Bottom Edge of the Rectangle
 		*/
-		int Bottom();
+		double Bottom();
 		/** The X coordinate of the Left Edge of the Rectangle
 		*/
-		int Left();
+		double Left();
 		/** The X coordinate of the Right Edge of the Rectangle
 		*/
-		int Right();
+		double Right();
 		/** Checks if one Rectangle intersects another
 		*	@param rect2 The Rectangle to Check for Intersection against
 		*	@returns Whether or not the two Rectangles intersect

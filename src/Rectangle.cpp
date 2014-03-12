@@ -28,30 +28,30 @@ Rectangle::Rectangle()
 	Width = 0;
 	Height = 0;
 }
-Rectangle::Rectangle(int x, int y, int width, int height)
+Rectangle::Rectangle(double x, double y, double width, double height)
 {
 	X=x;
 	Y=y;
 	Width = width;
 	Height = height;
 }
-int Rectangle::Area()
+double Rectangle::Area()
 {
 	return Width * Height;
 }
-int Rectangle::Top()
+double Rectangle::Top()
 {
 	return Y;
 }
-int Rectangle::Bottom()
+double Rectangle::Bottom()
 {
 	return Y + Height;
 }
-int Rectangle::Left()
+double Rectangle::Left()
 {
 	return X;
 }
-int Rectangle::Right()
+double Rectangle::Right()
 {
 	return X + Width;
 }
