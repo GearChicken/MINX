@@ -44,6 +44,7 @@ SoundFile::~SoundFile()
 }
 void SoundFile::Play()
 {
+	Stop();
 	libvlc_media_player_play(libVLCMediaPlayer);
 }
 
