@@ -61,6 +61,12 @@ namespace MINX
 		extern double log(double base, double num);
 		extern double exp(double num);
 		extern double pow(double num, double power);
+		
+		//Error/Gamma Functions
+		extern double erf(double num);
+		extern double erfc(double num);
+		extern double tgamma(double num);
+		extern double lgamma(double num);
 
 		//General Functions
 		extern int sign(double num);
