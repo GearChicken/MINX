@@ -173,6 +173,28 @@ double Math::pow(double num, double power)
 	return ::pow(num, power);
 }
 
+//Error/Gamma Functions
+
+double Math::erf(double num)
+{
+	return ::erf(num);
+}
+
+double Math::erfc(double num)
+{
+	return 1-erf(num);
+}
+
+double Math::tgamma(double num)
+{
+	return ::tgamma(num);
+}
+
+double Math::lgamma(double num)
+{
+	return ln(abs(tgamma(num)));
+}
+
 //General Functions
 
 int Math::sign(double num)
