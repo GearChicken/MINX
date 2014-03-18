@@ -23,8 +23,12 @@ echo "Please enter the name you would like to use for the source file of your ne
 
 read fileName
 
-fileName=$(echo $fileName | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\\'<>,-")
+echo "Please enter the namespace you would like to use for your project: "
 
+read nameSpace
+
+fileName=$(echo $fileName | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\\'<>,-")
+nameSpace=$(echo $nameSpace | tr -d "[:space:].*!@#$%^&()}][{+=?/:;|~\`\"\\'<>,-" | sed "s/^[0-9]*//")
 
 test -d "$projectDir" || mkdir -p "$projectDir";
 test -d "$projectDir/src/" || mkdir -p "$projectDir/src/";
@@ -39,7 +43,7 @@ echo "
 
 using namespace MINX;
 
-namespace MINX_${fileName^^}
+namespace $nameSpace
 {
 	class $fileName : public Game
 	{
@@ -58,7 +62,7 @@ namespace MINX_${fileName^^}
 echo "
 #include \"$fileName.h\"
 
-using namespace MINX_${fileName^^};
+using namespace $nameSpace;
 
 
 $fileName::$fileName() : Game::Game()
