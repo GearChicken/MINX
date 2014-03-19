@@ -21,17 +21,37 @@
 #define THREAD_H_
 namespace MINX
 {
+	/** An object-oriented replacement for std::thread. Similar to Java(tm)'s Thread class.
+	 * This class is used by programmers creating subclasses of it and implementing the virtual run() method.
+	 */
 	class Thread
 	{
 		public:
+			/** Constructs a Thread
+			 */
 			Thread();
-			void start();
-			void kill();
-			void detach();
-			void join();
-			virtual void run();
+			/** Begins the execution of this Thread
+			 */
+			void Start();
+			/** Forces this Thread to exit
+			 */
+			void Kill();
+			/** Causes the Thread to run concurrent to its calling thread
+			 */
+			void Detach();
+			/** Waits for the Thread to finish before continuing execution of its calling thread
+			 */
+			void Join();
+			/** The method to be executed in this Thread
+			 * This method must be overloaded by a subclass of Thread in order to be used
+			 */
+			virtual void Run();
+			/** Forces this Thread to exit and deconstructs it
+			 */
 			~Thread();
 		private:
+			/** The less object oriented thread used on the inside of the thread class
+			 */
 			std::thread * internalThread;
 	};
 }

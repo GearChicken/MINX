@@ -76,7 +76,7 @@ void Game::Run()
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
-GameTime* Game::getGameTime()
+GameTime* Game::GetGameTime()
 {
 	return gameTime;
 }

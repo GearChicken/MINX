@@ -47,9 +47,6 @@ namespace MINX
 			/** A pointer to the Game that this GameComponent is attached to.
 			 */
 			Game * game;
-			/** An integer that specifies the order in which this GameComponent should be called.
-			*/
-			int updateOrder;
 	};
 }
 

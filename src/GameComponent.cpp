@@ -25,12 +25,9 @@ GameComponent::GameComponent(Game * attachTo)
 {
 	game=attachTo;
 	enabled=true;
-	updateOrder=1;
 	game->Components->push_back(this);
 }
-void GameComponent::Initialize()
-{
-}
-void GameComponent::Update(GameTime * gameTime)
-{
-}
+
+void GameComponent::Initialize() {}
+
+void GameComponent::Update(GameTime * gameTime) {}
