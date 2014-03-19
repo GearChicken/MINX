@@ -28,24 +28,24 @@ int doRun(void * thread)
 	return 0;
 }
 
-void Thread::run(){}
+void Thread::Run(){}
 
-void Thread::start()
+void Thread::Start()
 {
 	internalThread = new std::thread(&doRun,(void*)this);
 }
 
-void Thread::join()
+void Thread::Join()
 {
 	internalThread->join();
 }
 
-void Thread::detach()
+void Thread::Detach()
 {
 	internalThread->detach();
 }
 
-void Thread::kill()
+void Thread::Kill()
 {
 	detach();
 	delete internalThread;

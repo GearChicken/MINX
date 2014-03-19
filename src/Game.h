@@ -99,23 +99,18 @@ namespace MINX
 		vector<GameComponent*>* Components;
 		
 		/** Returns a pointer to the GameTime being used by the game.
-		* Currently GameTime is pretty much just stubbed.
 		*/
-		GameTime* getGameTime();
+		GameTime* GetGameTime();
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
 		*	@param windowHeight The Height of the GameWindow
-		*	@param windowBPP The BitsPerPixel of the GameWindow
-		*	@param windowFlags The flags to instantiate the GameWindow with
 		*/
 		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight);
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
 		*	@param windowHeight The Height of the GameWindow
-		*	@param windowBPP The BitsPerPixel of the GameWindow
-		*	@param windowFlags The flags to instantiate the GameWindow with
 		*	@param windowTitle The title of the GameWindow
 		*/
 		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, char* windowTitle);
@@ -124,12 +119,13 @@ namespace MINX
 		*/
 		bool isRunning;
 		
-
+		/** An instance of libVLC used to play audio.
+		 */
 		libvlc_instance_t* libVLCInstance;
 
 		
 	protected:
-		/** The Shader Program that OpenGl will use to draw to the screen
+		/** An instance of freetype used to draw text
 		*/
 		FT_Library freeTypeLibrary;
 		
@@ -138,11 +134,15 @@ namespace MINX
 		*/
 		GameTime* gameTime;
 		
+		/** The width of the window
+		 */
 		int windowWidth;
+		/** The height of the window
+		 */
 		int windowHeight;
-		int windowBPP;
+		/** The title of the window
+		 */
 		char* windowTitle;
-		int windowFlags;
 	};
 }
 #endif
