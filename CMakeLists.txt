@@ -10,8 +10,5 @@ find_package(Freetype)
 
 include_directories(/usr/include/freetype2 /usr/include/MINX)
 
-set(PROGRAMS Game GameComponent GameTime MathHelper Ray2 Rectangle Thread Vector2 Graphics/Color Graphics/Font Graphics/GameWindow Graphics/ShaderFactory Graphics/Texture2D Graphics/TextureBatch Input/Button Input/GamePad Input/IGenericHID Input/Keyboard Input/Mouse Media/SoundFile Media/SoundPlaylist)
-
-foreach(program ${PROGRAMS})
-	add_executable(objects/${program} ../src/${program}.cpp)
-endforeach(program) 
+set(PROGRAMS ../src/Game.cpp ../src/GameComponent.cpp ../src/GameTime.cpp ../src/MathHelper.cpp ../src/Ray2.cpp ../src/Rectangle.cpp ../src/Thread.cpp ../src/Vector2.cpp ../src/Graphics/Color.cpp ../src/Graphics/Font.cpp ../src/Graphics/GameWindow.cpp ../src/Graphics/ShaderFactory.cpp ../src/Graphics/Texture2D.cpp ../src/Graphics/TextureBatch.cpp ../src/Input/Button.cpp ../src/Input/GamePad.cpp ../src/Input/IGenericHID.cpp ../src/Input/Keyboard.cpp ../src/Input/Mouse.cpp ../src/Media/SoundFile.cpp ../src/Media/SoundPlaylist.cpp)
+add_library(MINX SHARED ${PROGRAMS})
