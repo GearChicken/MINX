@@ -24,7 +24,7 @@ Thread::Thread(){}
 
 int doRun(void * thread)
 {
-	((Thread*)thread)->run();
+	((Thread*)thread)->Run();
 	return 0;
 }
 
@@ -47,10 +47,10 @@ void Thread::Detach()
 
 void Thread::Kill()
 {
-	detach();
+	Detach();
 	delete internalThread;
 }
 Thread::~Thread()
 {
-	kill();
+	Kill();
 }
