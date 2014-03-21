@@ -46,7 +46,7 @@ int doUpdate(void * game)
 	do
 	{
 		((Game*)game)->isRunning = !glfwWindowShouldClose(((Game*)game)->gameWindow->window);
-		((Game*)game)->Update(((Game*)game)->getGameTime());
+		((Game*)game)->Update(((Game*)game)->GetGameTime());
 	} while(((Game*)game)->isRunning);
 
 	return 0;
