@@ -90,14 +90,6 @@ namespace MINX
 		*/
 		void Run();
 		
-		/** A pointer to the window used by the game.
-		*/
-		Graphics::GameWindow* gameWindow;
-		
-		/** A pointer to a vector of pointers to the GameComponents used in the game.
-		*/
-		vector<GameComponent*>* Components;
-		
 		/** Returns a pointer to the GameTime being used by the game.
 		*/
 		GameTime* GetGameTime();
@@ -119,12 +111,19 @@ namespace MINX
 		*/
 		bool isRunning;
 		
+	protected:
 		/** An instance of libVLC used to play audio.
 		 */
 		libvlc_instance_t* libVLCInstance;
-
+				
+		/** A pointer to the window used by the game.
+		*/
+		Graphics::GameWindow* gameWindow;
 		
-	protected:
+		/** A pointer to a vector of pointers to the GameComponents used in the game.
+		*/
+		vector<GameComponent*>* Components;
+		
 		/** An instance of freetype used to draw text
 		*/
 		FT_Library freeTypeLibrary;
