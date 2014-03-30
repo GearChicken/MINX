@@ -105,15 +105,17 @@ namespace MINX
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
 		*	@param windowHeight The Height of the GameWindow
+		*	@param fullscreen Whether or not the window is fullscreen
 		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight);
+		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen);
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
 		*	@param windowHeight The Height of the GameWindow
+		*	@param fullscreen Whether or not the window is fullscreen
 		*	@param windowTitle The title of the GameWindow
 		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, char* windowTitle);
+		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen, char* windowTitle);
 		
 		/** Is the Game Running, or should it close?
 		*/
@@ -140,6 +142,9 @@ namespace MINX
 		/** The height of the window
 		 */
 		int windowHeight;
+		/** Whether or not the window is fullscreen
+		*/
+		bool fullscreen;
 		/** The title of the window
 		 */
 		char* windowTitle;

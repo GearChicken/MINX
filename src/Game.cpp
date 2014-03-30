@@ -91,7 +91,7 @@ void Game::Initialize()
 	}	
 
 
-	gameWindow = new GameWindow(windowWidth, windowHeight, windowTitle);
+	gameWindow = new GameWindow(windowWidth, windowHeight, fullscreen, windowTitle);
 	glfwMakeContextCurrent(gameWindow->window);
 	glewExperimental=true;
 
@@ -151,15 +151,17 @@ void Game::UnloadContent()
 	glfwTerminate();
 }
 
-void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight)
+void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, bool Dfullscreen)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
+	fullscreen = Dfullscreen;
 }
 
-void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, char *DwindowTitle)
+void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight, bool Dfullscreen, char *DwindowTitle)
 {
 	windowWidth = DwindowWidth;
 	windowHeight = DwindowHeight;
+	fullscreen = Dfullscreen;
 	windowTitle = DwindowTitle;
 }
