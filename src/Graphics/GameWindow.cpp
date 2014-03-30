@@ -35,19 +35,21 @@ void windowResizeCallback(GLFWwindow* window, int width, int height)
 	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetHeight());
 }
 
-GameWindow::GameWindow(int width, int height)
+GameWindow::GameWindow(int width, int height, bool fullscreen)
 {
+	GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : NULL;
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, "MINX Window", NULL, NULL);
+	window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }
 
-GameWindow::GameWindow(int width, int height, char* title)
+GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
 {
+	GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : NULL;
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, title, NULL, NULL);
+	window = glfwCreateWindow(width, height, title, monitor, NULL);
 	glfwSetWindowSizeCallback(window, windowResizeCallback);
 }
 

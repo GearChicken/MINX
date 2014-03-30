@@ -42,17 +42,19 @@ namespace MINX
 				*	@param height The Height of the GameWindow
 				*	@param bpp The Bits Per Pixel of the GameWindow
 				*	@param flags The flags to create the GameWindow with
+				*	@param fullscreen Whether or not to initialize MINX in Fullscreen mode
 				*/
-				GameWindow(int width, int height);
+				GameWindow(int width, int height, bool fullscreen);
 				
 				/** Creates a new instance of GameWindow
 				*	@param width The Width of the GameWindow
 				*	@param height The Height of the GameWindow
 				*	@param bpp The Bits Per Pixel of the GameWindow
 				*	@param flags The flags to create the GameWindow with
+				*	@param fullscreen Whether or not to initialize MINX in Fullscreen mode
 				*	@param title The Title of the GameWindow
 				*/
-				GameWindow(int width, int height, char* title);
+				GameWindow(int width, int height, bool fullscreen, char* title);
 				
 				void Clear();
 				
