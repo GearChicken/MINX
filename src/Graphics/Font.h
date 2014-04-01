@@ -32,6 +32,7 @@ namespace MINX
 	namespace Graphics
 	{
 		/** A Font Container Class
+		 * Protip: Use std::stringstream in order to concatenate strings with numbers
 		*/
 		class Font
 		{
