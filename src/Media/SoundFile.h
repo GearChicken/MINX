@@ -22,6 +22,8 @@
 
 #include "../Game.h"
 
+#include "SFML/Audio.hpp"
+
 namespace MINX
 {
 	namespace Media
@@ -69,9 +71,9 @@ namespace MINX
 			
 			Game* gameHandle;
 
-			libvlc_media_t* libVLCMediaObject;
+			sf::SoundBuffer soundBuffer;
 
-			libvlc_media_player_t* libVLCMediaPlayer;
+			sf::Sound sound;
 		};
 	}
 }
