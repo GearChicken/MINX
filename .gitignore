@@ -9,3 +9,7 @@ Debug/
 Release/
 MINX/Debug/
 MINX/Release/
+packages/
+*.sdf
+*.suo
+*.opensdf
