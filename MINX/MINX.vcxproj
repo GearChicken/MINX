@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -55,6 +55,9 @@
     <ClInclude Include="..\src\Rectangle.h" />
     <ClInclude Include="..\src\Vector2.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5C37CA4E-6617-45DB-829C-705875C53E97}</ProjectGuid>
     <RootNamespace>MINX</RootNamespace>
@@ -64,14 +67,14 @@
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -101,13 +104,15 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>libvlc.lib;libvlccore.lib;freetype.lib;glew32s.lib; GLFW3DLL.lib;FreeImage.lib;opengl32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Lib>
     <Lib>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
     <PostBuildEvent>
-      <Command>copy "$(SolutionDir)\Debug\MINX.lib" "$(VCInstallDir)\lib\MINX.lib"</Command>
+      <Command>
+      </Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -127,5 +132,14 @@
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\sfml.redist.2.1.0.0\build\native\sfml.redist.targets" Condition="Exists('..\packages\sfml.redist.2.1.0.0\build\native\sfml.redist.targets')" />
+    <Import Project="..\packages\sfml.2.1.0.0\build\native\sfml.targets" Condition="Exists('..\packages\sfml.2.1.0.0\build\native\sfml.targets')" />
+    <Import Project="..\packages\glfw.redist.3.0.4.3\build\native\glfw.redist.targets" Condition="Exists('..\packages\glfw.redist.3.0.4.3\build\native\glfw.redist.targets')" />
+    <Import Project="..\packages\glfw.3.0.4.3\build\native\glfw.targets" Condition="Exists('..\packages\glfw.3.0.4.3\build\native\glfw.targets')" />
+    <Import Project="..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets" Condition="Exists('..\packages\freetype.redist.2.4.2.1\build\native\freetype.redist.targets')" />
+    <Import Project="..\packages\freetype.2.4.2.1\build\native\freetype.targets" Condition="Exists('..\packages\freetype.2.4.2.1\build\native\freetype.targets')" />
+    <Import Project="..\packages\freeimage.redist.3.16.0\build\native\freeimage.redist.targets" Condition="Exists('..\packages\freeimage.redist.3.16.0\build\native\freeimage.redist.targets')" />
+    <Import Project="..\packages\freeimage.3.16.0\build\native\freeimage.targets" Condition="Exists('..\packages\freeimage.3.16.0\build\native\freeimage.targets')" />
+    <Import Project="..\packages\glm.0.9.5.3\build\native\glm.targets" Condition="Exists('..\packages\glm.0.9.5.3\build\native\glm.targets')" />
   </ImportGroup>
 </Project>
