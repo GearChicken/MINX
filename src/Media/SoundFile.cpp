@@ -24,41 +24,28 @@ using namespace MINX::Media;
 
 SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 {
-	libVLCMediaObject = libvlc_media_new_path(gameHandle->libVLCInstance, fileLocation);
-
-	libVLCMediaPlayer = libvlc_media_player_new_from_media(libVLCMediaObject);
-
-
-	libvlc_media_release(libVLCMediaObject);
-
-	volume = 1.0;
 	
-	this->gameHandle = gameHandle;
 }
 
 SoundFile::~SoundFile()
 {
-	libvlc_media_player_stop(libVLCMediaPlayer);
-	libvlc_media_player_release(libVLCMediaPlayer);
-	//ga_sound_release(gorillaSoundFile);
+	
 }
 void SoundFile::Play()
 {
-	Stop();
-	libvlc_media_player_play(libVLCMediaPlayer);
+	
 }
 
 void SoundFile::Pause()
 {
-	libvlc_media_player_pause(libVLCMediaPlayer);
+	
 }
 
 void SoundFile::Stop()
 {
-	libvlc_media_player_stop(libVLCMediaPlayer);
+	
 }
 void SoundFile::SetVolume(double volume)
 {
-	this->volume = Math::clamp(volume,0,1);
-	libvlc_audio_set_volume(libVLCMediaPlayer, this->volume);
+
 }

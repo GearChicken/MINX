@@ -110,7 +110,6 @@ void Game::Initialize()
 		std::cout << "FreeType Not Inited!";
 	}
 
-	libVLCInstance = libvlc_new(0, NULL);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -144,10 +143,7 @@ void Game::Draw(GameTime * gameTime)
 
 void Game::UnloadContent()
 {
-	if(libVLCInstance)
-	{
-		libvlc_release(libVLCInstance);
-	}
+	
 	glfwTerminate();
 }
 

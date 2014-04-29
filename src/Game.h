@@ -112,10 +112,6 @@ namespace MINX
 		/** Is the Game Running, or should it close?
 		*/
 		bool isRunning;
-		
-		/** An instance of libVLC used to play audio.
-		 */
-		libvlc_instance_t* libVLCInstance;
 
 		
 	protected:
