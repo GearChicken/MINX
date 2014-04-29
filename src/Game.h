@@ -27,15 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <GL/glew.h>
 
-#if defined(LINUX)
 #include <GLFW/glfw3.h>
-#else
-#include <GL/glfw3.h>
-#endif
-
-#include "vlc/libvlc.h"
-#include "vlc/libvlc_media.h"
-#include "vlc/libvlc_media_player.h"
 
 #include <string>
 #include <vector>

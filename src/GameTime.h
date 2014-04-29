@@ -22,11 +22,7 @@
 #include <thread>
 #include <chrono>
 #include <GL/glew.h>
-#if defined(LINUX)
 #include <GLFW/glfw3.h>
-#else
-#include <GL/glfw3.h>
-#endif
 
 namespace MINX
 {

@@ -22,11 +22,7 @@
 #include "../GameTime.h"
 #include "../GameComponent.h"
 
-#if defined(LINUX)
 #include <GLFW/glfw3.h>
-#else
-#include <GL/glfw3.h>
-#endif
 
 #include "Button.h"
 #include "Axis.h"
