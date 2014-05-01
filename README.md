@@ -6,12 +6,12 @@ A graphics and input wrapper library for c++.
 DEVELOPMENT BLOG
 ===
 
-http://gearchicken.com/minx
+http://libminx.org/wordpress
 
 DOCUMENTATION
 ===
 
-http://gearchicken.com/minx/documentation
+http://libminx.org/wordpress/documentation/
 
 AUTHORS
 ====
