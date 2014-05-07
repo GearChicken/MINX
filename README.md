@@ -19,3 +19,5 @@ AUTHORS
 Liam Middlebrook
 
 Benjamin Pylko
+
+Nicholas Coté
