@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -15,37 +16,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "Ray2.h"
 
 using namespace MINX;
-using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+Ray2::Ray2(double direction, double xPosition, double yPosition)
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
-}
-
-SoundFile::~SoundFile()
-{
-}
-void SoundFile::Play()
-{
-	this->sound.play();
+	dir=direction;
+	xPos=xPosition;
+	yPos=yPosition;
 }
 
-void SoundFile::Pause()
+Ray2::Ray2(double direction)
 {
-	this->sound.pause();
+	dir=direction;
+	xPos=0;
+	yPos=0;
 }
 
-void SoundFile::Stop()
+Ray2 Ray2::operator-()const
 {
-	this->sound.stop();
+	return Ray2(-dir,xPos,yPos);
 }
-void SoundFile::SetVolume(double volume)
+
+bool Ray2::operator==(const Ray2& compareTo)
 {
-	this->sound.setVolume(volume);
+	return dir==compareTo.dir && xPos==compareTo.xPos && yPos==compareTo.yPos;
+}
+
+bool Ray2::operator!=(const Ray2& compareTo)
+{
+	return !operator==(compareTo);
 }

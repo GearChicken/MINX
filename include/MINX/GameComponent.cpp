@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,36 +17,17 @@
 
 	*/
 
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "GameComponent.h"
 
 using namespace MINX;
-using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+GameComponent::GameComponent(Game * attachTo)
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
-}
-
-SoundFile::~SoundFile()
-{
-}
-void SoundFile::Play()
-{
-	this->sound.play();
+	game=attachTo;
+	enabled=true;
+	game->Components->push_back(this);
 }
 
-void SoundFile::Pause()
-{
-	this->sound.pause();
-}
+void GameComponent::Initialize() {}
 
-void SoundFile::Stop()
-{
-	this->sound.stop();
-}
-void SoundFile::SetVolume(double volume)
-{
-	this->sound.setVolume(volume);
-}
+void GameComponent::Update(GameTime * gameTime) {}

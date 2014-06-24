@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -15,37 +16,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "SoundFile.h"
-#include "../MathHelper.h"
-
-using namespace MINX;
-using namespace MINX::Media;
-
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+#ifndef AXIS_H_
+#define AXIS_H_
+namespace MINX
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
+	namespace Input{
+		/** Represents an axis on an input device such as a mouse or joystick.
+		 * Some axes indicate a position (a stick on a game pad), and some indicate relative motion (a ball on a joypad).
+		 */
+		struct Axis
+		{
+			/** The current value of the axis.
+			 */
+			double val;
+			/** The previous value of the axis.
+			 */
+			double prevVal;
+		};
+	}
 }
-
-SoundFile::~SoundFile()
-{
-}
-void SoundFile::Play()
-{
-	this->sound.play();
-}
-
-void SoundFile::Pause()
-{
-	this->sound.pause();
-}
-
-void SoundFile::Stop()
-{
-	this->sound.stop();
-}
-void SoundFile::SetVolume(double volume)
-{
-	this->sound.setVolume(volume);
-}
+#endif

@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -15,37 +16,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
+#include "Button.h"
 
-#include "SoundFile.h"
-#include "../MathHelper.h"
+using namespace MINX::Input;
 
-using namespace MINX;
-using namespace MINX::Media;
-
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+Button Button::operator&&(const Button& andWith)
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
+	Button b;
+	b.state = this->state && andWith.state;
+	b.prevState = this->prevState && andWith.prevState;
+	return b;
 }
 
-SoundFile::~SoundFile()
+Button Button::operator||(const Button& orWith)
 {
-}
-void SoundFile::Play()
-{
-	this->sound.play();
-}
-
-void SoundFile::Pause()
-{
-	this->sound.pause();
+	Button b;
+	b.state = this->state || orWith.state;
+	b.prevState = this->prevState || orWith.prevState;
+	return b;
 }
 
-void SoundFile::Stop()
+Button Button::operator!()const
 {
-	this->sound.stop();
-}
-void SoundFile::SetVolume(double volume)
-{
-	this->sound.setVolume(volume);
+	Button b;
+	b.state = !this->state;
+	b.prevState = !this->prevState;
+	return b;
 }

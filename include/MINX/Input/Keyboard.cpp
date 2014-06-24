@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,36 +17,27 @@
 
 	*/
 
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "Keyboard.h"
 
+using namespace MINX::Input;
 using namespace MINX;
-using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a little high
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
+
 }
 
-SoundFile::~SoundFile()
+void Keyboard::Update(GameTime * gametime)
 {
-}
-void SoundFile::Play()
-{
-	this->sound.play();
-}
-
-void SoundFile::Pause()
-{
-	this->sound.pause();
+	for(unsigned int id = 0; id < 350; id++)
+	{
+			(*buttons)[id].prevState = (*buttons)[id].state;
+			(*buttons)[id].state= (glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
+		
+	}
 }
 
-void SoundFile::Stop()
+Button Keyboard::GetKey(unsigned int key)
 {
-	this->sound.stop();
-}
-void SoundFile::SetVolume(double volume)
-{
-	this->sound.setVolume(volume);
+	return GetButton(key);
 }

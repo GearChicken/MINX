@@ -1,5 +1,6 @@
 /*
-	Copyright (C) 2014  MINX Team
+    MINX - A C++ Graphics and Input Wrapper Library
+    Copyright (C) 2013-2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -15,37 +16,50 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "Rectangle.h"
+#include <math.h>
 
 using namespace MINX;
-using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+Rectangle::Rectangle()
 {
-	soundBuffer.loadFromFile(string(fileLocation));
-	sound.setBuffer(this->soundBuffer);
+	X = 0;
+	Y = 0;
+	Width = 0;
+	Height = 0;
 }
-
-SoundFile::~SoundFile()
+Rectangle::Rectangle(double x, double y, double width, double height)
 {
+	X=x;
+	Y=y;
+	Width = width;
+	Height = height;
 }
-void SoundFile::Play()
+double Rectangle::Area()
 {
-	this->sound.play();
+	return Width * Height;
 }
-
-void SoundFile::Pause()
+double Rectangle::Top()
 {
-	this->sound.pause();
+	return Y;
 }
-
-void SoundFile::Stop()
+double Rectangle::Bottom()
 {
-	this->sound.stop();
+	return Y + Height;
 }
-void SoundFile::SetVolume(double volume)
+double Rectangle::Left()
 {
-	this->sound.setVolume(volume);
+	return X;
+}
+double Rectangle::Right()
+{
+	return X + Width;
+}
+bool Rectangle::Intersects(Rectangle* rect2)
+{
+	return !(
+			(Bottom() < rect2->Top()) ||
+			(Top() > rect2->Bottom()) ||
+			(Left() > rect2->Right()) ||
+			(Right() < rect2->Left()) );
 }
