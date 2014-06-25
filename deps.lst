@@ -1,0 +1,9 @@
+xorg-dev
+libglu1-mesa-dev
+g++
+libfreeimage-dev
+libglew-dev
+libglm-dev
+make
+libglfw3-dev
+libsfml-dev
