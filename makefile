@@ -2,7 +2,7 @@
 AT:=@
 INCDIR = -I/usr/include/freetype2 -I./GL/x86/include
 CPPFLAGS += -g -Wall -W $(INCDIR) -fPIC
-LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage -lvlc
+LFLAGS = -lX11 -lglfw -lGL -lGLEW -lfreeimage -lvlc -lsfml-audio
 CXX = g++
 ifeq ($(OS),Windows_NT)
     CPPFLAGS += -D _WIN32 -mdll -mwindows
