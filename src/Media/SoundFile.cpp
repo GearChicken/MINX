@@ -30,6 +30,8 @@ SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
 
 SoundFile::~SoundFile()
 {
+	sound.~Sound();
+	soundBuffer.~SoundBuffer();
 }
 void SoundFile::Play()
 {
