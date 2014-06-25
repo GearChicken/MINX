@@ -80,54 +80,77 @@ ShaderFactory* ShaderFactory::GetInstance()
 	return instance;
 }
 
-std::string loadFileToCharArray(char* fileLocation)
+std::string loadFileToString(char* fileLocation)
 {
-	std::string content;
-    std::ifstream fileStream(fileLocation, std::ios::in);
+  //Load in the file
+  std::string content;
+  std::ifstream fileStream(fileLocation, std::ios::in);
 
-    if(!fileStream.is_open()) {
-        std::cerr << "Could not read file " << fileLocation << ". File does not exist." << std::endl;
-		return "";
-    }
-    std::string line = "";
-    while(!fileStream.eof()) {
-        std::getline(fileStream, line);
-        content.append(line + "\n");
-    }
+  //Make sure the file loaded in
+  if(!fileStream.is_open())
+  {
+    std::cout << "Could not read file: " << fileLocation << " File does NOT Exist" << std::endl;
+    exit(EXIT_FAILURE);
+  }
+  std::string line = "";
 
-    fileStream.close();
-	return content;
+  //Get every line of the file
+  while(!fileStream.eof())
+  {
+    std::getline(fileStream, line);
+    content.append(line + "\n");
+  }
+
+  // return a string with the files contents
+  fileStream.close();
+  return content;
 }
+
 void ShaderFactory::LoadShaderFromFile(char* vertexLocation, char* fragmentLocation)
 {
-	this->LoadShader(loadFileToCharArray(vertexLocation), loadFileToCharArray(fragmentLocation));
+  this->LoadShader(loadFileToString(vertexLocation), loadFileToString(fragmentLocation));
 }
+
 void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSource)
 {
-	const char* vertexChars = vertexSource.c_str();
-	const char* fragmentChars = fragmentSource.c_str();
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexChars, NULL);	//Create a new Vertex Shader and set it to the value of vertex source
-	glCompileShader(vertexShader);	// compile the vertex shader
+  //Convert the vertexShader string to a c-string and print it to console
+  const char* vertexChars = vertexSource.c_str();
+  std::cout << vertexChars << std::endl;
 
-	GLint status;
-	glGetShaderiv( vertexShader, GL_COMPILE_STATUS, &status );
-	//Check if the shader compiled succesfully
-	
-	std::cout << status << " Vertex Shader\n";
+  //Convert the fragmentShader string to a c-string and print it to console
+  const char* fragmentChars = fragmentSource.c_str();
+  std::cout << fragmentChars << std::endl;
 
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentChars, NULL); //Create a new Fragment shader and set it to the value of fragment source
-	glCompileShader(fragmentShader);	//compile the vertexShader
-	
-	glGetShaderiv( fragmentShader, GL_COMPILE_STATUS, &status );
-	std::cout << status << " Fragment Shader\n";
+  //Create a vertex shader
+  GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
-	
-	GLuint shaderProgram = glCreateProgram();
-	glAttachShader(shaderProgram, vertexShader);
-	glAttachShader(shaderProgram, fragmentShader);
-	
-	glLinkProgram(shaderProgram);
-	shaderPrograms.push_back(shaderProgram);
+  //Give the shader the proper source code and compile it
+  glShaderSource(vertexShader, 1, &vertexChars, NULL);
+  glCompileShader(vertexShader);
+
+  //Print out whether or not the shader compiled successfuly!
+  GLint status;
+  glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &status);
+  std::cout << status << " Vertex Shader\n";
+
+  //Create a fragment shader
+  GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+
+  //Give the shader the proper source code and compile it
+  glShaderSource(fragmentShader, 1, &fragmentChars, NULL);
+  glCompileShader(fragmentShader);
+
+
+  //Print out whether or not the shader compiled successfuly!
+  glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &status);
+  std::cout << status << " Fragment Shader\n";
+
+  //Create a full shader program and attach the vertex and fragment shaders to it
+  GLuint shaderProgram = glCreateProgram();
+  glAttachShader(shaderProgram, vertexShader);
+  glAttachShader(shaderProgram, fragmentShader);
+
+  //Link the shader program together and add it to the vector of loaded shaders
+  glLinkProgram(shaderProgram);
+  shaderPrograms.push_back(shaderProgram);
 }
