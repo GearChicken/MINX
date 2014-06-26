@@ -19,8 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef GAME_H_
 #define GAME_H_
 #define MINX_DEBUG
-#define GLEW_STATIC
-
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
