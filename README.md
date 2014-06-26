@@ -3,21 +3,18 @@ MINX
 
 A graphics and input wrapper library for c++.
 
-DEVELOPMENT BLOG
-===
+## DEVELOPMENT BLOG
 
 http://libminx.org/wordpress
 
-DOCUMENTATION
-===
+## DOCUMENTATION
 
 http://libminx.org/wordpress/documentation/
 
-AUTHORS
-====
+## AUTHORS
 
-Liam Middlebrook
+* Liam Middlebrook
 
-Benjamin Pylko
+* Benjamin Pylko
 
-Nicholas Coté
+* Nicholas Coté
