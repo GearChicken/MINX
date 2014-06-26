@@ -22,14 +22,16 @@
 using namespace MINX;
 using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+SoundFile::SoundFile(char* fileLocation)
 {
-	soundBuffer.loadFromFile(string(fileLocation));
+	soundBuffer.loadFromFile(std::string(fileLocation));
 	sound.setBuffer(this->soundBuffer);
 }
 
 SoundFile::~SoundFile()
 {
+	sound.~Sound();
+	soundBuffer.~SoundBuffer();
 }
 void SoundFile::Play()
 {

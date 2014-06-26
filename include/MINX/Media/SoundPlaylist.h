@@ -21,6 +21,7 @@
 #define SOUND_PLAYLIST_H_
 
 #include "SoundFile.h"
+#include <vector>
 
 namespace MINX
 {
@@ -31,7 +32,7 @@ namespace MINX
 		public:
 			/** Constructs a SoundPlaylist with a handle to a game
 			 */
-			SoundPlaylist(Game* gameHandle);
+			SoundPlaylist();
 			
 			/** Adds a sound to the playlist from a file
 			 */
@@ -51,8 +52,7 @@ namespace MINX
 			
 		private:
 			bool doShuffle;
-			Game* gameHandle;
-			vector<char*> songFiles;
+			std::vector<char*> songFiles;
 			SoundFile* currentSong;
 			int songIndex;
 			bool songDeleted;
