@@ -1,0 +1,12 @@
+#ifndef API_H_
+#define API_H_
+
+#ifdef _WIN32
+#ifdef _WINDLL
+#define MINX_API __declspec(dllexport)
+#else
+#define MINX_API __declspec(dllimport)
+#endif
+#endif
+
+#endif
