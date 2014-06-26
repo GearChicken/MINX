@@ -22,10 +22,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace MINX::Graphics;
 int GameWindow::width=0;
 int GameWindow::height=0;
+GLFWwindow* GameWindow::window = NULL;
+bool GameWindow::sizeLocked = false;
 
 void windowResizeCallback(GLFWwindow* window, int width, int height)
 {
-	if (!width|| !height)
+	if (!width || !height)
 	{
 		return;
 	}
@@ -48,8 +50,8 @@ GameWindow::GameWindow(int width, int height, bool fullscreen)
 
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
-	glfwSetWindowSizeCallback(window, windowResizeCallback);
+	GameWindow::window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
+	glfwSetWindowSizeCallback(GameWindow::window, windowResizeCallback);
 }
 
 GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
@@ -65,8 +67,8 @@ GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
 
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, title, monitor, NULL);
-	glfwSetWindowSizeCallback(window, windowResizeCallback);
+	GameWindow::window = glfwCreateWindow(width, height, title, monitor, NULL);
+	glfwSetWindowSizeCallback(GameWindow::window, windowResizeCallback);
 }
 
 void GameWindow::Clear()
@@ -80,4 +82,20 @@ void GameWindow::ClearColor(Color color)
 	glClearColor(color.R/255.0, color.G/255.0, color.B/255.0, color.A/255.0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+}
+
+void GameWindow::SetHeight(int height)
+{
+	if(sizeLocked) return;
+	GameWindow::height = height;
+	glfwSetWindowSize(GameWindow::window, GameWindow::GetWidth(), GameWindow::GetHeight());
+	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetHeight());
+}
+
+void GameWindow::SetWidth(int width)
+{
+	if(sizeLocked) return;
+	GameWindow::width = width;
+	glfwSetWindowSize(GameWindow::window, GameWindow::GetWidth(), GameWindow::GetWidth());
+	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetWidth());
 }
