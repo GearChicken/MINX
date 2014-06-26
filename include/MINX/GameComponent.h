@@ -19,15 +19,17 @@
 #ifndef GAMECOMPONENT_H_
 #define GAMECOMPONENT_H_
 
+#include "API.h"
+
 #include "GameTime.h"
 
 namespace MINX
 {
-	class Game; //forward declaration to avoid circular dependency problems
+	class MINX_API Game; //forward declaration to avoid circular dependency problems
 
 	/** Represents any component of the Game.
 	 */
-	class GameComponent
+	class MINX_API GameComponent
 	{
 		public:
 			/** Creates the GameComponent

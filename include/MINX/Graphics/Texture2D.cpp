@@ -26,11 +26,19 @@ Texture2D::Texture2D(char* fileLoc)
 	FIBITMAP* bitmap = FreeImage_Load(
 		FreeImage_GetFileType(fileLoc, 0),
 		fileLoc);
-	FIBITMAP* pImage = FreeImage_ConvertTo32Bits(bitmap);
+	FIBITMAP* pImage;
+	if(!bitmap)
+	{
+		std::cout << "ERROR:\nImage: " << fileLoc << " failed to load!\n"
+			"Replacing with default missing texture!" << std::endl;
+	}
+	else
+	{
+		pImage = FreeImage_ConvertTo32Bits(bitmap);
 
-
-	this->width = FreeImage_GetWidth(pImage);
-	this->height = FreeImage_GetHeight(pImage);
+		this->width = FreeImage_GetWidth(pImage);
+		this->height = FreeImage_GetHeight(pImage);
+	}
 
 	glActiveTexture( GL_TEXTURE0 );
 	glGenTextures(1, &texture);
@@ -41,9 +49,20 @@ Texture2D::Texture2D(char* fileLoc)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height,
-		0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
+	if(bitmap)
+	{
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(pImage));
+	}
+	else
+	{
+		
+		this->width = 1;
+		this->height = 1;
+		
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height,
+			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)NULL);
+	}
 	FreeImage_Unload(bitmap);
 	FreeImage_Unload(pImage);
 

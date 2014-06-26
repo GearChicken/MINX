@@ -37,7 +37,15 @@ void windowResizeCallback(GLFWwindow* window, int width, int height)
 
 GameWindow::GameWindow(int width, int height, bool fullscreen)
 {
+	const GLFWvidmode* vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 	GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : NULL;
+
+	if(fullscreen)
+	{
+		width = vidMode->width;
+		height = vidMode->height;
+	}
+
 	GameWindow::width = width;
 	GameWindow::height = height;
 	window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
@@ -46,7 +54,15 @@ GameWindow::GameWindow(int width, int height, bool fullscreen)
 
 GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
 {
+	const GLFWvidmode* vidMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 	GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : NULL;
+
+	if(fullscreen)
+	{
+		width = vidMode->width;
+		height = vidMode->height;
+	}
+
 	GameWindow::width = width;
 	GameWindow::height = height;
 	window = glfwCreateWindow(width, height, title, monitor, NULL);

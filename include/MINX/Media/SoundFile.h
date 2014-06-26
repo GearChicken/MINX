@@ -20,6 +20,8 @@
 #ifndef SOUND_FILE_H_
 #define SOUND_FILE_H_
 
+#include "../API.h"
+
 #include "SFML/Audio.hpp"
 #include <string>
 
@@ -29,7 +31,7 @@ namespace MINX
 	{
 		/** A class to hold a single sound file
 		*/
-		class SoundFile
+		class MINX_API SoundFile
 		{
 		public:
 			/* Load a sound file from the hard disk

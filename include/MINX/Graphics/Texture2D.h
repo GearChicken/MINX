@@ -18,6 +18,9 @@
 	*/
 #ifndef _TEXTURE2D_H
 #define _TEXTURE2D_H
+
+#include "../API.h"
+
 #define GLM_FORCE_RADIANS
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -35,7 +38,7 @@ namespace MINX
 	{
 		/** A Sprite class that take a texture and draws it to the screen
 		*/
-		class Texture2D
+		class MINX_API Texture2D
 		{
 		public:
 			/** Creates a new Texture2D object
