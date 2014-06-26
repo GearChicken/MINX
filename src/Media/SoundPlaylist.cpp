@@ -21,12 +21,11 @@
 using namespace MINX;
 using namespace MINX::Media;
 
-SoundPlaylist::SoundPlaylist(Game* gameHandle)
+SoundPlaylist::SoundPlaylist()
 {
 	songFiles = vector<char*>();
 	doShuffle = false;
 	songIndex = 0;
-	this->gameHandle = gameHandle;
 }
 
 void SoundPlaylist::AddSound(char* fileLocation)
@@ -49,7 +48,7 @@ void SoundPlaylist::Play()
 		songIndex = rand() % songFiles.size();
 	}
 
-	currentSong = new SoundFile(songFiles[songIndex], gameHandle);
+	currentSong = new SoundFile(songFiles[songIndex]);
 	songDeleted = false;
 	currentSong->Play();
 	++songIndex;

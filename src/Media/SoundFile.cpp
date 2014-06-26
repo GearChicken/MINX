@@ -22,7 +22,7 @@
 using namespace MINX;
 using namespace MINX::Media;
 
-SoundFile::SoundFile(char* fileLocation, Game* gameHandle)
+SoundFile::SoundFile(char* fileLocation)
 {
 	soundBuffer.loadFromFile(string(fileLocation));
 	sound.setBuffer(this->soundBuffer);
