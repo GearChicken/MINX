@@ -23,7 +23,7 @@ using namespace MINX::Media;
 
 SoundPlaylist::SoundPlaylist()
 {
-	songFiles = vector<char*>();
+	songFiles = std::vector<char*>();
 	doShuffle = false;
 	songIndex = 0;
 }

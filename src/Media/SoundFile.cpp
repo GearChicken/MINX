@@ -24,7 +24,7 @@ using namespace MINX::Media;
 
 SoundFile::SoundFile(char* fileLocation)
 {
-	soundBuffer.loadFromFile(string(fileLocation));
+	soundBuffer.loadFromFile(std::string(fileLocation));
 	sound.setBuffer(this->soundBuffer);
 }
 

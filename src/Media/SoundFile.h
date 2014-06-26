@@ -20,9 +20,8 @@
 #ifndef SOUND_FILE_H_
 #define SOUND_FILE_H_
 
-#include "../Game.h"
-
 #include "SFML/Audio.hpp"
+#include <string>
 
 namespace MINX
 {
