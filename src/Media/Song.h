@@ -20,13 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SONG_H_
 #define SONG_H_
 
+#include "../API.h"
+
 #include "SFML/Audio.hpp"
 
 namespace MINX
 {
 	namespace Media
 	{
-		class Song
+		class MINX_API Song
 		{
 			Song(char* fileLocation);
 

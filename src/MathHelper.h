@@ -20,60 +20,62 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef MINX_MATH_H_
 #define MINX_MATH_H_
 
+#include "API.h"
+
 #include <cmath>
 
 namespace MINX
 {
 	namespace Math
 	{
-		extern double PI;
-		extern double TAO;
-		extern double E;
+		extern MINX_API double PI;
+		extern MINX_API double TAO;
+		extern MINX_API double E;
 		/// Trig Functions
-		extern double sin(double radians);
-		extern double cos(double radians);
-		extern double tan(double radians);
-		extern double cot(double radians);
-		extern double sec(double radians);
-		extern double csc(double radians);
-		extern double sinh(double radians);
-		extern double cosh(double radians);
-		extern double tanh(double radians);
-		extern double coth(double radians);
-		extern double sech(double radians);
-		extern double csch(double radians);
-		extern double asin(double num);
-		extern double acos(double num);
-		extern double atan(double num);
-		extern double atan2(double y, double x);
-		extern double acot(double num);
-		extern double acot2(double y, double x);
-		extern double asec(double num);
-		extern double acsc(double num);
+		extern MINX_API double sin(double radians);
+		extern MINX_API double cos(double radians);
+		extern MINX_API double tan(double radians);
+		extern MINX_API double cot(double radians);
+		extern MINX_API double sec(double radians);
+		extern MINX_API double csc(double radians);
+		extern MINX_API double sinh(double radians);
+		extern MINX_API double cosh(double radians);
+		extern MINX_API double tanh(double radians);
+		extern MINX_API double coth(double radians);
+		extern MINX_API double sech(double radians);
+		extern MINX_API double csch(double radians);
+		extern MINX_API double asin(double num);
+		extern MINX_API double acos(double num);
+		extern MINX_API double atan(double num);
+		extern MINX_API double atan2(double y, double x);
+		extern MINX_API double acot(double num);
+		extern MINX_API double acot2(double y, double x);
+		extern MINX_API double asec(double num);
+		extern MINX_API double acsc(double num);
 
-		extern double degreesToRadians(double degrees);
-		extern double radiansToDegrees(double radians);
+		extern MINX_API double degreesToRadians(double degrees);
+		extern MINX_API double radiansToDegrees(double radians);
 
 		//Logarithmic Functions
-		extern double ln(double num);
-		extern double log2(double num);
-		extern double log10(double num);
-		extern double log(double base, double num);
-		extern double exp(double num);
-		extern double pow(double num, double power);
-		
+		extern MINX_API double ln(double num);
+		extern MINX_API double log2(double num);
+		extern MINX_API double log10(double num);
+		extern MINX_API double log(double base, double num);
+		extern MINX_API double exp(double num);
+		extern MINX_API double pow(double num, double power);
+
 		//General Functions
-		extern int sign(double num);
-		extern double abs(double num);
-		extern bool parity(long num);
-		extern double round(double x);
-		extern double sqrt(double num);
-		extern double cbrt(double num);
-		extern double root(double degree, double num);
-		extern double fmod(double numerator, double denominator);
-		extern double clamp(double number, double lowerLimit, double upperLimit);
-		extern double max(double num1, double num2);
-		extern double min(double num1, double num2);
+		extern MINX_API int sign(double num);
+		extern MINX_API double abs(double num);
+		extern MINX_API bool parity(long num);
+		extern MINX_API double round(double x);
+		extern MINX_API double sqrt(double num);
+		extern MINX_API double cbrt(double num);
+		extern MINX_API double root(double degree, double num);
+		extern MINX_API double fmod(double numerator, double denominator);
+		extern MINX_API double clamp(double number, double lowerLimit, double upperLimit);
+		extern MINX_API double max(double num1, double num2);
+		extern MINX_API double min(double num1, double num2);
 	}
 }
 #endif

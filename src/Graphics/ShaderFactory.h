@@ -20,6 +20,8 @@
 #ifndef SHADER_FACTORY_H_
 #define SHADER_FACTORY_H_
 
+#include "../API.h"
+
 #include <fstream>
 #include <vector>
 #include <sstream>
@@ -33,7 +35,7 @@ namespace MINX
 	{
 		/** A Singleton Class for Handling Shaders
 		*/
-		class ShaderFactory
+		class MINX_API ShaderFactory
 		{
 		public:
 

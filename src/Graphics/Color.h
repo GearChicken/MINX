@@ -18,13 +18,16 @@
 	*/
 #ifndef COLOR_H_
 #define COLOR_H_
+
+#include "../API.h"
+
 namespace MINX
 {
 	namespace Graphics
 	{
 		/** A struct representing a color.
 		 */
-		struct Color
+		struct MINX_API Color
 		{
 			/** The red component of the color.
 			 */
