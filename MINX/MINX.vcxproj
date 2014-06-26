@@ -26,6 +26,7 @@
     <ClCompile Include="..\src\Input\Keyboard.cpp" />
     <ClCompile Include="..\src\input\Mouse.cpp" />
     <ClCompile Include="..\src\MathHelper.cpp" />
+    <ClCompile Include="..\src\media\Song.cpp" />
     <ClCompile Include="..\src\Media\SoundFile.cpp" />
     <ClCompile Include="..\src\Media\SoundPlaylist.cpp" />
     <ClCompile Include="..\src\Ray2.cpp" />
@@ -49,6 +50,7 @@
     <ClInclude Include="..\src\Input\Keyboard.h" />
     <ClInclude Include="..\src\Input\Mouse.h" />
     <ClInclude Include="..\src\MathHelper.h" />
+    <ClInclude Include="..\src\media\Song.h" />
     <ClInclude Include="..\src\Media\SoundFile.h" />
     <ClInclude Include="..\src\Media\SoundPlaylist.h" />
     <ClInclude Include="..\src\Ray2.h" />
