@@ -19,6 +19,8 @@
 #ifndef I_GENERIC_HID_H_
 #define I_GENERIC_HID_H_
 
+#include "../API.h"
+
 #include "../GameTime.h"
 #include "../GameComponent.h"
 
@@ -37,7 +39,7 @@ namespace MINX
 		 * Extended by Keyboard, Mouse, and GamePad classes.
 		 * This class should almost NEVER be used directly, but rather a subclass should be used.
 		 */
-		class IGenericHID : public GameComponent
+		class MINX_API IGenericHID : public GameComponent
 		{
 			public:
 				/** Constructs an IGenericHID. Fills the button and axis vectors with zeroed values.

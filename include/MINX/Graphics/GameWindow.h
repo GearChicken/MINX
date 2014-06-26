@@ -20,6 +20,8 @@
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
 
+#include "../API.h"
+
 #include <GLFW/glfw3.h>
 
 #include "Color.h"
@@ -30,7 +32,7 @@ namespace MINX
 	{
 		/** A class that holds the GLFW window pointer and some basic info about the window
 		*/
-		class GameWindow
+		class MINX_API GameWindow
 		{
 			public:
 				/** Creates a new instance of GameWindow

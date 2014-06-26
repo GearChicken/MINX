@@ -18,11 +18,14 @@
 	*/
 #ifndef VECTOR2_H_
 #define VECTOR2_H_
+
+#include "API.h"
+
 namespace MINX
 {
 	/** A Vector that holds 2 components, X and Y.
 	 */
-	struct Vector2
+	struct MINX_API Vector2
 	{
 	
 		enum Heading

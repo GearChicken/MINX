@@ -19,6 +19,8 @@
 #ifndef FONT_H_
 #define FONT_H_
 
+#include "../API.h"
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <GL/glew.h>
@@ -34,7 +36,7 @@ namespace MINX
 		/** A Font Container Class
 		 * Protip: Use std::stringstream in order to concatenate strings with numbers
 		*/
-		class Font
+		class MINX_API Font
 		{
 		public:
 			/** Creates a new Instance of a Font

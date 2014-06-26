@@ -20,9 +20,10 @@
 #ifndef SOUND_FILE_H_
 #define SOUND_FILE_H_
 
-#include "../Game.h"
+#include "../API.h"
 
 #include "SFML/Audio.hpp"
+#include <string>
 
 namespace MINX
 {
@@ -30,14 +31,13 @@ namespace MINX
 	{
 		/** A class to hold a single sound file
 		*/
-		class SoundFile
+		class MINX_API SoundFile
 		{
 		public:
 			/* Load a sound file from the hard disk
 			*	@param fileLocation The path of the file to load.
-			*	@param gameHandle A pointer the the game that the sound will be played in.
 			*/
-			SoundFile(char* fileLocation, Game* gameHandle);
+			SoundFile(char* fileLocation);
 			
 			/* Destroy the sound file safely
 			*/
@@ -68,8 +68,6 @@ namespace MINX
 			/* The volume of the sound file
 			*/
 			double volume;
-			
-			Game* gameHandle;
 
 			sf::SoundBuffer soundBuffer;
 

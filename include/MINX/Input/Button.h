@@ -18,13 +18,16 @@
 	*/
 #ifndef BUTTON_H_
 #define BUTTON_H_
+
+#include "../API.h"
+
 namespace MINX
 {
 	namespace Input
 	{
 		/** Represents a button on an input device, such as a keyboard, mouse, or a joystick.
 		 */
-		struct Button
+		struct MINX_API Button
 		{
 			/** The current state of the button.
 			 */
