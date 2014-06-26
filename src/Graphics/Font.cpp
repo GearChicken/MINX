@@ -25,8 +25,9 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 {
 	this->library = libraryRef;
 	this->shaderProgram = shaderProgram;
-	
-	if( !FT_New_Face(library, fileLocation, 0, &fontFace) )
+
+        std::cout << "Loading Font: " << fileLocation << std::endl;
+	if( FT_New_Face(library, fileLocation, 0, &fontFace) )
 	{
 		std::cout << "ERROR:\nFont: " << fileLocation << " failed to load!" << std::endl;
 	}
