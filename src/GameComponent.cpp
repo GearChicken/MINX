@@ -18,7 +18,7 @@
 	*/
 
 #include "GameComponent.h"
-
+#include <algorithm>
 using namespace MINX;
 
 GameComponent::GameComponent(Game * attachTo)
@@ -28,6 +28,11 @@ GameComponent::GameComponent(Game * attachTo)
 	game->Components->push_back(this);
 }
 
+GameComponent::~GameComponent()
+{
+	std::vector<GameComponent*> vec = *this->game->Components;
+	vec.erase(std::remove(vec.begin(), vec.end(), this), vec.end());
+}
 void GameComponent::Initialize() {}
 
 void GameComponent::Update(GameTime * gameTime) {}

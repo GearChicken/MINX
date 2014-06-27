@@ -34,6 +34,9 @@ namespace MINX
 			 * @param attachTo A pointer to the Game to attach to.
 			 */
 			GameComponent(Game * attachTo);
+			/** Destructs a GameComponent
+			 */
+			~GameComponent();
 			/** Initializes the GameComponent.
 			 */
 			virtual void Initialize();
