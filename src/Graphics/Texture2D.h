@@ -51,6 +51,8 @@ namespace MINX
 			*	@param height The Height of the Texture
 			*/
 			Texture2D(Color* texData, int width, int height);
+
+			Texture2D(GLuint texture, int width, int height);
 			/** Safely destroys a Texture2D object
 			*/
 			~Texture2D();
