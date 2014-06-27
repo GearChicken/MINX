@@ -18,8 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #include "Font.h"
 #include "Texture2D.h"
+#include "../MathHelper.h"
 #include <iostream>
 using namespace MINX;
+using namespace MINX::Math;
 using namespace MINX::Graphics;
 Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 {
@@ -76,6 +78,7 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 	textSize = TextSize(text, fontSize);
+	float heightGap = getMaxHeightGap(text, fontSize);
 
 	glBindTexture(GL_TEXTURE_2D, frameBufferTex);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textSize.X, textSize.Y, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
@@ -107,7 +110,6 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
 	//float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
-	Vector2 textSize = TextSize(text, fontSize);
 	//textWidthGLCoords = textSize.X;
 	textHeightGLCoords = textSize.Y;
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
@@ -131,8 +133,9 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
+		{
 			continue;
-
+		}
 
 
 		if(!tex[*p])
@@ -158,24 +161,24 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 		}
 		glBindTexture(GL_TEXTURE_2D, tex[*p]);
 		float x2 = x + glyphSlot->bitmap_left * sx;
-		float y2 = -y - glyphSlot->bitmap_top * sy;
+		float y2 = y + glyphSlot->bitmap_top * sy + heightGap*sy;
 		float w = glyphSlot->bitmap.width * sx;
 		float h = glyphSlot->bitmap.rows * sy;
 
 
 		GLfloat box[4][4] = {
-			{x2,     -y2    , 0, 0},
-			{x2 + w, -y2    , 1, 0},
-			{x2,     -y2 - h, 0, 1},
-			{x2 + w, -y2 - h, 1, 1},
+			{x2,     y2    , 0, 0},
+			{x2 + w, y2    , 1, 0},
+			{x2,     y2 - h, 0, 1},
+			{x2 + w, y2 - h, 1, 1},
 		};
 
 		//std::cout << "X: " << box[0][0] << " Y: " << box[0][1] << std::endl;
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-		x += (glyphSlot->advance.x >> 6) * sx;
-		y += (glyphSlot->advance.y >> 6) * sy;
+		x += ((glyphSlot->advance.x >> 6) + glyphSlot->bitmap_left) * sx;
+		y += ((glyphSlot->advance.y >> 6)) * sy;
 	}
 
 	glDisableVertexAttribArray(attribute_coord);
@@ -196,15 +199,38 @@ Vector2 Font::TextSize(const char *text, int fontSize)
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
+		{
 			continue;
+		}
 		
 		glyphSlot = fontFace->glyph;
-		textWidthGLCoords += glyphSlot->bitmap.width;// * sx;
-		textHeightGLCoords = (glyphSlot->bitmap.rows > textHeightGLCoords) ? glyphSlot->bitmap.rows : textHeightGLCoords;
+		textWidthGLCoords += glyphSlot->bitmap.width+glyphSlot->bitmap_left;// * sx;
+		textHeightGLCoords = max(glyphSlot->bitmap.rows+glyphSlot->bitmap_top, textHeightGLCoords);
 	}
 
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
 	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	return Vector2(textWidthGLCoords, textHeightGLCoords);
+}
+
+float Font::getMaxHeightGap(const char *text, int fontSize)
+{
+	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+	float heightGap;
+	const char *p;
+	for(p = text; *p; p++)
+	{
+		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
+		{
+			continue;
+		}
+		
+		glyphSlot = fontFace->glyph;
+		heightGap = max(glyphSlot->bitmap_top, heightGap);
+	}
+
+	//std::cout << textWidthGLCoords << " Text width" << std::endl;
+	//std::cout << textHeightGLCoords << " Text height" << std::endl;
+	return heightGap;
 }
 //http://www.freetype.org/freetype2/docs/tutorial/example1.c

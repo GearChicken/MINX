@@ -83,6 +83,7 @@ namespace MINX
 			*/
 			Vector2 TextSize(const char *text, int fontSize);
 		private:
+			float getMaxHeightGap(const char *text, int fontSize);
 			GLuint shaderProgram;
 			GLint attribute_coord;
 			GLint uniform_tex;
