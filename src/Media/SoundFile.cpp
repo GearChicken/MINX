@@ -47,7 +47,7 @@ void SoundFile::Stop()
 {
 	this->sound.stop();
 }
-void SoundFile::SetVolume(double volume)
+void SoundFile::SetVolume(float volume)
 {
 	this->sound.setVolume(volume);
 }
