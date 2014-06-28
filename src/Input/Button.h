@@ -30,13 +30,21 @@ namespace MINX
 		 */
 		struct MINX_API Button
 		{
-			/** The current state of the button.
+			/** Sets the state of the button to state
 			 */
-			bool state;
-
-			/** The previous state of the button.
+			void SetState(bool state);
+			
+			/** Sets the state of the button to state
 			 */
-			bool prevState;
+			inline void UpdateState(bool state){SetState(state);}
+			
+			/** Returns the current state of the button
+			 */
+			bool GetState();
+			
+			/** Returns the previous state of the button
+			 */
+			bool GetPrevState();
 			
 			/** Returns the logical and between 2 buttons.
 			 */
@@ -45,9 +53,18 @@ namespace MINX
 			/** Returns the logical or between 2 buttons.
 			 */
 			Button operator||(const Button& orWith);
+
 			/** Returns the button with flipped value.
 			 */
 			Button operator!()const;
+			private:
+				/** The current state of the button.
+				 */
+				bool state;
+
+				/** The previous state of the button.
+				 */
+				bool prevState;
 		};
 	}
 }
