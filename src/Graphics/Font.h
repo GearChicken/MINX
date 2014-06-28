@@ -43,7 +43,7 @@ namespace MINX
 		public:
 			/** Creates a new Instance of a Font
 			*/
-			Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram);
+			Font(Game* gameHandle, char* fileLocation, GLuint shaderProgram);
 			
 			/** Renders Text Onto the Screen using a string from the C++ standard library
 			*	@param text The text to render to the screen.
