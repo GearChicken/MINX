@@ -128,18 +128,23 @@ namespace MINX
 		/** The width of the window
 		 */
 		int windowWidth;
+		
 		/** The height of the window
 		 */
 		int windowHeight;
+		
 		/** Whether or not the window is fullscreen
 		*/
 		bool fullscreen;
+		
 		/** The title of the window
 		 */
 		char* windowTitle;
-
+		
+		/** The current RenderTarget for the game
+		 */
 		static Graphics::RenderTarget* activeRenderTarget;
-
+		
 		friend class MINX::Graphics::Font;
 	};
 }
