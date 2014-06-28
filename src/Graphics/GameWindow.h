@@ -30,6 +30,7 @@ namespace MINX
 {
 	namespace Graphics
 	{
+		class RenderTarget;
 		/** A class that holds the GLFW window pointer and some basic info about the window
 		*/
 		class MINX_API GameWindow
@@ -54,10 +55,6 @@ namespace MINX
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
 				
-				void Clear();
-				
-				void ClearColor(Color color);
-				
 				inline static int GetWidth() { return width; }
 
 				inline static int GetHeight() { return height; }
@@ -65,12 +62,18 @@ namespace MINX
 				static void SetWidth(int width);
 				
 				static void SetHeight(int height);
+				
+				static RenderTarget GetRenderTarget();
 
 				/** A Pointer to the instance of the GLFWwindow
 				*/
 				static GLFWwindow* window;
 
 				static bool sizeLocked;
+				
+				/** RenderTarget for the current window
+				 */
+				static RenderTarget * renderTarget;
 			private:
 				/** The Width of the GameWindow
 				*/
@@ -83,4 +86,6 @@ namespace MINX
 		};
 	}
 }
+
+#include "RenderTarget.h"
 #endif
