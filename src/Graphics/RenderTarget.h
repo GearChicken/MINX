@@ -21,10 +21,10 @@
 
 #include "../API.h"
 
-#include <GL/gl.h>
 #include <GL/glew.h>
 
 #include "Texture2D.h"
+#include "GameWindow.h"
 #include "../Rectangle.h"
 
 namespace MINX
