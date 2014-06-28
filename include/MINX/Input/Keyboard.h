@@ -35,6 +35,8 @@ namespace MINX
 		{
 #ifndef MINX_KEYS
 #define MINX_KEYS
+			/** Enumerates all readable keys.
+			 */
 			enum MINX_API Keys 
 			{
 				KEY_0 = 48,

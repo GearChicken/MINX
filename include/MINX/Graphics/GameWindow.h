@@ -54,10 +54,6 @@ namespace MINX
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
 				
-				void Clear();
-				
-				void ClearColor(Color color);
-				
 				inline static int GetWidth() { return width; }
 
 				inline static int GetHeight() { return height; }
