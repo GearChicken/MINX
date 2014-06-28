@@ -39,6 +39,7 @@ namespace MINX
 			Texture2D* GetTexture();
 			inline int GetWidth() { return width; }
 			inline int GetHeight() { return height; }
+			void Clear(Color clearColor);
 		private:
 			int width, height;
 			GLuint frameBuffer;
