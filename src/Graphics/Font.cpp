@@ -44,29 +44,24 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 		tex[i] = 0;
 	}
 
-	//Generate the FrameBuffer that will hold the Texture
-	glGenFramebuffers(1, & frameBuffer);
-	glGenTextures(1, &frameBufferTex);
-
-
 }
 
-Texture2D* Font::RenderText(std::string text, float x, float y, int fontSize)
+void Font::RenderText(std::string text, float x, float y, int fontSize)
 {
-	return RenderText(text.c_str(), x, y, fontSize, Color(0.0,0.0,0.0,255.0));
+	RenderText(text.c_str(), x, y, fontSize, Color(0.0,0.0,0.0,255.0));
 }
 
-Texture2D* Font::RenderText(std::string text, float x, float y, int fontSize, Color color)
+void Font::RenderText(std::string text, float x, float y, int fontSize, Color color)
 {
-	return RenderText(text.c_str(), x, y, fontSize);
+	RenderText(text.c_str(), x, y, fontSize);
 }
 
-Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize)
+void Font::RenderText(const char* text, float x, float y, int fontSize)
 {
-	return RenderText(text, x, y, fontSize, Color(0.0,0.0,0.0,255.0));
+	RenderText(text, x, y, fontSize, Color(0.0,0.0,0.0,255.0));
 }
 
-Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Color fontColor)
+void Font::RenderText(const char* text, float x, float y, int fontSize, Color fontColor)
 {
 	glUseProgram(shaderProgram);
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
@@ -76,36 +71,29 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 	const char *p;
 
 
-	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
 	textSize = TextSize(text, fontSize);
 	float heightGap = getMaxHeightGap(text, fontSize);
 
-	glBindTexture(GL_TEXTURE_2D, frameBufferTex);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, textSize.X, textSize.Y, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+
+	float renderTargetWidth, renderTargetHeight;
+
+	if(Game::activeRenderTarget == NULL)
+	{
+		renderTargetWidth = GameWindow::GetWidth();
+		renderTargetHeight = GameWindow::GetHeight();
+	}
+	else
+	{
+		renderTargetWidth = Game::activeRenderTarget->GetWidth();
+		renderTargetHeight = Game::activeRenderTarget->GetHeight();
+	}
+
+	float sx = 2.0f / renderTargetWidth;
+	float sy = 2.0f / renderTargetHeight;
+
 	
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	
-	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, frameBufferTex, 0);
-
-
-
-	glViewport(0,0, textSize.X, textSize.Y);
-
-	glClearColor(1,0,0,0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-
-	glBindTexture(GL_TEXTURE_2D, 0);
-
-	float sx = 2.0f / textSize.X;
-	float sy = 2.0f / textSize.Y;
-
-
-
-
-	//vertexbuffer
 	glEnableVertexAttribArray(attribute_coord);
+	glBindVertexArray(attribute_coord);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
 	//float textWidthGLCoords = 0.0f;
@@ -120,7 +108,7 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 	*/
 	glm::mat4 modelviewMatrix;
 	glm::mat4 projectionMatrix;
-	projectionMatrix = glm::ortho(0.0f, (float)textSize.X, (float)textSize.Y, 0.0f);
+	projectionMatrix = glm::ortho(0.0f, renderTargetWidth, renderTargetHeight, 0.0f);
 
 	//make new translation matrix
 	modelviewMatrix = glm::translate(projectionMatrix, glm::vec3(x, y + textHeightGLCoords, 0));
@@ -177,18 +165,12 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-		x += ((glyphSlot->advance.x >> 6) - glyphSlot->bitmap_left) * sx;
+		x += ((glyphSlot->advance.x >> 6) + glyphSlot->bitmap_left) * sx;
 		y += ((glyphSlot->advance.y >> 6)) * sy;
 	}
 
-	glDisableVertexAttribArray(attribute_coord);
 	//glDeleteTextures(1, &(tex[*p]));
 	
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	glViewport(0,0, GameWindow::GetWidth(), GameWindow::GetHeight());
-
-	return new Texture2D(frameBufferTex, textSize.X, textSize.Y);
 }
 Vector2 Font::TextSize(const char *text, int fontSize)
 {
