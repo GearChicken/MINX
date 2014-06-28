@@ -28,9 +28,11 @@
 #include "../Vector2.h"
 #include "Color.h"
 #include <string>
+#include "Texture2D.h"
 
 namespace MINX
 {
+	class MINX_API Game;
 	namespace Graphics
 	{
 		/** A Font Container Class
@@ -82,6 +84,7 @@ namespace MINX
 			*/
 			Vector2 TextSize(const char *text, int fontSize);
 		private:
+			float getMaxHeightGap(const char *text, int fontSize);
 			GLuint shaderProgram;
 			GLint attribute_coord;
 			GLint uniform_tex;
@@ -92,8 +95,12 @@ namespace MINX
 			FT_CharMap charMap;
 			FT_GlyphSlot glyphSlot;
 			GLuint tex[256];
+
+			Vector2 textSize;
+
 		};
 	}
 }
 
+#include "../Game.h"
 #endif

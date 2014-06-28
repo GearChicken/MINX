@@ -29,6 +29,7 @@ using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
 
+MINX::Graphics::RenderTarget* Game::activeRenderTarget = NULL;
 Game::Game()
 {
 	windowWidth = 640;
@@ -159,4 +160,25 @@ void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight
 	windowHeight = DwindowHeight;
 	fullscreen = Dfullscreen;
 	windowTitle = DwindowTitle;
+}
+
+void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
+{
+	activeRenderTarget = target;
+	glBindTexture(GL_TEXTURE_2D, 0);
+	if(target == NULL)
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0,0, GameWindow::GetWidth(), GameWindow::GetHeight());
+		return;
+	}
+	else
+	{
+		glBindFramebuffer(GL_FRAMEBUFFER, target->frameBuffer);
+		glViewport(0,0, target->width, target->height);
+	}
+	GLfloat color[] = {clearColor.R/255.0, clearColor.G/255.0, clearColor.B/255.0, clearColor.A/255.0};
+	glClearColor(color[0], color[1], color[2], color[3]);
+	glClear(GL_COLOR_BUFFER_BIT);
+
 }
