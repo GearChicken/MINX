@@ -165,7 +165,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-		x += ((glyphSlot->advance.x >> 6) + glyphSlot->bitmap_left) * sx;
+		x += ((glyphSlot->advance.x >> 6) - glyphSlot->bitmap_left) * sx;
 		y += ((glyphSlot->advance.y >> 6)) * sy;
 	}
 
