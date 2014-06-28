@@ -28,17 +28,18 @@ void Mouse::Update(GameTime * gametime)
 {
 	for(unsigned int id = 0; id < 8; id++)
 	{
-		(*buttons)[id].prevState = (*buttons)[id].state;
-		(*buttons)[id].state = (glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
+		(*buttons)[id].UpdateState(glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
 	}
-	(*axes)[0].val = (*axes)[0].prevVal;
-	(*axes)[1].val = (*axes)[1].prevVal;
-	glfwGetCursorPos(game->gameWindow->window,&((*axes)[0].val),&((*axes)[1].val));
+	double posX = 0.0f;
+	double posY = 0.0f;
+	glfwGetCursorPos(game->gameWindow->window,&posX,&posY);
+	(*axes)[0].UpdateValue(posX);
+	(*axes)[1].UpdateValue(posY);
 }
 
 Vector2 Mouse::GetPosition()
 {
-	return Vector2((*axes)[0].val, (*axes)[1].val);
+	return Vector2((*axes)[0].GetValue(), (*axes)[1].GetValue());
 }
 
 Button Mouse::GetMouseButton(unsigned int buttonID)

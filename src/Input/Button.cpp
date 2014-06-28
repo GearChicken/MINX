@@ -20,6 +20,22 @@
 
 using namespace MINX::Input;
 
+void Button::SetState(bool state)
+{
+	prevState = this->state;
+	this->state = state;
+}
+
+bool Button::GetState()
+{
+	return state;
+}
+
+bool Button::GetPrevState()
+{
+	return prevState;
+}
+
 Button Button::operator&&(const Button& andWith)
 {
 	Button b;

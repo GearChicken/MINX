@@ -30,12 +30,28 @@ namespace MINX
 		 */
 		struct MINX_API Axis
 		{
-			/** The current value of the axis.
+			/** Sets the value of the axis to val
 			 */
-			double val;
-			/** The previous value of the axis.
+			void SetValue(bool val);
+			
+			/** Sets the value of the axis to val
 			 */
-			double prevVal;
+			inline void UpdateValue(bool val){SetValue(val);}
+			
+			/** Gets the value of the axis
+			 */
+			float GetValue();
+			
+			/** Gets the previous value of the axis
+			 */
+			float GetPrevValue();
+			private:
+				/** The current value of the axis.
+				 */
+				double val;
+				/** The previous value of the axis.
+				 */
+				double prevVal;
 		};
 	}
 }

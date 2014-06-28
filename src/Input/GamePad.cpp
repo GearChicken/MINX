@@ -52,14 +52,12 @@ void GamePad::Update(GameTime * gametime)
 		
 		for(int id = 0; id < numButtons; id++)
 		{
-			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state = buttonValues[id];
+			(*buttons)[id].UpdateState(buttonValues[id]);
 		}
 		
 		for(int id = 0; id < numAxes; id++)
 		{
-			(*axes)[id].prevVal = (*axes)[id].val;
-			(*axes)[id].val = axisValues[id];
+			(*axes)[id].UpdateValue(axisValues[id]);
 		}
 	}
 }

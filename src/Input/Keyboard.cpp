@@ -31,8 +31,7 @@ void Keyboard::Update(GameTime * gametime)
 {
 	for(unsigned int id = 0; id < 350; id++)
 	{
-			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state= (glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
+			(*buttons)[id].UpdateState(glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
 		
 	}
 }
