@@ -30,8 +30,8 @@ GameComponent::GameComponent(Game * attachTo)
 
 GameComponent::~GameComponent()
 {
-	std::vector<GameComponent*> vec = *this->game->Components;
-	vec.erase(std::remove(vec.begin(), vec.end(), this), vec.end());
+	std::vector<GameComponent*> * vec = this->game->Components;
+	vec->erase(std::remove(vec->begin(), vec->end(), this), vec->end());
 }
 void GameComponent::Initialize() {}
 

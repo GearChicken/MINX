@@ -36,7 +36,7 @@ namespace MINX
 			GameComponent(Game * attachTo);
 			/** Destructs a GameComponent
 			 */
-			~GameComponent();
+			virtual ~GameComponent();
 			/** Initializes the GameComponent.
 			 */
 			virtual void Initialize();
