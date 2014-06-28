@@ -34,7 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <queue>
 #include <iostream>
 
-
+#include "Graphics/Font.h"
+#include "Graphics/RenderTarget.h"
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Graphics/GameWindow.h"
@@ -113,7 +114,7 @@ namespace MINX
 		*/
 		bool isRunning;
 
-		
+		void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
 	protected:
 		/** An instance of freetype used to draw text
 		*/
@@ -136,6 +137,10 @@ namespace MINX
 		/** The title of the window
 		 */
 		char* windowTitle;
+
+		static Graphics::RenderTarget* activeRenderTarget;
+
+		friend class MINX::Graphics::Font;
 	};
 }
 #endif
