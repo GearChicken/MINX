@@ -70,20 +70,6 @@ GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
 	GameWindow::window = glfwCreateWindow(width, height, title, monitor, NULL);
 	glfwSetWindowSizeCallback(GameWindow::window, windowResizeCallback);
 }
-
-void GameWindow::Clear()
-{
-	glClearColor(0.392156863,0.584313725,0.929411765,1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-}
-
-void GameWindow::ClearColor(Color color)
-{
-	glClearColor(color.R/255.0, color.G/255.0, color.B/255.0, color.A/255.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-}
-
 void GameWindow::SetHeight(int height)
 {
 	if(sizeLocked) return;
