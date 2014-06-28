@@ -97,6 +97,15 @@ Texture2D::Texture2D(Color* texData, int width, int height)
 	delete[] texelData;
 }
 
+
+Texture2D::Texture2D(GLuint texture, int width, int height)
+{
+	this->width = width;
+	this->height=height;
+
+	this->texture = texture;
+}
+
 Texture2D::~Texture2D()
 {
 	glDeleteTextures(1, &texture);

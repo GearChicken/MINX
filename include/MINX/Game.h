@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define GAME_H_
 #define MINX_DEBUG
 
+#include "API.h"
+
 #include <ft2build.h>
 #include FT_FREETYPE_H
 
@@ -32,7 +34,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <queue>
 #include <iostream>
 
-
+#include "Graphics/Font.h"
+#include "Graphics/RenderTarget.h"
 #include "GameComponent.h"
 #include "GameTime.h"
 #include "Graphics/GameWindow.h"
@@ -45,7 +48,7 @@ namespace MINX
 	/** The class that handles everything.
 	* When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
 	*/
-	class Game 
+	class MINX_API Game 
 	{
 	public:
 		/** The constructor, which handles some of the initialization code for the Game.
@@ -111,7 +114,7 @@ namespace MINX
 		*/
 		bool isRunning;
 
-		
+		void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
 	protected:
 		/** An instance of freetype used to draw text
 		*/
@@ -134,6 +137,10 @@ namespace MINX
 		/** The title of the window
 		 */
 		char* windowTitle;
+
+		static Graphics::RenderTarget* activeRenderTarget;
+
+		friend class MINX::Graphics::Font;
 	};
 }
 #endif

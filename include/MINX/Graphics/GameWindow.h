@@ -20,6 +20,8 @@
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
 
+#include "../API.h"
+
 #include <GLFW/glfw3.h>
 
 #include "Color.h"
@@ -30,7 +32,7 @@ namespace MINX
 	{
 		/** A class that holds the GLFW window pointer and some basic info about the window
 		*/
-		class GameWindow
+		class MINX_API GameWindow
 		{
 			public:
 				/** Creates a new instance of GameWindow
@@ -60,13 +62,15 @@ namespace MINX
 
 				inline static int GetHeight() { return height; }
 				
-				inline static void SetWidth(int width) { GameWindow::width = width; }
+				static void SetWidth(int width);
 				
-				inline static void SetHeight(int height) { GameWindow::height = height; }
+				static void SetHeight(int height);
 
 				/** A Pointer to the instance of the GLFWwindow
 				*/
-				GLFWwindow* window;
+				static GLFWwindow* window;
+
+				static bool sizeLocked;
 			private:
 				/** The Width of the GameWindow
 				*/
@@ -75,6 +79,7 @@ namespace MINX
 				/** The Height of the GameWindow
 				*/
 				static int height;
+
 		};
 	}
 }

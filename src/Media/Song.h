@@ -20,14 +20,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef SONG_H_
 #define SONG_H_
 
+#include "../API.h"
+
 #include "SFML/Audio.hpp"
 
 namespace MINX
 {
 	namespace Media
 	{
-		class Song
+		/** Represents a song loaded from disk.
+		 */
+		class MINX_API Song
 		{
+			/** Constructs a song from the given file.
+			 */
 			Song(char* fileLocation);
 
 			/* Destroy the sound file safely
@@ -53,15 +59,17 @@ namespace MINX
 			/* Set the Playback volume of the sound file
 			*	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
 			*/
-			void SetVolume(double volume);
+			void SetVolume(float volume);
 
 			void SetLoop(bool loop);
 		private:
 
-			/* The volume of the sound file
+			/** The volume of the sound file
 			*/
 			double volume;
-
+			
+			/** The internal sfml object
+			 */
 			sf::Music song;
 		};
 	}

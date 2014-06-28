@@ -18,12 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 #ifndef Rectangle_H_
 #define Rectangle_H_
+
+#include "API.h"
+
 #include <cmath>
 namespace MINX
 {
 	/** A Rectangle struct
 	*/
-	struct Rectangle
+	struct MINX_API Rectangle
 	{
 		/** Creates a new instance of Rectangle with all 0 values
 		*/

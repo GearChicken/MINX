@@ -19,6 +19,8 @@
 #ifndef _GAMEPAD_H
 #define _GAMEPAD_H
 
+#include "../API.h"
+
 #define GENERIC_GAMEPAD 0
 #define XBOX_360_GAMEPAD 1
 //#ifdef XBOX_360_GAMEPAD
@@ -49,7 +51,7 @@ namespace MINX
 	{
 		/** A GamePad class that handles input from a USB gamepad
 		*/
-		class GamePad : public IGenericHID
+		class MINX_API GamePad : public IGenericHID
 		{
 			public:
 				/** Creates a new GamePad instance.

@@ -19,6 +19,8 @@
 #ifndef MOUSE_H_
 #define MOUSE_H_
 
+#include "../API.h"
+
 #define MINX_MOUSE_LEFT 0
 #define MINX_MOUSE_RIGHT 1
 #define MINX_MOUSE_MIDDLE 2
@@ -32,7 +34,9 @@ namespace MINX
 	{
 		namespace MouseButtons
 		{
-			enum MouseButtons
+			/** Enumerates all readable mouse buttons.
+			 */
+			enum MINX_API MouseButtons
 			{
 				BUTTON_1 = 0,
 				BUTTON_2 = 1,
@@ -50,7 +54,7 @@ namespace MINX
 		}
 		/** Represents a mouse device
 		 */
-		class Mouse : public IGenericHID
+		class MINX_API Mouse : public IGenericHID
 		{
 			public:
 				/** Calls the IGenericHID constructor with game,0xFFF,4

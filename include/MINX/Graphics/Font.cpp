@@ -25,7 +25,12 @@ Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
 {
 	this->library = libraryRef;
 	this->shaderProgram = shaderProgram;
-	FT_New_Face(library, fileLocation, 0, &fontFace);
+
+        std::cout << "Loading Font: " << fileLocation << std::endl;
+	if( FT_New_Face(library, fileLocation, 0, &fontFace) )
+	{
+		std::cout << "ERROR:\nFont: " << fileLocation << " failed to load!" << std::endl;
+	}
 	FT_Set_Pixel_Sizes(fontFace, 0, 48);
 	//FT_Set_Char_Size(fontFace, 0, 16*64, 96, 96);
 	attribute_coord = glGetAttribLocation(shaderProgram, "coord");

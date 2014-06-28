@@ -19,6 +19,8 @@
 #ifndef _TEXTUREBATCH_H
 #define _TEXTUREBATCH_H
 
+#include "../API.h"
+
 #include "Texture2D.h"
 #include <vector>
 #include "../MathHelper.h"
@@ -31,7 +33,7 @@ namespace MINX
 	{
 		/** A struct that is used to store the instance data of a texture to be drawn
 		 */
-		struct TextureData
+		struct MINX_API TextureData
 		{
 			GLuint texture;
 			int width;
@@ -43,7 +45,7 @@ namespace MINX
 
 		/** A batching system for drawing Texture2D's to the screen. Batches can use different shaders
 		 */
-		class TextureBatch
+		class MINX_API TextureBatch
 		{
 
 		public:

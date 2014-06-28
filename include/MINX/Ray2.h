@@ -18,13 +18,16 @@
 	*/
 #ifndef RAY2_H_
 #define RAY2_H_
+
+#include "API.h"
+
 namespace MINX
 {
 	/** Represents a 2 dimensional ray.
 	 * Contains 2 position components and one direction (sorry) component.
 	 * Of course the direction is in radians.
 	 */
-	struct Ray2
+	struct MINX_API Ray2
 	{
 		/** Creates a Ray2 with the specified direction and position.
 		 */

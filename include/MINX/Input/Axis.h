@@ -18,13 +18,16 @@
 	*/
 #ifndef AXIS_H_
 #define AXIS_H_
+
+#include "../API.h"
+
 namespace MINX
 {
 	namespace Input{
 		/** Represents an axis on an input device such as a mouse or joystick.
 		 * Some axes indicate a position (a stick on a game pad), and some indicate relative motion (a ball on a joypad).
 		 */
-		struct Axis
+		struct MINX_API Axis
 		{
 			/** The current value of the axis.
 			 */

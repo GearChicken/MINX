@@ -20,6 +20,8 @@
 #ifndef SOUND_PLAYLIST_H_
 #define SOUND_PLAYLIST_H_
 
+#include "../API.h"
+
 #include "SoundFile.h"
 #include <vector>
 
@@ -27,7 +29,7 @@ namespace MINX
 {
 	namespace Media
 	{
-		class SoundPlaylist
+		class MINX_API SoundPlaylist
 		{
 		public:
 			/** Constructs a SoundPlaylist with a handle to a game
@@ -54,7 +56,7 @@ namespace MINX
 			bool doShuffle;
 			std::vector<char*> songFiles;
 			SoundFile* currentSong;
-			int songIndex;
+			unsigned int songIndex;
 			bool songDeleted;
 		};
 	}

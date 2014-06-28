@@ -20,6 +20,8 @@
 #define KEYBOARD_H_
 
 
+#include "../API.h"
+
 
 #include "IGenericHID.h"
 #include "Button.h"
@@ -33,7 +35,9 @@ namespace MINX
 		{
 #ifndef MINX_KEYS
 #define MINX_KEYS
-			enum Keys 
+			/** Enumerates all readable keys.
+			 */
+			enum MINX_API Keys 
 			{
 				KEY_0 = 48,
 				KEY_1 = 49,
@@ -163,7 +167,7 @@ namespace MINX
 
 		/** Represents a keyboard device.
 		 */
-		class Keyboard : public IGenericHID
+		class MINX_API Keyboard : public IGenericHID
 		{
 			public:
 				/** Calls the IGenericHID constructor with game,512,0

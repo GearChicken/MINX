@@ -1,6 +1,6 @@
 /*
     MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013-2014  MINX Team
+    Copyright (C) 2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,39 +16,39 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#ifndef BUTTON_H_
-#define BUTTON_H_
+#ifndef _RENDER_TARGET_H_
+#define _RENDER_TARGET_H_
 
 #include "../API.h"
 
+#include <GL/glew.h>
+
+#include "Texture2D.h"
+#include "GameWindow.h"
+#include "../Rectangle.h"
+
 namespace MINX
 {
-	namespace Input
+	class MINX_API Game;
+	namespace Graphics
 	{
-		/** Represents a button on an input device, such as a keyboard, mouse, or a joystick.
-		 * This could also be used to create a soft button within a game.
-		 */
-		struct MINX_API Button
+		class MINX_API RenderTarget
 		{
-			/** The current state of the button.
-			 */
-			bool state;
-
-			/** The previous state of the button.
-			 */
-			bool prevState;
-			
-			/** Returns the logical and between 2 buttons.
-			 */
-			Button operator&&(const Button& andWith);
-
-			/** Returns the logical or between 2 buttons.
-			 */
-			Button operator||(const Button& orWith);
-			/** Returns the button with flipped value.
-			 */
-			Button operator!()const;
+		public:
+			RenderTarget(int width, int height);
+			Texture2D* GetTexture();
+			inline int GetWidth() { return width; }
+			inline int GetHeight() { return height; }
+		private:
+			int width, height;
+			GLuint frameBuffer;
+			GLuint frameBufferTex;
+			Texture2D* texture;
+			friend class MINX::Game;
 		};
+
 	}
+
 }
+#include "../Game.h"
 #endif
