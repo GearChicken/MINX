@@ -63,8 +63,9 @@ void TextureBatch::DrawLoadedTextures()
 	glUseProgram(shaderProgram);
 
 	glUniform4f(uniformTint, 1.0f, 1.0f, 1.0f, 1.0f);
-
+	
 	glEnableVertexAttribArray(attributeCoord);
+	glBindVertexArray(attributeCoord);
 
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 
@@ -114,7 +115,6 @@ void TextureBatch::DrawLoadedTextures()
 	}
 	texturesToDraw.clear();
 	glBindTexture(GL_TEXTURE_2D, 0);
-	glDisableVertexAttribArray(attributeCoord);
 }
 
 
