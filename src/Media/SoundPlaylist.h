@@ -56,7 +56,7 @@ namespace MINX
 			bool doShuffle;
 			std::vector<char*> songFiles;
 			SoundFile* currentSong;
-			int songIndex;
+			unsigned int songIndex;
 			bool songDeleted;
 		};
 	}

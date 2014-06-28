@@ -62,7 +62,7 @@ namespace MINX
 			/* Set the Playback volume of the sound file
 			*	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
 			*/
-			void SetVolume(double volume);
+			void SetVolume(float volume);
 		private:
 
 			/* The volume of the sound file
