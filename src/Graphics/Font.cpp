@@ -177,7 +177,7 @@ Texture2D* Font::RenderText(const char* text, float x, float y, int fontSize, Co
 		glBufferData(GL_ARRAY_BUFFER, sizeof box, box, GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 
-		x += ((glyphSlot->advance.x >> 6) + glyphSlot->bitmap_left) * sx;
+		x += ((glyphSlot->advance.x >> 6) - glyphSlot->bitmap_left) * sx;
 		y += ((glyphSlot->advance.y >> 6)) * sy;
 	}
 
@@ -216,7 +216,7 @@ Vector2 Font::TextSize(const char *text, int fontSize)
 float Font::getMaxHeightGap(const char *text, int fontSize)
 {
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
-	float heightGap;
+	float heightGap = 0.0f;
 	const char *p;
 	for(p = text; *p; p++)
 	{
