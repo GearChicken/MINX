@@ -182,3 +182,8 @@ void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 }
+
+void Game::SetRenderTarget(RenderTarget* target)
+{
+	SetRenderTarget(target, Color(100,149,237));
+}
