@@ -205,9 +205,9 @@ void Game::SaveRenderTargetToPNG(char* filename)
 	
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
 	
-	glReadPixels(0, 0, renderTargetWidth, renderTargetHeight, GL_BGR, GL_UNSIGNED_BYTE, pixels);
+	glReadPixels(0, 0, renderTargetWidth, renderTargetHeight, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
 	
 	FIBITMAP* bitmap;
-	bitmap = FreeImage_ConvertFromRawBits(pixels, renderTargetWidth, renderTargetHeight, 3*renderTargetWidth, 24, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
+	bitmap = FreeImage_ConvertFromRawBits(pixels, renderTargetWidth, renderTargetHeight, 4*renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
 	FreeImage_Save(FREE_IMAGE_FORMAT::FIF_PNG, bitmap, filename);
 }
