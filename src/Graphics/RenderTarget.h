@@ -35,10 +35,21 @@ namespace MINX
 		class MINX_API RenderTarget
 		{
 		public:
+			/** Creates a RenderTarget with the specified width and height
+			 */
 			RenderTarget(int width, int height);
+			/** Returns a pointer to a Texture2D containing the contents of this RenderTarget
+			 */
 			Texture2D* GetTexture();
+			/** Returns the width of the RenderTarget
+			 */
 			inline int GetWidth() { return width; }
+			/** Returns the height of the RenderTarget
+			 */
 			inline int GetHeight() { return height; }
+			/** Clears the contents of the RenderTarget to the specified color
+			 */
+			void Clear(Color clearColor);
 		private:
 			int width, height;
 			GLuint frameBuffer;

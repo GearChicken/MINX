@@ -23,9 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using namespace MINX;
 using namespace MINX::Math;
 using namespace MINX::Graphics;
-Font::Font(FT_Library libraryRef, char* fileLocation, GLuint shaderProgram)
+Font::Font(Game* gameHandle, char* fileLocation, GLuint shaderProgram)
 {
-	this->library = libraryRef;
+	this->library = gameHandle->freeTypeLibrary;
 	this->shaderProgram = shaderProgram;
 
         std::cout << "Loading Font: " << fileLocation << std::endl;

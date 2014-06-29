@@ -26,18 +26,45 @@ namespace MINX
 	namespace Input
 	{
 		/** Represents a button on an input device, such as a keyboard, mouse, or a joystick.
+		 * This could also be used to create a soft button within a game.
 		 */
 		struct MINX_API Button
 		{
-			/** The current state of the button.
+			/** Sets the state of the button to state
 			 */
-			bool state;
-			/** The previous state of the button.
+			void SetState(bool state);
+			
+			/** Sets the state of the button to state
 			 */
-			bool prevState;
+			inline void UpdateState(bool state){SetState(state);}
+			
+			/** Returns the current state of the button
+			 */
+			bool GetState();
+			
+			/** Returns the previous state of the button
+			 */
+			bool GetPrevState();
+			
+			/** Returns the logical and between 2 buttons.
+			 */
 			Button operator&&(const Button& andWith);
+
+			/** Returns the logical or between 2 buttons.
+			 */
 			Button operator||(const Button& orWith);
+
+			/** Returns the button with flipped value.
+			 */
 			Button operator!()const;
+			private:
+				/** The current state of the button.
+				 */
+				bool state;
+
+				/** The previous state of the button.
+				 */
+				bool prevState;
 		};
 	}
 }

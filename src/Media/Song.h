@@ -28,8 +28,12 @@ namespace MINX
 {
 	namespace Media
 	{
+		/** Represents a song loaded from disk.
+		 */
 		class MINX_API Song
 		{
+			/** Constructs a song from the given file.
+			 */
 			Song(char* fileLocation);
 
 			/* Destroy the sound file safely
@@ -60,10 +64,12 @@ namespace MINX
 			void SetLoop(bool loop);
 		private:
 
-			/* The volume of the sound file
+			/** The volume of the sound file
 			*/
 			double volume;
-
+			
+			/** The internal sfml object
+			 */
 			sf::Music song;
 		};
 	}

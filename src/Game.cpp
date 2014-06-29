@@ -164,18 +164,22 @@ void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight
 
 void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 {
-	activeRenderTarget = target;
-	glBindTexture(GL_TEXTURE_2D, 0);
-	if(target == NULL)
+	//If it's already the same same the GPU some time by not changing the framebuffer
+	if(activeRenderTarget != target)
 	{
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		glViewport(0,0, GameWindow::GetWidth(), GameWindow::GetHeight());
-		return;
-	}
-	else
-	{
-		glBindFramebuffer(GL_FRAMEBUFFER, target->frameBuffer);
-		glViewport(0,0, target->width, target->height);
+		activeRenderTarget = target;
+		glBindTexture(GL_TEXTURE_2D, 0);
+		if(target == NULL)
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+			glViewport(0,0, GameWindow::GetWidth(), GameWindow::GetHeight());
+			return;
+		}
+		else
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, target->frameBuffer);
+			glViewport(0,0, target->width, target->height);
+		}
 	}
 	GLfloat color[] = {clearColor.R/255.0, clearColor.G/255.0, clearColor.B/255.0, clearColor.A/255.0};
 	glClearColor(color[0], color[1], color[2], color[3]);
