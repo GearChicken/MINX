@@ -21,6 +21,7 @@
     <ClCompile Include="..\src\Graphics\ShaderFactory.cpp" />
     <ClCompile Include="..\src\Graphics\Texture2D.cpp" />
     <ClCompile Include="..\src\Graphics\TextureBatch.cpp" />
+    <ClCompile Include="..\src\Input\Axis.cpp" />
     <ClCompile Include="..\src\Input\Button.cpp" />
     <ClCompile Include="..\src\Input\GamePad.cpp" />
     <ClCompile Include="..\src\Input\IGenericHID.cpp" />

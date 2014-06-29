@@ -59,3 +59,10 @@ Texture2D* RenderTarget::GetTexture()
 {
 	return texture;
 }
+
+void RenderTarget::Clear(Color clearColor)
+{
+	GLfloat color[] = {clearColor.R/255.0, clearColor.G/255.0, clearColor.B/255.0, clearColor.A/255.0};
+	glClearColor(color[0], color[1], color[2], color[3]);
+	glClear(GL_COLOR_BUFFER_BIT);
+}

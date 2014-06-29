@@ -113,8 +113,14 @@ namespace MINX
 		/** Is the Game Running, or should it close?
 		*/
 		bool isRunning;
-
+		
+		/** Set's the Game's RenderTarget and clears to the clearColor.
+		 */
 		void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
+
+		/** Set's the Game's RenderTarget and clears to cornflower blue.
+		 */
+		void SetRenderTarget(Graphics::RenderTarget* target);
 	protected:
 		/** An instance of freetype used to draw text
 		*/
@@ -128,18 +134,23 @@ namespace MINX
 		/** The width of the window
 		 */
 		int windowWidth;
+		
 		/** The height of the window
 		 */
 		int windowHeight;
+		
 		/** Whether or not the window is fullscreen
 		*/
 		bool fullscreen;
+		
 		/** The title of the window
 		 */
 		char* windowTitle;
-
+		
+		/** The current RenderTarget for the game
+		 */
 		static Graphics::RenderTarget* activeRenderTarget;
-
+		
 		friend class MINX::Graphics::Font;
 	};
 }
