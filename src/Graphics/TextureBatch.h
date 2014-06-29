@@ -35,11 +35,23 @@ namespace MINX
 		 */
 		struct MINX_API TextureData
 		{
+			/** An unsigned integer representing the address of the texture in OpenGL's texture system
+			 */
 			GLuint texture;
+			/** The width of the texture
+			 */
 			int width;
+			/** The height of the texture
+			 */
 			int height;
+			/** The color to tint the texture
+			 */
 			Color color;
+			/** The projection matrix of this texture
+			 */
 			glm::mat4  matrix;
+			/** The source rectangle for clipping
+			 */
 			Rectangle sourceRect;
 		};
 
@@ -183,6 +195,8 @@ namespace MINX
 			*/
 			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint, Rectangle sourceRectangle);
 			
+			/** Adds a Rectangle with the specified Color to the list of texture instances to draw to the screen.
+			 */
 			void DrawPrimitiveRectangle(Rectangle rectangle, Color tint);
 
 		private:
