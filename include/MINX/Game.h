@@ -115,6 +115,8 @@ namespace MINX
 		bool isRunning;
 
 		void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
+
+		void SaveRenderTargetToPNG(char* filename);
 	protected:
 		/** An instance of freetype used to draw text
 		*/
