@@ -121,6 +121,7 @@ namespace MINX
 		/** Set's the Game's RenderTarget and clears to cornflower blue.
 		 */
 		void SetRenderTarget(Graphics::RenderTarget* target);
+
 	protected:
 		/** An instance of freetype used to draw text
 		*/

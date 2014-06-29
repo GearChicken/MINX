@@ -65,6 +65,7 @@ namespace MINX
 			/** An unsigned integer representing the address of the texture in OpenGL's texture system
 			*/
 			GLuint texture;
+		    void SavetoPNG(char* filename);
 		private:	
 			int width;
 			int height;
