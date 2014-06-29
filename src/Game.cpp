@@ -182,32 +182,3 @@ void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 	glClear(GL_COLOR_BUFFER_BIT);
 
 }
-
-void Game::SaveRenderTargetToPNG(char* filename)
-{
-	float renderTargetWidth, renderTargetHeight;
-	if(activeRenderTarget == NULL)
-	{
-		renderTargetWidth = GameWindow::GetWidth();
-		renderTargetHeight = GameWindow::GetHeight();
-	}
-	else
-	{
-		renderTargetWidth = Game::activeRenderTarget->GetWidth();
-		renderTargetHeight = Game::activeRenderTarget->GetHeight();
-	}
-
-	
-	const size_t bytesPerPixel = 4;	// RGBA
-
-	const size_t imageSizeInBytes = bytesPerPixel * size_t(renderTargetWidth) * size_t(renderTargetHeight);
-	BYTE* pixels = static_cast<BYTE*>(malloc(imageSizeInBytes));
-	
-	glPixelStorei(GL_PACK_ALIGNMENT, 1);
-	
-	glReadPixels(0, 0, renderTargetWidth, renderTargetHeight, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
-	
-	FIBITMAP* bitmap;
-	bitmap = FreeImage_ConvertFromRawBits(pixels, renderTargetWidth, renderTargetHeight, 4*renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
-	FreeImage_Save(FREE_IMAGE_FORMAT::FIF_PNG, bitmap, filename);
-}
