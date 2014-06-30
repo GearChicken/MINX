@@ -24,12 +24,12 @@ using namespace MINX;
 IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : GameComponent(game)
 {
 	Button b;
-	b.prevState = 0;
-	b.state = 0;
+	b.UpdateState(0);
+	b.UpdateState(0);
 	buttons = new vector<Button>(buttonVectorSize,b);
 	Axis a;
-	a.prevVal = 0;
-	a.val = 0;
+	a.UpdateValue(0);
+	a.UpdateValue(0);
 	axes = new vector<Axis>(axisVectorSize,a);
 }
 

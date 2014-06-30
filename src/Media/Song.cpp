@@ -46,7 +46,7 @@ void Song::Stop()
 {
 	this->song.stop();
 }
-void Song::SetVolume(double volume)
+void Song::SetVolume(float volume)
 {
 	this->song.setVolume(volume);
 }

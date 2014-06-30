@@ -27,7 +27,8 @@ namespace MINX
 	 */
 	struct MINX_API Vector2
 	{
-	
+		/** Used when constructing a Vector2 by magnitude/direction instead of x/y.
+		 */
 		enum Heading
 		{
 			E = 0,
@@ -152,6 +153,10 @@ namespace MINX
 		/** Returns the length of the Vector2.
 		 */
 		double Length();
+		
+		/** Returns the magnitude of the Vector2.
+		 */
+		inline double Magnitude(){return Length();}
 		
 		/** Returns the length of the Vector2 squared.
 		 * This is faster then squaring the result of length() because length() actually returns the square root of the mathematical result of the length squared.

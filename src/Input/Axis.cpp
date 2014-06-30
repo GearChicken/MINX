@@ -1,6 +1,6 @@
 /*
     MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013-2014  MINX Team
+    Copyright (C) 2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,50 +16,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "Rectangle.h"
-#include <math.h>
 
-using namespace MINX;
+#include "Axis.h"
 
-Rectangle::Rectangle()
+using namespace MINX::Input;
+
+void Axis::SetValue(bool val)
 {
-	X = 0;
-	Y = 0;
-	Width = 0;
-	Height = 0;
+	prevVal = this->val;
+	this->val = val;
 }
-Rectangle::Rectangle(double x, double y, double width, double height)
+
+float Axis::GetValue()
 {
-	X=x;
-	Y=y;
-	Width = width;
-	Height = height;
+	return val;
 }
-double Rectangle::Area()
+
+float Axis::GetPrevValue()
 {
-	return Width * Height;
-}
-double Rectangle::Top()
-{
-	return Y;
-}
-double Rectangle::Bottom()
-{
-	return Y + Height;
-}
-double Rectangle::Left()
-{
-	return X;
-}
-double Rectangle::Right()
-{
-	return X + Width;
-}
-bool Rectangle::Intersects(Rectangle* rect2)
-{
-	return !(
-			(Bottom() < rect2->Top()) ||
-			(Top() > rect2->Bottom()) ||
-			(Left() > rect2->Right()) ||
-			(Right() < rect2->Left()) );
+	return prevVal;
 }

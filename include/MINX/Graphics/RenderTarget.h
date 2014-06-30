@@ -1,6 +1,6 @@
 /*
     MINX - A C++ Graphics and Input Wrapper Library
-    Copyright (C) 2013-2014  MINX Team
+    Copyright (C) 2014  MINX Team
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
@@ -16,29 +16,40 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 	*/
-#include "IGenericHID.h"
+#ifndef _RENDER_TARGET_H_
+#define _RENDER_TARGET_H_
 
-using namespace MINX::Input;
-using namespace MINX;
+#include "../API.h"
 
-IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : GameComponent(game)
+#include <GL/glew.h>
+
+#include "Texture2D.h"
+#include "GameWindow.h"
+#include "../Rectangle.h"
+
+namespace MINX
 {
-	Button b;
-	b.prevState = 0;
-	b.state = 0;
-	buttons = new vector<Button>(buttonVectorSize,b);
-	Axis a;
-	a.prevVal = 0;
-	a.val = 0;
-	axes = new vector<Axis>(axisVectorSize,a);
-}
+	class MINX_API Game;
+	namespace Graphics
+	{
+		class MINX_API RenderTarget
+		{
+		public:
+			RenderTarget(int width, int height);
+			Texture2D* GetTexture();
+			inline int GetWidth() { return width; }
+			inline int GetHeight() { return height; }
+			void Clear(Color clearColor);
+		private:
+			int width, height;
+			GLuint frameBuffer;
+			GLuint frameBufferTex;
+			Texture2D* texture;
+			friend class MINX::Game;
+		};
 
-Button IGenericHID::GetButton(unsigned int id)
-{
-	return (* buttons)[id];
-}
+	}
 
-Axis IGenericHID::GetAxis(unsigned int id)
-{
-	return (* axes)[id];
 }
+#include "../Game.h"
+#endif

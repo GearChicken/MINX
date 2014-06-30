@@ -97,7 +97,41 @@ Texture2D::Texture2D(Color* texData, int width, int height)
 	delete[] texelData;
 }
 
+
+Texture2D::Texture2D(GLuint texture, int width, int height)
+{
+	this->width = width;
+	this->height=height;
+
+	this->texture = texture;
+}
+
 Texture2D::~Texture2D()
 {
 	glDeleteTextures(1, &texture);
+}
+
+
+void Texture2D::SavetoPNG(char* filename)
+{
+	float renderTargetWidth, renderTargetHeight;
+	
+	renderTargetWidth = width;
+	renderTargetHeight = height;
+	
+	glBindTexture(GL_TEXTURE_2D, texture);
+
+	const size_t bytesPerPixel = 4;	// RGBA
+
+	const size_t imageSizeInBytes = bytesPerPixel * size_t(renderTargetWidth) * size_t(renderTargetHeight);
+	BYTE* pixels = static_cast<BYTE*>(malloc(imageSizeInBytes));
+	
+	glPixelStorei(GL_PACK_ALIGNMENT, 1);
+	
+	
+	glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+	FIBITMAP* bitmap;
+	bitmap = FreeImage_ConvertFromRawBits(pixels, renderTargetWidth, renderTargetHeight, 4*renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
+	FreeImage_Save(FREE_IMAGE_FORMAT::FIF_PNG, bitmap, filename);
+	free(pixels);
 }

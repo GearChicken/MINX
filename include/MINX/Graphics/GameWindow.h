@@ -54,21 +54,19 @@ namespace MINX
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
 				
-				void Clear();
-				
-				void ClearColor(Color color);
-				
 				inline static int GetWidth() { return width; }
 
 				inline static int GetHeight() { return height; }
 				
-				inline static void SetWidth(int width) { GameWindow::width = width; }
+				static void SetWidth(int width);
 				
-				inline static void SetHeight(int height) { GameWindow::height = height; }
+				static void SetHeight(int height);
 
 				/** A Pointer to the instance of the GLFWwindow
 				*/
-				GLFWwindow* window;
+				static GLFWwindow* window;
+
+				static bool sizeLocked;
 			private:
 				/** The Width of the GameWindow
 				*/
@@ -77,6 +75,7 @@ namespace MINX
 				/** The Height of the GameWindow
 				*/
 				static int height;
+
 		};
 	}
 }

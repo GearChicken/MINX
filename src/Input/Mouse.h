@@ -34,6 +34,8 @@ namespace MINX
 	{
 		namespace MouseButtons
 		{
+			/** Enumerates all readable mouse buttons.
+			 */
 			enum MINX_API MouseButtons
 			{
 				BUTTON_1 = 0,

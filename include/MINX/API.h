@@ -7,6 +7,8 @@
 #else
 #define MINX_API __declspec(dllimport)
 #endif
+#else
+#define MINX_API
 #endif
 
 #endif
