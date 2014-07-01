@@ -33,14 +33,20 @@ namespace MINX
 	{
 		/** A struct that is used to store the instance data of a texture to be drawn
 		 */
-		struct MINX_API TextureData
+		struct MINX_API BatchData
 		{
+			/** An unsigned integer representing the address of the texture in OpenGL's texture system
+			 */
 			GLuint texture;
-			int width;
-			int height;
-			Color color;
-			glm::mat4  matrix;
-			Rectangle sourceRect;
+			/** The color to tint the texture
+			 */
+			std::vector<GLfloat> posPoints;
+			std::vector<GLfloat> texPoints;
+			std::vector<GLfloat> tintPoints;
+			int spriteCount;
+
+			void AddPoint(Vector2 position, Vector2 texCoord);
+			void AddTint(Color tint);
 		};
 
 		/** A batching system for drawing Texture2D's to the screen. Batches can use different shaders
@@ -183,13 +189,20 @@ namespace MINX
 			*/
 			void Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tint, Rectangle sourceRectangle);
 			
+			/** Adds a Rectangle with the specified Color to the list of texture instances to draw to the screen.
+			 */
 			void DrawPrimitiveRectangle(Rectangle rectangle, Color tint);
 
 		private:
-
+			
 			GLuint vertexBuffer;
+			GLuint tintBuffer;
 
-			GLint attributeCoord;
+			GLuint vertexArray;
+			
+			GLint posCoord;
+			GLint texCoord;
+			GLint tintCoord;
 			
 			GLint uniformTint;
 
@@ -201,8 +214,9 @@ namespace MINX
 
 			GLuint pixelTexture;
 
+			BatchData* GetBatchForTexture(GLuint texture);
 
-			std::vector<TextureData> texturesToDraw;
+			std::vector<BatchData*> batches;
 		};
 	}
 }
