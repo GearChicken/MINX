@@ -235,3 +235,8 @@ double Math::clamp(double number, double lowerLimit, double upperLimit)
 {
 	return max(lowerLimit,min(upperLimit,number));
 }
+
+double Math::random(double x)
+{
+	return (rand() % (int)x) / x;
+}
