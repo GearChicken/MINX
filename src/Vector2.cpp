@@ -48,11 +48,11 @@ Vector2 Vector2::operator-=(const Vector2& subtractFrom)
 	Y -= subtractFrom.Y;
 	return *this;
 }
-double Vector2::Cross(const Vector2& multiplyBy)
+double Vector2::crossMultiply(const Vector2& multiplyBy)
 {
 	return X*multiplyBy.Y - Y*multiplyBy.X;
 }
-double Vector2::Dot(const Vector2& multiplyBy)
+double Vector2::dotMultiply(const Vector2& multiplyBy)
 {
 	return X*multiplyBy.X + Y*multiplyBy.Y;
 }
