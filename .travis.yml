@@ -1,9 +1,9 @@
 language: cpp
 before_install:
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
-  - sudo update-alternatives --install /uar/bin/g++ g++ /usr/bin/g++-4.8 90
 install:
-  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev
+  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev gcc-4.8 g++-4.8 g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev
   - wget 'http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip'
   - unzip glfw-3.0.4.zip
   - cd glfw-3.0.4 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install
