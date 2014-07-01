@@ -10,4 +10,7 @@ install:
   - cd glfw-3.0.4 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install
   - sudo cp /usr/local/lib/libglfw* /usr/lib/ && sudo cp -R /usr/local/include/GLFW /usr/include/
   - cd ..
+  - wget 'http://www.sfml-dev.org/download/sfml/2.1/SFML-2.1-sources.zip'
+  - unzip SFML-2.1-sources.zip
+  - cd SFML-2.1 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install && cd ..
 script: make
