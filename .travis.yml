@@ -1,6 +1,7 @@
 language: cpp
 before_install:
+  - sudo add-apt-repository ppa:keithw/glfw3
   - sudo apt-get update -qq
 install:
-  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libglfw3-dev libsfml-dev
+  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev libglfw3-dev
 script: make
