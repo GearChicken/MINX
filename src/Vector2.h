@@ -85,12 +85,12 @@ namespace MINX
 		 * There are "'s there because you can't REALLY cross multiply a 2 dimensional vector.
 		 * @param multiplyBy the Vector2 to "cross multiply" by.
 		 */
-		double Cross(const Vector2& multiplyBy);
+		double crossMultiply(const Vector2& multiplyBy);
 		
 		/** Dot multiplies 2 Vector2s.
 		 * @param multiplyBy the Vector2 to dot multiply by.
 		 */
-		double Dot(const Vector2& multiplyBy);
+		double dotMultiply(const Vector2& multiplyBy);
 		
 		/** Multiplies 2 Vector2s component-wise.
 		 * @param multiplyBy the Vector2 to dot multiply by.
