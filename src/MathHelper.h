@@ -76,6 +76,7 @@ namespace MINX
 		extern MINX_API double clamp(double number, double lowerLimit, double upperLimit);
 		extern MINX_API double max(double num1, double num2);
 		extern MINX_API double min(double num1, double num2);
+		extern MINX_API double random(double x);
 	}
 }
 #endif
