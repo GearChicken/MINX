@@ -1,0 +1,6 @@
+language: cpp
+before_install:
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libglfw3-dev libsfml-dev
+script: make
