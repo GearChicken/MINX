@@ -1,7 +1,9 @@
 language: cpp
 before_install:
-  - sudo add-apt-repository -y ppa:keithw/glfw3
   - sudo apt-get update -qq
+  - wget 'http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip'
+  - unzip glfw-3.0.4.zip
+  - cd glfw-3.0.4 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install && sudo cp /usr.local/lib/libglfw* /usr/lib/ && sudo cp /usr/local/include/GLFW/* /usr/include/GLFW/
 install:
-  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev libglfw3-dev
+  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev
 script: make
