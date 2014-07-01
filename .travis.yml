@@ -4,6 +4,7 @@ before_install:
   - sudo apt-get update -qq
 install:
   - sudo apt-get install -qq xorg-dev libglu1-mesa-dev gcc-4.8 g++-4.8 g++ libfreeimage-dev libglew-dev libglm-dev libsfml-dev
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
   - wget 'http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip'
   - unzip glfw-3.0.4.zip
   - cd glfw-3.0.4 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install
