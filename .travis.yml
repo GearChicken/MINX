@@ -1,0 +1,20 @@
+language: cpp
+before_install:
+# We need this line to have g++4.8 available in apt
+  - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
+  - sudo apt-get update -qq
+install:
+  - sudo apt-get install -qq xorg-dev libglu1-mesa-dev gcc-4.8 g++-4.8 g++ libfreeimage-dev libglew-dev libglm-dev libsndfile1-dev libopenal-dev
+# We want to compile with g++ 4.8 when rather than the default g++
+  - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-4.8 90
+# libglfw3 isn't up to date in apt with precise
+  - wget 'http://sourceforge.net/projects/glfw/files/glfw/3.0.4/glfw-3.0.4.zip'
+  - unzip glfw-3.0.4.zip
+  - cd glfw-3.0.4 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install
+  - sudo cp /usr/local/lib/libglfw* /usr/lib/ && sudo cp -R /usr/local/include/GLFW /usr/include/
+  - cd ..
+# libsfml isn't up to date in apt with precise
+  - wget 'http://www.sfml-dev.org/download/sfml/2.1/SFML-2.1-sources.zip'
+  - unzip SFML-2.1-sources.zip
+  - cd SFML-2.1 && cmake -DBUILD_SHARED_LIBS=ON -G "Unix Makefiles" && make && sudo make install && cd ..
+script: make
