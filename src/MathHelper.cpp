@@ -236,7 +236,8 @@ double Math::clamp(double number, double lowerLimit, double upperLimit)
 	return max(lowerLimit,min(upperLimit,number));
 }
 
-double Math::random(double x)
+double Math::random(double minimum, double maximum, double precision)
 {
-	return (rand() % (int)x) / x;
+	double range = maximum - minimum;
+	return (rand() % (int)precision) / precision * range + minimum;
 }
