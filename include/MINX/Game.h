@@ -35,6 +35,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <iostream>
 
 #include "Graphics/Font.h"
+#include "Graphics/TextureBatch.h"
 #include "Graphics/RenderTarget.h"
 #include "GameComponent.h"
 #include "GameTime.h"
@@ -153,6 +154,7 @@ namespace MINX
 		static Graphics::RenderTarget* activeRenderTarget;
 		
 		friend class MINX::Graphics::Font;
+		friend class MINX::Graphics::TextureBatch;
 	};
 }
 #endif
