@@ -42,12 +42,12 @@ Game::Game()
 	Components = new vector<GameComponent*>();
 }
 
-int doUpdate(void * game)
+int doUpdate(void * game, GameTime* gameTime)
 {
 	do
 	{
 		((Game*)game)->isRunning = !glfwWindowShouldClose(((Game*)game)->gameWindow->window);
-		((Game*)game)->Update(((Game*)game)->GetGameTime());
+		((Game*)game)->Update(gameTime);
 	} while(((Game*)game)->isRunning);
 
 	return 0;
@@ -65,7 +65,7 @@ void Game::Run()
 	this->Initialize();
 	this->LoadContent();
 
-	thread updateThread = thread(doUpdate, this);
+	thread updateThread = thread(doUpdate, this, this->gameTime);
 	updateThread.detach();
 
 	do
@@ -75,11 +75,6 @@ void Game::Run()
 
 	this->UnloadContent();
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-}
-
-GameTime* Game::GetGameTime()
-{
-	return gameTime;
 }
 
 void Game::Initialize()
@@ -122,7 +117,7 @@ void Game::LoadContent()
 
 }
 
-void Game::Update(GameTime *gameTime)
+void Game::Update(GameTime* gameTime)
 {
 	gameTime->Update();
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
@@ -135,7 +130,7 @@ void Game::Update(GameTime *gameTime)
 }
 
 
-void Game::Draw(GameTime * gameTime)
+void Game::Draw(GameTime* gameTime)
 {
 	glfwSwapBuffers(gameWindow->window);
 	glfwPollEvents();
