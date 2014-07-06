@@ -33,10 +33,10 @@ ShaderFactory::ShaderFactory()
 		"attribute vec4 tint;"
 		"varying vec2 texCoord;"
 		"varying vec4 tintColor;"
-		"uniform mat4 projMat;"
+		"uniform mat4 projectionMatrix;"
 		"void main()"
 		"{"
-		"    gl_Position = position;"
+		"    gl_Position = projectionMatrix * position;"
 		"    texCoord = texcoord;"
 		"    tintColor = tint;"
 		"}";

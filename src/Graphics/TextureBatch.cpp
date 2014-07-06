@@ -79,6 +79,25 @@ void TextureBatch::DrawLoadedTextures()
 	glBindBuffer(GL_ARRAY_BUFFER, tintBuffer);
 	glVertexAttribPointer(tintCoord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
 
+	float renderTargetWidth, renderTargetHeight;
+
+	if(Game::activeRenderTarget == NULL)
+	{
+		renderTargetWidth = GameWindow::GetWidth();
+		renderTargetHeight = GameWindow::GetHeight();
+	}
+	else
+	{
+		renderTargetWidth = Game::activeRenderTarget->GetWidth();
+		renderTargetHeight = Game::activeRenderTarget->GetHeight();
+	}
+
+
+	glm::mat4 projectionMatrix;
+	projectionMatrix = glm::ortho(1.0f, (float)renderTargetWidth-1.0f, (float)renderTargetHeight-1.0f, 1.0f);
+
+	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projectionMatrix"), 1, false, glm::value_ptr(projectionMatrix));
+
 	std::vector<GLfloat> pointData;
 	for (auto batch : batches)
 	{
@@ -137,9 +156,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 	glm::mat4 projectionMatrix;
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
-	//glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projMat"), 1, false, glm::value_ptr(projectionMatrix));
+	
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -180,8 +199,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRe
 	glm::mat4 projectionMatrix;
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -224,8 +243,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
@@ -272,8 +291,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
@@ -320,8 +339,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -366,8 +385,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -412,8 +431,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 
 	//make new translation matrix
@@ -462,8 +481,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 
 	//make new translation matrix
@@ -514,8 +533,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
@@ -563,8 +582,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 
 	//make new translation matrix
@@ -743,8 +762,8 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 	int height = 1;
 
 
-	//setup the ortho projection matrix
-	projectionMatrix = glm::ortho(1.0f, (float)GameWindow::GetWidth()-1.0f, (float)GameWindow::GetHeight()-1.0f, 1.0f);
+	
+	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(rectangle.X + abs(width*rectangle.Width/2.0f), rectangle.Y + abs(height*rectangle.Height / 2.0f), 1));
