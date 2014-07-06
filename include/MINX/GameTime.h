@@ -29,17 +29,22 @@
 
 namespace MINX
 {
+	class MINX_API Game;
+	class MINX_API GameComponent;
 	/** Contains a bunch of time related functions for use in the Game
 	 */
 	class MINX_API GameTime
 	{
 		public:
-			/** Constructs a GameTime
-			 */
-			GameTime();
 			/** @return the number of milliseconds since the start of the Game
 			 */
 			long GetElapsedMillis();
+			/** @return the number of seconds since the start of the Game
+			 */
+			double GetElapsedSeconds();
+			/** @return the number of seconds since the start of the Game as a float
+			 */
+			float GetElapsedSecondsF();
 			/** @return the number of milliseconds since the last update()
 			 */
 			long GetDeltaTimeMillis();
@@ -49,22 +54,27 @@ namespace MINX
 			/** @return the number of seconds since the last update() as a float
 			 */
 			float GetDeltaTimeSecondsF();
+			/** Limits the updates per second of the current thread by delaying
+			 */
+			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds((long)(1000/desiredFPS-(GetDeltaTimeSeconds()))));}
+		private:
+			/** Constructs a GameTime
+			 */
+			GameTime();
 			/** Updates the gametime
 			 */
 			void Update();
-			/** Limits the updates per second of the current thread by delaying
+			/** The total time in seconds that has passed
 			 */
-			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-(long(glfwGetTime()*1000)-long(lastUpdate))));}
-		private:
-			/** The total time in milliseconds that has passed
-			 */
-			double totalTimeMillis;
-			/** The time in milliseconds that has passed between the 2 previous Updates
+			double totalTime;
+			/** The time in seconds that has passed between the 2 previous Updates
 			 */
 			double deltaTime;
-			/** The value of totalTimeMillis as of the previous Update
+			/** The value of totalTime as of the previous Update
 			 */
 			double lastUpdate;
+		friend class MINX::Game;
 	};
 }
+#include "Game.h"
 #endif

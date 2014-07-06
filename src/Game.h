@@ -68,7 +68,7 @@ namespace MINX
 		* Should be extended when you create a subclass of Game.
 		* @param gameTime the GameTime to use when updating.
 		*/
-		virtual void Update(GameTime * gameTime);
+		virtual void Update(GameTime* gameTime);
 		
 		/** Unloads content used by the game.
 		*/
@@ -78,7 +78,7 @@ namespace MINX
 		* This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
 		* @param gameTime the GameTime to use when drawing.
 		*/
-		virtual void Draw(GameTime * gameTime);
+		virtual void Draw(GameTime* gameTime);
 		
 		/** Handles Update()ing, Draw()ing, and event handling.
 		*/
@@ -91,10 +91,6 @@ namespace MINX
 		/** A pointer to a vector of pointers to the GameComponents used in the game.
 		*/
 		vector<GameComponent*>* Components;
-		
-		/** Returns a pointer to the GameTime being used by the game.
-		*/
-		GameTime* GetGameTime();
 		
 		/** Set the video options when creating a new GameWindow
 		*	@param windowWidth The Width of the GameWindow
