@@ -29,35 +29,36 @@ using namespace MINX;
 
 GameTime::GameTime()
 {
-	totalTimeMillis=0;
+	totalTime=0;
 	deltaTime=0;
 	lastUpdate=0;
 }
 
-/*void GameTime::limitFPS(int desiredFPS)
-{
-	
-	int NextTick = totalTimeMillis + (1000/desiredFPS);
-	if(NextTick > glfwGetTime())
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-deltaTimeMillis));
-	}
-}//*/
 void GameTime::Update()
 {
-	totalTimeMillis = glfwGetTime()*1000.0;
-	deltaTime = totalTimeMillis - lastUpdate;
-	lastUpdate = totalTimeMillis;
+	totalTime = glfwGetTime();
+	deltaTime = totalTime - lastUpdate;
+	lastUpdate = totalTime;
 	deltaTime = deltaTime > 0 ? deltaTime : std::numeric_limits<double>::epsilon();
 }
 long GameTime::GetElapsedMillis()
 {
-	return totalTimeMillis;
+	return totalTime * 1000;
+}
+
+double GameTime::GetElapsedSeconds()
+{
+	return totalTime;
+}
+
+float GameTime::GetElapsedSecondsF()
+{
+	return GetElapsedSeconds() > std::numeric_limits<float>::epsilon() ? GetElapsedSeconds() : std::numeric_limits<float>::epsilon();;
 }
 
 double GameTime::GetDeltaTimeSeconds()
 {
-	return deltaTime / 1000.0;
+	return deltaTime;
 }
 
 float GameTime::GetDeltaTimeSecondsF()
@@ -67,5 +68,5 @@ float GameTime::GetDeltaTimeSecondsF()
 
 long GameTime::GetDeltaTimeMillis()
 {
-	return deltaTime;
+	return deltaTime * 1000;
 }

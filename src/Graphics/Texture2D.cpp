@@ -118,6 +118,7 @@ Texture2D::~Texture2D()
 {
 	glDeleteTextures(1, &texture);
 }
+
 void Texture2D::SavetoPNG(char* filename)
 {
 	float renderTargetWidth, renderTargetHeight;

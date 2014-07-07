@@ -36,22 +36,26 @@ ShaderFactory::ShaderFactory()
 
 	std::string vertexSource =
 		"#version 120\n"
-		"attribute vec4 coord;"
-		"varying vec2 texpos;"
-		"uniform mat4 trans;"
+		"attribute vec4 position;"
+		"attribute vec2 texcoord;"
+		"attribute vec4 tint;"
+		"varying vec2 texCoord;"
+		"varying vec4 tintColor;"
+		"uniform mat4 projectionMatrix;"
 		"void main()"
 		"{"
-		"	texpos = coord.zw;" 
-		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
+		"    gl_Position = projectionMatrix * position;"
+		"    texCoord = texcoord;"
+		"    tintColor = tint;"
 		"}";
 	std::string fragmentSource =
 		"#version 120\n"
-		"varying vec2 texpos;"
 		"uniform sampler2D tex;"
-		"uniform vec4 color;"
+		"varying vec2 texCoord;"
+		"varying vec4 tintColor;"
 		"void main()"
 		"{"
-		"	gl_FragColor = texture2D(tex, texpos) * color;"
+		"    gl_FragColor = texture2D(tex, texCoord) * tintColor;"
 		"}";
 	LoadShader(vertexSource, fragmentSource);
 

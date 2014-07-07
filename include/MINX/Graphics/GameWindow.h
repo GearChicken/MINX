@@ -61,19 +61,28 @@ namespace MINX
 				*	@param title The Title of the GameWindow
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
-				
+				/** Returns the width of the GameWindow
+				 */
 				inline static int GetWidth() { return width; }
 
+				/** Returns the height of the GameWindow
+				 */
 				inline static int GetHeight() { return height; }
 				
+				/** Sets the width of the GameWindow
+				 */
 				static void SetWidth(int width);
 				
+				/** Sets the height of the GameWindow
+				 */
 				static void SetHeight(int height);
 
 				/** A Pointer to the instance of the GLFWwindow
 				*/
 				static GLFWwindow* window;
 
+				/** Whether or not the window size is locked
+				 */
 				static bool sizeLocked;
 			private:
 				/** The Width of the GameWindow

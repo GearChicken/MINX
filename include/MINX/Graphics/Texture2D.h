@@ -59,7 +59,12 @@ namespace MINX
 			*	@param height The Height of the Texture
 			*/
 			Texture2D(Color* texData, int width, int height);
-
+			
+			/** Creates a new Texture2D object
+			 * @param texture An unsigned integer representing the address of the texture in OpenGL's texture system
+			 *	@param width The Width of the Texture
+			 *	@param height The Height of the Texture
+			 */
 			Texture2D(GLuint texture, int width, int height);
 			/** Safely destroys a Texture2D object
 			*/
