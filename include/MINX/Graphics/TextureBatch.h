@@ -37,6 +37,7 @@ freely, subject to the following restrictions:
 
 namespace MINX
 {
+	class MINX_API Game;
 	namespace Graphics
 	{
 		/** A struct that is used to store the instance data of a texture to be drawn
@@ -229,4 +230,5 @@ namespace MINX
 	}
 }
 
+#include "../Game.h"
 #endif
