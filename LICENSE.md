@@ -1,5 +1,3 @@
-
-/*
 # MINX
 
 Copyright (c) 2013-2014 Liam Middlebrook, Benjamin Pylko
@@ -16,44 +14,11 @@ freely, subject to the following restrictions:
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
 > appreciated but is not required.
->
+> 
 > 2\. Altered source versions must be plainly marked as such, and must not be
 > misrepresented as being the original software.
->
+> 
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
 
-#include "Ray2.h"
-
-using namespace MINX;
-
-Ray2::Ray2(double direction, double xPosition, double yPosition)
-{
-	dir=direction;
-	xPos=xPosition;
-	yPos=yPosition;
-}
-
-Ray2::Ray2(double direction)
-{
-	dir=direction;
-	xPos=0;
-	yPos=0;
-}
-
-Ray2 Ray2::operator-()const
-{
-	return Ray2(-dir,xPos,yPos);
-}
-
-bool Ray2::operator==(const Ray2& compareTo)
-{
-	return dir==compareTo.dir && xPos==compareTo.xPos && yPos==compareTo.yPos;
-}
-
-bool Ray2::operator!=(const Ray2& compareTo)
-{
-	return !operator==(compareTo);
-}
