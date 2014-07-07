@@ -1,5 +1,3 @@
-
-/*
 # MINX
 
 Copyright (c) 2013-2014 Liam Middlebrook, Benjamin Pylko
@@ -16,57 +14,11 @@ freely, subject to the following restrictions:
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
 > appreciated but is not required.
->
+> 
 > 2\. Altered source versions must be plainly marked as such, and must not be
 > misrepresented as being the original software.
->
+> 
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "Color.h"
-using namespace MINX::Graphics;
 
-Color::Color()
-{
-	R = 255.0;
-	B = 255.0;
-	G = 255.0;
-	A = 255.0;
-}
-
-Color::Color(double r, double g, double b, double a)
-{
-	R=r;
-	G=g;
-	B=b;
-	A=a;
-}
-
-Color::Color(double r, double g, double b)
-{
-	R=r;
-	G=g;
-	B=b;
-	A=255.0;
-}
-bool Color::operator==(const Color& compareTo)
-{
-	return R == compareTo.R && G == compareTo.G && B == compareTo.B && A == compareTo.A;
-}
-bool Color::operator!=(const Color& compareTo)
-{
-	return !operator==(compareTo);
-}
-Color* Color::operator*(const double& scale)
-{
-	return new Color(R*scale,G*scale,B*scale,A*scale);
-}
-Color* Color::operator*=(const double& scale)
-{
-	R*=scale;
-	G*=scale;
-	B*=scale;
-	A*=scale;
-	return this;
-}
