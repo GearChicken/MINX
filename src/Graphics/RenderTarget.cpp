@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -24,7 +23,6 @@ freely, subject to the following restrictions:
 > distribution.
 >
         */
-
 #include "RenderTarget.h"
 
 using namespace MINX;
