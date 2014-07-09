@@ -64,12 +64,60 @@ namespace MINX
 			/** Tests inequality between two Colors
 			 */
 			bool operator!=(const Color& compareTo);
-			/** Multiplies a color by a scale.
+			/** Tests if a color is lighter than another Color
 			 */
-			Color* operator*(const double& scale);
-			/** Multiplies a color by a scale.
+			bool operator>(const Color& compareTo);
+			/** Tests if a color is lighter than or the same as another Color
 			 */
-			Color* operator*=(const double& scale);
+			bool operator>=(const Color& compareTo);
+			/** Tests if a Color is darker than another Color
+			 */
+			bool operator<(const Color& compareTo);
+			/** Tests if a Color is darker than or the same as another Color
+			 */
+			bool operator<=(const Color& compareTo);
+			/** Inverts a Color
+			 */
+			Color operator!()const;
+			/** Adds 2 Colors
+			 */
+			Color operator+(const Color& addTo);
+			/** Adds 2 Colors
+			 */
+			Color operator+=(const Color& addTo);
+			/** Subtracts a color from another color
+			 */
+			Color operator-(const Color& subtract);
+			/** Subtracts a color from another color
+			 */
+			Color operator-=(const Color& subtract);
+			/** Multiplies 2 colors
+			 */
+			Color operator*(const Color& multiplyBy);
+			/** Multiplies 2 colors
+			 */
+			Color operator*=(const Color& multiplyBy);
+			/** Divides a color by another color
+			 */
+			Color operator/(const Color& divideBy);
+			/** Divides a color by another color
+			 */
+			Color operator/=(const Color& divideBy);
+			/** Cross multiplies 2 colors
+			 */
+			Color Cross(const Color& crossWith);
+			/** Multiplies a color by a scale
+			 */
+			Color operator*(const double& scale);
+			/** Multiplies a color by a scale
+			 */
+			Color operator*=(const double& scale);
+			/** Divides a color by a scale
+			 */
+			Color operator/(const double& scale);
+			/** Divides a color by a scale
+			 */
+			Color operator/=(const double& scale);
 			/** \defgroup Named Colors
 			 * @{
 			 */

@@ -25,8 +25,9 @@ freely, subject to the following restrictions:
 >
         */
 #include "Color.h"
+#include "../MathHelper.h"
+using namespace MINX::Math;
 using namespace MINX::Graphics;
-
 Color::Color()
 {
 	R = 255.0;
@@ -54,21 +55,118 @@ bool Color::operator==(const Color& compareTo)
 {
 	return R == compareTo.R && G == compareTo.G && B == compareTo.B && A == compareTo.A;
 }
+
 bool Color::operator!=(const Color& compareTo)
 {
 	return !operator==(compareTo);
 }
-Color* Color::operator*(const double& scale)
+
+bool Color::operator>(const Color& c)
 {
-	return new Color(R*scale,G*scale,B*scale,A*scale);
+	return R + G + B > c.R + c.G + c.B;
 }
-Color* Color::operator*=(const double& scale)
+
+bool Color::operator>=(const Color& c)
 {
-	R*=scale;
-	G*=scale;
-	B*=scale;
-	A*=scale;
-	return this;
+	return R + G + B >= c.R + c.G + c.B;
+}
+
+bool Color::operator<(const Color& c)
+{
+	return R + G + B < c.R + c.G + c.B;
+}
+
+bool Color::operator<=(const Color& c)
+{
+	return R + G + B <= c.R + c.G + c.B;
+}
+
+Color Color::operator!()const
+{
+	return Color(255-R,255-G,255-B);
+}
+
+Color Color::operator+(const Color& c)
+{
+	return Color(min(R+c.R,255),min(G+c.G,255),min(B+c.B,255));
+}
+
+Color Color::operator+=(const Color& c)
+{
+	R=min(R+c.R,255);
+	G=min(G+c.G,255);
+	B=min(B+c.B,255);
+	return *this;
+}
+
+Color Color::operator-(const Color& c)
+{
+	return Color(max(R-c.R,0),min(G-c.G,0),min(B-c.B,0));
+}
+
+Color Color::operator-=(const Color& c)
+{
+	R=max(R-c.R,0);
+	G=max(G-c.G,0);
+	B=max(B-c.B,0);
+	return *this;
+}
+
+Color Color::operator*(const Color& c)
+{
+	return Color(min(R*c.R,255),min(G*c.G,255),min(B*c.B,255));
+}
+
+Color Color::operator*=(const Color& c)
+{
+	R=min(R*c.R,255);
+	G=min(G*c.G,255);
+	B=min(B*c.B,255);
+	return *this;
+}
+
+Color Color::operator/(const Color& c)
+{
+	return Color(R/c.R,G/c.G,B/c.B);
+}
+
+Color Color::operator/=(const Color& c)
+{
+	R/=c.R;
+	G/=c.G;
+	B/=c.B;
+	return *this;
+}
+
+Color Color::Cross(const Color& c)
+{
+	return Color(min(max(G*c.B-B*c.G,0),255),min(max(R*c.B-B*c.R,0),255),min(max(R*c.G-G*c.R,0),255));
+}
+
+Color Color::operator*(const double& scale)
+{
+	return Color(min(R*scale,255),min(G*scale,255),min(B*scale,255));
+}
+
+Color Color::operator*=(const double& scale)
+{
+	R=min(R*scale,255);
+	G=min(G*scale,255);
+	B=min(B*scale,255);
+	return *this;
+}
+
+Color Color::operator/(const double& scale)
+{
+	return Color(R/scale,G/scale,B/scale);
+}
+
+Color Color::operator/=(const double& scale)
+{
+	R/=scale;
+	G/=scale;
+	B/=scale;
+	return *this;
 }
 
 Color Color::TransparentBlack = Color(0,0,0,0);
