@@ -580,7 +580,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotationAngle, Color tintColor, Rectangle sourceRect)
@@ -630,7 +630,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
@@ -738,7 +738,7 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tintColor, Rectangle sourceRect)
@@ -774,7 +774,7 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 
 }
 
@@ -824,7 +824,7 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 
 }
 
