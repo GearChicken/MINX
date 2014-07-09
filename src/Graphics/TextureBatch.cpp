@@ -231,14 +231,15 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRe
 	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+	
+    //Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
 	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
 
 	//Add Tint
 	currentBatch->AddTint(Color());
@@ -328,14 +329,15 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+
+    //Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
 	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
 
 	//Add Tint
 	currentBatch->AddTint(Color());
@@ -419,15 +421,16 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
-	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
-	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
-	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
+	//Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
+	//Top Right
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
+	//Bottom Right
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
+	//Bottom Left
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
+	
 	//Add Tint
 	currentBatch->AddTint(Color());
 }
@@ -521,14 +524,15 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+
+    //Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
 	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
 
 	//Add Tint
 	currentBatch->AddTint(Color());
@@ -580,7 +584,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, float scaleY, float rotationAngle, Color tintColor, Rectangle sourceRect)
@@ -620,17 +624,18 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	
 	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
 	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
@@ -692,14 +697,15 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Rectangle
 	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
 	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
 	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-	//Top Left
-	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+
+    //Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
-	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
 	//Bottom Right
-	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
-	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
 
 	//Add Tint
 	currentBatch->AddTint(Color());
@@ -738,7 +744,7 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
 
 	//Add Tint
-	currentBatch->AddTint(Color());
+	currentBatch->AddTint(tintColor);
 }
 
 void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tintColor, Rectangle sourceRect)
@@ -758,7 +764,24 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 		currentBatch->tintPoints = std::vector<GLfloat>();
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
-	}	currentBatch->AddTint(Color());
+	}
+
+	glm::vec4 tl = transformMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
+	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
+	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+
+    //Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
+	//Top Right
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
+	//Bottom Right
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
+	//Bottom Left
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
+
+	//Add Tint
+	currentBatch->AddTint(tintColor);
 
 }
 
@@ -792,7 +815,23 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 		currentBatch->tintPoints = std::vector<GLfloat>();
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
-	}	currentBatch->AddTint(Color());
+	}
+
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	//Top Left
+	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
+	//Top Right
+	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2(1,0));
+	//Bottom Right
+	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2(1,1));
+	//Bottom Left
+	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(0, 1));
+
+	//Add Tint
+	currentBatch->AddTint(tintColor);
 
 }
 

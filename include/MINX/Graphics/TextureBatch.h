@@ -229,6 +229,5 @@ namespace MINX
 		};
 	}
 }
-
 #include "../Game.h"
 #endif
