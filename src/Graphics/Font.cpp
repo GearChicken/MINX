@@ -61,7 +61,7 @@ void Font::RenderText(std::string text, float x, float y, int fontSize)
 
 void Font::RenderText(std::string text, float x, float y, int fontSize, Color color)
 {
-	RenderText(text.c_str(), x, y, fontSize);
+	RenderText(text.c_str(), x, y, fontSize, color);
 }
 
 void Font::RenderText(const char* text, float x, float y, int fontSize)
