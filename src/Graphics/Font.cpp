@@ -73,7 +73,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 {
 	glUseProgram(shaderProgram);
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
-	GLfloat color[] = {fontColor.R/255.f, fontColor.G/255.f, fontColor.B/255.f, fontColor.A/255.f};
+	GLfloat color[] = {GLfloat(fontColor.R)/255.f, GLfloat(fontColor.G)/255.f, GLfloat(fontColor.B)/255.f, GLfloat(fontColor.A)/255.f};
 	glUniform4fv(uniform_color, 1, color); 
 	glyphSlot = fontFace->glyph;
 	const char *p;
