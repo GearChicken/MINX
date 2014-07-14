@@ -118,7 +118,7 @@ namespace MINX
 			/** Divides a color by a scale
 			 */
 			Color operator/=(const double& scale);
-			/** \defgroup Named Colors
+			/** \defgroup colors Named Colors
 			 * @{
 			 */
 			/** \defgroup Transparency
@@ -127,7 +127,7 @@ namespace MINX
 			static Color TransparentBlack;
 			static Color TransparentWhite;
 			/** @}*/
-			/** \defgroup Shades of Pink
+			/** \defgroup Pink Shades of Pink
 			 * @{
 			 */
 			static Color Pink;
@@ -137,7 +137,7 @@ namespace MINX
 			static Color PaleVioletRed;
 			static Color MediumVioletRed;
 			/** @}*/
-			/** \defgroup Shades of Red
+			/** \defgroup Red Shades of Red
 			 * @{
 			 */
 			static Color LightSalmon;
@@ -150,7 +150,7 @@ namespace MINX
 			static Color DarkRed;
 			static Color Red;
 			/** @}*/
-			/** \defgroup Shades of Orange
+			/** \defgroup Orange Shades of Orange
 			 * @{
 			 */
 			static Color OrangeRed;
@@ -159,7 +159,7 @@ namespace MINX
 			static Color DarkOrange;
 			static Color Orange;
 			/** @}*/
-			/** \defgroup Shades of Yellow
+			/** \defgroup Yellow Shades of Yellow
 			 * @{
 			 */
 			static Color Yellow;
@@ -174,7 +174,7 @@ namespace MINX
 			static Color DarkKhaki;
 			static Color Gold;
 			/** @}*/
-			/** \defgroup Shades of Brown
+			/** \defgroup Brown Shades of Brown
 			 * @{
 			 */
 			static Color Cornsilk;
@@ -195,7 +195,7 @@ namespace MINX
 			static Color Brown;
 			static Color Maroon;
 			/** @}*/
-			/** \defgroup Shades of Green
+			/** \defgroup Green Shades of Green
 			 * @{
 			 */
 			static Color DarkOliveGreen;
@@ -219,7 +219,7 @@ namespace MINX
 			static Color WebGreen;
 			static Color DarkGreen;
 			/** @}*/
-			/** \defgroup Shades of Cyan
+			/** \defgroup Cyan Shades of Cyan
 			 * @{
 			 */
 			static Color MediumAquamarine;
@@ -235,7 +235,7 @@ namespace MINX
 			static Color DarkCyan;
 			static Color Teal;
 			/** @}*/
-			/** \defgroup Shades of Blue
+			/** \defgroup Blue Shades of Blue
 			 * @{
 			 */
 			static Color LightSteelBlue;
@@ -254,7 +254,7 @@ namespace MINX
 			static Color Navy;
 			static Color MidnightBlue;
 			/** @}*/
-			/** \defgroup Shades of Purple
+			/** \defgroup Purple Shades of Purple
 			 * @{
 			 */
 			static Color Lavender;
@@ -275,7 +275,7 @@ namespace MINX
 			static Color SlateBlue;
 			static Color MediumSlateBlue;
 			/** @}*/
-			/** \defgroup Shades of White
+			/** \defgroup White Shades of White
 			 * @{
 			 */
 			static Color White;
@@ -296,7 +296,7 @@ namespace MINX
 			static Color LavenderBlush;
 			static Color MistyRose;
 			/** @}*/
-			/** \defgroup Shades of Gray
+			/** \defgroup Gray Shades of Gray
 			 * @{
 			 */
 			static Color Gainsboro;
