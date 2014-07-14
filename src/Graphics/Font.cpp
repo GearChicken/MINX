@@ -87,13 +87,13 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 
 	if(Game::activeRenderTarget == NULL)
 	{
-		renderTargetWidth = GameWindow::GetWidth();
-		renderTargetHeight = GameWindow::GetHeight();
+		renderTargetWidth = (float)GameWindow::GetWidth();
+		renderTargetHeight = (float)GameWindow::GetHeight();
 	}
 	else
 	{
-		renderTargetWidth = Game::activeRenderTarget->GetWidth();
-		renderTargetHeight = Game::activeRenderTarget->GetHeight();
+		renderTargetWidth = (float)Game::activeRenderTarget->GetWidth();
+		renderTargetHeight = (float)Game::activeRenderTarget->GetHeight();
 	}
 
 	float sx = 2.0f / renderTargetWidth;
@@ -107,7 +107,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 	//float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
 	//textWidthGLCoords = textSize.X;
-	textHeightGLCoords = textSize.Y;
+	textHeightGLCoords = (float)textSize.Y;
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
 	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	/*
@@ -195,7 +195,7 @@ Vector2 Font::TextSize(const char *text, int fontSize)
 		
 		glyphSlot = fontFace->glyph;
 		textWidthGLCoords += glyphSlot->bitmap.width+glyphSlot->bitmap_left;// * sx;
-		textHeightGLCoords = max(glyphSlot->bitmap.rows+glyphSlot->bitmap_top, textHeightGLCoords);
+		textHeightGLCoords = (float)max(glyphSlot->bitmap.rows+glyphSlot->bitmap_top, textHeightGLCoords);
 	}
 
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
@@ -216,7 +216,7 @@ float Font::getMaxHeightGap(const char *text, int fontSize)
 		}
 		
 		glyphSlot = fontFace->glyph;
-		heightGap = max(glyphSlot->bitmap_top, heightGap);
+		heightGap = (float)max(glyphSlot->bitmap_top, heightGap);
 	}
 
 	//std::cout << textWidthGLCoords << " Text width" << std::endl;
