@@ -43,7 +43,7 @@ void GameTime::Update()
 }
 long GameTime::GetElapsedMillis()
 {
-	return totalTime * 1000;
+	return (long)(totalTime * 1000.0);
 }
 
 double GameTime::GetElapsedSeconds()
@@ -53,7 +53,7 @@ double GameTime::GetElapsedSeconds()
 
 float GameTime::GetElapsedSecondsF()
 {
-	return GetElapsedSeconds() > std::numeric_limits<float>::epsilon() ? GetElapsedSeconds() : std::numeric_limits<float>::epsilon();;
+	return (float)GetElapsedSeconds() > std::numeric_limits<float>::epsilon() ? (float)GetElapsedSeconds() : std::numeric_limits<float>::epsilon();;
 }
 
 double GameTime::GetDeltaTimeSeconds()
@@ -63,10 +63,10 @@ double GameTime::GetDeltaTimeSeconds()
 
 float GameTime::GetDeltaTimeSecondsF()
 {
-	return GetDeltaTimeSeconds() > std::numeric_limits<float>::epsilon() ? GetDeltaTimeSeconds() : std::numeric_limits<float>::epsilon();
+	return (float)GetDeltaTimeSeconds() > std::numeric_limits<float>::epsilon() ? (float)GetDeltaTimeSeconds() : std::numeric_limits<float>::epsilon();
 }
 
 long GameTime::GetDeltaTimeMillis()
 {
-	return deltaTime * 1000;
+	return (long)(deltaTime * 1000.0);
 }
