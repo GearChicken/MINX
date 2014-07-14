@@ -60,7 +60,7 @@ void GamePad::Update(GameTime * gametime)
 		
 		for(int id = 0; id < numButtons; id++)
 		{
-			(*buttons)[id].UpdateState(buttonValues[id]);
+			(*buttons)[id].UpdateState(!buttonValues[id]);
 		}
 		
 		for(int id = 0; id < numAxes; id++)
