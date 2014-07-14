@@ -134,11 +134,11 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 		}
 
 
-		if(!tex[*p])
+		if(!tex[int(*p)])
 		{
 			glActiveTexture(GL_TEXTURE0);
-			glGenTextures(1, &(tex[*p]));
-			glBindTexture(GL_TEXTURE_2D, tex[*p]);
+			glGenTextures(1, &(tex[int(*p)]));
+			glBindTexture(GL_TEXTURE_2D, tex[int(*p)]);
 			glUniform1i(uniform_tex, 0);
 
 			//1 byte alignmeny
@@ -155,7 +155,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_ALPHA, glyphSlot->bitmap.width, glyphSlot->bitmap.rows, 0, GL_ALPHA, GL_UNSIGNED_BYTE, glyphSlot->bitmap.buffer);
 
 		}
-		glBindTexture(GL_TEXTURE_2D, tex[*p]);
+		glBindTexture(GL_TEXTURE_2D, tex[int(*p)]);
 		float x2 = x + glyphSlot->bitmap_left * sx;
 		float y2 = y + glyphSlot->bitmap_top * sy + heightGap*sy;
 		float w = glyphSlot->bitmap.width * sx;
