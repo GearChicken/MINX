@@ -91,13 +91,13 @@ void TextureBatch::DrawLoadedTextures()
 
 	if(Game::activeRenderTarget == NULL)
 	{
-		renderTargetWidth = GameWindow::GetWidth();
-		renderTargetHeight = GameWindow::GetHeight();
+		renderTargetWidth = (float)GameWindow::GetWidth();
+		renderTargetHeight = (float)GameWindow::GetHeight();
 	}
 	else
 	{
-		renderTargetWidth = Game::activeRenderTarget->GetWidth();
-		renderTargetHeight = Game::activeRenderTarget->GetHeight();
+		renderTargetWidth = (float)Game::activeRenderTarget->GetWidth();
+		renderTargetHeight = (float)Game::activeRenderTarget->GetHeight();
 	}
 
 
@@ -837,22 +837,22 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 
 void BatchData::AddPoint(Vector2 position, Vector2 texCoord)
 {
-	posPoints.push_back(position.X);
-	posPoints.push_back(position.Y);
-	posPoints.push_back(0);
+	posPoints.push_back((float)position.X);
+	posPoints.push_back((float)position.Y);
+	posPoints.push_back(0.0f);
 
-	texPoints.push_back(texCoord.X);
-	texPoints.push_back(texCoord.Y);
+	texPoints.push_back((float)texCoord.X);
+	texPoints.push_back((float)texCoord.Y);
 }
 
 void BatchData::AddTint(Color tint)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		tintPoints.push_back(tint.R / 255.0f);
-		tintPoints.push_back(tint.G / 255.0f);
-		tintPoints.push_back(tint.B / 255.0f);
-		tintPoints.push_back(tint.A / 255.0f);
+		tintPoints.push_back((float)tint.R / 255.0f);
+		tintPoints.push_back((float)tint.G / 255.0f);
+		tintPoints.push_back((float)tint.B / 255.0f);
+		tintPoints.push_back((float)tint.A / 255.0f);
 	}
 	spriteCount += 1;
 }
