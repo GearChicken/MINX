@@ -2,6 +2,7 @@
 #define API_H_
 
 #ifdef _WIN32
+#pragma warning( disable : 4251 )
 #ifdef _WINDLL
 #define MINX_API __declspec(dllexport)
 #else

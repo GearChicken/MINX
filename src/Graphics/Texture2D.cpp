@@ -123,8 +123,8 @@ void Texture2D::SavetoPNG(char* filename)
 {
 	float renderTargetWidth, renderTargetHeight;
 	
-	renderTargetWidth = width;
-	renderTargetHeight = height;
+	renderTargetWidth = (float)width;
+	renderTargetHeight = (float)height;
 	
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -138,7 +138,7 @@ void Texture2D::SavetoPNG(char* filename)
 	
 	glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
 	FIBITMAP* bitmap;
-	bitmap = FreeImage_ConvertFromRawBits(pixels, renderTargetWidth, renderTargetHeight, 4*renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
+	bitmap = FreeImage_ConvertFromRawBits(pixels, (int)renderTargetWidth, (int)renderTargetHeight, 4*(int)renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
 	FreeImage_Save(FREE_IMAGE_FORMAT::FIF_PNG, bitmap, filename);
 	free(pixels);
 }
