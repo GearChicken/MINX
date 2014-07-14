@@ -182,7 +182,7 @@ void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 			glViewport(0,0, target->width, target->height);
 		}
 	}
-	GLfloat color[] = {clearColor.R/255.0, clearColor.G/255.0, clearColor.B/255.0, clearColor.A/255.0};
+	GLfloat color[] = {clearColor.R/255.f, clearColor.G/255.f, clearColor.B/255.f, clearColor.A/255.f};
 	glClearColor(color[0], color[1], color[2], color[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 
