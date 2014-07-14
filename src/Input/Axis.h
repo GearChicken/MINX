@@ -40,19 +40,19 @@ namespace MINX
 		{
 			/** Sets the value of the axis to val
 			 */
-			void SetValue(bool val);
+			void SetValue(double val);
 			
 			/** Sets the value of the axis to val
 			 */
-			inline void UpdateValue(bool val){SetValue(val);}
+			inline void UpdateValue(double val){SetValue(val);}
 			
 			/** Gets the value of the axis
 			 */
-			float GetValue();
+			double GetValue();
 			
 			/** Gets the previous value of the axis
 			 */
-			float GetPrevValue();
+			double GetPrevValue();
 			private:
 				/** The current value of the axis.
 				 */

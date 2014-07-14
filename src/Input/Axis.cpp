@@ -28,18 +28,18 @@ freely, subject to the following restrictions:
 
 using namespace MINX::Input;
 
-void Axis::SetValue(bool val)
+void Axis::SetValue(double val)
 {
 	prevVal = this->val;
 	this->val = val;
 }
 
-float Axis::GetValue()
+double Axis::GetValue()
 {
 	return val;
 }
 
-float Axis::GetPrevValue()
+double Axis::GetPrevValue()
 {
 	return prevVal;
 }
