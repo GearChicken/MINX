@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,11 +22,12 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef BUTTON_H_
-#define BUTTON_H_
+ */
 
 #include "../API.h"
+
+#ifndef BUTTON_H_
+#define BUTTON_H_
 
 namespace MINX
 {
@@ -65,6 +65,7 @@ namespace MINX
 			/** Returns the button with flipped value.
 			 */
 			Button operator!()const;
+
 			private:
 				/** The current state of the button.
 				 */

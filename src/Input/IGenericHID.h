@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,7 +22,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 #ifndef I_GENERIC_HID_H_
 #define I_GENERIC_HID_H_
 
@@ -31,12 +30,12 @@ freely, subject to the following restrictions:
 
 #include "../GameTime.h"
 #include "../GameComponent.h"
-
-#include <GLFW/glfw3.h>
+#include "../Game.h"
 
 #include "Button.h"
 #include "Axis.h"
-#include "../Game.h"
+
+#include <GLFW/glfw3.h>
 #include <vector>
 
 namespace MINX
@@ -55,15 +54,15 @@ namespace MINX
 				 * @param buttonVectorSize The total number of buttons that the device has.
 				 * @param axisVectorSize The total number of axes that the device has.
 				 */
-				IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize);
+				IGenericHID(Game* game, unsigned int buttonVectorSize, unsigned int axisVectorSize);
 				
 				/** Contains all of the buttons used by the device.
 				 */
-				vector<Button> * buttons;
+				vector<Button>* buttons;
 				
 				/** Contains all of the axes used by the device.
 				 */
-				vector<Axis> * axes;
+				vector<Axis>* axes;
 				
 				/** Returns a Button from the specified index in the button vector.
 				 */

@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,11 +22,12 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef AXIS_H_
-#define AXIS_H_
+ */
 
 #include "../API.h"
+
+#ifndef AXIS_H_
+#define AXIS_H_
 
 namespace MINX
 {
@@ -53,6 +53,7 @@ namespace MINX
 			/** Gets the previous value of the axis
 			 */
 			double GetPrevValue();
+
 			private:
 				/** The current value of the axis.
 				 */
