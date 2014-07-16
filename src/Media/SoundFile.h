@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,57 +22,58 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-
-#ifndef SOUND_FILE_H_
-#define SOUND_FILE_H_
+ */
 
 #include "../API.h"
 
 #include "SFML/Audio.hpp"
 #include <string>
 
+#ifndef SOUNDFILE_H_
+#define SOUNDFILE_H_
+
 namespace MINX
 {
 	namespace Media
 	{
 		/** A class to hold a single sound file
-		*/
+		 */
 		class MINX_API SoundFile
 		{
 		public:
-			/* Load a sound file from the hard disk
-			*	@param fileLocation The path of the file to load.
-			*/
+			/** Load a sound file from the hard disk
+			 *	@param fileLocation The path of the file to load.
+			 */
 			SoundFile(char* fileLocation);
 
-			/* Destroy the sound file safely
-			*/
+			/** Destroy the sound file safely
+			 */
 			~SoundFile();
 
-			/* unload the sound file safely
-			*/
+			/** unload the sound file safely
+			 */
 			void Unload();
 
-			/* Start playback of the sound file
-			*/
+			/** Start playback of the sound file
+			 */
 			void Play();
 
-			/* Pause playback of the sound file
-			*/
+			/** Pause playback of the sound file
+			 */
 			void Pause();
 
-			/* Stop playback of the sound file
-			*/
+			/** Stop playback of the sound file
+			 */
 			void Stop();
 
-			/* Set the Playback volume of the sound file
-			*	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
-			*/
+			/** Set the Playback volume of the sound file
+			 *	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
+			 */
 			void SetVolume(float volume);
+
 		private:
 
-			/* The volume of the sound file
+			/** The volume of the sound file
 			*/
 			double volume;
 

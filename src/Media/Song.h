@@ -23,14 +23,14 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-
-#ifndef SONG_H_
-#define SONG_H_
+ */
 
 #include "../API.h"
 
 #include "SFML/Audio.hpp"
+
+#ifndef SONG_H_
+#define SONG_H_
 
 namespace MINX
 {
@@ -44,36 +44,40 @@ namespace MINX
 			 */
 			Song(char* fileLocation);
 
-			/* Destroy the sound file safely
-			*/
+			/** Destroy the sound file safely
+			 */
 			~Song();
 
-			/* unload the sound file safely
-			*/
+			/** unload the sound file safely
+			 */
 			void Unload();
 
-			/* Start playback of the sound file
-			*/
+			/** Start playback of the sound file
+			 */
 			void Play();
 
-			/* Pause playback of the sound file
-			*/
+			/** Pause playback of the sound file
+			 */
 			void Pause();
 
-			/* Stop playback of the sound file
-			*/
+			/** Stop playback of the sound file
+			 */
 			void Stop();
 
-			/* Set the Playback volume of the sound file
-			*	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
-			*/
+			/** Set the Playback volume of the sound file
+			 * @param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
+			 */
 			void SetVolume(float volume);
 
+			/** Set whether the loaded song should loop
+			 * @param loop Sets the song to loop if true
+			 */
 			void SetLoop(bool loop);
+
 		private:
 
 			/** The volume of the sound file
-			*/
+			 */
 			double volume;
 			
 			/** The internal sfml object

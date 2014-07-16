@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,10 +22,11 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 
 #include "Song.h"
 #include "../MathHelper.h"
+
 #include <string>
 
 using namespace MINX;
@@ -41,6 +41,7 @@ Song::~Song()
 {
 	song.~Music();
 }
+
 void Song::Play()
 {
 	this->song.play();
@@ -55,10 +56,12 @@ void Song::Stop()
 {
 	this->song.stop();
 }
+
 void Song::SetVolume(float volume)
 {
 	this->song.setVolume(volume);
 }
+
 void Song::SetLoop(bool loop)
 {
 	this->song.setLoop(loop);
