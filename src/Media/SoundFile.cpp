@@ -24,8 +24,8 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "SoundFile.hpp"
+#include "../MathHelper.hpp"
 
 using namespace MINX;
 using namespace MINX::Media;

@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
 */
 
-#include "ShaderFactory.h"
+#include "ShaderFactory.hpp"
 
 using namespace MINX;
 using namespace MINX::Graphics;

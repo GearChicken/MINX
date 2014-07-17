@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 > distribution.
 >
  */
-#include "IGenericHID.h"
+#include "IGenericHID.hpp"
 
 using namespace MINX::Input;
 using namespace MINX;

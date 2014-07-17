@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Button.h"
+#include "Button.hpp"
 
 using namespace MINX::Input;
 

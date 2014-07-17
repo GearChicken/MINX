@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
         */
 
-#include "GameWindow.h"
+#include "GameWindow.hpp"
 
 using namespace MINX::Graphics;
 

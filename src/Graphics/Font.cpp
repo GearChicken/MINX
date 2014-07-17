@@ -24,9 +24,9 @@ freely, subject to the following restrictions:
 > distribution.
 >
 */
-#include "Font.h"
-#include "Texture2D.h"
-#include "../MathHelper.h"
+#include "Font.hpp"
+#include "Texture2D.hpp"
+#include "../MathHelper.hpp"
 #include <iostream>
 using namespace MINX;
 using namespace MINX::Math;

@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
  
-#include "SoundPlaylist.h"
+#include "SoundPlaylist.hpp"
 
 using namespace MINX;
 using namespace MINX::Media;

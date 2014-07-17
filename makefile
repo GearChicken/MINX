@@ -43,7 +43,7 @@ endif
 ##### Files
 
 SOURCES = $(wildcard src/*.cpp) $(wildcard src/Graphics/*.cpp) $(wildcard src/Input/*.cpp) $(wildcard src/Media/*.cpp)
-HEADERS = $(wildcard src/*.h) $(wildcard src/Graphics/*.h) $(wildcard src/Input/*.h) $(wildcard src/Media/*.h)
+HEADERS = $(wildcard src/*.hpp) $(wildcard src/Graphics/*.hpp) $(wildcard src/Input/*.hpp) $(wildcard src/Media/*.hpp)
 OBJECTS = $(patsubst src/%.cpp,src/%.o,$(wildcard src/*.cpp)) $(patsubst src/Graphics/%.cpp,src/Graphics/%.o,$(wildcard src/Graphics/*.cpp)) $(patsubst src/Input/%.cpp,src/Input/%.o,$(wildcard src/Input/*.cpp)) $(patsubst src/Media/%.cpp,src/Media/%.o,$(wildcard src/Media/*.cpp))
 
 
@@ -81,10 +81,10 @@ headers:
 	test -d /usr/include/MINX/Input || mkdir -p /usr/include/MINX/Input
 	test -d /usr/include/MINX/Graphics || mkdir -p /usr/include/MINX/Graphics
 	test -d /usr/include/MINX/Media || mkdir -p /usr/include/MINX/Media
-	cp -u -r src/*.h /usr/include/MINX/
-	cp -u -r src/Input/*.h /usr/include/MINX/Input
-	cp -u -r src/Graphics/*.h /usr/include/MINX/Graphics
-	cp -u -r src/Media/*.h /usr/include/MINX/Media
+	cp -u -r src/*.hpp /usr/include/MINX/
+	cp -u -r src/Input/*.hpp /usr/include/MINX/Input
+	cp -u -r src/Graphics/*.hpp /usr/include/MINX/Graphics
+	cp -u -r src/Media/*.hpp /usr/include/MINX/Media
 doxygen:
 	doxygen
 

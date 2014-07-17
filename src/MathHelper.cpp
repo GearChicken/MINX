@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "MathHelper.h"
+#include "MathHelper.hpp"
 
 using namespace MINX;
 

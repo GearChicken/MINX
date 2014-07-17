@@ -24,8 +24,8 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Song.h"
-#include "../MathHelper.h"
+#include "Song.hpp"
+#include "../MathHelper.hpp"
 
 #include <string>
 
