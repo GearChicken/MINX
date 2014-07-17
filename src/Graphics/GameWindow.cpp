@@ -28,8 +28,9 @@ freely, subject to the following restrictions:
 #include "GameWindow.h"
 
 using namespace MINX::Graphics;
-int GameWindow::width=0;
-int GameWindow::height=0;
+
+int GameWindow::width = 0;
+int GameWindow::height = 0;
 GLFWwindow* GameWindow::window = NULL;
 bool GameWindow::sizeLocked = false;
 

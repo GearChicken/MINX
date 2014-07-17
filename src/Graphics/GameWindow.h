@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,7 +22,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
 	
 #ifndef GAME_WINDOW_H_
 #define GAME_WINDOW_H_
