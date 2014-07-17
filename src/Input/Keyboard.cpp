@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Keyboard.h"
+#include "Keyboard.hpp"
 
 using namespace MINX::Input;
 using namespace MINX;

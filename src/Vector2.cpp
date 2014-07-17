@@ -24,8 +24,8 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Vector2.h"
-#include "MathHelper.h"
+#include "Vector2.hpp"
+#include "MathHelper.hpp"
 
 #include <iostream>
 

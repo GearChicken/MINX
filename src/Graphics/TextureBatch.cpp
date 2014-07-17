@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
 */
 
-#include "TextureBatch.h"
+#include "TextureBatch.hpp"
 
 using namespace MINX;
 using namespace MINX::Graphics;

@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
 */
 
-#include "RenderTarget.h"
+#include "RenderTarget.hpp"
 
 using namespace MINX;
 using namespace MINX::Graphics;

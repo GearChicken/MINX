@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "GamePad.h"
+#include "GamePad.hpp"
 
 using namespace MINX;
 using namespace MINX::Input;

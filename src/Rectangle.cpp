@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 #include <math.h>
 
 using namespace MINX;

@@ -25,8 +25,8 @@ freely, subject to the following restrictions:
 >
 */
 
-#include "Color.h"
-#include "../MathHelper.h"
+#include "Color.hpp"
+#include "../MathHelper.hpp"
 
 using namespace MINX::Math;
 using namespace MINX::Graphics;

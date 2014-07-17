@@ -25,7 +25,7 @@ freely, subject to the following restrictions:
 >
 */
 
-#include "Texture2D.h"
+#include "Texture2D.hpp"
 #include <iostream>
 
 using namespace MINX::Graphics;

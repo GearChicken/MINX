@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
         
-#include "GameTime.h"
+#include "GameTime.hpp"
 
 using namespace MINX;
 

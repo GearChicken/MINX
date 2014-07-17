@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Axis.h"
+#include "Axis.hpp"
 
 using namespace MINX::Input;
 

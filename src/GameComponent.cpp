@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
         */
         
-#include "GameComponent.h"
+#include "GameComponent.hpp"
 #include <algorithm>
 
 using namespace MINX;

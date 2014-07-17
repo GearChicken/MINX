@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "Game.h"
+#include "Game.hpp"
 #include <iostream>
 #include <thread>
 #if defined(LINUX) || defined(OSX)

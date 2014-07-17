@@ -24,7 +24,7 @@ freely, subject to the following restrictions:
 >
  */
  
-#include "Mouse.h"
+#include "Mouse.hpp"
 
 using namespace MINX;
 using namespace MINX::Input;
