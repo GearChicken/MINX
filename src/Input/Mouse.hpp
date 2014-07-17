@@ -64,10 +64,12 @@ namespace MINX
 		{
 			public:
 				/** Calls the IGenericHID constructor
+				 * @param game A pointer to the Game to attach to
 				 */
 				Mouse(Game* game);
 				
-				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
+				/** Updates the state of the Mouse
+				 * @param gametime The GameTime used to update
 				 */
 				void Update(GameTime* gametime);
 				
@@ -76,7 +78,8 @@ namespace MINX
 				Vector2 GetPosition();
 				
 				/** Gets a button for the state of the mouse button at 'buttonID'
-				 *	@param buttonID The Identifier of the Mouse Button to get the state of
+				 * @param buttonID The Identifier of the Mouse Button to get the state of
+				 * @return The Button
 				 */
 				Button GetMouseButton(unsigned int buttonID);
 		};
