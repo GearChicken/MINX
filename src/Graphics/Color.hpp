@@ -6,7 +6,7 @@ Copyright (c) 2013-2014 Liam Middlebrook, Benjamin Pylko
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
-arising from the use of this software.
+arising from the use of this software
 
 Permission is granted to anyone to use this software for any purpose,
 including commercial applications, and to alter it and redistribute it
@@ -15,13 +15,13 @@ freely, subject to the following restrictions:
 > 1\. The origin of this software must not be misrepresented; you must not
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
-> appreciated but is not required.
+> appreciated but is not required
 >
 > 2\. Altered source versions must be plainly marked as such, and must not be
-> misrepresented as being the original software.
+> misrepresented as being the original software
 >
 > 3\. This notice may not be removed or altered from any source
-> distribution.
+> distribution
 >
 */
 
@@ -34,23 +34,23 @@ namespace MINX
 {
 	namespace Graphics
 	{
-		/** A struct representing a color.
+		/** A struct representing a color
 		 */
 		struct MINX_API Color
 		{
-			/** The red component of the color.
+			/** The red component of the color
 			 */
 			double R;
 
-			/** The green component of the color.
+			/** The green component of the color
 			 */
 			double G;
 
-			/** The blue component of the color.
+			/** The blue component of the color
 			 */
 			double B;
 
-			/** The alpha component of the color.
+			/** The alpha component of the color
 			 */
 			double A;
 
@@ -58,15 +58,15 @@ namespace MINX
 			 */
 			Color();
 
-			/** Constructs a color with the given red, green, blue, and alpha values.
+			/** Constructs a color with the given red, green, blue, and alpha values
+			 * @param r The red value of the color
+			 * @param g The green value of the color
+			 * @param b The blue value of the color
+			 * @param a The alpha (opacity) value of the color, defaults to 255.0 (opaque)
 			 */
-			Color(double r, double g, double b, double a);
+			Color(double r, double g, double b, double a = 255.0);
 
-			/** Constructs a color with the given red, green, and blue values.
-			 */
-			Color(double r, double g, double b);
-
-			/** Tests equality between two Colors.
+			/** Tests equality between two Colors
 			 */
 			bool operator==(const Color& compareTo);
 
