@@ -69,10 +69,11 @@ void Game::Run()
 		std::cout << "Game Running!\n";
 	#endif
 
+	isRunning = true;
+
 	this->Initialize();
 	this->LoadContent();
 
-	isRunning = true;
 	thread updateThread = thread(doUpdate, this, this->gameTime);
 	updateThread.detach();
 
