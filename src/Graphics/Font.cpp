@@ -23,7 +23,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
 #include "Font.h"
 #include "Texture2D.h"
 #include "../MathHelper.h"
@@ -31,22 +31,26 @@ freely, subject to the following restrictions:
 using namespace MINX;
 using namespace MINX::Math;
 using namespace MINX::Graphics;
+
 Font::Font(Game* gameHandle, char* fileLocation, GLuint shaderProgram)
 {
 	this->library = gameHandle->freeTypeLibrary;
 	this->shaderProgram = shaderProgram;
 
-        std::cout << "Loading Font: " << fileLocation << std::endl;
-	if( FT_New_Face(library, fileLocation, 0, &fontFace) )
+	std::cout << "Loading Font: " << fileLocation << std::endl;
+	if(FT_New_Face(library, fileLocation, 0, &fontFace))
 	{
 		std::cout << "ERROR:\nFont: " << fileLocation << " failed to load!" << std::endl;
 	}
+
 	FT_Set_Pixel_Sizes(fontFace, 0, 48);
-	//FT_Set_Char_Size(fontFace, 0, 16*64, 96, 96);
+
 	attribute_coord = glGetAttribLocation(shaderProgram, "coord");
 	uniform_tex = glGetUniformLocation(shaderProgram, "tex");
 	uniform_color = glGetUniformLocation(shaderProgram, "color");
+
 	glGenBuffers(1, &vertexBuffer);
+
 	for (int i = 0; i < 256; i++)
 	{
 		tex[i] = 0;
@@ -72,9 +76,12 @@ void Font::RenderText(const char* text, float x, float y, int fontSize)
 void Font::RenderText(const char* text, float x, float y, int fontSize, Color fontColor)
 {
 	glUseProgram(shaderProgram);
+
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+
 	GLfloat color[] = {GLfloat(fontColor.R)/255.f, GLfloat(fontColor.G)/255.f, GLfloat(fontColor.B)/255.f, GLfloat(fontColor.A)/255.f};
 	glUniform4fv(uniform_color, 1, color); 
+
 	glyphSlot = fontFace->glyph;
 	const char *p;
 
@@ -99,21 +106,17 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 	float sx = 2.0f / renderTargetWidth;
 	float sy = 2.0f / renderTargetHeight;
 
-	
+
 	glEnableVertexAttribArray(attribute_coord);
 	glBindVertexArray(attribute_coord);
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 	glVertexAttribPointer(attribute_coord, 4, GL_FLOAT, GL_FALSE, 0 , 0);
-	//float textWidthGLCoords = 0.0f;
+
 	float textHeightGLCoords = 0.0f;
-	//textWidthGLCoords = textSize.X;
+
 	textHeightGLCoords = (float)textSize.Y;
-	//std::cout << textWidthGLCoords << " Text width" << std::endl;
-	//std::cout << textHeightGLCoords << " Text height" << std::endl;
-	/*
-	x += 0 - textWidthGLCoords;
-	y += 1 - textHeightGLCoords;
-	*/
+
+
 	glm::mat4 modelviewMatrix;
 	glm::mat4 projectionMatrix;
 	projectionMatrix = glm::ortho(0.0f, renderTargetWidth, renderTargetHeight, 0.0f);
@@ -123,16 +126,12 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 	x = modelviewMatrix[3][0];
 	y = modelviewMatrix[3][1];
 
-	//std::cout << x << " x" << std::endl;
-	//std::cout << y << " y" << std::endl;
-
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 		{
 			continue;
 		}
-
 
 		if(!tex[int(*p)])
 		{
@@ -141,7 +140,7 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 			glBindTexture(GL_TEXTURE_2D, tex[int(*p)]);
 			glUniform1i(uniform_tex, 0);
 
-			//1 byte alignmeny
+			//1 byte alignment
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 			//clamp edges
@@ -162,7 +161,8 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 		float h = glyphSlot->bitmap.rows * sy;
 
 
-		GLfloat box[4][4] = {
+		GLfloat box[4][4] =
+		{
 			{x2,     y2    , 0, 0},
 			{x2 + w, y2    , 1, 0},
 			{x2,     y2 - h, 0, 1},
@@ -178,49 +178,48 @@ void Font::RenderText(const char* text, float x, float y, int fontSize, Color fo
 	}
 
 	//glDeleteTextures(1, &(tex[*p]));
-	
+
 }
 Vector2 Font::TextSize(const char *text, int fontSize)
 {
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+
 	float textWidthGLCoords = 0.0f;
 	float textHeightGLCoords = 0.0f;
-	const char *p;
+
+	const char* p;
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 		{
 			continue;
 		}
-		
+
 		glyphSlot = fontFace->glyph;
-		textWidthGLCoords += glyphSlot->bitmap.width+glyphSlot->bitmap_left;// * sx;
+		textWidthGLCoords += glyphSlot->bitmap.width+glyphSlot->bitmap_left;
 		textHeightGLCoords = (float)max(glyphSlot->bitmap.rows+glyphSlot->bitmap_top, textHeightGLCoords);
 	}
 
-	//std::cout << textWidthGLCoords << " Text width" << std::endl;
-	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	return Vector2(textWidthGLCoords, textHeightGLCoords);
 }
 
 float Font::getMaxHeightGap(const char *text, int fontSize)
 {
 	FT_Set_Pixel_Sizes(fontFace, 0, fontSize);
+
 	float heightGap = 0.0f;
-	const char *p;
+
+	const char* p;
 	for(p = text; *p; p++)
 	{
 		if(FT_Load_Char(fontFace, *p, FT_LOAD_RENDER))
 		{
 			continue;
 		}
-		
+
 		glyphSlot = fontFace->glyph;
 		heightGap = (float)max(glyphSlot->bitmap_top, heightGap);
 	}
 
-	//std::cout << textWidthGLCoords << " Text width" << std::endl;
-	//std::cout << textHeightGLCoords << " Text height" << std::endl;
 	return heightGap;
 }
-//http://www.freetype.org/freetype2/docs/tutorial/example1.c
