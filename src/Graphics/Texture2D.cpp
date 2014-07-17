@@ -23,9 +23,11 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #include "Texture2D.h"
 #include <iostream>
+
 using namespace MINX::Graphics;
 using namespace MINX;
 
@@ -34,7 +36,9 @@ Texture2D::Texture2D(char* fileLoc)
 	FIBITMAP* bitmap = FreeImage_Load(
 		FreeImage_GetFileType(fileLoc, 0),
 		fileLoc);
+
 	FIBITMAP* pImage;
+
 	if(!bitmap)
 	{
 		std::cout << "ERROR:\nImage: " << fileLoc << " failed to load!\n"
@@ -64,13 +68,14 @@ Texture2D::Texture2D(char* fileLoc)
 	}
 	else
 	{
-		
+
 		this->width = 1;
 		this->height = 1;
-		
+
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height,
 			0, GL_BGRA, GL_UNSIGNED_BYTE, (void*)NULL);
 	}
+
 	FreeImage_Unload(bitmap);
 	FreeImage_Unload(pImage);
 
@@ -91,13 +96,13 @@ Texture2D::Texture2D(Color* texData, int width, int height)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	//Convert the MINX::Graphics::Colors into GLubytes
-	GLubyte* texelData = new GLubyte[width*height*4];
-	for (int i = 0; i < width*height; ++i)
+	GLubyte* texelData = new GLubyte[width * height * 4];
+	for (int i = 0; i < width * height; ++i)
 	{
-		texelData[4*i+0] = (GLubyte)texData[i].R;
-		texelData[4*i+1] = (GLubyte)texData[i].G;
-		texelData[4*i+2] = (GLubyte)texData[i].B;
-		texelData[4*i+3] = (GLubyte)texData[i].A;
+		texelData[4 * i + 0] = (GLubyte)texData[i].R;
+		texelData[4 * i + 1] = (GLubyte)texData[i].G;
+		texelData[4 * i + 2] = (GLubyte)texData[i].B;
+		texelData[4 * i + 3] = (GLubyte)texData[i].A;
 	}
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
@@ -122,23 +127,24 @@ Texture2D::~Texture2D()
 void Texture2D::SavetoPNG(char* filename)
 {
 	float renderTargetWidth, renderTargetHeight;
-	
+
 	renderTargetWidth = (float)width;
 	renderTargetHeight = (float)height;
-	
+
 	glBindTexture(GL_TEXTURE_2D, texture);
 
 	const size_t bytesPerPixel = 4;	// RGBA
 
 	const size_t imageSizeInBytes = bytesPerPixel * size_t(renderTargetWidth) * size_t(renderTargetHeight);
 	BYTE* pixels = static_cast<BYTE*>(malloc(imageSizeInBytes));
-	
+
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
-	
-	
+
+
 	glGetTexImage(GL_TEXTURE_2D, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
 	FIBITMAP* bitmap;
-	bitmap = FreeImage_ConvertFromRawBits(pixels, (int)renderTargetWidth, (int)renderTargetHeight, 4*(int)renderTargetWidth, 32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
+	bitmap = FreeImage_ConvertFromRawBits(pixels, (int)renderTargetWidth, (int)renderTargetHeight, 4 * (int)renderTargetWidth,
+		32, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK, false);
 	FreeImage_Save(FREE_IMAGE_FORMAT::FIF_PNG, bitmap, filename);
 	free(pixels);
 }
