@@ -22,7 +22,8 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #include "RenderTarget.h"
 
 using namespace MINX;
@@ -32,11 +33,10 @@ RenderTarget::RenderTarget(int width, int height)
 {
 	this->width = width;
 	this->height = height;
+
 	//Generate the FrameBuffer that will hold the Texture
 	glGenFramebuffers(1, &frameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-
-
 
 	glGenTextures(1, &frameBufferTex);
 	glBindTexture(GL_TEXTURE_2D, frameBufferTex);
@@ -54,8 +54,6 @@ RenderTarget::RenderTarget(int width, int height)
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rboDepthStencil);
     
-
-
 	texture = new Texture2D(frameBufferTex, width, height);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
