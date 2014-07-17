@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,7 +22,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
 
 #include "TextureBatch.h"
 
@@ -44,7 +43,7 @@ TextureBatch::TextureBatch(GLuint shaderProgram)
 	glGenBuffers(1, &vertexBuffer);
 	glGenBuffers(1, &tintBuffer);
 
-	/**
+	/*
 	*	Create Pixel Texture
 	*/
 	glActiveTexture( GL_TEXTURE0 );
@@ -72,16 +71,14 @@ void TextureBatch::DrawLoadedTextures()
 {
 	glUseProgram(shaderProgram);
 
-
 	glBindVertexArray(vertexArray);
-
-
 	glEnableVertexAttribArray(posCoord);
 	glEnableVertexAttribArray(texCoord);
-	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-	glVertexAttribPointer(posCoord, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), 0);
-	glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (void**)(3*sizeof(GLfloat)));
 
+	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+
+	glVertexAttribPointer(posCoord, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), 0);
+	glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (void**)(3 * sizeof(GLfloat)));
 
 	glEnableVertexAttribArray(tintCoord);
 	glBindBuffer(GL_ARRAY_BUFFER, tintBuffer);
@@ -102,17 +99,15 @@ void TextureBatch::DrawLoadedTextures()
 
 
 	glm::mat4 projectionMatrix;
-	projectionMatrix = glm::ortho(1.0f, (float)renderTargetWidth-1.0f, (float)renderTargetHeight-1.0f, 1.0f);
+	projectionMatrix = glm::ortho(1.0f, (float)renderTargetWidth - 1.0f, (float)renderTargetHeight - 1.0f, 1.0f);
 
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projectionMatrix"), 1, false, glm::value_ptr(projectionMatrix));
 
 	std::vector<GLfloat> pointData;
 	for (auto batch : batches)
 	{
-		//texturesToDraw[i]->width;
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, batch->texture);
-
 
 		// Calculate total buffer size
 		int bufferSize = batch->posPoints.size() + batch->texPoints.size();
@@ -129,18 +124,9 @@ void TextureBatch::DrawLoadedTextures()
 
 				pointData.push_back(batch->texPoints[spriteID * 8 + p * 2 + 0]);
 				pointData.push_back(batch->texPoints[spriteID * 8 + p * 2 + 1]);
-
-				//std::cout << "X: " << batch->posPoints[spriteID * 4 + p * 3 + 0] << " Y:" << batch->posPoints[spriteID * 4 + p * 3 + 1] << " Z: " << batch->posPoints[spriteID * 4 + p * 3 + 2] << " U: " << batch->texPoints[spriteID * 4 + p * 2 + 0] << " V: " << batch->texPoints[spriteID * 4 + p * 2 + 1] << "\n";
-
 			}
 		}
-		/*
-		for(int i = 0; i < pointData.size(); i +=5)
-		{
-		std::cout << "X: " << pointData[i] << " Y:" << pointData[i+1] << " Z: " << pointData[i+2] << " U: " << pointData[i+3] << " V: " << pointData[i+4] << "\n";
-		}
-		std::cout << std::endl;
-		//*/
+
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * bufferSize, (GLvoid*)&pointData[0], GL_DYNAMIC_DRAW);
 
@@ -164,9 +150,9 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 	glm::mat4 projectionMatrix;
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
-	
-	
-	
+
+
+
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -184,10 +170,11 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 		batches.push_back(currentBatch);
 	}
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -199,7 +186,6 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y)
 
 	//Add Tint
 	currentBatch->AddTint(Color());
-
 }
 
 void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRect)
@@ -207,8 +193,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRe
 	glm::mat4 projectionMatrix;
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
-	
-	
+
+
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
@@ -226,13 +212,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, Rectangle sourceRe
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
-
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	
-    //Top Left
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
+	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
 	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
@@ -251,12 +237,8 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-
-	
-	
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
 	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
@@ -275,11 +257,12 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -300,16 +283,14 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int height = texture->GetHeight();
 
 
-	
-	
+
+
 
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
-
-
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0f));
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
 
@@ -323,14 +304,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-
-    //Top Left
+	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
 	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
@@ -349,14 +329,11 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	
-	
 
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
-
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle, glm::vec3(0.0f, 0.0f, 1.0f));
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
 
@@ -371,11 +348,12 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 		batches.push_back(currentBatch);
 	}
 
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -395,13 +373,10 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-	
-	
-
 	//make new translation matrix
 	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + width/2.0f, y + height / 2.0f, 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle, glm::vec3(0.0f, 0.0f, 1.0f));
 
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
@@ -416,11 +391,11 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
-
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
@@ -430,7 +405,7 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float rotationAngl
 	currentBatch->AddPoint(Vector2(br.x,br.y), Vector2((sourceRect.X + sourceRect.Width) / width, -sourceRect.Y / height));
 	//Bottom Left
 	currentBatch->AddPoint(Vector2(bl.x, bl.y), Vector2(sourceRect.X / width, -sourceRect.Y / height));
-	
+
 	//Add Tint
 	currentBatch->AddTint(Color());
 }
@@ -441,18 +416,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-
-	
-	
-
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0.0f, 0.0f, 1.0f));
 
 	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0f));
 
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
@@ -468,10 +438,11 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		batches.push_back(currentBatch);
 	}
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -491,15 +462,10 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-
-	
-	
-
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0.0f, 0.0f, 1.0f));
 
 
 	//scale the coordinates up by the specified amounts
@@ -519,13 +485,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		batches.push_back(currentBatch);
 	}
 
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-
-    //Top Left
+	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
 	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
@@ -544,17 +510,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-
-	
-	
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0.0f, 0.0f, 1.0f));
 
 	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0f));
 
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
@@ -569,11 +531,12 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -593,18 +556,13 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 	int width = texture->GetWidth();
 	int height = texture->GetHeight();
 
-
-	
-	
-
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width*scaleX/2.0f), y + abs(height*scaleY / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(x + abs(width * scaleX/2.0f), y + abs(height * scaleY/2.0f), 1));
 
-	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0,0,1));
+	projectionMatrix = glm::rotate(projectionMatrix, rotationAngle,glm::vec3(0.0f, 0.0f, 1.0f));
 
 	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0));
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(scaleX, scaleY, 1.0f));
 
 
 	BatchData* currentBatch = GetBatchForTexture(texture->texture);
@@ -619,12 +577,12 @@ void TextureBatch::Draw(Texture2D* texture, float x, float y, float scaleX, floa
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
-
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
@@ -657,10 +615,11 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix)
 		batches.push_back(currentBatch);
 	}
 
-	glm::vec4 tl = transformMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 tl = transformMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -692,13 +651,13 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Rectangle
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = transformMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = transformMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-
-    //Top Left
+	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
 	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
@@ -729,11 +688,12 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = transformMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = transformMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -765,13 +725,13 @@ void TextureBatch::Draw(Texture2D* texture, glm::mat4 transformMatrix, Color tin
 		currentBatch->spriteCount = 0;
 		batches.push_back(currentBatch);
 	}
+	
+	glm::vec4 tl = transformMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
 
-	glm::vec4 tl = transformMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = transformMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = transformMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = transformMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
-
-    //Top Left
+	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(sourceRect.X / width,  -(sourceRect.Y + sourceRect.Height) / height));
 	//Top Right
 	currentBatch->AddPoint(Vector2(tr.x,tr.y), Vector2((sourceRect.X + sourceRect.Width) / width, -(sourceRect.Y + sourceRect.Height) / height));
@@ -792,15 +752,11 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 	int width = 1;
 	int height = 1;
 
-
-	
-	
-
 	//make new translation matrix
-	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(rectangle.X + abs(width*rectangle.Width/2.0f), rectangle.Y + abs(height*rectangle.Height / 2.0f), 1));
+	projectionMatrix = glm::translate(projectionMatrix, glm::vec3(rectangle.X + abs(width * rectangle.Width/2.0f), rectangle.Y + abs(height * rectangle.Height / 2.0f), 1));
 
 	//scale the coordinates up by the specified amounts
-	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(rectangle.Width, rectangle.Height, 1.0));
+	projectionMatrix = glm::scale(projectionMatrix, glm::vec3(rectangle.Width, rectangle.Height, 1.0f));
 
 
 
@@ -817,10 +773,11 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 		batches.push_back(currentBatch);
 	}
 
-	glm::vec4 tl = projectionMatrix * glm::vec4(-width /2.0f, height / 2.0f, 0, 1);
-	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f,0, 1);
-	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f,0, 1);
-	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f,0, 1);
+	glm::vec4 tl = projectionMatrix * glm::vec4(-width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 tr = projectionMatrix * glm::vec4(width/2.0f, height/2.0f, 0, 1);
+	glm::vec4 br = projectionMatrix * glm::vec4(width/2.0f, -height/2.0f, 0, 1);
+	glm::vec4 bl = projectionMatrix * glm::vec4(-width/2.0f, -height/2.0f, 0, 1);
+
 	//Top Left
 	currentBatch->AddPoint(Vector2(tl.x, tl.y), Vector2(0,0));
 	//Top Right
@@ -849,10 +806,10 @@ void BatchData::AddTint(Color tint)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		tintPoints.push_back((float)tint.R / 255.0f);
-		tintPoints.push_back((float)tint.G / 255.0f);
-		tintPoints.push_back((float)tint.B / 255.0f);
-		tintPoints.push_back((float)tint.A / 255.0f);
+		tintPoints.push_back((float)tint.R/255.0f);
+		tintPoints.push_back((float)tint.G/255.0f);
+		tintPoints.push_back((float)tint.B/255.0f);
+		tintPoints.push_back((float)tint.A/255.0f);
 	}
 	spriteCount += 1;
 }
