@@ -69,8 +69,12 @@ namespace MINX
 			float GetDeltaTimeSecondsF();
 
 			/** Limits the updates per second of the current thread by delaying
+			 * @param desiredFPS the FPS to limit to
 			 */
-			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long>(1000/desiredFPS-(GetDeltaTimeSeconds()))));}
+			inline void LimitFPS(unsigned int desiredFPS)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long>(1000/desiredFPS-(GetDeltaTimeSeconds()))));
+			}
 
 		private:
 			/** Constructs a GameTime

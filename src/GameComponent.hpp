@@ -41,7 +41,7 @@ namespace MINX
 	{
 		public:
 			/** Creates the GameComponent
-			 * @param attachTo A pointer to the Game to attach to.
+			 * @param attachTo A pointer to the Game to attach to
 			 */
 			GameComponent(Game* attachTo);
 			
@@ -49,20 +49,20 @@ namespace MINX
 			 */
 			virtual ~GameComponent();
 			
-			/** Initializes the GameComponent.
+			/** Initializes the GameComponent
 			 */
 			virtual void Initialize();
 			
-			/** Update()s the GameComponent.
-			 * @param gameTime the GameTime to update the GameComponent with.
+			/** Update()s the GameComponent
+			 * @param gameTime the GameTime to update the GameComponent with
 			 */
 			virtual void Update(GameTime* gameTime);
 			
-			/** Whether or not this GameComponent is enabled.
+			/** Whether or not this GameComponent is enabled
 			 */
 			bool enabled;
 			
-			/** A pointer to the Game that this GameComponent is attached to.
+			/** A pointer to the Game that this GameComponent is attached to
 			 */
 			Game* game;
 	};
