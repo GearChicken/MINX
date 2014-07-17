@@ -23,7 +23,8 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #ifndef COLOR_H_
 #define COLOR_H_
 
@@ -40,84 +41,111 @@ namespace MINX
 			/** The red component of the color.
 			 */
 			double R;
+
 			/** The green component of the color.
 			 */
 			double G;
+
 			/** The blue component of the color.
 			 */
 			double B;
+
 			/** The alpha component of the color.
 			 */
 			double A;
+
 			/** Constructs the Color with a default value of White
 			 */
 			Color();
+
 			/** Constructs a color with the given red, green, blue, and alpha values.
 			 */
 			Color(double r, double g, double b, double a);
+
 			/** Constructs a color with the given red, green, and blue values.
 			 */
 			Color(double r, double g, double b);
+
 			/** Tests equality between two Colors.
 			 */
 			bool operator==(const Color& compareTo);
+
 			/** Tests inequality between two Colors
 			 */
 			bool operator!=(const Color& compareTo);
+
 			/** Tests if a color is lighter than another Color
 			 */
 			bool operator>(const Color& compareTo);
+
 			/** Tests if a color is lighter than or the same as another Color
 			 */
 			bool operator>=(const Color& compareTo);
+
 			/** Tests if a Color is darker than another Color
 			 */
 			bool operator<(const Color& compareTo);
+
 			/** Tests if a Color is darker than or the same as another Color
 			 */
 			bool operator<=(const Color& compareTo);
+
 			/** Inverts a Color
 			 */
 			Color operator!()const;
+
 			/** Adds 2 Colors
 			 */
 			Color operator+(const Color& addTo);
+
 			/** Adds 2 Colors
 			 */
 			Color operator+=(const Color& addTo);
+
 			/** Subtracts a color from another color
 			 */
 			Color operator-(const Color& subtract);
+
 			/** Subtracts a color from another color
 			 */
 			Color operator-=(const Color& subtract);
+
 			/** Multiplies 2 colors
 			 */
 			Color operator*(const Color& multiplyBy);
+
 			/** Multiplies 2 colors
 			 */
 			Color operator*=(const Color& multiplyBy);
+
 			/** Divides a color by another color
 			 */
 			Color operator/(const Color& divideBy);
+
 			/** Divides a color by another color
 			 */
 			Color operator/=(const Color& divideBy);
+
 			/** Cross multiplies 2 colors
 			 */
 			Color Cross(const Color& crossWith);
+
 			/** Multiplies a color by a scale
 			 */
 			Color operator*(const double& scale);
+
 			/** Multiplies a color by a scale
 			 */
 			Color operator*=(const double& scale);
+
 			/** Divides a color by a scale
 			 */
 			Color operator/(const double& scale);
+
 			/** Divides a color by a scale
 			 */
 			Color operator/=(const double& scale);
+
 			/** \defgroup colors Named Colors
 			 * @{
 			 */
@@ -126,6 +154,7 @@ namespace MINX
 			 */
 			static Color TransparentBlack;
 			static Color TransparentWhite;
+
 			/** @}*/
 			/** \defgroup Pink Shades of Pink
 			 * @{
@@ -136,6 +165,7 @@ namespace MINX
 			static Color DeepPink;
 			static Color PaleVioletRed;
 			static Color MediumVioletRed;
+
 			/** @}*/
 			/** \defgroup Red Shades of Red
 			 * @{
@@ -149,6 +179,7 @@ namespace MINX
 			static Color FireBrick;
 			static Color DarkRed;
 			static Color Red;
+
 			/** @}*/
 			/** \defgroup Orange Shades of Orange
 			 * @{
@@ -158,6 +189,7 @@ namespace MINX
 			static Color Coral;
 			static Color DarkOrange;
 			static Color Orange;
+
 			/** @}*/
 			/** \defgroup Yellow Shades of Yellow
 			 * @{
@@ -173,6 +205,7 @@ namespace MINX
 			static Color Khaki;
 			static Color DarkKhaki;
 			static Color Gold;
+
 			/** @}*/
 			/** \defgroup Brown Shades of Brown
 			 * @{
@@ -194,6 +227,7 @@ namespace MINX
 			static Color Sienna;
 			static Color Brown;
 			static Color Maroon;
+
 			/** @}*/
 			/** \defgroup Green Shades of Green
 			 * @{
@@ -218,6 +252,7 @@ namespace MINX
 			static Color ForestGreen;
 			static Color WebGreen;
 			static Color DarkGreen;
+
 			/** @}*/
 			/** \defgroup Cyan Shades of Cyan
 			 * @{
@@ -234,6 +269,7 @@ namespace MINX
 			static Color CadetBlue;
 			static Color DarkCyan;
 			static Color Teal;
+
 			/** @}*/
 			/** \defgroup Blue Shades of Blue
 			 * @{
@@ -253,6 +289,7 @@ namespace MINX
 			static Color DarkBlue;
 			static Color Navy;
 			static Color MidnightBlue;
+
 			/** @}*/
 			/** \defgroup Purple Shades of Purple
 			 * @{
@@ -274,6 +311,7 @@ namespace MINX
 			static Color DarkSlateBlue;
 			static Color SlateBlue;
 			static Color MediumSlateBlue;
+
 			/** @}*/
 			/** \defgroup White Shades of White
 			 * @{
@@ -295,6 +333,7 @@ namespace MINX
 			static Color Linen;
 			static Color LavenderBlush;
 			static Color MistyRose;
+
 			/** @}*/
 			/** \defgroup Gray Shades of Gray
 			 * @{
@@ -308,11 +347,13 @@ namespace MINX
 			static Color LightSlateGray;
 			static Color SlateGray;
 			static Color DarkSlateGray;
+
 			/** @}*/
 			/** \defgroup Black
 			 * @{
 			 */
 			static Color Black;
+
 			/** @}*/
 			/** @}*/
 		};

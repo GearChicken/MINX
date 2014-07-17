@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,10 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #include "ShaderFactory.h"
+
 using namespace MINX;
 using namespace MINX::Graphics;
 
@@ -57,6 +58,7 @@ ShaderFactory::ShaderFactory()
 		"{"
 		"    gl_FragColor = texture2D(tex, texCoord) * tintColor;"
 		"}";
+
 	LoadShader(vertexSource, fragmentSource);
 
 	std::string fontVertexSource =
@@ -129,7 +131,6 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	const char* vertexChars = vertexSource.c_str();
 	std::cout << vertexChars << "\n\n";
 
-
 	//Create a vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
@@ -148,7 +149,7 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	{
 		glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &logLen);
 
-		shaderLog = new char[logLen+1];
+		shaderLog = new char[logLen + 1];
 		glGetShaderInfoLog(vertexShader, logLen, NULL, shaderLog);
 		std::cout << "Shader Error Log:\n" << shaderLog << "\n\n";
 		delete shaderLog;
@@ -174,7 +175,7 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	{
 		glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &logLen);
 
-		shaderLog = new char[logLen+1];
+		shaderLog = new char[logLen + 1];
 		glGetShaderInfoLog(fragmentShader, logLen, NULL, shaderLog);
 		std::cout << "Shader Error Log:\n" << shaderLog << "\n" << std::endl;
 		delete shaderLog;

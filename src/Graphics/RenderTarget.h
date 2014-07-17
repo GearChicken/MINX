@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,7 +22,8 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #ifndef _RENDER_TARGET_H_
 #define _RENDER_TARGET_H_
 
@@ -38,6 +38,7 @@ freely, subject to the following restrictions:
 namespace MINX
 {
 	class MINX_API Game;
+
 	namespace Graphics
 	{
 		class MINX_API RenderTarget
@@ -46,18 +47,23 @@ namespace MINX
 			/** Creates a RenderTarget with the specified width and height
 			 */
 			RenderTarget(int width, int height);
+
 			/** Returns a pointer to a Texture2D containing the contents of this RenderTarget
 			 */
 			Texture2D* GetTexture();
+
 			/** Returns the width of the RenderTarget
 			 */
 			inline int GetWidth() { return width; }
+
 			/** Returns the height of the RenderTarget
 			 */
 			inline int GetHeight() { return height; }
+
 			/** Clears the contents of the RenderTarget to the specified color
 			 */
 			void Clear(Color clearColor);
+
 		private:
 			int width, height;
 			GLuint frameBuffer;

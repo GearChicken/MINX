@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,7 +22,8 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #ifndef _TEXTURE2D_H
 #define _TEXTURE2D_H
 
@@ -40,6 +40,7 @@ freely, subject to the following restrictions:
 #include "Color.h"
 #include "GameWindow.h"
 #include "../Rectangle.h"
+
 namespace MINX
 {
 	namespace Graphics
@@ -53,6 +54,7 @@ namespace MINX
 			*	@param fileLoc The file to load the texture from.
 			*/
 			Texture2D(char* fileLoc);
+
 			/** Creates a new Texture2D object
 			*	@param texData An array of Colors to create the texture as
 			*	@param width The Width of the Texture
@@ -66,18 +68,25 @@ namespace MINX
 			 *	@param height The Height of the Texture
 			 */
 			Texture2D(GLuint texture, int width, int height);
+
 			/** Safely destroys a Texture2D object
 			*/
 			~Texture2D();
+
 			/** The Width of the Texture
 			*/
 			inline int GetWidth() { return width; }
+
 			/** The Height of the Texture
 			*/
 			inline int GetHeight() { return height; }
+
 			/** An unsigned integer representing the address of the texture in OpenGL's texture system
 			*/
 			GLuint texture;
+
+			/** Saves the Texture2D to a PNG file at the specified location
+			*/
 		    void SavetoPNG(char* filename);
 		private:	
 			int width;

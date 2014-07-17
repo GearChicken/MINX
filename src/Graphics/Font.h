@@ -23,7 +23,8 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
+
 #ifndef FONT_H_
 #define FONT_H_
 
@@ -41,6 +42,7 @@ freely, subject to the following restrictions:
 namespace MINX
 {
 	class MINX_API Game;
+
 	namespace Graphics
 	{
 		/** A Font Container Class
@@ -67,7 +69,7 @@ namespace MINX
 			*	@param y The Y component of the screen to draw the text to.
 			*	@param fontSixe The size in points (pt.) to draw the font.
 			*/
-			void RenderText(const char *text, float x, float y, int fontSize);
+			void RenderText(const char* text, float x, float y, int fontSize);
 			
 			/** Renders Text Onto the Screen using a string from the C++ standard library
 			*	@param text The text to render to the screen.
@@ -83,7 +85,7 @@ namespace MINX
 			*	@param y The Y component of the screen to draw the text to.
 			*	@param fontSixe The size in points (pt.) to draw the font.
 			*/
-			void RenderText(const char *text, float x, float y, int fontSize, Color color);
+			void RenderText(const char* text, float x, float y, int fontSize, Color color);
 
 			/** Gets the size of the text if it were to be rendered
 			*	@param text The text to check the size of.
