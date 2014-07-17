@@ -99,10 +99,10 @@ Texture2D::Texture2D(Color* texData, int width, int height)
 	GLubyte* texelData = new GLubyte[width * height * 4];
 	for (int i = 0; i < width * height; ++i)
 	{
-		texelData[4 * i + 0] = (GLubyte)texData[i].R;
-		texelData[4 * i + 1] = (GLubyte)texData[i].G;
-		texelData[4 * i + 2] = (GLubyte)texData[i].B;
-		texelData[4 * i + 3] = (GLubyte)texData[i].A;
+		texelData[4 * i + 0] = static_cast<GLubyte>(texData[i].R);
+		texelData[4 * i + 1] = static_cast<GLubyte>(texData[i].G);
+		texelData[4 * i + 2] = static_cast<GLubyte>(texData[i].B);
+		texelData[4 * i + 3] = static_cast<GLubyte>(texData[i].A);
 	}
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
@@ -135,7 +135,7 @@ void Texture2D::SavetoPNG(char* filename)
 
 	const size_t bytesPerPixel = 4;	// RGBA
 
-	const size_t imageSizeInBytes = bytesPerPixel * size_t(renderTargetWidth) * size_t(renderTargetHeight);
+	const size_t imageSizeInBytes = bytesPerPixel * static_cast<size_t>(renderTargetWidth) * static_cast<size_t>(renderTargetHeight);
 	BYTE* pixels = static_cast<BYTE*>(malloc(imageSizeInBytes));
 
 	glPixelStorei(GL_PACK_ALIGNMENT, 1);
