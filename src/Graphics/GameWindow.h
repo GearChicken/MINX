@@ -60,6 +60,7 @@ namespace MINX
 				*	@param title The Title of the GameWindow
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
+
 				/** Returns the width of the GameWindow
 				 */
 				inline static int GetWidth() { return width; }

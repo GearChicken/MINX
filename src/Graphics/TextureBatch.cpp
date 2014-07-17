@@ -77,8 +77,8 @@ void TextureBatch::DrawLoadedTextures()
 
 	glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
 
-	glVertexAttribPointer(posCoord, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), 0);
-	glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (void**)(3 * sizeof(GLfloat)));
+	glVertexAttribPointer(posCoord, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), 0);
+	glVertexAttribPointer(texCoord, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(GLfloat), (void**)(3 * sizeof(GLfloat)));
 
 	glEnableVertexAttribArray(tintCoord);
 	glBindBuffer(GL_ARRAY_BUFFER, tintBuffer);
@@ -88,18 +88,18 @@ void TextureBatch::DrawLoadedTextures()
 
 	if(Game::activeRenderTarget == NULL)
 	{
-		renderTargetWidth = (float)GameWindow::GetWidth();
-		renderTargetHeight = (float)GameWindow::GetHeight();
+		renderTargetWidth = static_cast<float>(GameWindow::GetWidth());
+		renderTargetHeight = static_cast<float>(GameWindow::GetHeight());
 	}
 	else
 	{
-		renderTargetWidth = (float)Game::activeRenderTarget->GetWidth();
-		renderTargetHeight = (float)Game::activeRenderTarget->GetHeight();
+		renderTargetWidth = static_cast<float>(Game::activeRenderTarget->GetWidth());
+		renderTargetHeight = static_cast<float>(Game::activeRenderTarget->GetHeight());
 	}
 
 
 	glm::mat4 projectionMatrix;
-	projectionMatrix = glm::ortho(1.0f, (float)renderTargetWidth - 1.0f, (float)renderTargetHeight - 1.0f, 1.0f);
+	projectionMatrix = glm::ortho(1.0f, static_cast<float>(renderTargetWidth) - 1.0f, static_cast<float>(renderTargetHeight) - 1.0f, 1.0f);
 
 	glUniformMatrix4fv(glGetUniformLocation(shaderProgram, "projectionMatrix"), 1, false, glm::value_ptr(projectionMatrix));
 
@@ -128,10 +128,10 @@ void TextureBatch::DrawLoadedTextures()
 		}
 
 		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * bufferSize, (GLvoid*)&pointData[0], GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * bufferSize, static_cast<GLvoid*>(&pointData[0]), GL_DYNAMIC_DRAW);
 
 		glBindBuffer(GL_ARRAY_BUFFER, tintBuffer);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * batch->tintPoints.size(), (GLvoid*)&batch->tintPoints[0], GL_DYNAMIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat) * batch->tintPoints.size(), static_cast<GLvoid*>(&batch->tintPoints[0]), GL_DYNAMIC_DRAW);
 		glDrawArrays(GL_QUADS, 0, batch->posPoints.size()/3);
 	}
 
@@ -794,22 +794,22 @@ void TextureBatch::DrawPrimitiveRectangle(Rectangle rectangle, Color tintColor)
 
 void BatchData::AddPoint(Vector2 position, Vector2 texCoord)
 {
-	posPoints.push_back((float)position.X);
-	posPoints.push_back((float)position.Y);
+	posPoints.push_back(static_cast<float>(position.X));
+	posPoints.push_back(static_cast<float>(position.Y));
 	posPoints.push_back(0.0f);
 
-	texPoints.push_back((float)texCoord.X);
-	texPoints.push_back((float)texCoord.Y);
+	texPoints.push_back(static_cast<float>(texCoord.X));
+	texPoints.push_back(static_cast<float>(texCoord.Y));
 }
 
 void BatchData::AddTint(Color tint)
 {
 	for (int i = 0; i < 4; i++)
 	{
-		tintPoints.push_back((float)tint.R/255.0f);
-		tintPoints.push_back((float)tint.G/255.0f);
-		tintPoints.push_back((float)tint.B/255.0f);
-		tintPoints.push_back((float)tint.A/255.0f);
+		tintPoints.push_back(static_cast<float>(tint.R/255.0f));
+		tintPoints.push_back(static_cast<float>(tint.G/255.0f));
+		tintPoints.push_back(static_cast<float>(tint.B/255.0f));
+		tintPoints.push_back(static_cast<float>(tint.A/255.0f));
 	}
 	spriteCount += 1;
 }
