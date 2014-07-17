@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,10 +22,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-
-#ifndef GAMETIME_H_
-#define GAMETIME_H_
+ */
 
 #include "API.h"
 
@@ -35,10 +31,14 @@ freely, subject to the following restrictions:
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#ifndef GAMETIME_H_
+#define GAMETIME_H_
+
 namespace MINX
 {
 	class MINX_API Game;
 	class MINX_API GameComponent;
+
 	/** Contains a bunch of time related functions for use in the Game
 	 */
 	class MINX_API GameTime
@@ -47,40 +47,52 @@ namespace MINX
 			/** @return the number of milliseconds since the start of the Game
 			 */
 			long GetElapsedMillis();
+
 			/** @return the number of seconds since the start of the Game
 			 */
 			double GetElapsedSeconds();
+
 			/** @return the number of seconds since the start of the Game as a float
 			 */
 			float GetElapsedSecondsF();
+
 			/** @return the number of milliseconds since the last update()
 			 */
 			long GetDeltaTimeMillis();
+
 			/** @return the number of seconds since the last update()
 			 */
 			double GetDeltaTimeSeconds();
+
 			/** @return the number of seconds since the last update() as a float
 			 */
 			float GetDeltaTimeSecondsF();
+
 			/** Limits the updates per second of the current thread by delaying
 			 */
-			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds((long)(1000/desiredFPS-(GetDeltaTimeSeconds()))));}
+			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long>(1000/desiredFPS-(GetDeltaTimeSeconds()))));}
+
 		private:
 			/** Constructs a GameTime
 			 */
 			GameTime();
+
 			/** Updates the gametime
 			 */
 			void Update();
+
 			/** The total time in seconds that has passed
 			 */
 			double totalTime;
+
 			/** The time in seconds that has passed between the 2 previous Updates
 			 */
 			double deltaTime;
+
 			/** The value of totalTime as of the previous Update
 			 */
 			double lastUpdate;
+
 		friend class MINX::Game;
 	};
 }

@@ -22,13 +22,13 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-	*/
+ */
 
 #include "Game.h"
 #include <iostream>
 #include <thread>
 #if defined(LINUX) || defined(OSX)
-#include "X11/Xlib.h"
+	#include "X11/Xlib.h"
 #endif
 
 using namespace MINX;
@@ -36,14 +36,15 @@ using namespace MINX::Graphics;
 using namespace std;
 
 MINX::Graphics::RenderTarget* Game::activeRenderTarget = NULL;
+
 Game::Game()
 {
 	windowWidth = 640;
 	windowHeight = 480;
 
-#if defined(LINUX) || defined(OSX)
-	XInitThreads();
-#endif
+	#if defined(LINUX) || defined(OSX)
+		XInitThreads();
+	#endif
 
 	Components = new vector<GameComponent*>();
 }
@@ -64,13 +65,14 @@ void Game::Run()
 
 	gameTime = new GameTime();
 
-#ifdef MINX_DEBUG
-	std::cout << "Game Running!\n";
-#endif
+	#ifdef MINX_DEBUG
+		std::cout << "Game Running!\n";
+	#endif
 
 	this->Initialize();
 	this->LoadContent();
 
+	isRunning = true;
 	thread updateThread = thread(doUpdate, this, this->gameTime);
 	updateThread.detach();
 
@@ -80,6 +82,7 @@ void Game::Run()
 	} while(isRunning);
 
 	this->UnloadContent();
+
 	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
@@ -95,14 +98,14 @@ void Game::Initialize()
 
 	gameWindow = new GameWindow(windowWidth, windowHeight, fullscreen, windowTitle);
 	glfwMakeContextCurrent(gameWindow->window);
-	glewExperimental=true;
 
+	glewExperimental=true;
 	if(glewInit() != GLEW_OK )
 	{
 		std::cout << "GLEW NOT INITED!\n";
 	}
 
-	for(vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
+	for(vector<GameComponent*>::size_type i=0; i < Components->size(); ++i)
 	{
 		(*Components)[i]->Initialize();
 	}
@@ -120,7 +123,6 @@ void Game::Initialize()
 
 void Game::LoadContent()
 {
-
 }
 
 void Game::Update(GameTime* gameTime)
@@ -170,6 +172,7 @@ void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 	{
 		activeRenderTarget = target;
 		glBindTexture(GL_TEXTURE_2D, 0);
+
 		if(target == NULL)
 		{
 			glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -182,7 +185,7 @@ void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
 			glViewport(0,0, target->width, target->height);
 		}
 	}
-	GLfloat color[] = {GLfloat(clearColor.R)/255.f, GLfloat(clearColor.G)/255.f, GLfloat(clearColor.B)/255.f, GLfloat(clearColor.A)/255.f};
+	GLfloat color[] = {static_cast<GLfloat>(clearColor.R)/255.f, static_cast<GLfloat>(clearColor.G)/255.f, static_cast<GLfloat>(clearColor.B)/255.f, static_cast<GLfloat>(clearColor.A)/255.f};
 	glClearColor(color[0], color[1], color[2], color[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 

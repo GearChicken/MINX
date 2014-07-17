@@ -22,13 +22,14 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-	*/
-#ifndef GAMECOMPONENT_H_
-#define GAMECOMPONENT_H_
+ */
 
 #include "API.h"
 
 #include "GameTime.h"
+
+#ifndef GAMECOMPONENT_H_
+#define GAMECOMPONENT_H_
 
 namespace MINX
 {
@@ -42,23 +43,28 @@ namespace MINX
 			/** Creates the GameComponent
 			 * @param attachTo A pointer to the Game to attach to.
 			 */
-			GameComponent(Game * attachTo);
+			GameComponent(Game* attachTo);
+			
 			/** Destructs a GameComponent
 			 */
 			virtual ~GameComponent();
+			
 			/** Initializes the GameComponent.
 			 */
 			virtual void Initialize();
+			
 			/** Update()s the GameComponent.
 			 * @param gameTime the GameTime to update the GameComponent with.
 			 */
-			virtual void Update(GameTime * gameTime);
+			virtual void Update(GameTime* gameTime);
+			
 			/** Whether or not this GameComponent is enabled.
 			 */
 			bool enabled;
+			
 			/** A pointer to the Game that this GameComponent is attached to.
 			 */
-			Game * game;
+			Game* game;
 	};
 }
 

@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,12 +22,12 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
+
+#include "API.h"
 
 #ifndef VECTOR2_H_
 #define VECTOR2_H_
-
-#include "API.h"
 
 namespace MINX
 {
@@ -177,7 +176,7 @@ namespace MINX
 		Vector2 Normalize();
 		
 		/** Returns the direction of the vector in radians
-		*/
+		 */
 		double Direction();
 		
 		/** The X component of the Vector2.

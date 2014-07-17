@@ -22,12 +22,7 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-	*/
-
-
-#ifndef GAME_H_
-#define GAME_H_
-#define MINX_DEBUG
+ */
 
 #include "API.h"
 
@@ -51,115 +46,117 @@ freely, subject to the following restrictions:
 #include "Graphics/GameWindow.h"
 #include <thread>
 #include <mutex>
-using namespace std;
+
+#ifndef GAME_H_
+#define GAME_H_
 
 namespace MINX
 {
 	/** The class that handles everything.
-	* When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
-	*/
+	 * When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
+	 */
 	class MINX_API Game 
 	{
-	public:
-		/** The constructor, which handles some of the initialization code for the Game.
-		*/
-		Game();
+		public:
+			/** The constructor, which handles some of the initialization code for the Game.
+			 */
+			Game();
 		
-		/** This handles the rest of the initialization code for the game.
-		*/
-		virtual void Initialize();
+			/** This handles the rest of the initialization code for the game.
+			 */
+			virtual void Initialize();
 		
-		/** Loads content used by the game.
-		*/
-		virtual void LoadContent();
+			/** Loads content used by the game.
+			 */
+			virtual void LoadContent();
 		
-		/** Updates the game state.
-		* Should be extended when you create a subclass of Game.
-		* @param gameTime the GameTime to use when updating.
-		*/
-		virtual void Update(GameTime* gameTime);
+			/** Updates the game state.
+			 * Should be extended when you create a subclass of Game.
+			 * @param gameTime the GameTime to use when updating.
+			 */
+			virtual void Update(GameTime* gameTime);
 		
-		/** Unloads content used by the game.
-		*/
-		virtual void UnloadContent();
+			/** Unloads content used by the game.
+			 */
+			virtual void UnloadContent();
 		
-		/** Draws the state of the game every frame.
-		* This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
-		* @param gameTime the GameTime to use when drawing.
-		*/
-		virtual void Draw(GameTime* gameTime);
+			/** Draws the state of the game every frame.
+			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
+			 * @param gameTime the GameTime to use when drawing.
+			 */
+			virtual void Draw(GameTime* gameTime);
 		
-		/** Handles Update()ing, Draw()ing, and event handling.
-		*/
-		void Run();
+			/** Handles Update()ing, Draw()ing, and event handling.
+			 */
+			void Run();
 		
-		/** A pointer to the window used by the game.
-		*/
-		Graphics::GameWindow* gameWindow;
+			/** A pointer to the window used by the game.
+			 */
+			Graphics::GameWindow* gameWindow;
 		
-		/** A pointer to a vector of pointers to the GameComponents used in the game.
-		*/
-		vector<GameComponent*>* Components;
+			/** A pointer to a vector of pointers to the GameComponents used in the game.
+			 */
+			std::vector<GameComponent*>* Components;
 		
-		/** Set the video options when creating a new GameWindow
-		*	@param windowWidth The Width of the GameWindow
-		*	@param windowHeight The Height of the GameWindow
-		*	@param fullscreen Whether or not the window is fullscreen
-		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen);
+			/** Set the video options when creating a new GameWindow
+			 *	@param windowWidth The Width of the GameWindow
+			 *	@param windowHeight The Height of the GameWindow
+			 *	@param fullscreen Whether or not the window is fullscreen
+			 */
+			void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen);
 		
-		/** Set the video options when creating a new GameWindow
-		*	@param windowWidth The Width of the GameWindow
-		*	@param windowHeight The Height of the GameWindow
-		*	@param fullscreen Whether or not the window is fullscreen
-		*	@param windowTitle The title of the GameWindow
-		*/
-		void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen, char* windowTitle);
+			/** Set the video options when creating a new GameWindow
+			 *	@param windowWidth The Width of the GameWindow
+			 *	@param windowHeight The Height of the GameWindow
+			 *	@param fullscreen Whether or not the window is fullscreen
+			 *	@param windowTitle The title of the GameWindow
+			 */
+			void SetVideoOptions(unsigned int windowWidth, unsigned int windowHeight, bool fullscreen, char* windowTitle);
 		
-		/** Is the Game Running, or should it close?
-		*/
-		bool isRunning;
+			/** Is the Game Running, or should it close?
+			 */
+			bool isRunning;
 		
-		/** Set's the Game's RenderTarget and clears to the clearColor.
-		 */
-		void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
+			/** Set's the Game's RenderTarget and clears to the clearColor.
+			 */
+			void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
 
-		/** Set's the Game's RenderTarget and clears to cornflower blue.
-		 */
-		void SetRenderTarget(Graphics::RenderTarget* target);
+			/** Set's the Game's RenderTarget and clears to cornflower blue.
+			 */
+			void SetRenderTarget(Graphics::RenderTarget* target);
 
-	protected:
-		/** An instance of freetype used to draw text
-		*/
-		FT_Library freeTypeLibrary;
+		protected:
+			/** An instance of freetype used to draw text
+			 */
+			FT_Library freeTypeLibrary;
+
+		private:
+			/** A pointer to the GameTime being used by the game.
+			 */
+			GameTime* gameTime;
 		
-	private:
-		/** A pointer to the GameTime being used by the game.
-		*/
-		GameTime* gameTime;
+			/** The width of the window
+			 */
+			int windowWidth;
 		
-		/** The width of the window
-		 */
-		int windowWidth;
+			/** The height of the window
+			 */
+			int windowHeight;
 		
-		/** The height of the window
-		 */
-		int windowHeight;
+			/** Whether or not the window is fullscreen
+			 */
+			bool fullscreen;
 		
-		/** Whether or not the window is fullscreen
-		*/
-		bool fullscreen;
+			/** The title of the window
+			 */
+			char* windowTitle;
 		
-		/** The title of the window
-		 */
-		char* windowTitle;
+			/** The current RenderTarget for the game
+			 */
+			static Graphics::RenderTarget* activeRenderTarget;
 		
-		/** The current RenderTarget for the game
-		 */
-		static Graphics::RenderTarget* activeRenderTarget;
-		
-		friend class MINX::Graphics::Font;
-		friend class MINX::Graphics::TextureBatch;
+			friend class MINX::Graphics::Font;
+			friend class MINX::Graphics::TextureBatch;
 	};
 }
 #endif
