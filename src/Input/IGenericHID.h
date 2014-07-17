@@ -58,11 +58,11 @@ namespace MINX
 				
 				/** Contains all of the buttons used by the device.
 				 */
-				vector<Button>* buttons;
+				std::vector<Button>* buttons;
 				
 				/** Contains all of the axes used by the device.
 				 */
-				vector<Axis>* axes;
+				std::vector<Axis>* axes;
 				
 				/** Returns a Button from the specified index in the button vector.
 				 */
