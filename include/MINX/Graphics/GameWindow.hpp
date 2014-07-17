@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,16 +22,16 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
 	
-#ifndef GAME_WINDOW_H_
-#define GAME_WINDOW_H_
+#ifndef MINX_GAMEWINDOW_HPP_
+#define MINX_GAMEWINDOW_HPP_
 
-#include "../API.h"
+#include "../API.hpp"
 
 #include <GLFW/glfw3.h>
 
-#include "Color.h"
+#include "Color.hpp"
 
 namespace MINX
 {
@@ -61,6 +60,7 @@ namespace MINX
 				*	@param title The Title of the GameWindow
 				*/
 				GameWindow(int width, int height, bool fullscreen, char* title);
+
 				/** Returns the width of the GameWindow
 				 */
 				inline static int GetWidth() { return width; }

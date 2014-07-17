@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,15 +22,15 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 
-#ifndef SOUND_PLAYLIST_H_
-#define SOUND_PLAYLIST_H_
+#include "../API.hpp"
 
-#include "../API.h"
-
-#include "SoundFile.h"
+#include "SoundFile.hpp"
 #include <vector>
+
+#ifndef MINX_SOUNDPLAYLIST_HPP_
+#define MINX_SOUNDPLAYLIST_HPP_
 
 namespace MINX
 {
@@ -74,9 +73,11 @@ namespace MINX
 			/** The current song playing
 			 */
 			SoundFile* currentSong;
+			
 			/** The index in the filename vector of the current song
 			 */
 			unsigned int songIndex;
+			
 			/** Whether or not the current song has been deleted. If it has, a new one is constructed
 			 */
 			bool songDeleted;

@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,13 +22,15 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef Rectangle_H_
-#define Rectangle_H_
+ */
 
-#include "API.h"
+#include "API.hpp"
 
 #include <cmath>
+
+#ifndef MINX_RECTANGLE_HPP_
+#define MINX_RECTANGLE_HPP_
+
 namespace MINX
 {
 	/** A Rectangle struct
@@ -47,33 +48,43 @@ namespace MINX
 		*	@param height The Height of the Rectangle
 		*/
 		Rectangle(double x, double y, double width, double height);
+		
 		/** Returns the Area of the Rectangle
 		*/
 		double Area();
+		
 		/** The X location of the Rectangle
 		*/
 		double X;
+		
 		/** The Y location of the Rectangle
 		*/
 		double Y;
+		
 		/** The Width of the Rectangle
 		*/
 		double Width;
+		
 		/** The Hight of the Rectangle
 		*/
 		double Height;
+		
 		/** The Y coordinate of the Top Edge of the Rectangle
 		*/
 		double Top();
+		
 		/** The Y coordinate of the Bottom Edge of the Rectangle
 		*/
 		double Bottom();
+		
 		/** The X coordinate of the Left Edge of the Rectangle
 		*/
 		double Left();
+		
 		/** The X coordinate of the Right Edge of the Rectangle
 		*/
 		double Right();
+		
 		/** Checks if one Rectangle intersects another
 		*	@param rect2 The Rectangle to Check for Intersection against
 		*	@returns Whether or not the two Rectangles intersect

@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,17 +22,18 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef KEYBOARD_H_
-#define KEYBOARD_H_
+ */
 
+#include "../API.hpp"
 
-#include "../API.h"
+#include "IGenericHID.hpp"
+#include "Button.hpp"
 
-
-#include "IGenericHID.h"
-#include "Button.h"
 #include <map>
+
+#ifndef MINX_KEYBOARD_HPP_
+#define MINX_KEYBOARD_HPP_
+
 namespace MINX
 {
 	namespace Input
@@ -41,8 +41,6 @@ namespace MINX
 
 		namespace Keys
 		{
-#ifndef MINX_KEYS
-#define MINX_KEYS
 			/** Enumerates all readable keys.
 			 */
 			enum MINX_API Keys 
@@ -170,7 +168,6 @@ namespace MINX
 				KEY_Y = 89,
 				KEY_Z = 90
 			};
-#endif
 		}
 
 		/** Represents a keyboard device.
@@ -187,8 +184,8 @@ namespace MINX
 				void Update(GameTime * gametime);
 				
 				/** Gets a button for the state of 'key'
-				*	@param key The Key to get the state of
-				*/
+				 *	@param key The Key to get the state of
+				 */
 				Button GetKey(unsigned int key);
 		};
 	}

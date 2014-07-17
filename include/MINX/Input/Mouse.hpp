@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,18 +22,16 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef MOUSE_H_
-#define MOUSE_H_
+ */
 
-#include "../API.h"
+#include "../API.hpp"
 
-#define MINX_MOUSE_LEFT 0
-#define MINX_MOUSE_RIGHT 1
-#define MINX_MOUSE_MIDDLE 2
-#include "IGenericHID.h"
-#include "../Game.h"
-#include "../Vector2.h"
+#include "IGenericHID.hpp"
+#include "../Game.hpp"
+#include "../Vector2.hpp"
+
+#ifndef MINX_MOUSE_HPP_
+#define MINX_MOUSE_HPP_
 
 namespace MINX
 {
@@ -60,26 +57,27 @@ namespace MINX
 				
 			};
 		}
+
 		/** Represents a mouse device
 		 */
 		class MINX_API Mouse : public IGenericHID
 		{
 			public:
-				/** Calls the IGenericHID constructor with game,0xFFF,4
+				/** Calls the IGenericHID constructor
 				 */
-				Mouse(Game * game);
+				Mouse(Game* game);
 				
 				/** Grabs an event and processes it from the mouseEvents queue in the Game object provided to the constructor.
 				 */
-				void Update(GameTime * gametime);
+				void Update(GameTime* gametime);
 				
 				/** Gets the Position of the Mouse
-				*/
+				 */
 				Vector2 GetPosition();
 				
 				/** Gets a button for the state of the mouse button at 'buttonID'
-				*	@param buttonID The Identifier of the Mouse Button to get the state of
-				*/
+				 *	@param buttonID The Identifier of the Mouse Button to get the state of
+				 */
 				Button GetMouseButton(unsigned int buttonID);
 		};
 	}

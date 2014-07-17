@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,11 +22,16 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef _GAMEPAD_H
-#define _GAMEPAD_H
+ */
 
-#include "../API.h"
+#include <functional>
+
+#include "../API.hpp"
+#include "IGenericHID.hpp"
+#include "../Game.hpp"
+
+#ifndef MINX_GAMEPAD_HPP_
+#define MINX_GAMEPAD_HPP_
 
 #define GENERIC_GAMEPAD 0
 #define XBOX_360_GAMEPAD 1
@@ -49,9 +53,6 @@ freely, subject to the following restrictions:
 #define CONTROLLER_RIGHTSTICK_Y 3
 #define CONTROLLER_RIGHTSTICK_X 4
 //#endif
-#include "IGenericHID.h"
-#include "../Game.h"
-#include <functional>
 
 namespace MINX
 {
@@ -78,11 +79,11 @@ namespace MINX
 				/** Returns the name of the GamePad
 				 *	@return GLFW's stored name for the GamePad
 				 */
-				const char * GetName();
+				const char* GetName();
 				
 				/** Checks is the GamePad's state has changed, and saves the data properly.
 				 */
-				void Update(GameTime * gameTime);
+				void Update(GameTime* gameTime);
 				
 				/** Gets the Button at the specified index
 				 */

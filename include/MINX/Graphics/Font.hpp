@@ -23,24 +23,26 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef FONT_H_
-#define FONT_H_
+*/
 
-#include "../API.h"
+#ifndef MINX_FONT_HPP_
+#define MINX_FONT_HPP_
+
+#include "../API.hpp"
 
 #include <ft2build.h>
 #include FT_FREETYPE_H
 #include <GL/glew.h>
-#include "GameWindow.h"
-#include "../Vector2.h"
-#include "Color.h"
+#include "GameWindow.hpp"
+#include "../Vector2.hpp"
+#include "Color.hpp"
 #include <string>
-#include "Texture2D.h"
+#include "Texture2D.hpp"
 
 namespace MINX
 {
 	class MINX_API Game;
+
 	namespace Graphics
 	{
 		/** A Font Container Class
@@ -67,7 +69,7 @@ namespace MINX
 			*	@param y The Y component of the screen to draw the text to.
 			*	@param fontSixe The size in points (pt.) to draw the font.
 			*/
-			void RenderText(const char *text, float x, float y, int fontSize);
+			void RenderText(const char* text, float x, float y, int fontSize);
 			
 			/** Renders Text Onto the Screen using a string from the C++ standard library
 			*	@param text The text to render to the screen.
@@ -83,7 +85,7 @@ namespace MINX
 			*	@param y The Y component of the screen to draw the text to.
 			*	@param fontSixe The size in points (pt.) to draw the font.
 			*/
-			void RenderText(const char *text, float x, float y, int fontSize, Color color);
+			void RenderText(const char* text, float x, float y, int fontSize, Color color);
 
 			/** Gets the size of the text if it were to be rendered
 			*	@param text The text to check the size of.
@@ -110,5 +112,5 @@ namespace MINX
 	}
 }
 
-#include "../Game.h"
+#include "../Game.hpp"
 #endif

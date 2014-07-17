@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,43 +22,58 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef AXIS_H_
-#define AXIS_H_
+ */
 
-#include "../API.h"
+#include "../API.hpp"
+
+#ifndef MINX_BUTTON_HPP_
+#define MINX_BUTTON_HPP_
 
 namespace MINX
 {
-	namespace Input{
-		/** Represents an axis on an input device such as a mouse or joystick.
-		 * Some axes indicate a position (a stick on a game pad), some indicate relative motion (a ball on a joypad), some possibly could indicate rotation, as in a dial.
-		 * This could also be used to create a soft axis within a game.
+	namespace Input
+	{
+		/** Represents a button on an input device, such as a keyboard, mouse, or a joystick.
+		 * This could also be used to create a soft button within a game.
 		 */
-		struct MINX_API Axis
+		struct MINX_API Button
 		{
-			/** Sets the value of the axis to val
+			/** Sets the state of the button to state
 			 */
-			void SetValue(bool val);
+			void SetState(bool state);
 			
-			/** Sets the value of the axis to val
+			/** Sets the state of the button to state
 			 */
-			inline void UpdateValue(bool val){SetValue(val);}
+			inline void UpdateState(bool state){SetState(state);}
 			
-			/** Gets the value of the axis
+			/** Returns the current state of the button
 			 */
-			float GetValue();
+			bool GetState();
 			
-			/** Gets the previous value of the axis
+			/** Returns the previous state of the button
 			 */
-			float GetPrevValue();
+			bool GetPrevState();
+			
+			/** Returns the logical and between 2 buttons.
+			 */
+			Button operator&&(const Button& andWith);
+
+			/** Returns the logical or between 2 buttons.
+			 */
+			Button operator||(const Button& orWith);
+
+			/** Returns the button with flipped value.
+			 */
+			Button operator!()const;
+
 			private:
-				/** The current value of the axis.
+				/** The current state of the button.
 				 */
-				double val;
-				/** The previous value of the axis.
+				bool state;
+
+				/** The previous state of the button.
 				 */
-				double prevVal;
+				bool prevState;
 		};
 	}
 }

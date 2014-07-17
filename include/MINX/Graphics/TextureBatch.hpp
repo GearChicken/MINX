@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,21 +22,23 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef _TEXTUREBATCH_H
-#define _TEXTUREBATCH_H
+*/
 
-#include "../API.h"
+#ifndef MINX_TEXTUREBATCH_HPP_
+#define MINX_TEXTUREBATCH_HPP_
 
-#include "Texture2D.h"
+#include "../API.hpp"
+
+#include "Texture2D.hpp"
 #include <vector>
-#include "../MathHelper.h"
-#include "../Vector2.h"
+#include "../MathHelper.hpp"
+#include "../Vector2.hpp"
 #include <iostream>
 
 namespace MINX
 {
 	class MINX_API Game;
+
 	namespace Graphics
 	{
 		/** A struct that is used to store the instance data of a texture to be drawn
@@ -47,14 +48,29 @@ namespace MINX
 			/** An unsigned integer representing the address of the texture in OpenGL's texture system
 			 */
 			GLuint texture;
-			/** The color to tint the texture
-			 */
+
+			/** The positionData of the sprites
+			*/
 			std::vector<GLfloat> posPoints;
+
+			/** The texelData of the sprites
+			*/
 			std::vector<GLfloat> texPoints;
+
+			/** The colorData of the sprites
+			*/
 			std::vector<GLfloat> tintPoints;
+
+			/** The number of sprites in this batch
+			*/
 			int spriteCount;
 
+			/** Adds a point into the batch for the current sprite
+			*/
 			void AddPoint(Vector2 position, Vector2 texCoord);
+			
+			/** Adds the tint for the current sprite
+			*/
 			void AddTint(Color tint);
 		};
 
@@ -64,7 +80,6 @@ namespace MINX
 		{
 
 		public:
-			
 			/** Creates a new TextureBatch object
 			*	@param shaderProgram The GLSL program to draw the batched textures with.
 			*/
@@ -74,7 +89,6 @@ namespace MINX
 			*/
 			void DrawLoadedTextures();
 
-			
 			/** Adds the texture to the list of texture instances to draw to the screen.
 			*	@param texture The texture to draw the the screen
 			*	@param x The X value to draw the texture to on the screen.
@@ -203,7 +217,6 @@ namespace MINX
 			void DrawPrimitiveRectangle(Rectangle rectangle, Color tint);
 
 		private:
-			
 			GLuint vertexBuffer;
 			GLuint tintBuffer;
 
@@ -229,5 +242,5 @@ namespace MINX
 		};
 	}
 }
-#include "../Game.h"
+#include "../Game.hpp"
 #endif

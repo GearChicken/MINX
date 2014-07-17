@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,64 +22,58 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+*/
 
-#ifndef SONG_H_
-#define SONG_H_
+#ifndef MINX_RENDERTARGET_HPP_
+#define MINX_RENDERTARGET_HPP_
 
-#include "../API.h"
+#include "../API.hpp"
 
-#include "SFML/Audio.hpp"
+#include <GL/glew.h>
+
+#include "Texture2D.hpp"
+#include "GameWindow.hpp"
+#include "../Rectangle.hpp"
 
 namespace MINX
 {
-	namespace Media
+	class MINX_API Game;
+
+	namespace Graphics
 	{
-		/** Represents a song loaded from disk.
-		 */
-		class MINX_API Song
+		class MINX_API RenderTarget
 		{
-			/** Constructs a song from the given file.
+		public:
+			/** Creates a RenderTarget with the specified width and height
 			 */
-			Song(char* fileLocation);
+			RenderTarget(int width, int height);
 
-			/* Destroy the sound file safely
-			*/
-			~Song();
+			/** Returns a pointer to a Texture2D containing the contents of this RenderTarget
+			 */
+			Texture2D* GetTexture();
 
-			/* unload the sound file safely
-			*/
-			void Unload();
+			/** Returns the width of the RenderTarget
+			 */
+			inline int GetWidth() { return width; }
 
-			/* Start playback of the sound file
-			*/
-			void Play();
+			/** Returns the height of the RenderTarget
+			 */
+			inline int GetHeight() { return height; }
 
-			/* Pause playback of the sound file
-			*/
-			void Pause();
+			/** Clears the contents of the RenderTarget to the specified color
+			 */
+			void Clear(Color clearColor);
 
-			/* Stop playback of the sound file
-			*/
-			void Stop();
-
-			/* Set the Playback volume of the sound file
-			*	@param volume A double value from 0.0 to 100.0 for the GAIN or volume of the sound file
-			*/
-			void SetVolume(float volume);
-
-			void SetLoop(bool loop);
 		private:
-
-			/** The volume of the sound file
-			*/
-			double volume;
-			
-			/** The internal sfml object
-			 */
-			sf::Music song;
+			int width, height;
+			GLuint frameBuffer;
+			GLuint frameBufferTex;
+			Texture2D* texture;
+			friend class MINX::Game;
 		};
-	}
-}
 
+	}
+
+}
+#include "../Game.hpp"
 #endif

@@ -15,53 +15,53 @@ freely, subject to the following restrictions:
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
 > appreciated but is not required.
-> 
+>
 > 2\. Altered source versions must be plainly marked as such, and must not be
 > misrepresented as being the original software.
-> 
+>
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-	*/
-#ifndef GAMECOMPONENT_H_
-#define GAMECOMPONENT_H_
+ */
 
-#include "API.h"
+#include "../API.hpp"
 
-#include "GameTime.h"
+#ifndef MINX_AXIS_HPP_
+#define MINX_AXIS_HPP_
 
 namespace MINX
 {
-	class MINX_API Game; //forward declaration to avoid circular dependency problems
+	namespace Input{
+		/** Represents an axis on an input device such as a mouse or joystick.
+		 * Some axes indicate a position (a stick on a game pad), some indicate relative motion (a ball on a joypad), some possibly could indicate rotation, as in a dial.
+		 * This could also be used to create a soft axis within a game.
+		 */
+		struct MINX_API Axis
+		{
+			/** Sets the value of the axis to val
+			 */
+			void SetValue(double val);
+			
+			/** Sets the value of the axis to val
+			 */
+			inline void UpdateValue(double val){SetValue(val);}
+			
+			/** Gets the value of the axis
+			 */
+			double GetValue();
+			
+			/** Gets the previous value of the axis
+			 */
+			double GetPrevValue();
 
-	/** Represents any component of the Game.
-	 */
-	class MINX_API GameComponent
-	{
-		public:
-			/** Creates the GameComponent
-			 * @param attachTo A pointer to the Game to attach to.
-			 */
-			GameComponent(Game * attachTo);
-			/** Destructs a GameComponent
-			 */
-			virtual ~GameComponent();
-			/** Initializes the GameComponent.
-			 */
-			virtual void Initialize();
-			/** Update()s the GameComponent.
-			 * @param gameTime the GameTime to update the GameComponent with.
-			 */
-			virtual void Update(GameTime * gameTime);
-			/** Whether or not this GameComponent is enabled.
-			 */
-			bool enabled;
-			/** A pointer to the Game that this GameComponent is attached to.
-			 */
-			Game * game;
-	};
+			private:
+				/** The current value of the axis.
+				 */
+				double val;
+				/** The previous value of the axis.
+				 */
+				double prevVal;
+		};
+	}
 }
-
-#include "Game.h" //and now actually include Game.h, for use by GameComponent.cpp
-
 #endif

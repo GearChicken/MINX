@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -16,58 +15,59 @@ freely, subject to the following restrictions:
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
 > appreciated but is not required.
->
+> 
 > 2\. Altered source versions must be plainly marked as such, and must not be
 > misrepresented as being the original software.
->
+> 
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef _RENDER_TARGET_H_
-#define _RENDER_TARGET_H_
+ */
 
-#include "../API.h"
+#include "API.hpp"
 
-#include <GL/glew.h>
+#include "GameTime.hpp"
 
-#include "Texture2D.h"
-#include "GameWindow.h"
-#include "../Rectangle.h"
+#ifndef MINX_GAMECOMPONENT_HPP_
+#define MINX_GAMECOMPONENT_HPP_
 
 namespace MINX
 {
-	class MINX_API Game;
-	namespace Graphics
+	class MINX_API Game; //forward declaration to avoid circular dependency problems
+
+	/** Represents any component of the Game.
+	 */
+	class MINX_API GameComponent
 	{
-		class MINX_API RenderTarget
-		{
 		public:
-			/** Creates a RenderTarget with the specified width and height
+			/** Creates the GameComponent
+			 * @param attachTo A pointer to the Game to attach to.
 			 */
-			RenderTarget(int width, int height);
-			/** Returns a pointer to a Texture2D containing the contents of this RenderTarget
+			GameComponent(Game* attachTo);
+			
+			/** Destructs a GameComponent
 			 */
-			Texture2D* GetTexture();
-			/** Returns the width of the RenderTarget
+			virtual ~GameComponent();
+			
+			/** Initializes the GameComponent.
 			 */
-			inline int GetWidth() { return width; }
-			/** Returns the height of the RenderTarget
+			virtual void Initialize();
+			
+			/** Update()s the GameComponent.
+			 * @param gameTime the GameTime to update the GameComponent with.
 			 */
-			inline int GetHeight() { return height; }
-			/** Clears the contents of the RenderTarget to the specified color
+			virtual void Update(GameTime* gameTime);
+			
+			/** Whether or not this GameComponent is enabled.
 			 */
-			void Clear(Color clearColor);
-		private:
-			int width, height;
-			GLuint frameBuffer;
-			GLuint frameBufferTex;
-			Texture2D* texture;
-			friend class MINX::Game;
-		};
-
-	}
-
+			bool enabled;
+			
+			/** A pointer to the Game that this GameComponent is attached to.
+			 */
+			Game* game;
+	};
 }
-#include "../Game.h"
+
+#include "Game.hpp" //and now actually include Game.hpp, for use by GameComponent.cpp
+
 #endif
