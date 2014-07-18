@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,9 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "MathHelper.h"
+ */
+
+#include "MathHelper.hpp"
 
 using namespace MINX;
 
@@ -55,17 +55,17 @@ double Math::tan(double radians)
 
 double Math::cot(double radians)
 {
-	return ::tan(1.0 / radians);
+	return 1.0 / ::tan(radians);
 }
 
 double Math::sec(double radians)
 {
-	return ::cos(1.0 / radians);
+	return 1.0 / ::cos(radians);
 }
 
 double Math::csc(double radians)
 {
-	return ::sin(1.0 / radians);
+	return 1.0 / ::sin(radians);
 }
 
 double Math::sinh(double radians)
@@ -85,17 +85,17 @@ double Math::tanh(double radians)
 
 double Math::coth(double radians)
 {
-	return ::tanh(1.0 / radians);
+	return 1.0 / ::tanh(radians);
 }
 
 double Math::sech(double radians)
 {
-	return ::cosh(1.0 / radians);
+	return 1.0 / ::cosh(radians);
 }
 
 double Math::csch(double radians)
 {
-	return ::sinh(1.0 / radians);
+	return 1.0 / ::sinh(radians);
 }
 
 double Math::asin(double num)
@@ -140,12 +140,12 @@ double Math::acsc(double num)
 
 double Math::degreesToRadians(double degrees)
 {
-	return degrees * Math::PI / 180.0;
+	return degrees * Math::PI/180.0;
 }
 
 double Math::radiansToDegrees(double radians)
 {
-	return radians * 180.0 / Math::PI;
+	return radians * 180.0/Math::PI;
 }
 
 //Logarithmic Functions
@@ -157,7 +157,7 @@ double Math::ln(double num)
 
 double Math::log2(double num)
 {
-	return ::log(num) / ::log(2);
+	return ::log(num)/::log(2);
 }
 
 double Math::log10(double num)
@@ -167,7 +167,7 @@ double Math::log10(double num)
 
 double Math::log(double base, double num)
 {
-	return ::log(num) / ::log(base);
+	return ::log(num)/::log(base);
 }
 
 double Math::exp(double num)
@@ -184,7 +184,7 @@ double Math::pow(double num, double power)
 
 int Math::sign(double num)
 {
-	return int(num == 0 ? 0 : abs(num)/num);
+	return static_cast<int>(num == 0 ? 0 : abs(num)/num);
 }
 
 double Math::abs(double num)
@@ -199,12 +199,15 @@ bool Math::parity(long num)
 
 double Math::round(double x)
 {
-	double wholeNumber = int(x);
+	double wholeNumber = static_cast<int>(x);
+
 	double dif = x - wholeNumber;
+
 	if(dif >= 0.5)
 	{
 		return wholeNumber + 1;
 	}
+
 	return wholeNumber;
 }
 
@@ -225,7 +228,7 @@ double Math::root(double degree, double num)
 
 double Math::fmod(double numerator, double denominator)
 {
-	return denominator == 0 ? 0 : ::fmod(numerator,denominator);
+	return denominator == 0 ? 0 : ::fmod(numerator, denominator);
 }
 
 double Math::max(double num1, double num2)
@@ -240,7 +243,13 @@ double Math::min(double num1, double num2)
 
 double Math::clamp(double number, double lowerLimit, double upperLimit)
 {
-	return max(lowerLimit,min(upperLimit,number));
+	return max(lowerLimit, min(upperLimit, number));
+}
+
+double Math::random(double minimum, double maximum, double precision)
+{
+	double range = maximum - minimum;
+	return (rand() % static_cast<int>(precision))/precision * range + minimum;
 }
 
 double Math::random(double minimum, double maximum, double precision = 100.0)

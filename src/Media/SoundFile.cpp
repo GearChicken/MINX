@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,10 +22,10 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 
-#include "SoundFile.h"
-#include "../MathHelper.h"
+#include "SoundFile.hpp"
+#include "../MathHelper.hpp"
 
 using namespace MINX;
 using namespace MINX::Media;
@@ -42,6 +41,7 @@ SoundFile::~SoundFile()
 	sound.~Sound();
 	soundBuffer.~SoundBuffer();
 }
+
 void SoundFile::Play()
 {
 	this->sound.play();
@@ -56,6 +56,7 @@ void SoundFile::Stop()
 {
 	this->sound.stop();
 }
+
 void SoundFile::SetVolume(float volume)
 {
 	this->sound.setVolume(volume);

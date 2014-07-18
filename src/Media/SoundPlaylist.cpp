@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,9 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "SoundPlaylist.h"
+ */
+ 
+#include "SoundPlaylist.hpp"
 
 using namespace MINX;
 using namespace MINX::Media;

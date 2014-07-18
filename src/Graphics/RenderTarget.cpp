@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,9 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "RenderTarget.h"
+*/
+
+#include "RenderTarget.hpp"
 
 using namespace MINX;
 using namespace MINX::Graphics;
@@ -33,11 +33,10 @@ RenderTarget::RenderTarget(int width, int height)
 {
 	this->width = width;
 	this->height = height;
+
 	//Generate the FrameBuffer that will hold the Texture
 	glGenFramebuffers(1, &frameBuffer);
 	glBindFramebuffer(GL_FRAMEBUFFER, frameBuffer);
-
-
 
 	glGenTextures(1, &frameBufferTex);
 	glBindTexture(GL_TEXTURE_2D, frameBufferTex);
@@ -55,8 +54,6 @@ RenderTarget::RenderTarget(int width, int height)
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
     glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rboDepthStencil);
     
-
-
 	texture = new Texture2D(frameBufferTex, width, height);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -69,7 +66,7 @@ Texture2D* RenderTarget::GetTexture()
 
 void RenderTarget::Clear(Color clearColor)
 {
-	GLfloat color[] = {clearColor.R/255.0, clearColor.G/255.0, clearColor.B/255.0, clearColor.A/255.0};
+	GLfloat color[] = {GLfloat(clearColor.R)/255.f, GLfloat(clearColor.G)/255.f, GLfloat(clearColor.B)/255.f, GLfloat(clearColor.A)/255.f};
 	glClearColor(color[0], color[1], color[2], color[3]);
 	glClear(GL_COLOR_BUFFER_BIT);
 }

@@ -23,22 +23,28 @@ freely, subject to the following restrictions:
 > distribution.
 >
         */
-#include "GameComponent.h"
+        
+#include "GameComponent.hpp"
 #include <algorithm>
+
 using namespace MINX;
 
-GameComponent::GameComponent(Game * attachTo)
+GameComponent::GameComponent(Game* attachTo)
 {
-	game=attachTo;
-	enabled=true;
+	game = attachTo;
+	enabled = true;
 	game->Components->push_back(this);
 }
 
 GameComponent::~GameComponent()
 {
-	std::vector<GameComponent*> * vec = this->game->Components;
+	std::vector<GameComponent*>* vec = this->game->Components;
 	vec->erase(std::remove(vec->begin(), vec->end(), this), vec->end());
 }
-void GameComponent::Initialize() {}
+void GameComponent::Initialize()
+{
+}
 
-void GameComponent::Update(GameTime * gameTime) {}
+void GameComponent::Update(GameTime* gameTime)
+{
+}

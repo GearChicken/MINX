@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,9 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "GamePad.h"
+ */
+
+#include "GamePad.hpp"
 
 using namespace MINX;
 using namespace MINX::Input;
@@ -34,33 +34,32 @@ bool GamePad::IsConnected()
 	return isConnected = glfwJoystickPresent(deviceIndex) == GL_TRUE;
 }
 
-GamePad::GamePad(unsigned int deviceIndex, Game* game):IGenericHID(game, 16, 16)
+GamePad::GamePad(unsigned int deviceIndex, Game* game) : IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
 	IsConnected();
 }
 
-GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType):IGenericHID(game, 16, 16)
+GamePad::GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType) : IGenericHID(game, 16, 16)
 {
 	this->deviceIndex = deviceIndex;
 	this->gamePadType = gamePadType;
 	IsConnected();
 }
 
-void GamePad::Update(GameTime * gametime)
+void GamePad::Update(GameTime* gametime)
 {
-	
 	if(IsConnected())
 	{
 		int numButtons = 0;
-		const unsigned char * buttonValues = glfwGetJoystickButtons(deviceIndex,&numButtons);
+		const unsigned char* buttonValues = glfwGetJoystickButtons(deviceIndex,&numButtons);
 	
 		int numAxes = 0;
-		const float * axisValues = glfwGetJoystickAxes(deviceIndex,&numAxes);
+		const float* axisValues = glfwGetJoystickAxes(deviceIndex,&numAxes);
 		
 		for(int id = 0; id < numButtons; id++)
 		{
-			(*buttons)[id].UpdateState(buttonValues[id]);
+			(*buttons)[id].UpdateState(!buttonValues[id]);
 		}
 		
 		for(int id = 0; id < numAxes; id++)
@@ -76,6 +75,7 @@ Button GamePad::GetButton(unsigned int buttonID)
 	{
 		return IGenericHID::GetButton(buttonID);
 	}
+
 	return Button();
 }
 
@@ -85,14 +85,16 @@ Axis GamePad::GetAxis(unsigned int axisID)
 	{
 		return IGenericHID::GetAxis(axisID);
 	}
+
 	return Axis();
 }
 
-const char * GamePad::GetName()
+const char* GamePad::GetName()
 {
 	if(IsConnected())
 	{
 		return glfwGetJoystickName(deviceIndex);
 	}
+
 	return "DEVICE DISCONNECTED";
 }

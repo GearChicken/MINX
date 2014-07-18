@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,24 +22,30 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "Mouse.h"
+ */
+ 
+#include "Mouse.hpp"
+
 using namespace MINX;
 using namespace MINX::Input;
+
 Mouse::Mouse(Game* game) : IGenericHID(game, 8, 8)
 {
 
 }
 
-void Mouse::Update(GameTime * gametime)
+void Mouse::Update(GameTime* gametime)
 {
 	for(unsigned int id = 0; id < 8; id++)
 	{
 		(*buttons)[id].UpdateState(glfwGetMouseButton(game->gameWindow->window, id) == GLFW_PRESS);
 	}
+
 	double posX = 0.0f;
 	double posY = 0.0f;
-	glfwGetCursorPos(game->gameWindow->window,&posX,&posY);
+
+	glfwGetCursorPos(game->gameWindow->window, &posX, &posY);
+
 	(*axes)[0].UpdateValue(posX);
 	(*axes)[1].UpdateValue(posY);
 }

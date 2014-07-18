@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,30 +22,30 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "IGenericHID.h"
+ */
+#include "IGenericHID.hpp"
 
 using namespace MINX::Input;
 using namespace MINX;
 
-IGenericHID::IGenericHID(Game * game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : GameComponent(game)
+IGenericHID::IGenericHID(Game* game, unsigned int buttonVectorSize, unsigned int axisVectorSize) : GameComponent(game)
 {
 	Button b;
 	b.UpdateState(0);
 	b.UpdateState(0);
-	buttons = new vector<Button>(buttonVectorSize,b);
+	buttons = new std::vector<Button>(buttonVectorSize, b);
 	Axis a;
 	a.UpdateValue(0);
 	a.UpdateValue(0);
-	axes = new vector<Axis>(axisVectorSize,a);
+	axes = new std::vector<Axis>(axisVectorSize, a);
 }
 
 Button IGenericHID::GetButton(unsigned int id)
 {
-	return (* buttons)[id];
+	return (*buttons)[id];
 }
 
 Axis IGenericHID::GetAxis(unsigned int id)
 {
-	return (* axes)[id];
+	return (*axes)[id];
 }

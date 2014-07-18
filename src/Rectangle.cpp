@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,9 +22,9 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 
-#include "Rectangle.h"
+#include "Rectangle.hpp"
 #include <math.h>
 
 using namespace MINX;
@@ -37,33 +36,40 @@ Rectangle::Rectangle()
 	Width = 0;
 	Height = 0;
 }
+
 Rectangle::Rectangle(double x, double y, double width, double height)
 {
-	X=x;
-	Y=y;
+	X = x;
+	Y = y;
 	Width = width;
 	Height = height;
 }
+
 double Rectangle::Area()
 {
 	return Width * Height;
 }
+
 double Rectangle::Top()
 {
 	return Y;
 }
+
 double Rectangle::Bottom()
 {
 	return Y + Height;
 }
+
 double Rectangle::Left()
 {
 	return X;
 }
+
 double Rectangle::Right()
 {
 	return X + Width;
 }
+
 bool Rectangle::Intersects(Rectangle* rect2)
 {
 	return !(
