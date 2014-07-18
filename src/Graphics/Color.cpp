@@ -47,13 +47,6 @@ Color::Color(double r, double g, double b, double a)
 	A=a;
 }
 
-Color::Color(double r, double g, double b)
-{
-	R=r;
-	G=g;
-	B=b;
-	A=255.0;
-}
 bool Color::operator==(const Color& compareTo)
 {
 	return R == compareTo.R && G == compareTo.G && B == compareTo.B && A == compareTo.A;

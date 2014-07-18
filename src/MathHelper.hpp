@@ -24,13 +24,13 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_MATH_HPP_
+#define MINX_MATH_HPP_
+
 #include "API.hpp"
 
 #include <cmath>
 #include <stdlib.h>
-
-#ifndef MINX_MATH_HPP_
-#define MINX_MATH_HPP_
 
 namespace MINX
 {
