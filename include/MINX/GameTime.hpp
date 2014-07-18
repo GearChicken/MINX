@@ -24,15 +24,15 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_GAMETIME_HPP_
+#define MINX_GAMETIME_HPP_
+
 #include "API.hpp"
 
 #include <thread>
 #include <chrono>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-
-#ifndef MINX_GAMETIME_HPP_
-#define MINX_GAMETIME_HPP_
 
 namespace MINX
 {
@@ -69,8 +69,12 @@ namespace MINX
 			float GetDeltaTimeSecondsF();
 
 			/** Limits the updates per second of the current thread by delaying
+			 * @param desiredFPS the FPS to limit to
 			 */
-			inline void LimitFPS(unsigned int desiredFPS){std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long>(1000/desiredFPS-(GetDeltaTimeSeconds()))));}
+			inline void LimitFPS(unsigned int desiredFPS)
+			{
+				std::this_thread::sleep_for(std::chrono::milliseconds(static_cast<long>(1000/desiredFPS-(GetDeltaTimeSeconds()))));
+			}
 
 		private:
 			/** Constructs a GameTime
