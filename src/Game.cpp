@@ -22,37 +22,39 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-	*/
+ */
 
-#include "Game.h"
+#include "Game.hpp"
 #include <iostream>
 #include <thread>
 #if defined(LINUX) || defined(OSX)
-#include "X11/Xlib.h"
+	#include "X11/Xlib.h"
 #endif
 
 using namespace MINX;
 using namespace MINX::Graphics;
 using namespace std;
 
+MINX::Graphics::RenderTarget* Game::activeRenderTarget = NULL;
+
 Game::Game()
 {
 	windowWidth = 640;
 	windowHeight = 480;
 
-#if defined(LINUX) || defined(OSX)
-	XInitThreads();
-#endif
+	#if defined(LINUX) || defined(OSX)
+		XInitThreads();
+	#endif
 
 	Components = new vector<GameComponent*>();
 }
 
-int doUpdate(void * game)
+int doUpdate(void * game, GameTime* gameTime)
 {
 	do
 	{
 		((Game*)game)->isRunning = !glfwWindowShouldClose(((Game*)game)->gameWindow->window);
-		((Game*)game)->Update(((Game*)game)->GetGameTime());
+		((Game*)game)->Update(gameTime);
 	} while(((Game*)game)->isRunning);
 
 	return 0;
@@ -63,14 +65,16 @@ void Game::Run()
 
 	gameTime = new GameTime();
 
-#ifdef MINX_DEBUG
-	std::cout << "Game Running!\n";
-#endif
+	#ifdef MINX_DEBUG
+		std::cout << "Game Running!\n";
+	#endif
+
+	isRunning = true;
 
 	this->Initialize();
 	this->LoadContent();
 
-	thread updateThread = thread(doUpdate, this);
+	thread updateThread = thread(doUpdate, this, this->gameTime);
 	updateThread.detach();
 
 	do
@@ -79,12 +83,8 @@ void Game::Run()
 	} while(isRunning);
 
 	this->UnloadContent();
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-}
 
-GameTime* Game::GetGameTime()
-{
-	return gameTime;
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
 }
 
 void Game::Initialize()
@@ -99,14 +99,14 @@ void Game::Initialize()
 
 	gameWindow = new GameWindow(windowWidth, windowHeight, fullscreen, windowTitle);
 	glfwMakeContextCurrent(gameWindow->window);
-	glewExperimental=true;
 
+	glewExperimental=true;
 	if(glewInit() != GLEW_OK )
 	{
 		std::cout << "GLEW NOT INITED!\n";
 	}
 
-	for(vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
+	for(vector<GameComponent*>::size_type i=0; i < Components->size(); ++i)
 	{
 		(*Components)[i]->Initialize();
 	}
@@ -124,10 +124,9 @@ void Game::Initialize()
 
 void Game::LoadContent()
 {
-
 }
 
-void Game::Update(GameTime *gameTime)
+void Game::Update(GameTime* gameTime)
 {
 	gameTime->Update();
 	for (vector<GameComponent*>::size_type i=0; i < Components->size(); i++)
@@ -140,7 +139,7 @@ void Game::Update(GameTime *gameTime)
 }
 
 
-void Game::Draw(GameTime * gameTime)
+void Game::Draw(GameTime* gameTime)
 {
 	glfwSwapBuffers(gameWindow->window);
 	glfwPollEvents();
@@ -165,4 +164,30 @@ void Game::SetVideoOptions(unsigned int DwindowWidth, unsigned int DwindowHeight
 	windowHeight = DwindowHeight;
 	fullscreen = Dfullscreen;
 	windowTitle = DwindowTitle;
+}
+
+void Game::SetRenderTarget(RenderTarget* target, Color clearColor)
+{
+	//If it's already the same same the GPU some time by not changing the framebuffer
+	if(activeRenderTarget != target)
+	{
+		activeRenderTarget = target;
+		glBindTexture(GL_TEXTURE_2D, 0);
+
+		if(target == NULL)
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, 0);
+			glViewport(0,0, GameWindow::GetWidth(), GameWindow::GetHeight());
+			return;
+		}
+		else
+		{
+			glBindFramebuffer(GL_FRAMEBUFFER, target->frameBuffer);
+			glViewport(0,0, target->width, target->height);
+		}
+	}
+	GLfloat color[] = {static_cast<GLfloat>(clearColor.R)/255.f, static_cast<GLfloat>(clearColor.G)/255.f, static_cast<GLfloat>(clearColor.B)/255.f, static_cast<GLfloat>(clearColor.A)/255.f};
+	glClearColor(color[0], color[1], color[2], color[3]);
+	glClear(GL_COLOR_BUFFER_BIT);
+
 }

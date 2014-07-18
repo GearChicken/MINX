@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,25 +22,23 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
+ */
 
-#include "Keyboard.h"
+#include "Keyboard.hpp"
 
 using namespace MINX::Input;
 using namespace MINX;
 
-Keyboard::Keyboard (Game * game) : IGenericHID(game,350,0) //350 might be a little high
+Keyboard::Keyboard (Game* game) : IGenericHID(game, 350, 0) //350 might be a little high
 {
 
 }
 
-void Keyboard::Update(GameTime * gametime)
+void Keyboard::Update(GameTime* gametime)
 {
 	for(unsigned int id = 0; id < 350; id++)
 	{
-			(*buttons)[id].prevState = (*buttons)[id].state;
-			(*buttons)[id].state= (glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
-		
+			(*buttons)[id].UpdateState(glfwGetKey(game->gameWindow->window, id) == GLFW_PRESS);
 	}
 }
 

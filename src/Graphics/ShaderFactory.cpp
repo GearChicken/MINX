@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,8 +22,10 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "ShaderFactory.h"
+*/
+
+#include "ShaderFactory.hpp"
+
 using namespace MINX;
 using namespace MINX::Graphics;
 
@@ -36,23 +37,28 @@ ShaderFactory::ShaderFactory()
 
 	std::string vertexSource =
 		"#version 120\n"
-		"attribute vec4 coord;"
-		"varying vec2 texpos;"
-		"uniform mat4 trans;"
+		"attribute vec4 position;"
+		"attribute vec2 texcoord;"
+		"attribute vec4 tint;"
+		"varying vec2 texCoord;"
+		"varying vec4 tintColor;"
+		"uniform mat4 projectionMatrix;"
 		"void main()"
 		"{"
-		"	texpos = coord.zw;" 
-		"	gl_Position = trans * vec4(coord.xy, 0.0, 1.0);"
+		"    gl_Position = projectionMatrix * position;"
+		"    texCoord = texcoord;"
+		"    tintColor = tint;"
 		"}";
 	std::string fragmentSource =
 		"#version 120\n"
-		"varying vec2 texpos;"
 		"uniform sampler2D tex;"
-		"uniform vec4 color;"
+		"varying vec2 texCoord;"
+		"varying vec4 tintColor;"
 		"void main()"
 		"{"
-		"	gl_FragColor = texture2D(tex, texpos) * color;"
+		"    gl_FragColor = texture2D(tex, texCoord) * tintColor;"
 		"}";
+
 	LoadShader(vertexSource, fragmentSource);
 
 	std::string fontVertexSource =
@@ -125,7 +131,6 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	const char* vertexChars = vertexSource.c_str();
 	std::cout << vertexChars << "\n\n";
 
-
 	//Create a vertex shader
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 
@@ -144,7 +149,7 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	{
 		glGetShaderiv(vertexShader, GL_INFO_LOG_LENGTH, &logLen);
 
-		shaderLog = new char[logLen+1];
+		shaderLog = new char[logLen + 1];
 		glGetShaderInfoLog(vertexShader, logLen, NULL, shaderLog);
 		std::cout << "Shader Error Log:\n" << shaderLog << "\n\n";
 		delete shaderLog;
@@ -170,7 +175,7 @@ void ShaderFactory::LoadShader(std::string vertexSource, std::string fragmentSou
 	{
 		glGetShaderiv(fragmentShader, GL_INFO_LOG_LENGTH, &logLen);
 
-		shaderLog = new char[logLen+1];
+		shaderLog = new char[logLen + 1];
 		glGetShaderInfoLog(fragmentShader, logLen, NULL, shaderLog);
 		std::cout << "Shader Error Log:\n" << shaderLog << "\n" << std::endl;
 		delete shaderLog;

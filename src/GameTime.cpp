@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,49 +22,52 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#include "GameTime.h"
+ */
+        
+#include "GameTime.hpp"
+
 using namespace MINX;
 
 GameTime::GameTime()
 {
-	totalTimeMillis=0;
-	deltaTime=0;
-	lastUpdate=0;
+	totalTime = 0;
+	deltaTime = 0;
+	lastUpdate = 0;
 }
 
-/*void GameTime::limitFPS(int desiredFPS)
-{
-	
-	int NextTick = totalTimeMillis + (1000/desiredFPS);
-	if(NextTick > glfwGetTime())
-	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(1000/desiredFPS-deltaTimeMillis));
-	}
-}//*/
 void GameTime::Update()
 {
-	totalTimeMillis = glfwGetTime()*1000.0;
-	deltaTime = totalTimeMillis - lastUpdate;
-	lastUpdate = totalTimeMillis;
+	totalTime = glfwGetTime();
+	deltaTime = totalTime - lastUpdate;
+	lastUpdate = totalTime;
 	deltaTime = deltaTime > 0 ? deltaTime : std::numeric_limits<double>::epsilon();
 }
 long GameTime::GetElapsedMillis()
 {
-	return totalTimeMillis;
+	return static_cast<long>(totalTime * 1000.0);
+}
+
+double GameTime::GetElapsedSeconds()
+{
+	return totalTime;
+}
+
+float GameTime::GetElapsedSecondsF()
+{
+	return static_cast<float>(GetElapsedSeconds()) > std::numeric_limits<float>::epsilon() ? static_cast<float>(GetElapsedSeconds()) : std::numeric_limits<float>::epsilon();;
 }
 
 double GameTime::GetDeltaTimeSeconds()
 {
-	return deltaTime / 1000.0;
+	return deltaTime;
 }
 
 float GameTime::GetDeltaTimeSecondsF()
 {
-	return GetDeltaTimeSeconds() > std::numeric_limits<float>::epsilon() ? GetDeltaTimeSeconds() : std::numeric_limits<float>::epsilon();
+	return static_cast<float>(GetDeltaTimeSeconds()) > std::numeric_limits<float>::epsilon() ? static_cast<float>(GetDeltaTimeSeconds()) : std::numeric_limits<float>::epsilon();
 }
 
 long GameTime::GetDeltaTimeMillis()
 {
-	return deltaTime;
+	return static_cast<long>(deltaTime * 1000.0);
 }

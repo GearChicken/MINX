@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -25,15 +24,18 @@ freely, subject to the following restrictions:
 >
         */
 
-#include "GameWindow.h"
+#include "GameWindow.hpp"
 
 using namespace MINX::Graphics;
-int GameWindow::width=0;
-int GameWindow::height=0;
+
+int GameWindow::width = 0;
+int GameWindow::height = 0;
+GLFWwindow* GameWindow::window = NULL;
+bool GameWindow::sizeLocked = false;
 
 void windowResizeCallback(GLFWwindow* window, int width, int height)
 {
-	if (!width|| !height)
+	if (!width || !height)
 	{
 		return;
 	}
@@ -56,8 +58,8 @@ GameWindow::GameWindow(int width, int height, bool fullscreen)
 
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
-	glfwSetWindowSizeCallback(window, windowResizeCallback);
+	GameWindow::window = glfwCreateWindow(width, height, "MINX Window", monitor, NULL);
+	glfwSetWindowSizeCallback(GameWindow::window, windowResizeCallback);
 }
 
 GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
@@ -73,19 +75,21 @@ GameWindow::GameWindow(int width, int height, bool fullscreen, char* title)
 
 	GameWindow::width = width;
 	GameWindow::height = height;
-	window = glfwCreateWindow(width, height, title, monitor, NULL);
-	glfwSetWindowSizeCallback(window, windowResizeCallback);
+	GameWindow::window = glfwCreateWindow(width, height, title, monitor, NULL);
+	glfwSetWindowSizeCallback(GameWindow::window, windowResizeCallback);
+}
+void GameWindow::SetHeight(int height)
+{
+	if(sizeLocked) return;
+	GameWindow::height = height;
+	glfwSetWindowSize(GameWindow::window, GameWindow::GetWidth(), GameWindow::GetHeight());
+	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetHeight());
 }
 
-void GameWindow::Clear()
+void GameWindow::SetWidth(int width)
 {
-	glClearColor(0.392156863,0.584313725,0.929411765,1.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-}
-
-void GameWindow::ClearColor(Color color)
-{
-	glClearColor(color.R/255.0, color.G/255.0, color.B/255.0, color.A/255.0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
+	if(sizeLocked) return;
+	GameWindow::width = width;
+	glfwSetWindowSize(GameWindow::window, GameWindow::GetWidth(), GameWindow::GetWidth());
+	glViewport(0, 0, GameWindow::GetWidth(), GameWindow::GetWidth());
 }
