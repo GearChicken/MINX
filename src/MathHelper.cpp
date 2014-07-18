@@ -251,9 +251,3 @@ double Math::random(double minimum, double maximum, double precision)
 	double range = maximum - minimum;
 	return (rand() % static_cast<int>(precision))/precision * range + minimum;
 }
-
-double Math::random(double minimum, double maximum, double precision = 100.0)
-{
-	double range = maximum - minimum;
-	return (rand() % (int)precision) / precision * range + minimum;
-}
