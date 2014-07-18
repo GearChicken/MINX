@@ -24,14 +24,14 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_GAMEPAD_HPP_
+#define MINX_GAMEPAD_HPP_
+
 #include <functional>
 
 #include "../API.hpp"
 #include "IGenericHID.hpp"
 #include "../Game.hpp"
-
-#ifndef MINX_GAMEPAD_HPP_
-#define MINX_GAMEPAD_HPP_
 
 #define GENERIC_GAMEPAD 0
 #define XBOX_360_GAMEPAD 1

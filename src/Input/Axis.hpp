@@ -24,10 +24,10 @@ freely, subject to the following restrictions:
 >
  */
 
-#include "../API.hpp"
-
 #ifndef MINX_AXIS_HPP_
 #define MINX_AXIS_HPP_
+
+#include "../API.hpp"
 
 namespace MINX
 {

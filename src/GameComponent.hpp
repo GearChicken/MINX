@@ -24,12 +24,12 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_GAMECOMPONENT_HPP_
+#define MINX_GAMECOMPONENT_HPP_
+
 #include "API.hpp"
 
 #include "GameTime.hpp"
-
-#ifndef MINX_GAMECOMPONENT_HPP_
-#define MINX_GAMECOMPONENT_HPP_
 
 namespace MINX
 {

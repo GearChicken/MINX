@@ -24,13 +24,13 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_SOUNDFILE_HPP_
+#define MINX_SOUNDFILE_HPP_
+
 #include "../API.hpp"
 
 #include "SFML/Audio.hpp"
 #include <string>
-
-#ifndef MINX_SOUNDFILE_HPP_
-#define MINX_SOUNDFILE_HPP_
 
 namespace MINX
 {

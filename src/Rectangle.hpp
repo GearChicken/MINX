@@ -24,12 +24,12 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_RECTANGLE_HPP_
+#define MINX_RECTANGLE_HPP_
+
 #include "API.hpp"
 
 #include <cmath>
-
-#ifndef MINX_RECTANGLE_HPP_
-#define MINX_RECTANGLE_HPP_
 
 namespace MINX
 {

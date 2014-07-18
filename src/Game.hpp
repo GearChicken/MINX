@@ -24,6 +24,9 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_GAME_HPP_
+#define MINX_GAME_HPP_
+
 #include "API.hpp"
 
 #include <ft2build.h>
@@ -46,9 +49,6 @@ freely, subject to the following restrictions:
 #include "Graphics/GameWindow.hpp"
 #include <thread>
 #include <mutex>
-
-#ifndef MINX_GAME_HPP_
-#define MINX_GAME_HPP_
 
 namespace MINX
 {

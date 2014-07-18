@@ -24,14 +24,14 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_MOUSE_HPP_
+#define MINX_MOUSE_HPP_
+
 #include "../API.hpp"
 
 #include "IGenericHID.hpp"
 #include "../Game.hpp"
 #include "../Vector2.hpp"
-
-#ifndef MINX_MOUSE_HPP_
-#define MINX_MOUSE_HPP_
 
 namespace MINX
 {

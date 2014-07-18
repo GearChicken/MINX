@@ -24,15 +24,15 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_KEYBOARD_HPP_
+#define MINX_KEYBOARD_HPP_
+
 #include "../API.hpp"
 
 #include "IGenericHID.hpp"
 #include "Button.hpp"
 
 #include <map>
-
-#ifndef MINX_KEYBOARD_HPP_
-#define MINX_KEYBOARD_HPP_
 
 namespace MINX
 {

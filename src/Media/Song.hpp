@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -25,12 +24,12 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_SONG_HPP_
+#define MINX_SONG_HPP_
+
 #include "../API.hpp"
 
 #include "SFML/Audio.hpp"
-
-#ifndef MINX_SONG_HPP_
-#define MINX_SONG_HPP_
 
 namespace MINX
 {
