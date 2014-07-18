@@ -24,6 +24,9 @@ freely, subject to the following restrictions:
 >
  */
 
+#ifndef MINX_GAME_HPP_
+#define MINX_GAME_HPP_
+
 #include "API.hpp"
 
 #include <ft2build.h>
@@ -47,54 +50,51 @@ freely, subject to the following restrictions:
 #include <thread>
 #include <mutex>
 
-#ifndef MINX_GAME_HPP_
-#define MINX_GAME_HPP_
-
 namespace MINX
 {
 	/** The class that handles everything.
-	 * When using the library, your code will probably construct, Initialize() and Run() your subclass of Game.
+	 * When using the library, your code will probably construct and Run() your subclass of Games
 	 */
 	class MINX_API Game 
 	{
 		public:
-			/** The constructor, which handles some of the initialization code for the Game.
+			/** The constructor, which handles some of the initialization code for the Game
 			 */
 			Game();
 		
-			/** This handles the rest of the initialization code for the game.
+			/** This handles the rest of the initialization code for the game
 			 */
 			virtual void Initialize();
 		
-			/** Loads content used by the game.
+			/** Loads content used by the game
 			 */
 			virtual void LoadContent();
 		
-			/** Updates the game state.
-			 * Should be extended when you create a subclass of Game.
-			 * @param gameTime the GameTime to use when updating.
+			/** Updates the game state
+			 * Should be extended when you create a subclass of Game
+			 * @param gameTime the GameTime to use when updating
 			 */
 			virtual void Update(GameTime* gameTime);
 		
-			/** Unloads content used by the game.
+			/** Unloads content used by the game
 			 */
 			virtual void UnloadContent();
 		
-			/** Draws the state of the game every frame.
-			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa.
-			 * @param gameTime the GameTime to use when drawing.
+			/** Draws the state of the game every frame
+			 * This method is called by a different thread than Update(), so it is ok to use sleeps in Update() and not worry about freezing the drawing, or vice versa
+			 * @param gameTime the GameTime to use when drawing
 			 */
 			virtual void Draw(GameTime* gameTime);
 		
-			/** Handles Update()ing, Draw()ing, and event handling.
+			/** Handles Update()ing, Draw()ing, and event handling
 			 */
 			void Run();
 		
-			/** A pointer to the window used by the game.
+			/** A pointer to the window used by the game
 			 */
 			Graphics::GameWindow* gameWindow;
 		
-			/** A pointer to a vector of pointers to the GameComponents used in the game.
+			/** A pointer to a vector of pointers to the GameComponents used in the game
 			 */
 			std::vector<GameComponent*>* Components;
 		
@@ -117,13 +117,11 @@ namespace MINX
 			 */
 			bool isRunning;
 		
-			/** Set's the Game's RenderTarget and clears to the clearColor.
+			/** Set's the Game's RenderTarget and clears to the clearColor
+			 * @param target The RenderTarget to render to, defaults to NULL, if null the entire window is used
+			 * @param clearColor The color to clear the RenderTarget to, defaults to CornflowerBlue
 			 */
-			void SetRenderTarget(Graphics::RenderTarget* target, Graphics::Color clearColor);
-
-			/** Set's the Game's RenderTarget and clears to cornflower blue.
-			 */
-			void SetRenderTarget(Graphics::RenderTarget* target);
+			void SetRenderTarget(Graphics::RenderTarget* target = NULL, Graphics::Color clearColor = Graphics::Color::CornflowerBlue);
 
 		protected:
 			/** An instance of freetype used to draw text
@@ -131,7 +129,7 @@ namespace MINX
 			FT_Library freeTypeLibrary;
 
 		private:
-			/** A pointer to the GameTime being used by the game.
+			/** A pointer to the GameTime being used by the game
 			 */
 			GameTime* gameTime;
 		
@@ -155,8 +153,8 @@ namespace MINX
 			 */
 			static Graphics::RenderTarget* activeRenderTarget;
 		
-			friend class MINX::Graphics::Font;
-			friend class MINX::Graphics::TextureBatch;
+		friend class MINX::Graphics::Font;
+		friend class MINX::Graphics::TextureBatch;
 	};
 }
 #endif

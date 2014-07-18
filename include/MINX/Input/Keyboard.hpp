@@ -5,7 +5,7 @@ Copyright (c) 2013-2014 Liam Middlebrook, Benjamin Pylko
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
-arising from the use of this software.
+arising from the use of this software
 
 Permission is granted to anyone to use this software for any purpose,
 including commercial applications, and to alter it and redistribute it
@@ -14,15 +14,18 @@ freely, subject to the following restrictions:
 > 1\. The origin of this software must not be misrepresented; you must not
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
-> appreciated but is not required.
+> appreciated but is not required
 >
 > 2\. Altered source versions must be plainly marked as such, and must not be
-> misrepresented as being the original software.
+> misrepresented as being the original software
 >
 > 3\. This notice may not be removed or altered from any source
-> distribution.
+> distribution
 >
  */
+
+#ifndef MINX_KEYBOARD_HPP_
+#define MINX_KEYBOARD_HPP_
 
 #include "../API.hpp"
 
@@ -31,9 +34,6 @@ freely, subject to the following restrictions:
 
 #include <map>
 
-#ifndef MINX_KEYBOARD_HPP_
-#define MINX_KEYBOARD_HPP_
-
 namespace MINX
 {
 	namespace Input
@@ -41,7 +41,7 @@ namespace MINX
 
 		namespace Keys
 		{
-			/** Enumerates all readable keys.
+			/** Enumerates all readable keys
 			 */
 			enum MINX_API Keys 
 			{
@@ -170,21 +170,24 @@ namespace MINX
 			};
 		}
 
-		/** Represents a keyboard device.
+		/** Represents a keyboard device
 		 */
 		class MINX_API Keyboard : public IGenericHID
 		{
 			public:
 				/** Calls the IGenericHID constructor with game,512,0
+				 * @param game A pointer to the Game to attach to
 				 */
-				Keyboard(Game * game);
+				Keyboard(Game* game);
 				
-				/** Pulls data from the keyboardEvent queue in the Game object given to the constructor.
+				/** Updates the state of the Keyboard
+				 * @param gametime The GameTime used to update
 				 */
-				void Update(GameTime * gametime);
+				void Update(GameTime* gametime);
 				
 				/** Gets a button for the state of 'key'
-				 *	@param key The Key to get the state of
+				 * @param key The key to get the state of
+				 * @return The Button object representing the key
 				 */
 				Button GetKey(unsigned int key);
 		};

@@ -1,4 +1,3 @@
-
 /*
 # MINX
 
@@ -23,11 +22,12 @@ freely, subject to the following restrictions:
 > 3\. This notice may not be removed or altered from any source
 > distribution.
 >
-        */
-#ifndef MINX_MATH_H_
-#define MINX_MATH_H_
+ */
 
-#include "API.h"
+#ifndef MINX_MATH_HPP_
+#define MINX_MATH_HPP_
+
+#include "API.hpp"
 
 #include <cmath>
 #include <stdlib.h>
@@ -84,7 +84,7 @@ namespace MINX
 		extern MINX_API double clamp(double number, double lowerLimit, double upperLimit);
 		extern MINX_API double max(double num1, double num2);
 		extern MINX_API double min(double num1, double num2);
-		extern MINX_API double random(double minimum, double maximum, double precision);
+		extern MINX_API double random(double minimum, double maximum, double precision = 100.0);
 	}
 }
 #endif
