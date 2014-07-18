@@ -5,7 +5,7 @@ Copyright (c) 2013-2014 Liam Middlebrook, Benjamin Pylko
 
 This software is provided 'as-is', without any express or implied
 warranty. In no event will the authors be held liable for any damages
-arising from the use of this software.
+arising from the use of this software
 
 Permission is granted to anyone to use this software for any purpose,
 including commercial applications, and to alter it and redistribute it
@@ -14,24 +14,24 @@ freely, subject to the following restrictions:
 > 1\. The origin of this software must not be misrepresented; you must not
 > claim that you wrote the original software. If you use this software
 > in a product, an acknowledgment in the product documentation would be
-> appreciated but is not required.
+> appreciated but is not required
 >
 > 2\. Altered source versions must be plainly marked as such, and must not be
-> misrepresented as being the original software.
+> misrepresented as being the original software
 >
 > 3\. This notice may not be removed or altered from any source
-> distribution.
+> distribution
 >
  */
+
+#ifndef MINX_GAMEPAD_HPP_
+#define MINX_GAMEPAD_HPP_
 
 #include <functional>
 
 #include "../API.hpp"
 #include "IGenericHID.hpp"
 #include "../Game.hpp"
-
-#ifndef MINX_GAMEPAD_HPP_
-#define MINX_GAMEPAD_HPP_
 
 #define GENERIC_GAMEPAD 0
 #define XBOX_360_GAMEPAD 1
@@ -63,15 +63,15 @@ namespace MINX
 		class MINX_API GamePad : public IGenericHID
 		{
 			public:
-				/** Creates a new GamePad instance.
-				 *	@param deviceIndex The Index of the GamePad to get an instance of.
-				 *	@param game A pointer to an instance of the game object.
+				/** Creates a new GamePad instance
+				 *	@param deviceIndex The Index of the GamePad to get an instance of
+				 *	@param game A pointer to an instance of the game object
 				 */
 				GamePad(unsigned int deviceIndex, Game* game);
 				
-				/** Creates a new Gamepad instance.
-				 *	@param deviceIndex The Index of the GamePad to get an instance of.
-				 *	@param game A pointer to an instance of the game object.
+				/** Creates a new Gamepad instance
+				 *	@param deviceIndex The Index of the GamePad to get an instance of
+				 *	@param game A pointer to an instance of the game object
 				 *	@param gamePadType The Type of GamePad that is being Instantiated
 				 */
 				GamePad(unsigned int deviceIndex, Game* game, unsigned int gamePadType);
@@ -81,15 +81,19 @@ namespace MINX
 				 */
 				const char* GetName();
 				
-				/** Checks is the GamePad's state has changed, and saves the data properly.
+				/** Checks is the GamePad's state has changed, and saves the data properly
 				 */
 				void Update(GameTime* gameTime);
 				
 				/** Gets the Button at the specified index
+				 * @param buttonID The id of the button
+				 * @return The button
 				 */
 				Button GetButton(unsigned int buttonID);
 				
 				/** Gets the Axis at the specified index
+				 * @param axisID The id of the axis
+				 * @return The axis
 				 */
 				Axis GetAxis(unsigned int axisID);
 				
