@@ -13,7 +13,7 @@ checkInst()
   if debInst "${1}"; then
     echo "${1} is already installed!"
   else
-    echo "${1} must be installed in order to run fenrir!";
+    echo "${1} must be installed in order to build MINX!";
     exit 1;
   fi
 }
