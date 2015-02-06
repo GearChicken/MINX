@@ -96,6 +96,7 @@ namespace MINX
 		
 		/** "cross multiplies" 2 Vector2s
 		 * There are "'s there because you can't REALLY cross multiply a 2 dimensional vector
+		 * It's equivalent to v1.X * v2.Y - v1.Y * v2.X, or v1.Length() * v2.Length() * sin(theta)
 		 * @param multiplyBy the Vector2 to "cross multiply" by
 		 */
 		double Cross(const Vector2& multiplyBy);

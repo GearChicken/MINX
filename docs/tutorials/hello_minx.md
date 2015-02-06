@@ -18,7 +18,7 @@ Introductory Tutorial to Using MINX
 
   2. Check that the proper dependencies are installed `./configure.sh`
   
-  3. Compile and Install MINX `make` `sudo make install` `sudo make headers`
+  3. Compile and Install MINX `make` `sudo make install`
 
 # Basic Overview of The MINX::Game Class
   Everything in MINX is centered around the MINX::Game class
